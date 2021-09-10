@@ -72,8 +72,8 @@ function btnStory05() {
     // story05El.classList.toggle("hidden");
   } else if (
     emptyCellA05El.checked === true ||
-    emptyCellB05El.checked === true ||
-    emptyCellC05El.checked === true
+    emptyCellC05El.checked === true ||
+    emptyCellD05El.checked === true
   ) {
     emptyCellP.innerHTML += `Wrong Answer! Please try again!`;
     emptyCellP.classList.remove("choice--correct");
