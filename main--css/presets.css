@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* Image Rendering */
+  image-rendering: crisp-edges; /* For Firefox */
+  image-rendering: pixelated; /* Chrome */
+}
+
+body {
+  /* background-color: red; */
+  color: #363732;
+  /* border-bottom: 8px solid #3b5bdb; */
+}
+
+footer {
+  color: "";
+}

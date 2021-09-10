@@ -1,0 +1,28 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  image-rendering: pixelated;
+}
+
+body {
+  color: #040404;
+  border-top: 4px solid purple;
+  background-color: #ffd17c;
+}
+
+/* 3 possible values for image-rendering: 
+
+  image-rendering: auto;
+  - default value that uses the browsers standard algorithim to maximize the appearance of an image
+  image-rendering: crisp-edges;
+  - the
+  image-rendering: pixelated;
+
+*/
+
+/* Colors for project
+  colors: #f7ddae;
+
+
+*/

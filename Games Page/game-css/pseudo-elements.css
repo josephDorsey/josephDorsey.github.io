@@ -1,0 +1,7 @@
+figure li:last-child {
+  padding-bottom: 10px;
+}
+
+.radio-box:last-of-type {
+  padding-bottom: 10px;
+}

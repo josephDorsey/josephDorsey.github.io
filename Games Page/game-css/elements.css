@@ -1,0 +1,80 @@
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background-color: #000;
+  text-align: center;
+  color: #fff;
+}
+
+nav a {
+  padding: 0 1rem;
+  font-size: 1.5rem;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  display: inline;
+}
+
+nav a:link,
+nav a:visited {
+}
+
+nav a:hover,
+nav a:active {
+  border-bottom: 2px solid #3b5bdb;
+  padding-bottom: 2px;
+}
+
+a {
+  text-decoration: none;
+  color: #3b5bdb;
+}
+
+figure img {
+  width: 10rem;
+  /* height: 300px; */
+  padding-bottom: 10px;
+  object-fit: cover;
+  overflow: hidden;
+}
+/* 
+div img {
+  background-image: url(./img/circle-home.jpg);
+  background-size: 100% 100%;
+  object-fit: fill;
+  width: 100%;
+  height: 200px;
+} */
+figure p {
+  width: 100%;
+  padding-bottom: 10px;
+  line-height: 1.52;
+}
+
+figure ul {
+  margin-left: 20px;
+  line-height: 1.52;
+}
+
+figure ol {
+  margin-left: 20px;
+  line-height: 1.3;
+}
+
+/* .row a:link,
+.row a:visited {
+  font-size: 3rem;
+} */
+
+input[type="submit"] {
+  text-align: center;
+  position: absolute;
+  margin: auto;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+}

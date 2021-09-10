@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  image-rendering: crisp-edges; /* For Firefox */
+  image-rendering: pixelated; /* For Chrome */
+}
+
+body {
+  /* background-color: #ededed; */
+}

@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="/josephdorsey.github.io/Games Page/Murder Mystery Game/classes.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/josephdorsey.github.io/Games Page//Murder Mystery Game/presets.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/josephdorsey.github.io/Games Page//Murder Mystery Game/elements.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/josephdorsey.github.io/Games Page//Murder Mystery Game/pseudo-elements.css"
+    />
+
+    <title>Blog</title>
+  </head>
+  <body>
+    <div class="main--container">
+      <header class="main--header">
+        <div class="logo--container">
+          <a href="/josephdorsey.github.io/index.html" class="logo--link">
+            <h1>
+              <span class="logo--span--1">J</span>oseph
+              <span class="logo--span--2">D</span>orsey
+            </h1></a
+          >
+          <h4>A Front-end Developers Journey</h4>
+        </div>
+        <div class="row board">
+          <div class="score--board">
+            <div class="row player--box hidden">
+              <div class="player--name">
+                <div class="rules--container">
+                  <button class="btn--rules">Rules</button>
+                </div>
+                <div class="play--container">
+                  <button class="btn--play">Play</button>
+                </div>
+              </div>
+            </div>
+            <div class="user--box">
+              <input
+                class="user--input"
+                type="text"
+                placeholder="Please enter username"
+              />
+              <button class="button--user">Enter</button>
+            </div>
+            <div class="mystery hidden">
+              <h3>Mystery</h3>
+              <div class="story--round">
+                <p><span class="story--turn story--turnEl">1</span></p>
+                <p>/5</p>
+              </div>
+            </div>
+            <div class="attempt hidden">
+              <h3 class="score--1">Attempt</h3>
+              <p class="attempt--turn">1</p>
+            </div>
+            <div class="points hidden">
+              <h3 class="score--2">Points</h3>
+              <div class="score--potential">
+                <p class="score--points-plus">+</p>
+                <p class="score--points-left">5</p>
+              </div>
+            </div>
+            <div class="score hidden">
+              <h3 class="score--3">Score</h3>
+              <p class="score--total-points">0</p>
+            </div>
+          </div>
+        </div>
+        <nav class="blog--menu">
+          <a href="/josephdorsey.github.io/index.html">About</a>
+          <a href="/josephdorsey.github.io/Portfolio Page/index.html"
+            >Portfolio</a
+          >
+          <a href="/josephdorsey.github.io/Contact Page/index.html">Contact</a>
+          <a
+            class="nav--active"
+            href="/josephdorsey.github.io/Games Page/index.html"
+            >Games</a
+          >
+        </nav>
+      </header>
+      <section class="games--section">
+        <!-- <div class="row board hidden">
+          <div class="score--board">
+            <div class="row player--box hidden">
+              <div class="player--name">
+                <div class="rules--container">
+                  <button class="btn--rules">Rules</button>
+                </div>
+                <div class="play--container">
+                  <button class="btn--play">Play</button>
+                </div>
+              </div>
+            </div>
+            <div class="user--box">
+              <input
+                class="user--input"
+                type="text"
+                placeholder="Please enter username"
+              />
+              <button class="button--user">Enter</button>
+            </div>
+            <div class="mystery hidden">
+              <h3>Mystery</h3>
+              <div class="story--round">
+                <p><span class="story--turn">1</span></p>
+                <p>/5</p>
+              </div>
+            </div>
+            <div class="attempt hidden">
+              <h3 class="score--1">Attempt</h3>
+              <p class="attempt--turn">1</p>
+            </div>
+            <div class="points hidden">
+              <h3 class="score--2">Points</h3>
+              <div class="score--potential">
+                <p class="score--points-plus">+</p>
+                <p class="score--points-left">5</p>
+              </div>
+            </div>
+            <div class="score hidden">
+              <h3 class="score--3">Score</h3>
+              <p class="score--total-points">0</p>
+            </div>
+          </div>
+        </div> -->
+        <div class="row">
+          <button class="button--play hidden">Play</button>
+        </div>
+        <div class="row rules--modal hidden">
+          <div>
+            <h3>Rules</h3>
+            <span class="close--rules--modal">&times;</span>
+            <p class="rules--summary">
+              Players will be tasked with solving
+              <span class="rules--span">five</span> murder mysteries with
+              Detective Todder. To progress through this game players must read
+              and then successfully solve
+              <span class="rules--span">one</span> question per passage.
+            </p>
+            <p class="rules--summary">
+              All questions for each passage have
+              <span class="rules--span">four</span> possible answers and the
+              player must choose correctly to earn the most amount of points.
+              Players will only have
+              <span class="rules--span">three</span> tries per passage, before
+              it moves on to the next story.
+            </p>
+            <h3>Points System</h3>
+            <p class="rules--summary">
+              Each incorrect answer is a <span class="rules--span">-2</span> to
+              the potential points they could get on this passage. The points
+              system works like this:
+            </p>
+            <ol class="rules--list">
+              <li>
+                If the player gets the answer correct on their first try: 5
+                points
+              </li>
+              <li>
+                If the player gets the answer correct on their second try: 3
+                points
+              </li>
+              <li>
+                If the player gets the answer correct on their third try: 1
+                point
+              </li>
+              <li>
+                If the player get none of the answers correct on their third
+                try: the passage will become unresponsive and switch to the next
+                passage.
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="row story story--1 hidden">
+          <figure>
+            <div>
+              <h2>The Green House</h2>
+              <img
+                src="/josephdorsey.github.io/Games Page/Murder Mystery Game/img/circle-home.jpg"
+              />
+            </div>
+            <div class="story--container">
+              <p>
+                The Greens are a very wealthy family that live in a big circular
+                home. In the morning Mr. Green wakes up to find his gardener’s
+                body in the front yard. He calls the police. The detective who
+                came asked the employees about their whereabouts and what they
+                were doing earlier that morning.
+              </p>
+              <ul>
+                <li>The driver was outside washing the car</li>
+                <li>The maid was dusting the corners of the house</li>
+                <li>The cook was starting to make lunch for later</li>
+              </ul>
+              <form class="quiz--greenhouse">
+                <p>
+                  From the replies he knew who the killer was. Who was it and
+                  how did the detective know?
+                </p>
+                <ol type="A">
+                  <li>
+                    <span class="radio-box">
+                      <input
+                        name="radio--answer"
+                        class="radio gh01--driver"
+                        type="radio"
+                        value="driver"
+                      />
+                      <label for="driver"
+                        >It was the driver. The car was in the shop at the
+                        time.</label
+                      >
+                    </span>
+                  </li>
+                  <li>
+                    <span class="radio-box">
+                      <input
+                        name="radio--answer"
+                        class="radio gh02--maid"
+                        type="radio"
+                        value="maid"
+                      />
+                      <label for="maid"
+                        >It was the maid. They lived in a circular house and she
+                        was dusting the corners of the house at the time of the
+                        murder.</label
+                      ></span
+                    >
+                  </li>
+                  <li>
+                    <span class="radio-box">
+                      <input
+                        name="radio--answer"
+                        class="radio gh03--cook"
+                        type="radio"
+                        value="cook"
+                      />
+                      <label for="cook"
+                        >It was the cook. The meal had already been prepared the
+                        night before.
+                      </label>
+                    </span>
+                  </li>
+                  <li>
+                    <span class="radio-box">
+                      <input
+                        name="radio--answer"
+                        class="radio gh04--gardener"
+                        type="radio"
+                        value="gardener"
+                      />
+                      <label for="gardener"
+                        >The gardener wasn't murdered. It was a suicide.</label
+                      >
+                    </span>
+                  </li>
+                </ol>
+                <div class="quiz--result01El">
+                  <p class="p--answer01El"></p>
+                </div>
+                <div class="container-btn--1">
+                  <button type="button" class="btn--story btn--1">
+                    Submit
+                  </button>
+                </div>
+                <div class="container-btn--next01El hidden">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 btn--next01El"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </form>
+            </div>
+          </figure>
+        </div>
+        <div class="row story story--2 hidden">
+          <figure>
+            <div>
+              <h2>A Friendly Visit</h2>
+              <img
+                src="/josephdorsey.github.io/Games Page/Murder Mystery Game/img/circle-home.jpg"
+              />
+            </div>
+            <div class="story--container">
+              <p>
+                Anna goes to her friend Mara’s house, on a wintry evening only
+                to find her dead. When the police learn about the incident, they
+                question Anna about how she found out. Anna says that she
+                knocked on the door and rang the bell repeatedly.
+              </p>
+              <p>
+                Since the light was on in one of the rooms, Anna knew Mara must
+                be home and decided to look through the window. The windows were
+                frozen, so she breathed on the iced glass, and that’s when she
+                noticed Mara’s body on the floor.
+              </p>
+              <p>The police suspect Anna is the murderer. Why?</p>
+
+              <form class="quiz--fvisit">
+                <ol type="A">
+                  <li>
+                    <span class="radio-box">
+                      <input
+                        name="radio--answer"
+                        class="radio fv01--implicate"
+                        type="radio"
+                        value="implicate"
+                      />
+                      <label for="implicate"
+                        >Mara wrote her murderers name in her own blood on the
+                        ground before she died. Implicating that Anna had done
+                        it.</label
+                      >
+                    </span>
+                  </li>
+                  <li>
+                    <span class="radio-box">
+                      <input
+                        name="radio--answer"
+                        class="radio fv02--police"
+                        type="radio"
+                        value="police"
+                      />
+                      <label for="police"
+                        >The police were mistaken. Mara left her home exposed
+                        and the chilling temperatures put her in a sleep that
+                        she would not wake from.</label
+                      ></span
+                    >
+                  </li>
+                  <li>
+                    <span class="radio-box">
+                      <input
+                        name="radio--answer"
+                        class="radio fv03--anna"
+                        type="radio"
+                        value="cook"
+                      />
+                      <label for="anna"
+                        >Anna could not have possibly gotten a clear view of the
+                        room from outside, as both sides of the glass would be
+                        frozen, so she could not have seen inside.
+                      </label>
+                    </span>
+                  </li>
+                  <li>
+                    <span class="radio-box">
+                      <input
+                        name="radio--answer"
+                        class="radio fv04--blood"
+                        type="radio"
+                        value="blood"
+                      />
+                      <label for="blood"
+                        >Anna still had blood on her hands after she had
+                        murdered Mara and forgot to clean her hands.</label
+                      >
+                    </span>
+                  </li>
+                </ol>
+                <div class="quiz--result02El">
+                  <p class="p--answer02El"></p>
+                </div>
+                <div class="container-btn--2">
+                  <button type="button" class="btn--story btn--2">
+                    Submit
+                  </button>
+                </div>
+                <div class="container-btn--next02El hidden">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 btn--next02El"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </form>
+            </div>
+          </figure>
+        </div>
+        <div class="row story story--3 hidden">
+          <figure>
+            <div>
+              <h2>Guilty in Court</h2>
+              <img
+                src="/josephdorsey.github.io/Games Page/Murder Mystery Game/img/circle-home.jpg"
+              />
+            </div>
+            <div class="story--container">
+              <p>
+                A woman was in court for killing her husband. She said she
+                wasn’t guilty and that she dearly missed him. In the closing
+                statement, the woman’s lawyer stands up and says, “Her husband
+                was just missing. Everyone look at the doors. He’s going to walk
+                through them in about 30 seconds.”
+              </p>
+              <p>
+                The entire jury stares at the doors waiting for waiting for this
+                woman’s husband to walk through the doors. The lawyer and the
+                woman stare at the jury. The lawyer concludes by saying, “See!
+                If you were so sure she killed her husband, you wouldn’t be
+                watching that door!” The jury immediately gave a guilty verdict.
+                Why?
+              </p>
+
+              <form class="quiz--guilty-court">
+                <ol type="A">
+                  <li>
+                    <span class="radio-box">
+                      <input
+                        name="radio--answer"
+                        class="radio gc01--killed"
+                        type="radio"
+                        value="killed"
+                      />
+                      <label for="killed"
+                        >The woman was watching the jury and not the doors
+                        because she knew that her husband wouldn’t walk through
+                        them because she had killed him.
+                      </label>
+                    </span>
+                  </li>
+                  <li>
+                    <span class="radio-box">
+                      <input
+                        name="radio--answer"
+                        class="radio gc02--mistress"
+                        type="radio"
+                        value="mistress"
+                      />
+                      <label for="mistress"
+                        >Her husband didn't die. He ran away with his mistress
+                        after ruining his wifes life and framing her for
+                        murder.</label
+                      ></span
+                    >
+                  </li>
+                  <li>
+                    <span class="radio-box">
+                      <input
+                        name="radio--answer"
+                        class="radio gc03--guilty"
+                        type="radio"
+                        value="guilty"
+                      />
+                      <label for="guilty"
+                        >The woman was watching the jury and not the doors
+                        because she knew that she was guilty and that looking at
+                        the door wouldn't prove her innocence.
+                      </label>
+                    </span>
+                  </li>
+                  <li>
+                    <span class="radio-box">
+                      <input
+                        name="radio--answer"
+                        class="radio gc04--suicide"
+                        type="radio"
+                        value="suicide"
+                      />
+                      <label for="suicide"
+                        >The woman was watching the jury and not the doors
+                        because she knew that her husband had killed himself and
+                        staged it to make it look like she did it.</label
+                      >
+                    </span>
+                  </li>
+                </ol>
+                <div class="quiz--result03El">
+                  <p class="p--answer03El"></p>
+                </div>
+                <div class="container-btn--3">
+                  <button type="button" class="btn--story btn--3">
+                    Submit
+                  </button>
+                </div>
+                <div class="container-btn--next03El hidden">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 btn--next03El"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </form>
+            </div>
+          </figure>
+        </div>
+        <div class="row story story--4 hidden">
+          <figure>
+            <div>
+              <h2>Murder at School</h2>
+              <img
+                src="/josephdorsey.github.io/Games Page/img/circle-home.jpg"
+              />
+            </div>
+            <div class="story--container">
+              <p>
+                On the first day of school, someone murdered a history teacher.
+                There were four people at the school that the police suspected
+                had done it: the landscaper, a math teacher, a basketball coach,
+                and the principal. These were their alibis:
+              </p>
+              <ul>
+                <li>The landscaper said he was outside mowing the lawn.</li>
+                <li>The math teacher said he was giving a mid-year test.</li>
+                <li>
+                  The basketball coach said he was running practice drills with
+                  his players.
+                </li>
+                <li>The principal said she was in her office.</li>
+              </ul>
+              <p>
+                After giving their alibies, the police arrested the killer
+                immediately. Who killed the history teacher and how did the
+                police know?
+              </p>
+
+              <form class="quiz--murder-school">
+                <ol type="A">
+                  <li>
+                    <span class="radio-box">
+                      <input
+                        name="radio--answer"
+                        class="radio ms01--landscaper"
+                        type="radio"
+                        value="landscaper"
+                      />
+                      <label for="landscaper"
+                        >The landscaper because he had already mowed the lawn
+                        the day prior.
+                      </label>
+                    </span>
+                  </li>
+                  <li>
+                    <span class="radio-box">
+                      <input
+                        name="radio--answer"
+                        class="radio ms02--coach"
+                        type="radio"
+                        value="coach"
+                      />
+                      <label for="coach"
+                        >The basketball coach because he wasn't at practice
+                        today, the sub coach filled in for him today.</label
+                      ></span
+                    >
+                  </li>
+                  <li>
+                    <span class="radio-box">
+                      <input
+                        name="radio--answer"
+                        class="radio ms03--principal"
+                        type="radio"
+                        value="principal"
+                      />
+                      <label for="principal"
+                        >The principal because she wasn't in her office.
+                      </label>
+                    </span>
+                  </li>
+                  <li>
+                    <span class="radio-box">
+                      <input
+                        name="radio--answer"
+                        class="radio ms04--math"
+                        type="radio"
+                        value="math"
+                      />
+                      <label for="math"
+                        >The math teacher because he was giving a mid-year test,
+                        but it was the first day of school.</label
+                      >
+                    </span>
+                  </li>
+                </ol>
+                <div class="quiz--result04El">
+                  <p class="p--answer04El"></p>
+                </div>
+                <div class="container-btn--4">
+                  <button type="button" class="btn--story btn--4">
+                    Submit
+                  </button>
+                </div>
+                <div class="container-btn--next04El hidden">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 btn--next04El"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </form>
+            </div>
+          </figure>
+        </div>
+        <div class="row story story--5 hidden">
+          <figure>
+            <div>
+              <h2>Empty Cell Mystery</h2>
+              <img
+                src="/josephdorsey.github.io/Games Page/img/circle-home.jpg"
+              />
+            </div>
+            <div class="story--container">
+              <p>
+                Andy is put in a cell with a dirt floor and only one window. The
+                window is too high for him to reach. The only thing in the cell
+                is a shovel. He won’t be able to get any food or water and only
+                has two days to escape or he’ll die. Andy can’t dig a tunnel
+                because it will take him much longer than two days to do it. How
+                will Andy escape from the cell?
+              </p>
+              <form class="quiz--empty-cell">
+                <ol type="A">
+                  <li>
+                    <span class="radio-box">
+                      <input
+                        name="radio--answer"
+                        class="radio ec01--failed"
+                        type="radio"
+                        value="failed"
+                      />
+                      <label for="failed">
+                        Andy doesn’t. Andy tries to make a dirt mound to stand
+                        on, but it can’t support his weight and falls apart.
+                      </label>
+                    </span>
+                  </li>
+                  <li>
+                    <span class="radio-box">
+                      <input
+                        name="radio--answer"
+                        class="radio ec02--escape"
+                        type="radio"
+                        value="escape"
+                      />
+                      <label for="escape"
+                        >Andy has to use the shovel to create a pile of dirt
+                        under the window so he can climb up onto it and escape
+                        from the cell.</label
+                      ></span
+                    >
+                  </li>
+                  <li>
+                    <span class="radio-box">
+                      <input
+                        name="radio--answer"
+                        class="radio ec03--shovel"
+                        type="radio"
+                        value="shovel"
+                      />
+                      <label for="shovel"
+                        >Andy has to use the shovel to create a pile of dirt
+                        under the window and then stand on the base of the
+                        shovel so he could escape from the cell.
+                      </label>
+                    </span>
+                  </li>
+                  <li>
+                    <span class="radio-box">
+                      <input
+                        name="radio--answer"
+                        class="radio ec04--pretend"
+                        type="radio"
+                        value="pretend"
+                      />
+                      <label for="pretend"
+                        >Andy has to pretend to be asleep in the cell when the
+                        guards come in. He will "wakes up" and attack them with
+                        the shovel and take their key to free himself from the
+                        cell.</label
+                      >
+                    </span>
+                  </li>
+                </ol>
+                <div class="quiz--result05El">
+                  <p class="p--answer05El"></p>
+                </div>
+                <div class="container-btn--5">
+                  <button type="button" class="btn--story btn--5">
+                    Submit
+                  </button>
+                </div>
+                <div class="container-btn--next05El hidden">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 btn--next05El"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </form>
+            </div>
+          </figure>
+        </div>
+      </section>
+    </div>
+    <script src="/josephdorsey.github.io/Games Page/Murder Mystery Game/mm--js/btn--play.js"></script>
+    <script src="/josephdorsey.github.io/Games Page/Murder Mystery Game/mm--js/username.js"></script>
+    <script src="/josephdorsey.github.io/Games Page/Murder Mystery Game/mm--js/greenhouse.js"></script>
+    <script src="/josephdorsey.github.io/Games Page/Murder Mystery Game/mm--js/friendlyvisit.js"></script>
+    <script src="/josephdorsey.github.io/Games Page/Murder Mystery Game/mm--js/guiltycourt.js"></script>
+    <script src="/josephdorsey.github.io/Games Page/Murder Mystery Game/mm--js/murder-at-school.js"></script>
+    <script src="/josephdorsey.github.io/Games Page/Murder Mystery Game/mm--js/empty-cell.js"></script>
+  </body>
+</html>

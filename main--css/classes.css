@@ -1,0 +1,90 @@
+/* Containers */
+.main--container {
+  display: grid;
+  width: 100%;
+  row-gap: 75px;
+}
+.main--header {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* NAV BAR */
+.blog--menu {
+  grid-row: 1;
+  grid-column: 2/3;
+  justify-self: end;
+  align-self: center;
+  padding: 1rem 2rem;
+}
+.nav--active {
+  color: #3b5bdb;
+}
+
+/* LOGO SECTION */
+.logo--container {
+  padding: 1rem 2rem;
+}
+.logo--link {
+  text-decoration: none;
+
+  color: #000;
+}
+.logo--span--1,
+.logo--span--2 {
+  color: #3b5bdb;
+}
+
+/* In case we need to change this one separately */
+
+/* .logo--span--2 {
+  color: cyan;
+} */
+
+/* Title and Barbadonkulus animated section section--0*/
+
+.about-img {
+  width: 13em;
+  padding-bottom: 15px;
+  /* vertical-align: middle; */
+}
+.section--0 h1 {
+  font-weight: 500;
+  font-size: 2.5rem;
+}
+
+/* About me section */
+.section--0 {
+  display: grid;
+  justify-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+.section--1 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  font-size: 1.5rem;
+}
+.about--me--col--1,
+.about--me--col--2,
+.about--me--col--3,
+.about--me--col--4 {
+  /* display: grid; */
+  /* justify-items: center; */
+}
+
+.about--me--todd--1,
+.about--me--todd--2,
+.about--me--todd--3,
+.about--me--todd--4 {
+  display: grid;
+  justify-items: center;
+}
+.section--1 div {
+  padding: 0 15px;
+}
+.section--1 img {
+  width: 10rem;
+  padding-bottom: 15px;
+}
