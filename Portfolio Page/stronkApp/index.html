@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Stronk App</title>
+  </head>
+  <body>
+    <a href="/josephDorsey_portfolio/josephdorsey.github.io/index.html">Home</a>
+    <div class="container--main">
+      <div class="container--login">
+        <div class="container--logo">
+          <h1 class="logo--title">Stronk App</h1>
+          <div class="container--name">
+            <h3 class="user--title">Please enter a username</h3>
+            <input class="input--username" type="text" />
+            <p class="user--greet hidden">Welcome, test!</p>
+            <button class="btn--login">Login</button>
+            <!-- <label for="name">Last:</label>
+              <input class="input--last-name" type="text" /> -->
+          </div>
+        </div>
+      </div>
+      <form class="container--questions hidden">
+        <div class="container--age">
+          <h3>Age</h3>
+          <!-- <label for="age">Age:</label> -->
+          <input class="input--age" type="text" placeholder="years" />
+        </div>
+        <div class="container--gender">
+          <h3>Sex</h3>
+          <input type="radio" name="gender" class="radio--male" />
+          <label for="male">Male</label>
+          <input type="radio" name="gender" class="radio--female" />
+          <label for="female">Female</label>
+        </div>
+        <div class="container--height">
+          <h3>Height</h3>
+          <select>
+            <option class="option--feet">Feet</option>
+            <option class="option--meters">Meters</option>
+          </select>
+          <input type="text" class="input--feet" placeholder="feet" />
+
+          <input type="text" class="input--inches" placeholder="inches" />
+        </div>
+        <div class="container--weight_bmi">
+          <div class="container--weight">
+            <h3>Weight</h3>
+            <select>
+              <option class="option--pounds">Pounds</option>
+              <option class="option--kilograms">Kilograms</option>
+            </select>
+            <input class="input--weight" type="text" placeholder="pounds" />
+
+            <div class="container--weight-range hidden">
+              <div class="flex--weight-range">
+                <p class="weight-range--summary"></p>
+              </div>
+            </div>
+          </div>
+          <div class="container--bmi hidden">
+            <h3>BMI</h3>
+            <p class="bmi--results">Your BMI is: 30</p>
+            <p class="bmi--summary">test</p>
+          </div>
+          <div class="bmi--categories">
+            <p>Click this button to see the BMI Categories</p>
+            <button type="button" class="btn--bmi-categories" href="#">
+              BMI Categories
+            </button>
+          </div>
+        </div>
+        <div class="goals">
+          <div class="container--goals">
+            <h3>Goal</h3>
+            <div class="goals--maintain">
+              <input class="radio--maintain" name="goals" type="radio" /><label
+                for="maintain--weight"
+                >Maintain Weight</label
+              >
+            </div>
+          </div>
+          <div class="container--goals">
+            <div class="goals--lose">
+              <input class="radio--lose" name="goals" type="radio" /><label
+                for="lose--weight"
+                >Lose Weight</label
+              >
+            </div>
+          </div>
+          <div class="container--goals">
+            <div class="goals--weight">
+              <input class="radio--gain" name="goals" type="radio" /><label
+                for="gain--weight"
+                >Gain Weight</label
+              >
+              <select class="container--slow_fast hidden">
+                <option class="option_Slow" value="slow">Slow</option>
+                <option class="option_Fast" value="fast">Fast</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="container--lifestyle">
+          <h3>Which life style best describes you?</h3>
+          <select>
+            <option class="option--sedentary">
+              Sedentary: little or no exercise
+            </option>
+            <option class="option--light">
+              Light: exercise 1-3 times/week
+            </option>
+            <option class="option--active">
+              Active: daily exercise or intense exercise 3-4 times/week
+            </option>
+            <option class="option--very-active">
+              Very Active: intense exercise 6-7 times/week
+            </option>
+            <option class="option--vigorously-active">
+              Vigorously Active: very intense exercise daily, or physical job
+            </option>
+          </select>
+          <div class="container--results hidden">
+            <h3 class="lifestyle--definition">
+              What is a ${lifestyle} lifestyle?
+            </h3>
+            <div class="list">
+              <ul class="list--sedentary hidden">
+                <li>
+                  Activities of daily living only, such as shopping, cleaning,
+                  watering plants, taking out the trash, walking the dog, mowing
+                  the lawn and gardening.
+                </li>
+                <li>No moderate of vigorous activities.</li>
+                <li>
+                  Unless you do at least 30 minutes per day of intentional
+                  exercise, you are considered sedentary.
+                </li>
+                <li>
+                  Spending most of the day sitting (e.g. bank teller, desk job).
+                </li>
+                <li>The majority of people will be considered sedentary.</li>
+              </ul>
+              <ul class="list--light-active hidden">
+                <li>
+                  Activities of daily living only, such as shopping, cleaning,
+                  watering plants, taking out the trash, walking the dog, mowing
+                  the lawn and gardening.
+                </li>
+                <li>
+                  Daily exercise that is equal to walking for 30 minutes at
+                  4mph. For an adult of average weight, this amount of exercise
+                  will burn about 130-160 additional calories.
+                </li>
+                <li>
+                  More intense exercise can be performed for less time to
+                  achieve the same goal. For example, 15-20 minutes of vigorous
+                  activity, such as aerobics, skiing or jogging on a daily basis
+                  would put you in this category.
+                </li>
+                <li>
+                  Spending a good part of the day on your feet (e.g. teacher,
+                  salesman)
+                </li>
+              </ul>
+              <ul class="list--active hidden">
+                <li>
+                  Activities of daily living, such as shopping, cleaning,
+                  watering plants, taking out the trash, walking the dog, mowing
+                  the lawn, and gardening.
+                </li>
+                <li>
+                  Daily exercise that is equal to walking for 1 hour and 45
+                  minutes at 4mph.
+                </li>
+                <li>
+                  For an adult of average weight, this amount of exercise will
+                  burn about 470-580 additional calories.
+                </li>
+                <li>More intense exercise can be performed for less time.</li>
+                <li>
+                  For example, jogging for 50 minutes per day. Spending a good
+                  part of the day doing some physical activity (e.g. waitress,
+                  mailman).
+                </li>
+              </ul>
+              <ul class="list--very-active hidden">
+                <li>
+                  Activities of daily living only, such as shopping, cleaning,
+                  watering plants, taking out the trash, walking the dog, mowing
+                  the lawn and gardening.
+                </li>
+                <li>
+                  Daily exercise that is equal to walking for 4 hours and 15
+                  minutes at 4mph. For an adult of average weight, this amount
+                  of exercise will burn about 1,150-1400 additional calories.
+                </li>
+                <li>
+                  More intense exercise can be performed for less time. For
+                  example, jogging for 2 hours minutes per day.
+                </li>
+                <li>
+                  Spending most of the day doing heavy physical activity (e.g.
+                  bike messenger, carpenter).
+                </li>
+              </ul>
+              <ul class="list--vigorously-active hidden">
+                <li>
+                  These people engage regularly in strenuous work or in
+                  strenuous leisure activities for several hours.
+                </li>
+                <li>
+                  Examples are women with non-sedentary occupations who swim or
+                  dance an average of two hours each day, or non-mechanized
+                  agricultural labourers who work with a machete, hoe or axe for
+                  several hours daily and walk long distances over rugged
+                  terrains, often carrying heavy loads.
+                </li>
+              </ul>
+            </div>
+            <p class="general--summary">Height and weight and lifestyle</p>
+            <p class="calorie--summary">Calorie-intake</p>
+            <p class="protein--summary">Protein-intake</p>
+          </div>
+        </div>
+        <input type="button" class="btn--calculate" value="Calculate!" />
+      </form>
+      <div class="bmi--info hidden">
+        <h3>BMI Categories</h3>
+        <ol>
+          <li>Underweight = < 18.5</li>
+          <li>Normal weight = 18.5–24.9</li>
+          <li>Overweight = 25–29.9</li>
+          <li>Obesity = BMI of 30 or greater</li>
+        </ol>
+        <h3>Who shouldn't use a BMI calculator?</h3>
+        <p>
+          BMI is not used for muscle builders, long distance athletes, pregnant
+          women, the elderly or young children. This is because BMI does not
+          take into account whether the weight is carried as muscle or fat, just
+          the number. Those with a higher muscle mass, such as athletes, may
+          have a high BMI but not be at greater health risk. Those with a lower
+          muscle mass, such as children who have not completed their growth or
+          the elderly who may be losing some muscle mass may have a lower BMI.
+          During pregnancy and lactation, a woman's body composition changes, so
+          using BMI is not appropriate.
+        </p>
+      </div>
+    </div>
+    <script src="/stronk--js/proteinCalc.js"></script>
+    <script src="/stronk--js/heightCalc.js"></script>
+    <script src="/stronk--js/index.js"></script>
+  </body>
+</html>
