@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../Track Exercise/style.css" />
+    <title>Track Exercises</title>
+  </head>
+  <body>
+    <a href="../index.html">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5 btn--ReturnHome"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+        />
+      </svg>
+    </a>
+    <div class="main--container">
+      <div class="main--header">
+        <div class="create--container">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 btn--create"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+        <h2 class="main--workoutTimer">0:00:00</h2>
+        <h1 class="section--Title">Workouts</h1>
+        <div class="button-startWorkout--container">
+          <button class="btn--startWorkout">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 icon-startWorkout"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            Start Workout
+          </button>
+          <img class="dumbbell-svg" src="img/Dumbell2.svg" /> -->
+  </div>
+        <div class="edit--container">
+  <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 btn--edit"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"
+            />
+            <path
+              fill-rule="evenodd"
+              d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+              clip-rule="evenodd"
+            />
+          </svg>
+  <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 btn--edit"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"
+            />
+            <path
+              fill-rule="evenodd"
+              d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+        <a href="../index.html"> </a>
+      </div>
+      <div class="what-to-create--container hidden">
+        <p>What would you like to create?</p>
+        <p>
+          Workout<svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 btn--createWorkout"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </p>
+        <p>
+          Workout group<svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 btn--createWorkoutGroup"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+            />
+            <path
+              stroke="#fff"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 11h4m-2-2v4"
+            />
+          </svg>
+        </p>
+      </div>
+      <div class="workoutsModal--container">
+        <div class="modal--createNewWorkout hidden">
+          <h4 class="title--createWorkout">Create new workout</h4>
+          <input
+            type="text"
+            class="workout--name"
+            placeholder="Enter workout name"
+          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 btn--createWorkoutName"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          <h3 class="workout--name-p"></h3> -->
+  <!-- <button class="btn_AddExercise_workoutName">Add Exercises</button> -->
+  <!-- <button>Generate Workout (APIs)</button> -->
+  <!-- <button class="btn--workoutName-cancel">Cancel</button> -->
+  <!-- <div class="container--exercise hidden">
+            <div class="exercise">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 btn--closeAddExerciseModal"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <h4 class="exercise--message">Add Exercise</h4>
+              <label for="input--Exercise">Exercise:</label>
+              <input type="text" class="input--Exercise" />
+              <label for="input--Sets">Sets:</label>
+              <input type="number" class="input--Sets" />
+              <label for="input--Reps">Reps:</label>
+              <input type="number" class="input--Reps input--Timer" />
+              <label for="input--Rest">Rest:</label>
+              <div class="time--container">
+                <input
+                  type="number"
+                  class="input--RestMinutes"
+                  placeholder="minutes"
+                />
+                <input
+                  type="number"
+                  class="input--RestSeconds"
+                  placeholder="seconds"
+                />
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 btn--add-Exercise"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="modal--createNewWorkoutGroup hidden">
+          <h4>Create new workout group</h4>
+          <input type="text" class="workoutGroup--name" />
+          <button class="btn--workoutGroupName-cancel">Cancel</button>
+          <button class="btn--workoutGroupName-ok">Ok</button>
+        </div>
+      </div> -->
+
+  <!-- <p class="timer--begin-workout"></p>
+      <button class="btn--start-workout-timer hidden">Start Workout</button> -->
+  <div class="test"></div>
+   <div class="exercise-list">
+        <span class="btn--close-exercise">&#10005;</span>
+        <input type="radio" class="btn--ActiveExercise" />
+        <div class="exercise-list--Name">Exercise:</div>
+        <div class="exercise-list--Sets">Sets:</div>
+        <div class="exercise-list--Reps">Reps:</div>
+        <div class="exercise-list--Rest">Rest:</div>
+      </div> 
+  </div>
+    
+  </body>
+
+  <body>
+    <script src="../Track Exercise/js/exercise_Arrays+Objects.js"></script>
+    <script src="../Track Exercise/js/exercise_Buttons.js"></script>
+    <script src="../Track Exercise/js/exercise_Input.js"></script>
+    <script src="../Track Exercise/js/exercise_Functions.js"></script>
+    <script src="js/exercise_Names.js"></script>
+  </body>
+</html>

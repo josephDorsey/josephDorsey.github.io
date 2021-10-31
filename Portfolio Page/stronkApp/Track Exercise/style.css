@@ -1,0 +1,77 @@
+.exercise-information {
+  display: grid;
+  width: 50%;
+  margin: 0 auto;
+  border: 1px solid black;
+  padding: 20px 30px;
+  border-radius: 25px;
+}
+.exercise-list {
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 20px;
+  margin: 0 auto;
+}
+.exercise-title {
+  padding-bottom: 30px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.btn-returnHome {
+  width: 20px;
+  height: 20px;
+  color: #000;
+}
+
+.flex {
+  display: flex;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal-exercise-info {
+  position: relative;
+  border: 1px solid black;
+  width: 50%;
+  border-radius: 25px;
+  /* margin: 0 auto; */
+  padding: 40px 20px;
+}
+
+.btn--close-exercise {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+}
+.btn--exercise-list {
+  top: 10px;
+  right: 60px;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.btn--delete-exercise {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.modal-exercise-info input[type="text"],
+.modal-exercise-info input[type="number"] {
+  width: 30%;
+}
+
+.modal-active-container {
+  display: flex;
+  justify-content: center;
+}

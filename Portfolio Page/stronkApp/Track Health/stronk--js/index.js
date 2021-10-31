@@ -466,12 +466,13 @@ const closeLogin = function () {
   lifestyleDefinition.classList.toggle("hidden");
   userGreet.textContent = `Welcome, ${user.firstName}!`;
   container_Question.classList.toggle("hidden");
+  console.log(user);
 };
-const enterKey = function (e) {
-  if (e.key === "Enter" && !containerName.classList.contains("hidden")) {
-    closeLogin();
-  }
-};
+// const enterKey = function (e) {
+//   if (e.key === "Enter" && !containerName.classList.contains("hidden")) {
+//     closeLogin();
+//   }
+// };
 
 const showWBP = function () {
   containerBMI.classList.remove("hidden");
@@ -480,19 +481,7 @@ const showWBP = function () {
   containerResults.classList.remove("hidden");
   // proteinRange.classList.toggle("hidden");
 };
-const calculateUserData = function () {
-  user.age = Number(userAge.value);
-  if (!userGenderM.checked && !userGenderF.checked) {
-    userGenderM.required = true;
-    userGenderF.required = true;
-  } else {
-    user.gender = userGenderM.checked ? "Male" : "Female";
-  }
-  user.age = Number(userAge.value);
-  user.height["feet"] = Number(feet.value);
-  user.height["inches"] = Number(inches.value);
-  user.height["total"] = user.height["feet"] * 12 + user.height["inches"];
-  user.weight = Number(userWeight.value);
+const showLifeStyleSummary = function () {
   if (option_Sedentary.selected) {
     listSummary_Sedentary.classList.remove("hidden");
     listSummary_LightlyActive.classList.add("hidden");
@@ -524,11 +513,40 @@ const calculateUserData = function () {
     listSummary_VeryActive.classList.add("hidden");
     listSummary_VigActive.classList.remove("hidden");
   }
+};
+const calculateUserData = function () {
+  // if (
+  //   userAge.value === "" ||
+  //   !userGenderM.checked ||
+  //   !userGenderF.checked ||
+  //   feet.value === "" ||
+  //   inches.value === "" ||
+  //   userWeight.value === "" ||
+  //   !option_MaintainWeight.checked ||
+  //   !option_LoseWeight.checked ||
+  //   !option_GainWeight.checked
+  // ) {
+  //   userAge.required = true;
+  //   userGenderM.required = true;
+  //   userGenderF.required = true;
+  //   feet.required = true;
+  //   inches.required = true;
+  //   userWeight.required = true;
+  //   option_MaintainWeight.required = true;
+  //   option_LoseWeight.required = true;
+  //   option_GainWeight.required = true;
+  // } else {
+  user.age = Number(userAge.value);
+  user.gender = userGenderM.checked ? "Male" : "Female";
+  user.height["feet"] = Number(feet.value);
+  user.height["inches"] = Number(inches.value);
+  user.height["total"] = user.height["feet"] * 12 + user.height["inches"];
+  user.weight = Number(userWeight.value);
+  showLifeStyleSummary();
   calcCalories();
   calculateBMIStandard();
   healthyWeightRange();
   showWBP();
-
   console.log(user);
 };
 
@@ -558,8 +576,7 @@ const healthyWeightRange = function () {
   weightRange.textContent = `For your height a healthy weight range would be between ${minWeightRange} to ${maxWeightRange} lbs.`;
   return weightRange.textContent;
 };
-btn_Login.addEventListener("click", closeLogin);
-document.addEventListener("keydown", enterKey);
+
 document.addEventListener("click", function () {
   if (option_Pounds.selected) {
     userWeight.placeholder = "pounds";
@@ -567,11 +584,13 @@ document.addEventListener("click", function () {
     userWeight.placeholder = "kilograms";
   }
 });
+btn_Login.addEventListener("click", closeLogin);
 btn_Calculate.addEventListener("click", calculateUserData);
+// document.addEventListener("keydown", enterKey);
 btn_BMICategories.addEventListener("click", function () {
   if (infoContainerBMI.classList.contains("hidden")) {
     infoContainerBMI.classList.remove("hidden");
-    container_Question.style.opacity = "rgba(0,0,0,0.7)";
+    container_Question.style.opacity = "rgba(0, 0, 0, 0.7)";
   } else if (!infoContainerBMI.classList.contains("hidden")) {
     infoContainerBMI.classList.add("hidden");
   }

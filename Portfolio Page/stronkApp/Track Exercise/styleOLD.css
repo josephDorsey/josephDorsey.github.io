@@ -1,0 +1,224 @@
+.main--container {
+  width: 80%;
+  margin: 0 auto;
+}
+.main--header {
+  /* display: grid; */
+  position: relative;
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 20px 30px;
+}
+
+.btn--add-Exercise,
+.btn--ReturnHome,
+.btn--startWorkout,
+.btn--closeAddExerciseModal,
+.btn--close-exercise,
+.btn--NextExercise,
+.btn--NextSet,
+.btn--create,
+.btn--edit,
+.btn--createWorkout,
+.btn--createWorkoutName,
+.btn--createWorkoutGroup,
+.btn--check {
+  text-align: center;
+  margin: 0 auto;
+  cursor: pointer;
+}
+.btn--add-Exercise {
+  width: 2em;
+}
+.btn--create,
+.btn--ReturnHome,
+.btn--closeAddExerciseModal,
+.btn--NextExercise,
+.btn--close-exercise,
+.btn--NextSet,
+.btn--createWorkout,
+.btn--createWorkoutName,
+.btn--createWorkoutGroup,
+.btn--edit,
+.btn--check {
+  width: 1.4em;
+}
+/* Main Header */
+.btn--create,
+.main--workoutTimer,
+.btn--startWorkout,
+.btn--ReturnHome,
+.btn--edit {
+  position: absolute;
+}
+
+.main--workoutTimer {
+  top: -15px;
+  left: 245px;
+}
+.icon-startWorkout {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+.btn--create {
+  top: 10px;
+  left: 10px;
+}
+.btn--edit {
+  top: 10px;
+  right: 10px;
+}
+.btn--startWorkout {
+  bottom: 10px;
+  right: 25px;
+  border-radius: 5px;
+  border: 1px solid black;
+  text-align: center;
+}
+.dumbbell-svg {
+  width: 60px;
+  height: 60px;
+}
+.btn--ReturnHome {
+  color: #000;
+}
+.modal--createNewWorkout,
+.modal--createNewWorkoutGroup {
+  margin: 0 auto;
+  border: 1px solid black;
+  border-radius: 25px;
+  text-align: center;
+}
+.section--Title {
+  text-align: center;
+}
+.btn--closeAddExerciseModal {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+.container--workout {
+  box-shadow: 0px 20px 30px 0px rgba(0, 0, 0, 0.2);
+  width: 50%;
+  border-radius: 25px;
+  margin: 0 auto;
+  padding: 40px 30px;
+  /* text-align: center; */
+}
+.workoutsModal--container {
+  position: relative;
+}
+.exercise {
+  display: grid;
+  width: 50%;
+  margin: 0 auto;
+  /* border: 1px solid black; */
+  /* border-radius: 25px; */
+}
+
+.exercise--group {
+  /* width: 70%; */
+  margin: 0 auto;
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 40px 30px;
+  /* background-color: #fff; */
+}
+.hidden {
+  display: none;
+}
+
+/* li,
+ul {
+  list-style: none;
+  margin: 0 auto;
+} */
+
+#timeElm,
+.restTimer {
+  font-size: 30px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.radio-ex {
+  position: absolute;
+  top: 10px;
+  left: 5px;
+}
+
+.btn--close-exercise {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  cursor: pointer;
+}
+/* .exercise--name {
+  position: absolute;
+  top: 25px;
+  left: 130px;
+} */
+/* .btn--check {
+  position: absolute;
+  top: 30px;
+  left: 50px;
+} */
+
+.timer--Container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.btn--NextSet {
+  position: absolute;
+  left: 120px;
+  bottom: 25px;
+}
+.p--nextExercise {
+  position: absolute;
+  bottom: 10px;
+  right: 80px;
+}
+.p--nextSet {
+  position: absolute;
+  left: 60px;
+}
+.btn--NextExercise {
+  position: absolute;
+  bottom: 25px;
+  right: 55px;
+}
+.exercise-list {
+  width: 25%;
+  border: 1px solid black;
+  border-radius: 25px;
+  position: relative;
+  padding: 20px 30px;
+  margin: 0 auto;
+  /* background-color: black; */
+}
+
+h3 {
+  text-align: center;
+}
+
+/* Start Workout */
+.what-to-create--container {
+  border: 1px solid black;
+  border-radius: 25px;
+}
+.what-to-create--container p {
+  border-bottom: 1px solid black;
+  padding-left: 10px;
+}
+.what-to-create--container p:first-child {
+  text-align: center;
+  padding: 0;
+}
+.what-to-create--container p:last-child {
+  border: 0;
+}
+
+.active--exercise {
+  background-color: blue;
+}
