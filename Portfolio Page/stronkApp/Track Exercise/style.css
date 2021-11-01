@@ -7,10 +7,14 @@
   border-radius: 25px;
 }
 .exercise-list {
+  position: relative;
   border: 1px solid black;
   border-radius: 25px;
   padding: 30px 20px;
   margin: 0 auto;
+}
+.exercise-list-p {
+  text-align: center;
 }
 .exercise-title {
   padding-bottom: 30px;
@@ -49,9 +53,40 @@
   right: 20px;
   cursor: pointer;
 }
-.btn--exercise-list {
-  top: 10px;
+.btn--edit-select {
+  position: absolute;
+  top: 20px;
   right: 60px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+.label-btn-next-set {
+  position: absolute;
+  bottom: 20px;
+  right: 50%;
+}
+
+.btn--close-exercise-list {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  cursor: pointer;
+}
+
+.btn--next-set {
+  bottom: 20px;
+  position: absolute;
+  right: 40%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.btn--exercise-list {
+  top: 20px;
+  right: 30px;
   position: absolute;
   width: 20px;
   height: 20px;
@@ -65,7 +100,14 @@
   right: 20px;
   cursor: pointer;
 }
-
+.btn--edit-exercise-list {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 10px;
+  right: 50px;
+  cursor: pointer;
+}
 .modal-exercise-info input[type="text"],
 .modal-exercise-info input[type="number"] {
   width: 30%;
@@ -75,4 +117,11 @@
   display: flex;
   justify-content: center;
   gap: 10px;
+}
+
+.exercise-edit-p {
+  text-align: center;
+  position: absolute;
+  top: 0px;
+  right: 165px;
 }

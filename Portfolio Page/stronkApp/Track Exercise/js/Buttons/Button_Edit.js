@@ -1,5 +1,6 @@
 "use strict";
 
+const exerciseEditMode_P = document.querySelector(".exercise-edit-p");
 const btn_EditSelect = document.querySelector(".btn--edit-select");
 
 btn_EditSelect.addEventListener("click", function () {
@@ -8,6 +9,9 @@ btn_EditSelect.addEventListener("click", function () {
   weightEdit_Radio.classList.toggle("hidden");
   exerciseEdit_Radio.classList.toggle("hidden");
   restEdit_Radio.classList.toggle("hidden");
+  exerciseEditMode_P.classList.toggle("hidden");
+  labelNextSet.classList.toggle("hidden");
+  btn_NextSet.classList.toggle("hidden");
   repsEdit_Radio.checked = false;
   setsEdit_Radio.checked = false;
   weightEdit_Radio.checked = false;
