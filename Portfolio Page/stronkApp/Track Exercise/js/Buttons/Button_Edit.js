@@ -45,4 +45,18 @@ const editExerciseFunc = function () {
   }
 };
 
+const resetEditFunc = function () {
+  repsEdit_Input.classList.toggle("hidden");
+  btn_EditReps.classList.toggle("hidden");
+  setsMinEdit_Input.classList.toggle("hidden");
+  setsMaxEdit_Input.classList.toggle("hidden");
+  btn_EditSets.classList.toggle("hidden");
+  weightEdit_Input.classList.toggle("hidden");
+  btn_EditWeight.classList.toggle("hidden");
+  exerciseEdit_Input.classList.toggle("hidden");
+  btn_EditExercise.classList.toggle("hidden");
+  restMinEdit_Input.classList.toggle("hidden");
+  restSecEdit_Input.classList.toggle("hidden");
+  btn_EditRest.classList.toggle("hidden");
+};
 document.addEventListener("click", editExerciseFunc);

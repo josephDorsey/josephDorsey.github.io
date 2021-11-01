@@ -4,6 +4,7 @@ const exerciseGroup = {
   workoutGroup: "",
   workoutName: "",
   name: [],
+  weight: [],
   sets: {
     min: [],
     max: [],

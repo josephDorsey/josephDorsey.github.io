@@ -9,7 +9,7 @@
 .exercise-list {
   border: 1px solid black;
   border-radius: 25px;
-  padding: 20px;
+  padding: 30px 20px;
   margin: 0 auto;
 }
 .exercise-title {
@@ -61,7 +61,7 @@
   width: 20px;
   height: 20px;
   position: absolute;
-  bottom: 10px;
+  top: 10px;
   right: 20px;
   cursor: pointer;
 }
@@ -74,4 +74,5 @@
 .modal-active-container {
   display: flex;
   justify-content: center;
+  gap: 10px;
 }

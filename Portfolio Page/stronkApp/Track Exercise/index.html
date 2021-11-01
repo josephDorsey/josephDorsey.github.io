@@ -28,6 +28,8 @@
         class="exercise-name"
         placeholder="Please enter a exercise"
       />
+      <label for="exercise-weight">Weight:</label>
+      <input type="number" class="exercise-weight" placeholder="How many pounds?" />
       <label for="exercise-sets">Sets:</label>
       <input type="number" class="exercise-sets" placeholder="How many sets?" />
       <label for="exercise-reps">Reps:</label>
@@ -36,14 +38,15 @@
       <input type="number" class="exercise-minutes" placeholder="minutes" />
       <input type="number" class="exercise-seconds" placeholder="seconds" />
       <div class="exercise-modal-buttons flex">
-        <button class="btn--push-data-to-array">Add Exercise</button>
+        <button class="btn--push-data-to-array">Add Exercise to List</button>
         <button class="btn--startWorkout">Start Workout</button>
       </div>
     </div>
     <div class="modal-active-container">
       <div class="modal-exercise-list">
         <div class="exercise-list hidden">
-          <div class="ex1">
+          <p class="exercise-list-p">List is empty (add more to list)</p>
+          <!-- <div class="ex1">
             <input type="radio" />
             <label>Barbell Bench</label>
           </div>
@@ -65,22 +68,11 @@
           </div>
           <div class="ex3">
             <input type="radio" />
-            <label>DB Grip Walk</label>
-          </div>
+            <label>DB Grip Walk</label> 
+          </div> -->
         </div>
       </div>
       <div class="modal-exercise-info">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5 btn--close-exercise"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-            clip-rule="evenodd"
-          />
         </svg>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +100,7 @@
         </svg>
         <div class="exercise flex">
           <input type="radio" class="exercise-edit-radio hidden" />
-          <label class="label-exercise">Exercise: DB Bench</label>
+          <label class="label-exercise">Exercise:</label>
           <input
             type="text"
             class="exercise-edit-input hidden"
@@ -118,7 +110,7 @@
         </div>
         <div class="weight flex">
           <input type="radio" class="weight-edit-radio hidden" />
-          <label class="label-weight" for="weight">Weight: 250-lbs</label>
+          <label class="label-weight" for="weight">Weight:</label>
           <input
             type="number"
             class="weight-edit-input hidden"
@@ -128,7 +120,7 @@
         </div>
         <div class="sets flex">
           <input type="radio" class="sets-edit-radio hidden" />
-          <label class="label-sets" for="sets1">Set: 1 / 3</label>
+          <label class="label-sets" for="sets1">Set:</label>
           <input
             type="number"
             class="setsMin-edit-input hidden"
@@ -143,13 +135,13 @@
         </div>
         <div class="reps flex">
           <input type="radio" class="reps-edit-radio hidden" />
-          <label class="label-reps" for="reps">Reps: 12</label>
+          <label class="label-reps" for="reps">Reps:</label>
           <input type="number" class="reps-edit-input hidden" />
           <button class="btn--edit-reps hidden">Update</button>
         </div>
         <div class="rest flex">
           <input type="radio" class="rest-edit-radio hidden" />
-          <label class="label-rest" for="rest1">Rest: 1m 30s</label>
+          <label class="label-rest" for="rest1">Rest:</label>
           <input
             type="number"
             class="restMin-edit-input hidden"
@@ -170,11 +162,13 @@
         </div>
       </div>
     </div>
+    <p>Goals: Add an exercise word bank</p>
     <script src="js/Init.js"></script>
     <script src="js/Buttons/Button_Edit.js"></script>
     <script src="js/Buttons/Button_NextSet.js"></script>
     <script src="js/Buttons/Button_PushDatatoArrayButton.js"></script>
     <script src="js/Buttons/Button_ToggleExerciseList.js"></script>
+    <script src="js/Buttons/Button_StartWorkout.js"></script>
     <script src="js/Buttons/Edit_UpdateButtons/ButtonUpdate_Exercise.js"></script>
     <script src="js/Buttons/Edit_UpdateButtons/ButtonUpdate_Sets.js"></script>
     <script src="js/Buttons/Edit_UpdateButtons/ButtonUpdate_Reps.js"></script>
