@@ -10,7 +10,7 @@
   position: relative;
   border: 1px solid black;
   border-radius: 25px;
-  padding: 30px 40px;
+  padding: 50px 40px;
   /* margin: 0 auto; */
   width: 200px;
 }
@@ -168,4 +168,8 @@
 
 .container--user-profile {
   justify-self: end;
+}
+
+.container--btn-home {
+  justify-self: start;
 }
