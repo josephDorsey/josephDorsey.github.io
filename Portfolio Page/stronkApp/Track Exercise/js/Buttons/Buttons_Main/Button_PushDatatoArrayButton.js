@@ -22,6 +22,7 @@ btn_PushDataToArray.addEventListener("click", function () {
   btnMain_ToggleExerciseList.innerHTML = `Exercises (${
     exerciseGroup.name.length + 1
   })`;
+
   exerciseEditExercise_Title.innerHTML = `Exercise: ${exercise_Name.value}`;
   // workoutNameP.innerHTML = workout_Name.value;
   // exerciseGroup.workoutName = workout_Name.value;
@@ -45,6 +46,13 @@ btn_PushDataToArray.addEventListener("click", function () {
   <input type="radio" class="exercise-list-radio"/>
   <label>Exercise ${i + 1}: ${exerciseGroup.name[i]}</label>
   `;
+  }
+  if (exerciseGroup.name.length === 0) {
+    exercise_List_P.classList.remove("hidden");
+    exercise_List_Hint.classList.remove("hidden");
+  } else if (exerciseGroup.name.length > 0) {
+    exercise_List_P.classList.add("hidden");
+    exercise_List_Hint.classList.add("hidden");
   }
   exercise_List.appendChild(div);
   resetDataInfoPush();
