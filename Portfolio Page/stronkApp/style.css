@@ -1,0 +1,30 @@
+.medkit-outline,
+.barbell-outline,
+.fast-food-outline {
+  width: 24px;
+  height: 24px;
+}
+
+.container--main {
+  border: 1px solid black;
+  border-radius: 25px;
+}
+.logo--title {
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.tracker--containers {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+}
+
+.track {
+  display: grid;
+  justify-items: center;
+  row-gap: 10px;
+}

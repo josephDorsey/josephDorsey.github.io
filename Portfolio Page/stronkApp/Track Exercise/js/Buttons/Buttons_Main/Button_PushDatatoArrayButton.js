@@ -19,7 +19,10 @@ const resetDataInfoPush = function () {
 
 btn_PushDataToArray.addEventListener("click", function () {
   const div = document.createElement("div");
-
+  btnMain_ToggleExerciseList.innerHTML = `Exercises (${
+    exerciseGroup.name.length + 1
+  })`;
+  exerciseEditExercise_Title.innerHTML = `Exercise: ${exercise_Name.value}`;
   // workoutNameP.innerHTML = workout_Name.value;
   // exerciseGroup.workoutName = workout_Name.value;
   exerciseGroup.name.push(exercise_Name.value);
@@ -40,7 +43,7 @@ btn_PushDataToArray.addEventListener("click", function () {
   for (let i = 0; i < exerciseGroup.name.length; i++) {
     div.innerHTML = `
   <input type="radio" class="exercise-list-radio"/>
-  <label>${exerciseGroup.name[i]}</label>
+  <label>Exercise ${i + 1}: ${exerciseGroup.name[i]}</label>
   `;
   }
   exercise_List.appendChild(div);

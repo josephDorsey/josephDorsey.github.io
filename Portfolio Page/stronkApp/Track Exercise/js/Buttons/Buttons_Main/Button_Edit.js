@@ -1,15 +1,22 @@
 "use strict";
 
-const exerciseEditMode_P = document.querySelector(".exercise-edit-p");
+const exerciseEditMode_Title = document.querySelector(
+  ".exercise-edit-mode-title"
+);
+const exerciseEditExercise_Title = document.querySelector(
+  ".exercise-edit-exercise-title"
+);
 const btn_EditSelect = document.querySelector(".btn--edit-select");
 
 btn_EditSelect.addEventListener("click", function () {
+  container_Exercise.classList.toggle("hidden");
   repsEdit_Radio.classList.toggle("hidden");
   setsEdit_Radio.classList.toggle("hidden");
   weightEdit_Radio.classList.toggle("hidden");
   exerciseEdit_Radio.classList.toggle("hidden");
   restEdit_Radio.classList.toggle("hidden");
-  exerciseEditMode_P.classList.toggle("hidden");
+  exerciseEditMode_Title.classList.toggle("hidden");
+  exerciseEditExercise_Title.classList.toggle("hidden");
   labelNextSet.classList.toggle("hidden");
   btn_NextSet.classList.toggle("hidden");
   repsEdit_Radio.checked = false;

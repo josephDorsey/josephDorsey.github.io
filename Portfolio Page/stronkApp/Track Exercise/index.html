@@ -8,18 +8,36 @@
     <title>Document</title>
   </head>
   <body>
-    <a href="../index.html">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5 btn-returnHome"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-      >
-        <path
-          d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
-        />
-      </svg>
-    </a>
+    <div class="main--nav">
+      <a href="../index.html">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 btn-returnHome"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+          />
+        </svg>
+      </a>
+      <a>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6 btn--user-profile"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+      </a>
+    </div>
     <div class="exercise-information">
       <h1 class="exercise-title">Workout Page</h1>
       <label for="exercise-name">Exercise:</label>
@@ -43,6 +61,7 @@
       <input type="number" class="exercise-seconds" placeholder="seconds" />
       <div class="exercise-modal-buttons flex">
         <button class="btn--push-data-to-array">Add Exercise to List</button>
+        <button class="btn--view-exercise-list">Exercises (0)</button>
         <button class="btn--startWorkout">Start Workout</button>
       </div>
     </div>
@@ -63,7 +82,7 @@
           </svg>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 btn--delete-exercise"
+            class="h-5 w-5 btn--delete-exercise hidden"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -88,7 +107,8 @@
               clip-rule="evenodd"
             />
           </svg>
-          <p class="exercise-list-p">List is empty.</p>
+          <h3 class="exercise-list-title">Exercise List</h3>
+          <p class="exercise-list-p">No exercises listed</p>
           <p class="exercise-list-hint">
             Hint: add some exercises to the list!
           </p>
@@ -118,7 +138,7 @@
           </div> -->
         </div>
       </div>
-      <div class="modal-exercise-info">
+      <div class="modal-exercise-info hidden">
         <!-- <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-5 w-5 btn--exercise-list"
@@ -138,7 +158,9 @@
           fill="currentColor"
         >
           <path
-            d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"
+            fill-rule="evenodd"
+            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+            clip-rule="evenodd"
           />
         </svg>
         <svg
@@ -174,8 +196,9 @@
             clip-rule="evenodd"
           />
         </svg>
-        <p class="exercise-edit-p hidden">Edit Mode</p>
-        <div class="exercise flex">
+        <h3 class="exercise-edit-mode-title hidden">Edit Mode</h3>
+        <h3 class="exercise-edit-exercise-title">Exercise:</h3>
+        <div class="exercise hidden flex">
           <input type="radio" class="exercise-edit-radio hidden" />
           <label class="label-exercise">Exercise:</label>
           <input
@@ -241,12 +264,14 @@
     </div>
     <p>Goals: Add an exercise word bank</p>
     <script src="js/Init.js"></script>
-    <script src="js/Buttons/Button_Edit.js"></script>
-    <script src="js/Buttons/Button_NextSet.js"></script>
-    <script src="js/Buttons/Button_PushDatatoArrayButton.js"></script>
-    <script src="js/Buttons/Button_ToggleExerciseList.js"></script>
-    <script src="js/Buttons/Button_StartWorkout.js"></script>
-    <script src="js/Buttons/Button_MinimizeExerciseList.js"></script>
+    <script src="js/Buttons/Buttons_Main/Button_Edit.js"></script>
+    <script src="js/Buttons/Buttons_Main/Button_NextSet.js"></script>
+    <script src="js/Buttons/Buttons_Main/Button_PushDatatoArrayButton.js"></script>
+    <script src="js/Buttons/Buttons_Main/Button_StartWorkout.js"></script>
+    <script src="js/Buttons/Button_ExerciseList/Button_ToggleExerciseList.js"></script>
+    <script src="js/Buttons/Button_ExerciseList/Button_MinimizeExerciseList.js"></script>
+    <script src="js/Buttons/Button_ExerciseList/Button_EditExerciseList.js"></script>
+
     <script src="js/Buttons/Edit_UpdateButtons/ButtonUpdate_Exercise.js"></script>
     <script src="js/Buttons/Edit_UpdateButtons/ButtonUpdate_Sets.js"></script>
     <script src="js/Buttons/Edit_UpdateButtons/ButtonUpdate_Reps.js"></script>
