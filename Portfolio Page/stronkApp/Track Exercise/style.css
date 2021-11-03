@@ -1,3 +1,7 @@
+.main-app--container {
+  border: 1px solid black;
+}
+
 .exercise-information {
   display: grid;
   width: 50%;
@@ -5,16 +9,49 @@
   border: 1px solid black;
   padding: 20px 30px;
   border-radius: 25px;
+  grid-template-columns: 0.25fr 1fr;
+}
+.box {
+  display: grid;
+  width: 50%;
+  margin: 0 auto;
+  border: 1px solid black;
+  padding: 20px 30px;
+  border-radius: 25px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.btn--add-to-exercise-storage {
+  grid-column: 1/-1;
+}
+
+.btn--modal-add-exercise {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10px;
+  right: 80px;
+  cursor: pointer;
+}
+.exercise-modal-buttons {
+  grid-column: 1/-1;
+  justify-self: center;
+}
+.exercise-seconds {
+  grid-column: 2;
 }
 .exercise-list {
   position: relative;
   border: 1px solid black;
   border-radius: 25px;
-  padding: 50px 40px;
-  /* margin: 0 auto; */
-  width: 200px;
+  padding: 70px 40px;
+  width: 300px;
+  margin: 0 auto;
 }
 .exercise-list-p {
+  text-align: center;
+}
+.exercise-list-hint {
   text-align: center;
 }
 .exercise-title {
@@ -80,6 +117,24 @@
   cursor: pointer;
 }
 
+/* Exercise Modal */
+
+.btn--close-activeModal {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 11px;
+  cursor: pointer;
+}
+
+.btn--exercise-list {
+  top: 10px;
+  right: 50px;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
 .btn--next-set {
   bottom: 20px;
   position: absolute;
@@ -90,14 +145,8 @@
   height: 20px;
   cursor: pointer;
 }
-.btn--exercise-list {
-  top: 10px;
-  left: 20px;
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
+
+/* Exercise List  */
 .btn--delete-exercise {
   width: 20px;
   height: 20px;
@@ -112,10 +161,20 @@
   position: absolute;
   width: 20px;
   height: 20px;
-  top: 10px;
-  right: 30px;
+  top: 9px;
+  right: 20px;
   cursor: pointer;
 }
+
+.btn--return-to-activeModal {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  cursor: pointer;
+  top: 10px;
+  left: 50px;
+}
+
 .modal-exercise-info input[type="text"],
 .modal-exercise-info input[type="number"] {
   width: 30%;
@@ -172,4 +231,39 @@
 
 .container--btn-home {
   justify-self: start;
+}
+
+/* Exercise Storage Container */
+
+.title--exerciseStorage {
+  grid-column: 1/-1;
+  justify-self: center;
+}
+.p--exerciseStorage {
+  grid-column: 1/-1;
+  justify-self: center;
+}
+
+.container--exerciseStorage {
+  position: relative;
+}
+
+.btn--close-exerciseStorage {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10px;
+  left: 30px;
+  cursor: pointer;
+}
+
+.exercise-info-title {
+  grid-column: 1/-1;
+  text-align: center;
+}
+
+.btn--close-exercise-info {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }

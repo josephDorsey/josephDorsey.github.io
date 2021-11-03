@@ -17,6 +17,7 @@ btn_EditSelect.addEventListener("click", function () {
   restEdit_Radio.classList.toggle("hidden");
   exerciseEditMode_Title.classList.toggle("hidden");
   exerciseEditExercise_Title.classList.toggle("hidden");
+  btn_CloseActiveModal.classList.toggle("hidden");
   labelNextSet.classList.toggle("hidden");
   btn_NextSet.classList.toggle("hidden");
   repsEdit_Radio.checked = false;

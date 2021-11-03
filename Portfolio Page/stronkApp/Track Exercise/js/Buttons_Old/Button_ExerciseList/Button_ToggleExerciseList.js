@@ -14,6 +14,7 @@ const btnMain_ToggleExerciseList = document.querySelector(
 
 btnMain_ToggleExerciseList.addEventListener("click", function () {
   exerciseList_Container.classList.toggle("hidden");
+  container_MainNav_Buttons.classList.toggle("hidden");
   if (exerciseGroup.name.length === 0) {
     exercise_List_P.classList.remove("hidden");
     exercise_List_Hint.classList.remove("hidden");
@@ -25,7 +26,7 @@ btnMain_ToggleExerciseList.addEventListener("click", function () {
 
 btn_toggleExerciseList.addEventListener("click", function () {
   exerciseList_Container.classList.toggle("hidden");
-
+  activeModalContainer.classList.toggle("hidden");
   if (exerciseList_Container.classList.contains("hidden")) {
     activeModalContainer.style.gap = "0";
   } else if (!exerciseList_Container.classList.contains("hidden")) {
