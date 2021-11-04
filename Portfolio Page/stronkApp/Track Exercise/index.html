@@ -69,10 +69,10 @@
           Input exercise names here to add to storage
         </p>
         <select class="select--equipment">
-          <option value="barbell">Barbell</option>
-          <option value="dumbbell">Dumbbell</option>
-          <option value="rope">Rope</option>
-          <option value="body">Body</option>
+          <option class="barbell" value="barbell">Barbell</option>
+          <option class="dumbbell" value="dumbbell">Dumbbell</option>
+          <option class="rope" value="rope">Rope</option>
+          <option class="body" value="body">Body</option>
         </select>
         <input type="text" class="input--exerciseStorage" />
         <button class="btn--add-to-exercise-storage">
@@ -193,7 +193,13 @@
                 clip-rule="evenodd"
               />
             </svg>
+
             <h3 class="exercise-list-title">Exercise List</h3>
+
+            <p class="exercise-list-current-exercise hidden">
+              Current exercise: (DB Bench)
+            </p>
+            <button class="btn--set-active hidden">Set Active</button>
             <p class="exercise-list-p">No exercises listed</p>
             <p class="exercise-list-hint">
               Hint: add some exercises to the list!
@@ -363,7 +369,6 @@
       </div>
     </div>
     <script src="js/Init.js"></script>
-
     <script src="js/Buttons/Buttons_Modals/active-exercise-modal.js"></script>
     <script src="js/Buttons/Buttons_Modals/add-exercise-to-workout.js"></script>
     <script src="js/Buttons/Buttons_Modals/create-exercise.js"></script>

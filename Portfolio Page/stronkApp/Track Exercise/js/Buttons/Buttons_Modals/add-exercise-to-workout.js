@@ -21,6 +21,9 @@ const exerciseEditExercise_Title = document.querySelector(
 );
 const btn_EditSelect = document.querySelector(".btn--edit-select");
 
+const exercise_List_Radios = document.getElementsByClassName(
+  "exercise-list-radio"
+);
 const resetDataInfoPush = function () {
   exercise_Name.value = "";
   exercise_Weight.value = "";
@@ -47,7 +50,6 @@ btn_PushDataToArray.addEventListener("click", function () {
   exerciseGroup.rest.minutes.push(Number(exercise_Minutes.value));
   exerciseGroup.rest.seconds.push(Number(exercise_Seconds.value));
   console.log(exerciseGroup);
-
   // labelExercise.innerHTML = `Exercise: ${exercise_Name.value}`;
   // labelWeight.innerHTML = `Weight: ${exercise_Weight.value}-lbs`;
   // labelSets.innerHTML = `Set: 1 / ${exercise_Sets.value}`;
@@ -56,10 +58,15 @@ btn_PushDataToArray.addEventListener("click", function () {
 
   for (let i = 0; i < exerciseGroup.name.length; i++) {
     div.innerHTML = `
-  <input type="radio" class="exercise-list-radio"/>
+  <input type="radio" name="exercise-list-radio" class="exercise-list-radio"/>
   <label>Exercise ${i + 1}: ${exerciseGroup.name[i]}</label>
   `;
   }
+  // for (let i = 0; i < exercise_List_Radios.length; i++) {
+  //   exercise_List_Radios[i].addEventListener("click", function () {
+  //     if (exercise_List_Radios[i] === 1) console.log(`clicked`);
+  //   });
+  // }
   if (exerciseGroup.name.length === 0) {
     exercise_List_P.classList.remove("hidden");
     exercise_List_Hint.classList.remove("hidden");

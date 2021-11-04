@@ -267,3 +267,36 @@
   height: 20px;
   cursor: pointer;
 }
+
+.exercise-list-current-exercise {
+  position: absolute;
+  top: 25px;
+  right: 0;
+  left: 0;
+  text-align: center;
+}
+
+.exercise-list-p {
+  position: absolute;
+  text-align: center;
+  top: 30px;
+  right: 0;
+  left: 0;
+}
+
+.exercise-list-hint {
+  position: absolute;
+  text-align: center;
+  top: 55px;
+  right: 0;
+  left: 0;
+}
+
+.btn--set-active {
+  position: absolute;
+  text-align: center;
+  margin: 0 auto;
+  left: 150px;
+  /* right: 0; */
+  bottom: 10px;
+}
