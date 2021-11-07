@@ -27,3 +27,13 @@ const exerciseGroup = {
     seconds: [],
   },
 };
+
+let main_Nav_styleState;
+const mainNav_Style = function () {
+  main_Nav_styleState = main_Nav_styleState === 0 ? 1 : 0;
+  if (main_Nav_styleState === 0) {
+    container_MainNav_Buttons.style.display = "grid";
+  } else if (main_Nav_styleState === 1) {
+    container_MainNav_Buttons.style.display = "none";
+  }
+};

@@ -22,7 +22,7 @@
             />
           </svg>
         </a>
-        <h1 class="exercise-title">Track Exercise</h1>
+        <h1 class="exercise-title">Stronk App: Track Exercise</h1>
         <a class="container--user-profile">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -40,44 +40,26 @@
           </svg>
         </a>
       </div>
-      <div class="main--nav-buttons box">
-        <!-- <p>What would you like to do?</p> -->
-        <button class="btn--open-add-exercise-modal">
-          Add Exercises to Workout
-        </button>
-        <button class="btn--open-create-exercise-modal">
-          Create Exercises
-        </button>
-        <button class="btn--startWorkout">Start Workout</button>
-        <button class="btn--view-exercise-list">Exercises (0)</button>
-      </div>
-      <div class="box container--exerciseStorage hidden">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5 btn--close-exerciseStorage"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-            clip-rule="evenodd"
-          />
-        </svg>
-        <h3 class="title--exerciseStorage">Create new exercise</h3>
-        <p class="p--exerciseStorage">
-          Input exercise names here to add to storage
-        </p>
-        <select class="select--equipment">
-          <option class="barbell" value="barbell">Barbell</option>
-          <option class="dumbbell" value="dumbbell">Dumbbell</option>
-          <option class="rope" value="rope">Rope</option>
-          <option class="body" value="body">Body</option>
-        </select>
-        <input type="text" class="input--exerciseStorage" />
-        <button class="btn--add-to-exercise-storage">
-          Add to Exercise Storage
-        </button>
+      <div class="main--nav-buttons">
+        <h3 class="main--nav-buttons-title">What would you like to do?</h3>
+        <div class="container--nav-img">
+          <a href="#" class="btn--open-add-exercise-modal">
+            <img class="nav-img" src="img/add-circle-outline.svg" />
+            <span>Add Exercises</span>
+          </a>
+        </div>
+        <div class="container--nav-img">
+          <a href="#" class="btn--view-exercise-list">
+            <img class="nav-img" src="img/barbell-outline.svg" />
+            <span class="span--exercise-list">Exercises (0)</span>
+          </a>
+        </div>
+        <div class="container--nav-img">
+          <a href="#" class="btn--startWorkout">
+            <img class="nav-img" src="img/play-circle-outline.svg" />
+            <span>Start Workout</span>
+          </a>
+        </div>
       </div>
       <div class="exercise-information hidden">
         <svg
@@ -92,39 +74,72 @@
             clip-rule="evenodd"
           />
         </svg>
-
+        <a href="#" class="btn btn--link-createExercise">Create Exercise</a>
+        <a href="#" class="btn btn--link-addExercise">Add Exercise</a>
         <h3 class="exercise-info-title">
           Please enter data to the workout list
         </h3>
-        <label for="exercise-name">Exercise:</label>
-        <input
-          type="text"
-          class="exercise-name"
-          placeholder="Please enter a exercise"
-        />
-        <label for="exercise-weight">Weight:</label>
-        <input
-          type="number"
-          class="exercise-weight"
-          placeholder="How many pounds?"
-        />
-        <label for="exercise-sets">Sets:</label>
-        <input
-          type="number"
-          class="exercise-sets"
-          placeholder="How many sets?"
-        />
-        <label for="exercise-reps">Reps:</label>
-        <input
-          type="number"
-          class="exercise-reps"
-          placeholder="How many reps?"
-        />
-        <label for="exercise-rest">Rest:</label>
-        <input type="number" class="exercise-minutes" placeholder="minutes" />
-        <input type="number" class="exercise-seconds" placeholder="seconds" />
-        <div class="exercise-modal-buttons flex">
-          <button class="btn--push-data-to-array">Add Exercise</button>
+        <h3 class="title--exerciseStorage">Create new exercise</h3>
+        <div class="grid-exercise-name">
+          <label class="exercise-name-label" for="exercise-name"
+            >Exercise:</label
+          >
+          <input
+            type="text"
+            class="exercise-name"
+            placeholder="add exercise to workout"
+          />
+          <input
+            type="text"
+            class="input--exerciseStorage"
+            placeholder="add to exercise memory"
+          />
+        </div>
+        <div class="grid-exercise-select">
+          <select class="select--equipment">
+            <option class="barbell" value="barbell">Barbell</option>
+            <option class="dumbbell" value="dumbbell">Dumbbell</option>
+            <option class="rope" value="rope">Rope</option>
+            <option class="body" value="body">Body</option>
+          </select>
+          <select class="select--barbell-exercises">
+            <option value="">Bench Press</option>
+            <option value="">Incline Bench</option>
+            <option value="">Shrugs</option>
+          </select>
+          <select class="select_Dumbbell_Exercises hidden"></select>
+          <select class="select_Body_Exercises hidden"></select>
+          <select class="select_Rope_Exercises hidden"></select>
+        </div>
+        <div>
+          <label class="label--addExercise-weight" for="exercise-weight"
+            >Weight:</label
+          >
+          <input type="number" class="exercise-weight" placeholder="lbs" />
+        </div>
+        <div>
+          <label class="label--addExercise-sets" for="exercise-sets"
+            >Sets:</label
+          >
+          <input type="number" class="exercise-sets" placeholder="sets" />
+        </div>
+        <div>
+          <label class="label--addExercise-reps" for="exercise-reps"
+            >Reps:</label
+          >
+          <input type="number" class="exercise-reps" placeholder="reps" />
+        </div>
+        <div>
+          <label class="label--addExercise-rest" for="exercise-rest"
+            >Rest:</label
+          >
+          <input type="number" class="exercise-minutes" placeholder="min" />
+          <input type="number" class="exercise-seconds" placeholder="sec" />
+        </div>
+        <div class="exercise-modal-buttons">
+          <button class="btn--push-data-to-array">Add to Workout</button>
+
+          <button class="btn--add-to-exercise-storage">Add to Archive</button>
         </div>
       </div>
       <div class="modal-active-container">
@@ -366,6 +381,12 @@
             <!-- <button class="btn--next-set">Next Set</button> -->
           </div>
         </div>
+        <!-- <div class="button_navigation--modal">
+          <a href="#"> Add exercises to workout </a>
+          <a href="#"> Create exercises </a>
+          <a href="#"> Exercises (0) </a>
+          <a href="#"> Start Workout </a>
+        </div> -->
       </div>
     </div>
     <script src="js/Init.js"></script>
@@ -376,3 +397,22 @@
     <script src="js/Buttons/Buttons_Modals/start-workout.js"></script>
   </body>
 </html>
+
+<!-- <div class="box container--exerciseStorage hidden">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="h-5 w-5 btn--close-exerciseStorage"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+      clip-rule="evenodd"
+    />
+  </svg>
+
+  <p class="p--exerciseStorage">
+    Input exercise names here to add to storage
+  </p>
+</div> -->
