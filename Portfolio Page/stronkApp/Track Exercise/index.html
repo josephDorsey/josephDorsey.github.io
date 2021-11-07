@@ -92,24 +92,23 @@
           <input
             type="text"
             class="input--exerciseStorage"
-            placeholder="add to exercise memory"
+            placeholder="add to exercise archive"
           />
         </div>
         <div class="grid-exercise-select">
-          <select class="select--equipment">
+          <select class="select--equipment" onchange="state_addExercises()">
+            <option class="select-please" value="barbell">
+              (Select equipment)
+            </option>
             <option class="barbell" value="barbell">Barbell</option>
             <option class="dumbbell" value="dumbbell">Dumbbell</option>
             <option class="rope" value="rope">Rope</option>
             <option class="body" value="body">Body</option>
           </select>
-          <select class="select--barbell-exercises">
-            <option value="">Bench Press</option>
-            <option value="">Incline Bench</option>
-            <option value="">Shrugs</option>
-          </select>
-          <select class="select_Dumbbell_Exercises hidden"></select>
-          <select class="select_Body_Exercises hidden"></select>
-          <select class="select_Rope_Exercises hidden"></select>
+          <select class="select--barbell-exercises"></select>
+          <select class="select--dumbbell-exercises"></select>
+          <select class="select--body-exercises"></select>
+          <select class="select--rope-exercises"></select>
         </div>
         <div>
           <label class="label--addExercise-weight" for="exercise-weight"

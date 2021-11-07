@@ -385,3 +385,19 @@
 .btn--link-addExercise {
   grid-column: 3/-1;
 }
+
+/* BEFORE CLICK */
+.btn {
+  grid-row: 3;
+  justify-self: center;
+  border-radius: 25px;
+  border: 1px solid black;
+  padding: 2px 8px;
+  text-decoration: none;
+  color: #000;
+  /* background-color: #3b5bdb; */
+}
+.btn-active {
+  background-color: #3b5bdb;
+  color: #fff;
+}

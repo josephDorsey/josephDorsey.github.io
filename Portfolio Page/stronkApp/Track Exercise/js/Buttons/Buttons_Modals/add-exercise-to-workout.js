@@ -99,6 +99,11 @@ btn_PushDataToArray.addEventListener("click", function () {
 btn_CloseExerciseInfoModal.addEventListener("click", function () {
   mainNav_Style();
   hide_AddExercise_LabelsInputs();
+  for (let i = 0; i < buttons_AddExerciseModal.length; i++) {
+    buttons_AddExerciseModal[i].style.gridRow = "3";
+  }
+  btn_linkCreateExercise.classList.remove("btn-active");
+  btn_linkAddExercise.classList.remove("btn-active");
   // hide_CreateExercise_LabelsInputs();
   btn_PushDataToArray.classList.add("hidden");
   btn_PushToWordBank.classList.add("hidden");
@@ -107,9 +112,24 @@ btn_CloseExerciseInfoModal.addEventListener("click", function () {
 });
 
 btn_OpenExerciseInfoModal.addEventListener("click", function () {
+  // select_Barbell_Exercises.style.display = "none";
+  // select_Dumbbell_Exercises.style.display = "none";
+  // select_Body_Exercises.style.display = "none";
+  // select_Rope_Exercises.style.display = "none";
+  select_Barbell_Exercises.classList.add("hidden");
+  select_Dumbbell_Exercises.classList.add("hidden");
+  select_Body_Exercises.classList.add("hidden");
+  select_Rope_Exercises.classList.add("hidden");
   mainNav_Style();
   hide_AddExercise_LabelsInputs();
   hide_CreateExercise_LabelsInputs();
+  // select_Equipment_Test();
+  inactiveExercises_Modal = true;
+  for (let i = 0; i < buttons_AddExerciseModal.length; i++) {
+    buttons_AddExerciseModal[i].style.gridRow = "3";
+  }
+  btn_linkCreateExercise.classList.remove("btn-active");
+  btn_linkAddExercise.classList.remove("btn-active");
   btn_PushDataToArray.classList.add("hidden");
   btn_PushToWordBank.classList.add("hidden");
   container_ExerciseInfo.classList.toggle("hidden");
@@ -135,6 +155,32 @@ btn_EditSelect.addEventListener("click", function () {
   restEdit_Radio.checked = false;
 });
 
+const select_Equipment_Test = function () {
+  if (option_Barbell.selected) {
+    select_Barbell_Exercises.classList.remove("hidden");
+    select_Dumbbell_Exercises.classList.add("hidden");
+    select_Body_Exercises.classList.add("hidden");
+    select_Rope_Exercises.classList.add("hidden");
+  } else if (option_Dumbbell.selected) {
+    select_Dumbbell_Exercises.classList.remove("hidden");
+    select_Barbell_Exercises.classList.add("hidden");
+    select_Body_Exercises.classList.add("hidden");
+    select_Rope_Exercises.classList.add("hidden");
+  } else if (option_Body.selected) {
+    select_Body_Exercises.classList.remove("hidden");
+    select_Barbell_Exercises.classList.add("hidden");
+    select_Dumbbell_Exercises.classList.add("hidden");
+    select_Rope_Exercises.classList.add("hidden");
+  } else if (option_Rope.selected) {
+    select_Rope_Exercises.classList.remove("hidden");
+    select_Barbell_Exercises.classList.add("hidden");
+    select_Dumbbell_Exercises.classList.add("hidden");
+    select_Body_Exercises.classList.add("hidden");
+  }
+};
+
+// if ()
+// select_Equipment_Test();
 const editExerciseFunc = function () {
   if (repsEdit_Radio.checked) {
     labelReps.innerHTML = `Reps:`;
@@ -186,29 +232,77 @@ const btn_linkCreateExercise = document.querySelector(
 );
 const btn_linkAddExercise = document.querySelector(".btn--link-addExercise");
 const select_WorkoutType = document.querySelector(".select--workout-type");
+
+// Add Exercises Equipment choices exercises
+
 const select_Barbell_Exercises = document.querySelector(
   ".select--barbell-exercises"
 );
+const select_Body_Exercises = document.querySelector(".select--body-exercises");
+const select_Dumbbell_Exercises = document.querySelector(
+  ".select--dumbbell-exercises"
+);
+const select_Rope_Exercises = document.querySelector(".select--rope-exercises");
+
 const container_ExerciseSelectContainer = document.querySelector(
   ".grid-exercise-select"
 );
 
 btn_linkCreateExercise.addEventListener("click", function () {
+  createExercises_Modal = true;
+  addExercises_Modal = false;
+  inactiveExercises_Modal = false;
+  select_Equipment.selectedIndex = 0;
+
+  select_Barbell_Exercises.classList.add("hidden");
+  select_Dumbbell_Exercises.classList.add("hidden");
+  select_Body_Exercises.classList.add("hidden");
+  select_Rope_Exercises.classList.add("hidden");
+
+  label_addExercise_Weight.classList.add("hidden");
+  label_addExercise_Sets.classList.add("hidden");
+  label_addExercise_Reps.classList.add("hidden");
+  label_addExercise_Rest.classList.add("hidden");
+  exercise_Weight.classList.add("hidden");
+  exercise_Sets.classList.add("hidden");
+  exercise_Reps.classList.add("hidden");
+  exercise_Seconds.classList.add("hidden");
+  exercise_Minutes.classList.add("hidden");
+  exercise_Name.classList.add("hidden");
+
   btn_PushToWordBank.classList.remove("hidden");
   btn_PushDataToArray.classList.add("hidden");
   exerciseStorage_Title.classList.remove("hidden");
   exerciseWordBank_Input.classList.remove("hidden");
   select_Equipment.classList.remove("hidden");
+
   label_addExercise_Exercise.classList.remove("hidden");
+  for (let i = 0; i < buttons_AddExerciseModal.length; i++) {
+    buttons_AddExerciseModal[i].style.gridRow = "1";
+  }
+  btn_linkCreateExercise.classList.add("btn-active");
+  btn_linkAddExercise.classList.remove("btn-active");
+  // btn_linkAddExercise.classList.toggle("btn-active");
   container_ExerciseSelectContainer.style.gridColumn = "1 / -1";
   container_ExerciseSelectContainer.style.justifySelf = "center";
   label_addExercise_Exercise.classList.remove("hidden");
   title_AddExercise.classList.add("hidden");
   exercise_Name.classList.add("hidden");
 });
+
 btn_linkAddExercise.addEventListener("click", function () {
+  inactiveExercises_Modal = false;
+  createExercises_Modal = false;
+  addExercises_Modal = true;
+  select_Equipment.selectedIndex = 0;
+  btn_linkAddExercise.classList.add("btn-active");
+  btn_linkCreateExercise.classList.remove("btn-active");
+  // btn_AddCreateExercise.classList.toggle("btn-active");
   container_ExerciseSelectContainer.style.gridColumn = "1 / -1";
   container_ExerciseSelectContainer.style.justifySelf = "center";
+  for (let i = 0; i < buttons_AddExerciseModal.length; i++) {
+    buttons_AddExerciseModal[i].style.gridRow = "1";
+  }
   btn_PushToWordBank.classList.add("hidden");
   btn_PushDataToArray.classList.remove("hidden");
   label_addExercise_Weight.classList.remove("hidden");
@@ -220,11 +314,10 @@ btn_linkAddExercise.addEventListener("click", function () {
   exercise_Reps.classList.remove("hidden");
   exercise_Seconds.classList.remove("hidden");
   exercise_Minutes.classList.remove("hidden");
-  exercise_Name.classList.remove("hidden");
+  exercise_Name.classList.add("hidden");
   title_AddExercise.classList.remove("hidden");
   select_Equipment.classList.remove("hidden");
-  select_Barbell_Exercises.classList.add("hidden");
-  label_addExercise_Exercise.classList.remove("hidden");
+  label_addExercise_Exercise.classList.add("hidden");
   exerciseStorage_Title.classList.add("hidden");
   exerciseWordBank_Input.classList.add("hidden");
 });
@@ -242,7 +335,6 @@ const hide_AddExercise_LabelsInputs = function () {
   exercise_Name.classList.add("hidden");
   title_AddExercise.classList.add("hidden");
   select_Equipment.classList.add("hidden");
-  select_Barbell_Exercises.classList.add("hidden");
   label_addExercise_Exercise.classList.add("hidden");
 
   // create

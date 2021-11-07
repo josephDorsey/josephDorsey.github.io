@@ -24,7 +24,7 @@ const select_Equipment = document.querySelector(".select--equipment");
 const containerExerciseStorage = document.querySelector(
   ".container--exerciseStorage"
 );
-
+const buttons_AddExerciseModal = document.getElementsByClassName("btn");
 // Push to Exercise Name Storage
 const btn_PushToWordBank = document.querySelector(
   ".btn--add-to-exercise-storage"
@@ -50,6 +50,7 @@ const btn_PushToWordBank = document.querySelector(
 let temp_Barbell, temp_Dumbbell, temp_Body, temp_Rope;
 
 btn_PushToWordBank.addEventListener("click", function () {
+  const createOption = document.createElement("option");
   // exerciseWordBank.push(exerciseWordBank_Input.value);
   if (option_Barbell.selected) {
     exercises_Barbell.push(exerciseWordBank_Input.value);
@@ -61,6 +62,10 @@ btn_PushToWordBank.addEventListener("click", function () {
     userExercises.barbell = JSON.parse(temp_Barbell);
     // localStorage.barbellExercises = JSON.(exercises_Barbell);
     console.log(localStorage);
+    for (let i = 0; i < userExercises.barbell.length; i++) {
+      createOption.innerHTML = `${userExercises.barbell[i]}`;
+      select_Barbell_Exercises.appendChild(createOption);
+    }
   } else if (option_Dumbbell.selected) {
     exercises_Dumbbell.push(exerciseWordBank_Input.value);
     // localStorage.dumbbellExercises = JSON.stringify(exercises_Dumbbell);
@@ -71,14 +76,23 @@ btn_PushToWordBank.addEventListener("click", function () {
     temp_Dumbbell = localStorage.getItem("exercises_Dumbbell");
     userExercises.dumbbell = JSON.parse(temp_Dumbbell);
 
+    for (let i = 0; i < userExercises.dumbbell.length; i++) {
+      // const createOption = document.createElement("option");
+      createOption.innerHTML = `${userExercises.dumbbell[i]}`;
+      select_Dumbbell_Exercises.appendChild(createOption);
+    }
     console.log(localStorage);
   } else if (option_Body.selected) {
     exercises_Body.push(exerciseWordBank_Input.value);
     localStorage.setItem("exercises_Body", JSON.stringify(exercises_Body));
     temp_Body = localStorage.getItem("exercises_Body");
     userExercises.body = JSON.parse(temp_Body);
-
     // localStorage.bodyExercises = JSON.stringify(exercises_Body);
+    for (let i = 0; i < userExercises.body.length; i++) {
+      // const createOption = document.createElement("option");
+      createOption.innerHTML = `${userExercises.body[i]}`;
+      select_Body_Exercises.appendChild(createOption);
+    }
     console.log(localStorage);
   } else if (option_Rope.selected) {
     exercises_Rope.push(exerciseWordBank_Input.value);
@@ -86,6 +100,11 @@ btn_PushToWordBank.addEventListener("click", function () {
     temp_Rope = localStorage.getItem("exercises_Rope");
     userExercises.rope = JSON.parse(temp_Rope);
     // localStorage.ropeExercises = JSON.stringify(exercises_Rope);
+    for (let i = 0; i < userExercises.rope.length; i++) {
+      // const createOption = document.createElement("option");
+      createOption.innerHTML = `${userExercises.rope[i]}`;
+      select_Rope_Exercises.appendChild(createOption);
+    }
     console.log(localStorage);
   }
 
@@ -93,11 +112,6 @@ btn_PushToWordBank.addEventListener("click", function () {
   exerciseWordBank_Input.value = "";
   // parsed_Exercises();
 });
-
-const push_localStorage = function (x) {
-  localStorage.testBank = JSON.stringify(x);
-  console.log(JSON.parse(localStorage.testBank));
-};
 
 const exerciseListActiveState = [0, 0];
 // let activeState, exercising;
@@ -113,20 +127,4 @@ const userExercises = {
   dumbbell: "",
   rope: "",
   body: "",
-};
-
-window.onload = function () {
-  // alert(`page loaded`);
-
-  userExercises.barbell = JSON.parse(localStorage.exercises_Barbell);
-  exercises_Barbell = JSON.parse(localStorage.exercises_Barbell);
-
-  userExercises.dumbbell = JSON.parse(localStorage.exercises_Dumbbell);
-  exercises_Dumbbell = JSON.parse(localStorage.exercises_Dumbbell);
-
-  userExercises.rope = JSON.parse(localStorage.exercises_Rope);
-  exercises_Rope = JSON.parse(localStorage.exercises_Rope);
-
-  userExercises.body = JSON.parse(localStorage.exercises_Body);
-  exercises_Body = JSON.parse(localStorage.exercises_Body);
 };
