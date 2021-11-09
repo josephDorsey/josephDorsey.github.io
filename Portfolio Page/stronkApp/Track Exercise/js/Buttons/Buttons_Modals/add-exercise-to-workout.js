@@ -99,6 +99,7 @@ btn_PushDataToArray.addEventListener("click", function () {
 btn_CloseExerciseInfoModal.addEventListener("click", function () {
   mainNav_Style();
   hide_AddExercise_LabelsInputs();
+  editExercises_Modal = false;
   for (let i = 0; i < buttons_AddExerciseModal.length; i++) {
     buttons_AddExerciseModal[i].style.gridRow = "3";
   }
@@ -112,6 +113,9 @@ btn_CloseExerciseInfoModal.addEventListener("click", function () {
 });
 
 btn_OpenExerciseInfoModal.addEventListener("click", function () {
+  btn_EditExerciseStorage.classList.add("hidden");
+  btn_ExitEditStorage.classList.add("hidden");
+  btn_deleteExerciseStorage.classList.add("hidden");
   // select_Barbell_Exercises.style.display = "none";
   // select_Dumbbell_Exercises.style.display = "none";
   // select_Body_Exercises.style.display = "none";
@@ -253,7 +257,8 @@ btn_linkCreateExercise.addEventListener("click", function () {
   addExercises_Modal = false;
   inactiveExercises_Modal = false;
   select_Equipment.selectedIndex = 0;
-
+  btn_EditExerciseStorage.classList.remove("hidden");
+  btn_deleteExerciseStorage.classList.add("hidden");
   select_Barbell_Exercises.classList.add("hidden");
   select_Dumbbell_Exercises.classList.add("hidden");
   select_Body_Exercises.classList.add("hidden");
@@ -295,6 +300,7 @@ btn_linkAddExercise.addEventListener("click", function () {
   createExercises_Modal = false;
   addExercises_Modal = true;
   select_Equipment.selectedIndex = 0;
+  btn_EditExerciseStorage.classList.add("hidden");
   btn_linkAddExercise.classList.add("btn-active");
   btn_linkCreateExercise.classList.remove("btn-active");
   // btn_AddCreateExercise.classList.toggle("btn-active");

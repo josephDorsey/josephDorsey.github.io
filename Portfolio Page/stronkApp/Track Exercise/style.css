@@ -45,10 +45,6 @@
   grid-row: 3;
 }
 
-.btn--add-to-exercise-storage {
-  grid-column: 1/-1;
-}
-
 .btn--modal-add-exercise {
   width: 20px;
   height: 20px;
@@ -386,6 +382,25 @@
   grid-column: 3/-1;
 }
 
+.btn--delete-exercise-storage {
+}
+.btn--edit-exercise-storage {
+  cursor: pointer;
+  border-radius: 25px;
+  padding: 3px 10px;
+  border: 1px solid black;
+  background-color: white;
+  color: #000;
+}
+.btn--add-to-exercise-storage {
+  grid-column: 1/-1;
+  cursor: pointer;
+  border-radius: 25px;
+  padding: 3px 10px;
+  border: 1px solid black;
+  background-color: white;
+  color: #000;
+}
 /* BEFORE CLICK */
 .btn {
   grid-row: 3;

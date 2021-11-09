@@ -27,6 +27,8 @@ const exerciseGroup = {
     seconds: [],
   },
 };
+
+// Puts all the array variables back in the exercise array
 window.onload = function () {
   // alert(`page loaded`);
 
@@ -77,8 +79,14 @@ const mainNav_Style = function () {
   }
 };
 
-let inactiveExercises_Modal, addExercises_Modal, createExercises_Modal;
+let inactiveExercises_Modal,
+  addExercises_Modal,
+  createExercises_Modal,
+  editExercises_Modal;
 const state_addExercises = function () {
+  if (inactiveExercises_Modal) {
+    btn_EditExerciseStorage.classList.add("hidden");
+  }
   if (addExercises_Modal) {
     select_Equipment_Test();
     if (select_Equipment.selectedIndex === 0) {
@@ -86,13 +94,23 @@ const state_addExercises = function () {
       select_Dumbbell_Exercises.classList.add("hidden");
       select_Body_Exercises.classList.add("hidden");
       select_Rope_Exercises.classList.add("hidden");
+      btn_EditExerciseStorage.classList.add("hidden");
     }
   }
   if (createExercises_Modal) {
-    select_Barbell_Exercises.classList.add("hidden");
-    select_Dumbbell_Exercises.classList.add("hidden");
-    select_Body_Exercises.classList.add("hidden");
-    select_Rope_Exercises.classList.add("hidden");
+    if (select_Equipment.selectedIndex === 0) {
+      btn_EditExerciseStorage.classList.add("hidden");
+    }
+    if (!(select_Equipment.selectedIndex === 0)) {
+      btn_EditExerciseStorage.classList.remove("hidden");
+      select_Barbell_Exercises.classList.add("hidden");
+      select_Dumbbell_Exercises.classList.add("hidden");
+      select_Body_Exercises.classList.add("hidden");
+      select_Rope_Exercises.classList.add("hidden");
+    }
+  }
+  if (editExercises_Modal) {
+    select_Equipment_Test();
   }
 };
 state_addExercises();
