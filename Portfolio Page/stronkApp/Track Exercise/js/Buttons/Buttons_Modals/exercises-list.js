@@ -1,6 +1,9 @@
 "use strict";
 
 const exercise_List = document.querySelector(".exercise-list");
+const exercise_List_Exercises = document.getElementsByClassName(
+  "exercise-list-exercise"
+);
 const exercise_List_P = document.querySelector(".exercise-list-p");
 const exercise_List_Title = document.querySelector(".exercise-list-title");
 const exercise_List_CurrentExercise = document.querySelector(
@@ -10,7 +13,7 @@ const span_Nav_Exercises = document.querySelector(".span--exercise-list");
 const exercise_List_Hint = document.querySelector(".exercise-list-hint");
 const exerciseList_Container = document.querySelector(".exercise-list");
 const btn_toggleExerciseList = document.querySelector(".btn--exercise-list");
-const radio_ExerciseList = document.getElementsByClassName(
+const exerciseList_Radio = document.getElementsByClassName(
   "exercise-list-radio"
 );
 const btn_SetActive = document.querySelector(".btn--set-active");
@@ -37,6 +40,29 @@ btn_Edit_ExerciseList.addEventListener("click", function () {
   console.log(`clicked`);
   btn_SetActive.classList.toggle("hidden");
   btn_DeleteExerciseListItems.classList.toggle("hidden");
+});
+
+btn_DeleteExerciseListItems.addEventListener("click", function () {
+  for (let i = 0; i < exerciseList_Radio.length; i++) {
+    if (exerciseList_Radio[i].checked) {
+      exerciseGroup.workoutList.splice(i, 1);
+      exercise_List_Exercises[i].remove();
+      localStorage.setItem(
+        "exercises_WorkoutList",
+        JSON.stringify(exerciseGroup.workoutList)
+      );
+
+      // userExercises.body = exercises_Body;
+      console.log(exerciseGroup.workoutList);
+    }
+    if (exerciseGroup.workoutList.length === 0) {
+      span_Nav_Exercises.innerHTML = `Exercises (${exerciseGroup.workoutList.length})`;
+    } else {
+      span_Nav_Exercises.innerHTML = `Exercises (${
+        exerciseGroup.workoutList.length + 1
+      })`;
+    }
+  }
 });
 
 let exercise_List_activeState, editMode;

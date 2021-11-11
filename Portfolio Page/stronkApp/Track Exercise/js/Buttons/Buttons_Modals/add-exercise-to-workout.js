@@ -121,9 +121,10 @@ btn_PushDataToArray.addEventListener("click", function () {
     }
   }
   for (let i = 0; i < exerciseGroup.workoutList.length; i++) {
+    div.classList.add("exercise-list-exercise");
     div.innerHTML = `
   <input type="radio" name="exercise-list-radio" class="exercise-list-radio"/>
-  <label>Exercise ${i + 1}: ${exerciseGroup.workoutList[i]}</label>
+  <label>Exercise ${exerciseGroup.workoutList[i]}</label>
   `;
   }
   // for (let i = 0; i < exerciseGroup.name.length; i++) {

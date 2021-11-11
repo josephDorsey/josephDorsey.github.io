@@ -78,9 +78,10 @@ window.onload = function () {
   }
   for (let i = 0; i < exerciseGroup.workoutList.length; i++) {
     const div = document.createElement("div");
+    div.classList.add("exercise-list-exercise");
     div.innerHTML = `
   <input type="radio" name="exercise-list-radio" class="exercise-list-radio"/>
-  <label>Exercise ${i + 1}: ${exerciseGroup.workoutList[i]}</label>
+  <label>Exercise: ${exerciseGroup.workoutList[i]}</label>
   `;
     exercise_List.appendChild(div);
   }
