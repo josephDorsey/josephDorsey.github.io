@@ -19,6 +19,7 @@ const exerciseGroup = {
     rope: JSON.parse(localStorage.getItem("exercises_Rope")) || [],
     body: JSON.parse(localStorage.getItem("exercises_Body")) || [],
   },
+  workoutList: JSON.parse(localStorage.getItem("exercises_WorkoutList")) || [],
   name: [],
   weight: [],
   sets: {
@@ -75,6 +76,15 @@ window.onload = function () {
     createOption.innerHTML = `${exercises_Body[i]}`;
     select_Body_Exercises.appendChild(createOption);
   }
+  for (let i = 0; i < exerciseGroup.workoutList.length; i++) {
+    const div = document.createElement("div");
+    div.innerHTML = `
+  <input type="radio" name="exercise-list-radio" class="exercise-list-radio"/>
+  <label>Exercise ${i + 1}: ${exerciseGroup.workoutList[i]}</label>
+  `;
+    exercise_List.appendChild(div);
+  }
+  span_Nav_Exercises.innerHTML = `Exercises (${exerciseGroup.workoutList.length})`;
 };
 
 let main_Nav_styleState;
@@ -90,6 +100,7 @@ const mainNav_Style = function () {
 let inactiveExercises_Modal,
   addExercises_Modal,
   createExercises_Modal,
+  exerciseList_Modal,
   editExercises_Modal;
 const state_addExercises = function () {
   if (inactiveExercises_Modal) {
@@ -119,6 +130,19 @@ const state_addExercises = function () {
   }
   if (editExercises_Modal) {
     select_Equipment_Test();
+  }
+  if (exerciseList_Modal) {
+    if (exerciseGroup.workoutList.length === 0) {
+      exercise_List_P.classList.remove("hidden");
+      exercise_List_Hint.classList.remove("hidden");
+      exercise_List_CurrentExercise.classList.add("hidden");
+      btn_SetActive.classList.add("hidden");
+    } else if (exerciseGroup.workoutList.length > 0) {
+      exercise_List_P.classList.add("hidden");
+      exercise_List_Hint.classList.add("hidden");
+      exercise_List_CurrentExercise.classList.remove("hidden");
+      btn_SetActive.classList.remove("hidden");
+    }
   }
 };
 state_addExercises();

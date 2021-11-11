@@ -89,14 +89,15 @@ btn_CloseExerciseList.addEventListener("click", function () {
 btnMain_ToggleExerciseList.addEventListener("click", function () {
   mainNav_Style();
   exerciseList_state_listMode();
+  exerciseList_Modal = true;
   exerciseList_Container.classList.toggle("hidden");
   container_MainNav_Buttons.classList.toggle("hidden");
-  if (exerciseGroup.name.length === 0) {
+  if (exerciseGroup.workoutList.length === 0) {
     exercise_List_P.classList.remove("hidden");
     exercise_List_Hint.classList.remove("hidden");
     exercise_List_CurrentExercise.classList.add("hidden");
     btn_SetActive.classList.add("hidden");
-  } else if (exerciseGroup.name.length > 0) {
+  } else if (exerciseGroup.workoutList.length > 0) {
     exercise_List_P.classList.add("hidden");
     exercise_List_Hint.classList.add("hidden");
     exercise_List_CurrentExercise.classList.remove("hidden");

@@ -55,8 +55,11 @@ const resetDataInfoPush = function () {
 
 btn_PushDataToArray.addEventListener("click", function () {
   const div = document.createElement("div");
-  span_Nav_Exercises.innerHTML = `Exercises (${exerciseGroup.name.length + 1})`;
+  span_Nav_Exercises.innerHTML = `Exercises (${
+    exerciseGroup.workoutList.length + 1
+  })`;
 
+  // Change this to a loop ?
   exerciseEditExercise_Title.innerHTML = `Exercise: ${exercise_Name.value}`;
   // workoutNameP.innerHTML = workout_Name.value;
   // exerciseGroup.workoutName = workout_Name.value;
@@ -67,32 +70,89 @@ btn_PushDataToArray.addEventListener("click", function () {
   exerciseGroup.reps.push(Number(exercise_Reps.value));
   exerciseGroup.rest.minutes.push(Number(exercise_Minutes.value));
   exerciseGroup.rest.seconds.push(Number(exercise_Seconds.value));
-  console.log(exerciseGroup);
   // labelExercise.innerHTML = `Exercise: ${exercise_Name.value}`;
   // labelWeight.innerHTML = `Weight: ${exercise_Weight.value}-lbs`;
   // labelSets.innerHTML = `Set: 1 / ${exercise_Sets.value}`;
   // labelReps.innerHTML = `Reps: ${exercise_Reps.value}`;
   // labelRest.innerHTML = `Rest: ${exercise_Minutes.value}m ${exercise_Seconds.value}s`;
-
-  for (let i = 0; i < exerciseGroup.name.length; i++) {
+  if (option_Barbell.selected) {
+    for (let i = 0; i < select_Barbell_Exercises.options.length; i++) {
+      if (select_Barbell_Exercises.options[i].selected) {
+        exerciseGroup.workoutList.push(
+          select_Barbell_Exercises.options[i].value
+        );
+        localStorage.setItem(
+          "exercises_WorkoutList",
+          JSON.stringify(exerciseGroup.workoutList)
+        );
+      }
+    }
+  } else if (option_Dumbbell.selected) {
+    for (let i = 0; i < select_Dumbbell_Exercises.options.length; i++) {
+      if (select_Dumbbell_Exercises.options[i].selected) {
+        exerciseGroup.workoutList.push(
+          select_Dumbbell_Exercises.options[i].value
+        );
+        localStorage.setItem(
+          "exercises_WorkoutList",
+          JSON.stringify(exerciseGroup.workoutList)
+        );
+      }
+    }
+  } else if (option_Body.selected) {
+    for (let i = 0; i < select_Body_Exercises.options.length; i++) {
+      if (select_Body_Exercises.options[i].selected) {
+        exerciseGroup.workoutList.push(select_Body_Exercises.options[i].value);
+        localStorage.setItem(
+          "exercises_WorkoutList",
+          JSON.stringify(exerciseGroup.workoutList)
+        );
+      }
+    }
+  } else if (option_Rope.selected) {
+    for (let i = 0; i < select_Rope_Exercises.options.length; i++) {
+      if (select_Rope_Exercises.options[i].selected) {
+        exerciseGroup.workoutList.push(select_Rope_Exercises.options[i].value);
+        localStorage.setItem(
+          "exercises_WorkoutList",
+          JSON.stringify(exerciseGroup.workoutList)
+        );
+      }
+    }
+  }
+  for (let i = 0; i < exerciseGroup.workoutList.length; i++) {
     div.innerHTML = `
   <input type="radio" name="exercise-list-radio" class="exercise-list-radio"/>
-  <label>Exercise ${i + 1}: ${exerciseGroup.name[i]}</label>
+  <label>Exercise ${i + 1}: ${exerciseGroup.workoutList[i]}</label>
   `;
   }
+  // for (let i = 0; i < exerciseGroup.name.length; i++) {
+  //   div.innerHTML = `
+  // <input type="radio" name="exercise-list-radio" class="exercise-list-radio"/>
+  // <label>Exercise ${i + 1}: ${exerciseGroup.name[i]}</label>
+  // `;
+  // }
   // for (let i = 0; i < exercise_List_Radios.length; i++) {
   //   exercise_List_Radios[i].addEventListener("click", function () {
   //     if (exercise_List_Radios[i] === 1) console.log(`clicked`);
   //   });
   // }
-  if (exerciseGroup.name.length === 0) {
+  if (exerciseGroup.workoutList.length === 0) {
     exercise_List_P.classList.remove("hidden");
     exercise_List_Hint.classList.remove("hidden");
-  } else if (exerciseGroup.name.length > 0) {
+  } else if (exerciseGroup.workoutList.length > 0) {
     exercise_List_P.classList.add("hidden");
     exercise_List_Hint.classList.add("hidden");
   }
+  // if (exerciseGroup.name.length === 0) {
+  //   exercise_List_P.classList.remove("hidden");
+  //   exercise_List_Hint.classList.remove("hidden");
+  // } else if (exerciseGroup.name.length > 0) {
+  //   exercise_List_P.classList.add("hidden");
+  //   exercise_List_Hint.classList.add("hidden");
+  // }
   exercise_List.appendChild(div);
+  console.log(exerciseGroup.workoutList);
   resetDataInfoPush();
 });
 

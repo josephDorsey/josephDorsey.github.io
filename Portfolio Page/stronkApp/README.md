@@ -46,7 +46,9 @@ for (let i = 0; i < userExercises.barbell.length; i++) {
 
 This allows it to print it out one at a time to the exercises array.
 
-# Window onload and How to fix issue with items not saving to localStorage unless all the arrays are full?
+# How to fix issue with items not saving to localStorage unless all the arrays are full?
+
+## window onload
 
 Today i learned about a great thing called `window.onload`. It's a great way to help store localStorage data on reload.
 
@@ -84,7 +86,9 @@ for (let i = 0; i < exercises_Barbell.length; i++) {
 }
 ```
 
-To fix the issue of the arrays not saving on reload. We have to declare our once array:
+## Array resetting on page reload issues
+
+To fix the issue of the arrays not saving on reload. We have to change our array:
 
 ```
 const exercises_Body = [];
@@ -98,41 +102,32 @@ const exercises_Body = JSON.parse(localStorage.getItem("exercises_Body")) || [];
 
 The code above says if there are no items just parse an empty array. This is how we get around the undefined parse issue we were getting in the beginning.
 
-# How to delete an array item without knowing the index
+# (DELETE BUTTON NOTES) How to delete an array item without knowing the index
 
 First we need to try to be able to look for the item in the array. Ill need to find it by doing a code like this:
 
 ```
-userExercises.barbell.indexOf("Bench Press")
-0
+exercises_Rope.splice(i, 1);
+      select_Rope_Exercises.options[i].remove();
+      localStorage.setItem("exercises_Rope", JSON.stringify(exercises_Rope));
 ```
 
-this yields 0 because it is the first element in the array.
+## .splice(i, 1)
 
-So maybe make a code like this?
+First, we use `.splice(i, 1)` on the array that has our exercises. Since we are used a for loop to create the options list. We need to loop the options as well. When using the delete button we sometimes might not know the index of the option we want to delete which is why we use splice.
 
-```
+The position of the element we are trying to find isn't determined yet until the loop runs and then it will cut it on the iteration we want it to. In this case it will take out only one element.
 
-const findIndexOfBarbell = function() {
-  <!-- select_Barbell_Exercises.options[0].value = "Bench Press"
-  select_Barbell_Exercises.options[0].selected -->
-  for (let i = 0; i < select_Barbell_Exercises.options.length) {
+## .remove()
 
-  }
+Second, we need to delete the option that contains this array item. To do so we use `.remove()`
 
-  if (select_Barbell_Exercises.options[i].selected &&
-  select_Barbell_Exercises.options[i].value === userExercises.barbell[i]) {
-    console.log(`test`);
-  }
+If we use `select_Rope_Exercises.options[i].remove()` it will remove the current iteration of the selected option.
 
-}
-userExercises.barbell.indexOf("Bench Press")
+## finally we set the localStorage item back
 
-JSON.parse(localStorage.exercises_Barbell)[0] === select_Barbell_Exercises.options[0].value
-
+After making our change we need to update our localStorage of the removed array item.
 
 ```
-
-if ()
-
-#
+localStorage.setItem("exercises_Rope", JSON.stringify(exercises_Rope));
+```
