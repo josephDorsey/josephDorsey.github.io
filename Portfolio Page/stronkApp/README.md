@@ -46,22 +46,93 @@ for (let i = 0; i < userExercises.barbell.length; i++) {
 
 This allows it to print it out one at a time to the exercises array.
 
-# Window onload
+# Window onload and How to fix issue with items not saving to localStorage unless all the arrays are full?
 
 Today i learned about a great thing called `window.onload`. It's a great way to help store localStorage data on reload.
 
-So i also fixed the issue where the arrays would reset every time the page would load. So in order to do this. We implement the first wrong function we had because on reload it would add every iteration back to the empty array on reload.
+The code below will rerun every time the page loads, so the select divs will have their items reinputted every load.
 
 ```
 window.onload = function() {
-userExercises.barbell = JSON.parse(localStorage.exercises_Barbell);
-  exercises_Barbell = JSON.parse(localStorage.exercises_Barbell);
-
-  for (let i = 0; i < userExercises.barbell.length; i++) {
+for (let i = 0; i < exercises_Barbell.length; i++) {
+    // exerciseGroup.exerciseEquipment.barbell.length
     const createOption = document.createElement("option");
-
-    createOption.innerHTML = `${userExercises.barbell[i]}`;
+    createOption.innerHTML = `${exercises_Barbell[i]}`;
     select_Barbell_Exercises.appendChild(createOption);
+  }
+
+  for (let i = 0; i < exercises_Dumbbell.length; i++) {
+    // exerciseGroup.exerciseEquipment.dumbbell.length
+    const createOption = document.createElement("option");
+    createOption.innerHTML = `${exercises_Dumbbell[i]}`;
+    select_Dumbbell_Exercises.appendChild(createOption);
+  }
+
+  for (let i = 0; i < exercises_Rope.length; i++) {
+    // exerciseGroup.exerciseEquipment.rope.length
+    const createOption = document.createElement("option");
+    createOption.innerHTML = `${exercises_Rope[i]}`;
+    select_Rope_Exercises.appendChild(createOption);
+  }
+
+  for (let i = 0; i < exercises_Body.length; i++) {
+    // exerciseGroup.exerciseEquipment.rope.length
+    const createOption = document.createElement("option");
+    createOption.innerHTML = `${exercises_Body[i]}`;
+    select_Body_Exercises.appendChild(createOption);
   }
 }
 ```
+
+To fix the issue of the arrays not saving on reload. We have to declare our once array:
+
+```
+const exercises_Body = [];
+```
+
+To one that has the JSON.parse of the localStorage item or parse if empty.
+
+```
+const exercises_Body = JSON.parse(localStorage.getItem("exercises_Body")) || [];
+```
+
+The code above says if there are no items just parse an empty array. This is how we get around the undefined parse issue we were getting in the beginning.
+
+# How to delete an array item without knowing the index
+
+First we need to try to be able to look for the item in the array. Ill need to find it by doing a code like this:
+
+```
+userExercises.barbell.indexOf("Bench Press")
+0
+```
+
+this yields 0 because it is the first element in the array.
+
+So maybe make a code like this?
+
+```
+
+const findIndexOfBarbell = function() {
+  <!-- select_Barbell_Exercises.options[0].value = "Bench Press"
+  select_Barbell_Exercises.options[0].selected -->
+  for (let i = 0; i < select_Barbell_Exercises.options.length) {
+
+  }
+
+  if (select_Barbell_Exercises.options[i].selected &&
+  select_Barbell_Exercises.options[i].value === userExercises.barbell[i]) {
+    console.log(`test`);
+  }
+
+}
+userExercises.barbell.indexOf("Bench Press")
+
+JSON.parse(localStorage.exercises_Barbell)[0] === select_Barbell_Exercises.options[0].value
+
+
+```
+
+if ()
+
+#

@@ -13,8 +13,12 @@ const container_ExerciseInfo = document.querySelector(".exercise-information");
 const container_MainNav_Buttons = document.querySelector(".main--nav-buttons");
 
 const exerciseGroup = {
-  workoutGroup: "",
-  workoutName: "",
+  exerciseEquipment: {
+    barbell: JSON.parse(localStorage.getItem("exercises_Barbell")) || [],
+    dumbbell: JSON.parse(localStorage.getItem("exercises_Dumbbell")) || [],
+    rope: JSON.parse(localStorage.getItem("exercises_Rope")) || [],
+    body: JSON.parse(localStorage.getItem("exercises_Body")) || [],
+  },
   name: [],
   weight: [],
   sets: {
@@ -28,43 +32,47 @@ const exerciseGroup = {
   },
 };
 
+const userExercises = {
+  barbell: "",
+  dumbbell: "",
+  rope: "",
+  body: "",
+};
+
 // Puts all the array variables back in the exercise array
+const exercises_Barbell =
+  JSON.parse(localStorage.getItem("exercises_Barbell")) || [];
+const exercises_Dumbbell =
+  JSON.parse(localStorage.getItem("exercises_Dumbbell")) || [];
+const exercises_Rope = JSON.parse(localStorage.getItem("exercises_Rope")) || [];
+const exercises_Body = JSON.parse(localStorage.getItem("exercises_Body")) || [];
+
 window.onload = function () {
-  // alert(`page loaded`);
-
-  userExercises.barbell = JSON.parse(localStorage.exercises_Barbell);
-  exercises_Barbell = JSON.parse(localStorage.exercises_Barbell);
-
-  for (let i = 0; i < userExercises.barbell.length; i++) {
+  for (let i = 0; i < exercises_Barbell.length; i++) {
+    // exerciseGroup.exerciseEquipment.barbell.length
     const createOption = document.createElement("option");
-
-    createOption.innerHTML = `${userExercises.barbell[i]}`;
+    createOption.innerHTML = `${exercises_Barbell[i]}`;
     select_Barbell_Exercises.appendChild(createOption);
   }
 
-  userExercises.dumbbell = JSON.parse(localStorage.exercises_Dumbbell);
-  exercises_Dumbbell = JSON.parse(localStorage.exercises_Dumbbell);
-
-  for (let i = 0; i < userExercises.dumbbell.length; i++) {
+  for (let i = 0; i < exercises_Dumbbell.length; i++) {
+    // exerciseGroup.exerciseEquipment.dumbbell.length
     const createOption = document.createElement("option");
-    createOption.innerHTML = `${userExercises.dumbbell[i]}`;
+    createOption.innerHTML = `${exercises_Dumbbell[i]}`;
     select_Dumbbell_Exercises.appendChild(createOption);
   }
-  userExercises.rope = JSON.parse(localStorage.exercises_Rope);
-  exercises_Rope = JSON.parse(localStorage.exercises_Rope);
 
-  for (let i = 0; i < userExercises.rope.length; i++) {
+  for (let i = 0; i < exercises_Rope.length; i++) {
+    // exerciseGroup.exerciseEquipment.rope.length
     const createOption = document.createElement("option");
-    createOption.innerHTML = `${userExercises.rope[i]}`;
+    createOption.innerHTML = `${exercises_Rope[i]}`;
     select_Rope_Exercises.appendChild(createOption);
   }
 
-  userExercises.body = JSON.parse(localStorage.exercises_Body);
-  exercises_Body = JSON.parse(localStorage.exercises_Body);
-
-  for (let i = 0; i < userExercises.body.length; i++) {
+  for (let i = 0; i < exercises_Body.length; i++) {
+    // exerciseGroup.exerciseEquipment.rope.length
     const createOption = document.createElement("option");
-    createOption.innerHTML = `${userExercises.body[i]}`;
+    createOption.innerHTML = `${exercises_Body[i]}`;
     select_Body_Exercises.appendChild(createOption);
   }
 };
@@ -98,16 +106,16 @@ const state_addExercises = function () {
     }
   }
   if (createExercises_Modal) {
-    if (select_Equipment.selectedIndex === 0) {
-      btn_EditExerciseStorage.classList.add("hidden");
-    }
-    if (!(select_Equipment.selectedIndex === 0)) {
-      btn_EditExerciseStorage.classList.remove("hidden");
-      select_Barbell_Exercises.classList.add("hidden");
-      select_Dumbbell_Exercises.classList.add("hidden");
-      select_Body_Exercises.classList.add("hidden");
-      select_Rope_Exercises.classList.add("hidden");
-    }
+    // if (select_Equipment.selectedIndex === 0) {
+    //   btn_EditExerciseStorage.classList.add("hidden");
+    // }
+    // if (!(select_Equipment.selectedIndex === 0)) {
+    //   btn_EditExerciseStorage.classList.remove("hidden");
+    //   select_Barbell_Exercises.classList.add("hidden");
+    //   select_Dumbbell_Exercises.classList.add("hidden");
+    //   select_Body_Exercises.classList.add("hidden");
+    //   select_Rope_Exercises.classList.add("hidden");
+    // }
   }
   if (editExercises_Modal) {
     select_Equipment_Test();
