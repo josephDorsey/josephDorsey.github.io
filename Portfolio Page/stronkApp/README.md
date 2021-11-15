@@ -131,3 +131,37 @@ After making our change we need to update our localStorage of the removed array 
 ```
 localStorage.setItem("exercises_Rope", JSON.stringify(exercises_Rope));
 ```
+
+# Next Set, Next Exercise and Previous Exercise
+
+Say you have an Array var arr = ['foo', 'bar', 'baz'];.
+If you want to dynamically choose items from this Array, you'll need a new variable. Let's call this i and give it a default value var i = 0;
+
+So far, arr[i]; // "foo" (i === 0)
+Next and Previous
+
+Now, lets write a function to choose the next item by modifying i. We may want to consider what we want to happen when i is bigger than (or equal to) arr.length as well.
+
+function nextItem() {
+i = i + 1; // increase i by one
+i = i % arr.length; // if we've gone too high, start from `0` again
+return arr[i]; // give us back the item of where we are now
+}
+
+Next, lets do the reverse, this time we might want to consider what should happen for negative i
+
+function prevItem() {
+if (i === 0) { // i would become 0
+i = arr.length; // so put it at the other end of the array
+}
+i = i - 1; // decrease by one
+return arr[i]; // give us back the item of where we are now
+}
+
+So far,
+
+nextItem(); // "bar" (i === 1)
+prevItem(); // "foo" (i === 0 as we did `0 + 1 - 1`)
+// also
+prevItem(); // "baz" (decreased on 0)
+nextItem(); // "foo" (increased at end of arr)

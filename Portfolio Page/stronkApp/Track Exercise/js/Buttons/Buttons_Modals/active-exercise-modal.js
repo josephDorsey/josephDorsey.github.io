@@ -64,7 +64,3 @@ btn_EditWeight.addEventListener("click", function () {
   btn_EditWeight.classList.toggle("hidden");
   weightEdit_Radio.checked = false;
 });
-
-// Next Set
-const btn_NextSet = document.querySelector(".btn--next-set");
-const labelNextSet = document.querySelector(".label-btn-next-set");

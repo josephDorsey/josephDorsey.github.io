@@ -56,7 +56,7 @@ const findIndexOfExercises = function () {
       select_Barbell_Exercises.options[i].value === exercises_Barbell[i]
     ) {
       exercises_Barbell.splice(i, 1);
-
+      exercisesGroup.workoutList.splice(i, 1);
       select_Barbell_Exercises.options[i].remove();
       localStorage.setItem(
         "exercises_Barbell",
@@ -73,11 +73,13 @@ const findIndexOfExercises = function () {
       select_Dumbbell_Exercises.options[i].value === exercises_Dumbbell[i]
     ) {
       exercises_Dumbbell.splice(i, 1);
+      exercisesGroup.workoutList.splice(i, 1);
       select_Dumbbell_Exercises.options[i].remove();
       localStorage.setItem(
         "exercises_Dumbbell",
         JSON.stringify(exercises_Dumbbell)
       );
+
       // userExercises.body = exercises_Body;
       console.log(exercises_Dumbbell);
     }
@@ -90,6 +92,7 @@ const findIndexOfExercises = function () {
     ) {
       // exercises_Body.splice(i, 1);
       exercises_Body.splice(i, 1);
+      exercisesGroup.workoutList.splice(i, 1);
       select_Body_Exercises.options[i].remove();
       localStorage.setItem("exercises_Body", JSON.stringify(exercises_Body));
       // userExercises.body = exercises_Body;
@@ -102,8 +105,10 @@ const findIndexOfExercises = function () {
       select_Rope_Exercises.options[i].value === exercises_Rope[i]
     ) {
       exercises_Rope.splice(i, 1);
+      exercisesGroup.workoutList.splice(i, 1);
       select_Rope_Exercises.options[i].remove();
       localStorage.setItem("exercises_Rope", JSON.stringify(exercises_Rope));
+
       // userExercises.body = exercises_Body;
       console.log(exercises_Rope);
     }

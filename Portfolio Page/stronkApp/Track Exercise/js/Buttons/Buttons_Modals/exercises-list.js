@@ -37,7 +37,7 @@ const btnMain_ToggleExerciseList = document.querySelector(
 
 btn_Edit_ExerciseList.addEventListener("click", function () {
   exercise_List_editMode();
-  console.log(`clicked`);
+  console.log(`Exercise List: Edit Mode`);
   btn_SetActive.classList.toggle("hidden");
   btn_DeleteExerciseListItems.classList.toggle("hidden");
 });
@@ -45,15 +45,46 @@ btn_Edit_ExerciseList.addEventListener("click", function () {
 btn_DeleteExerciseListItems.addEventListener("click", function () {
   for (let i = 0; i < exerciseList_Radio.length; i++) {
     if (exerciseList_Radio[i].checked) {
-      exerciseGroup.workoutList.splice(i, 1);
       exercise_List_Exercises[i].remove();
+      exerciseGroup.workoutList.splice(i, 1);
       localStorage.setItem(
         "exercises_WorkoutList",
         JSON.stringify(exerciseGroup.workoutList)
       );
+      exerciseGroup.weight.splice(i, 1);
+      localStorage.setItem(
+        "exercises_Weight",
+        JSON.stringify(exerciseGroup.weight)
+      );
+      exerciseGroup.sets.min.splice(i, 1);
+      localStorage.setItem(
+        "exercises_Sets_Min",
+        JSON.stringify(exerciseGroup.sets.min)
+      );
+      exerciseGroup.sets.max.splice(i, 1);
+      localStorage.setItem(
+        "exercises_Sets_Max",
+        JSON.stringify(exerciseGroup.sets.max)
+      );
+      exerciseGroup.reps.splice(i, 1);
+      localStorage.setItem(
+        "exercises_Reps",
+        JSON.stringify(exerciseGroup.reps)
+      );
 
+      exerciseGroup.rest.minutes.splice(i, 1);
+      localStorage.setItem(
+        "exercises_Rest_Minutes",
+        JSON.stringify(exerciseGroup.rest.minutes)
+      );
+
+      exerciseGroup.rest.seconds.splice(i, 1);
+      localStorage.setItem(
+        "exercises_Rest_Seconds",
+        JSON.stringify(exerciseGroup.rest.seconds)
+      );
       // userExercises.body = exercises_Body;
-      console.log(exerciseGroup.workoutList);
+      console.log(exerciseGroup.workoutList, exerciseGroup);
     }
     if (exerciseGroup.workoutList.length === 0) {
       span_Nav_Exercises.innerHTML = `Exercises (${exerciseGroup.workoutList.length})`;
@@ -84,6 +115,7 @@ const exercise_List_editMode = function () {
 };
 
 btn_ReturnToActiveModal.addEventListener("click", function () {
+  main_Nav_styleState = 1;
   exerciseList_Container.classList.toggle("hidden");
   activeModalContainer.classList.toggle("hidden");
   exercise_List_editMode();
@@ -102,6 +134,7 @@ const exerciseList_state_listMode = function () {
 const exerciseList_state_editMode = function () {};
 
 btn_CloseExerciseList.addEventListener("click", function () {
+  main_Nav_styleState = 1;
   if (exercise_List_activeState === 1) {
     exerciseList_state_listMode();
   }
@@ -114,6 +147,7 @@ btn_CloseExerciseList.addEventListener("click", function () {
 
 btnMain_ToggleExerciseList.addEventListener("click", function () {
   mainNav_Style();
+  main_Nav_styleState = 0;
   exerciseList_state_listMode();
   exerciseList_Modal = true;
   exerciseList_Container.classList.toggle("hidden");
@@ -141,10 +175,10 @@ btn_toggleExerciseList.addEventListener("click", function () {
   } else if (!exerciseList_Container.classList.contains("hidden")) {
     activeModalContainer.style.gap = "10px";
   }
-  if (exerciseGroup.name.length === 0) {
+  if (exerciseGroup.workoutList.length === 0) {
     exercise_List_P.classList.remove("hidden");
     exercise_List_Hint.classList.remove("hidden");
-  } else if (exerciseGroup.name.length > 0) {
+  } else if (exerciseGroup.workoutList.length > 0) {
     exercise_List_P.classList.add("hidden");
     exercise_List_Hint.classList.add("hidden");
   }

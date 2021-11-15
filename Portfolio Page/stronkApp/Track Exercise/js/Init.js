@@ -20,16 +20,16 @@ const exerciseGroup = {
     body: JSON.parse(localStorage.getItem("exercises_Body")) || [],
   },
   workoutList: JSON.parse(localStorage.getItem("exercises_WorkoutList")) || [],
-  name: [],
-  weight: [],
+  // name: [],
+  weight: JSON.parse(localStorage.getItem("exercises_Weight")) || [],
   sets: {
-    min: [],
-    max: [],
+    min: JSON.parse(localStorage.getItem("exercises_Sets_Min")) || [],
+    max: JSON.parse(localStorage.getItem("exercises_Sets_Max")) || [],
   },
-  reps: [],
+  reps: JSON.parse(localStorage.getItem("exercises_Reps")) || [],
   rest: {
-    minutes: [],
-    seconds: [],
+    minutes: JSON.parse(localStorage.getItem("exercises_Rest_Minutes")) || [],
+    seconds: JSON.parse(localStorage.getItem("exercises_Rest_Seconds")) || [],
   },
 };
 

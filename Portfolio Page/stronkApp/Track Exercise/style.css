@@ -127,14 +127,13 @@
   left: 0;
   margin: 0 auto;
 }
-
-.btn--close-exercise-list {
-  width: 20px;
-  height: 20px;
+.label-btn-next-exercise {
   position: absolute;
-  top: 10px;
-  left: 20px;
-  cursor: pointer;
+  text-align: center;
+  bottom: 40px;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
 }
 
 /* Exercise Modal */
@@ -166,8 +165,27 @@
   height: 20px;
   cursor: pointer;
 }
+.btn--next-exercise {
+  bottom: 20px;
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
 
 /* Exercise List  */
+.btn--close-exercise-list {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+}
+
 .btn--delete-exercise {
   width: 20px;
   height: 20px;
@@ -184,7 +202,7 @@
   width: 20px;
   height: 20px;
   top: 9px;
-  right: 20px;
+  right: 50px;
   cursor: pointer;
 }
 
@@ -194,9 +212,25 @@
   position: absolute;
   cursor: pointer;
   top: 10px;
-  left: 50px;
+  left: 20px;
 }
 
+.exercise-list-btn-start,
+.exercise-list-btn-add {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.exercise-list-btn-start {
+  top: 10px;
+  left: 50px;
+}
+.exercise-list-btn-add {
+  top: 10px;
+  left: 20px;
+}
 .modal-exercise-info input[type="text"],
 .modal-exercise-info input[type="number"] {
   width: 30%;
