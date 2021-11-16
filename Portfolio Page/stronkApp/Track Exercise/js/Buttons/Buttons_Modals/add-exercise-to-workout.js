@@ -64,7 +64,7 @@ btn_PushDataToArray.addEventListener("click", function () {
   // workoutNameP.innerHTML = workout_Name.value;
   // exerciseGroup.workoutName = workout_Name.value;
   // exerciseGroup.workoutList.push(exercise_Name.value);
-  exerciseGroup.weight.push(exercise_Weight.value);
+  exerciseGroup.weight.push(Number(exercise_Weight.value));
   localStorage.setItem(
     "exercises_Weight",
     JSON.stringify(exerciseGroup.weight)
@@ -81,6 +81,7 @@ btn_PushDataToArray.addEventListener("click", function () {
   );
   exerciseGroup.reps.push(Number(exercise_Reps.value));
   localStorage.setItem("exercises_Reps", JSON.stringify(exerciseGroup.reps));
+
   exerciseGroup.rest.minutes.push(Number(exercise_Minutes.value));
   localStorage.setItem(
     "exercises_Rest_Minutes",

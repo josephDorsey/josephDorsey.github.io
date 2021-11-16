@@ -10,6 +10,7 @@ const exercise_List_CurrentExercise = document.querySelector(
   ".exercise-list-current-exercise"
 );
 const span_Nav_Exercises = document.querySelector(".span--exercise-list");
+const span_Nav_StartWorkout = document.querySelector(".span--start-workout");
 const exercise_List_Hint = document.querySelector(".exercise-list-hint");
 const exerciseList_Container = document.querySelector(".exercise-list");
 const btn_toggleExerciseList = document.querySelector(".btn--exercise-list");

@@ -134,34 +134,101 @@ localStorage.setItem("exercises_Rope", JSON.stringify(exercises_Rope));
 
 # Next Set, Next Exercise and Previous Exercise
 
-Say you have an Array var arr = ['foo', 'bar', 'baz'];.
-If you want to dynamically choose items from this Array, you'll need a new variable. Let's call this i and give it a default value var i = 0;
+This is an example of the next set code:
 
-So far, arr[i]; // "foo" (i === 0)
-Next and Previous
+```
+btn_NextSet.addEventListener("click", function () {
+  restTimerModal.style.display = "grid";
+  if (exerciseGroup.sets.min[count] < exerciseGroup.sets.max[count]) {
+    exerciseGroup.sets.min[count]++;
+    labelSets.innerHTML = `Set: ${exerciseGroup.sets.min[count]} / ${exerciseGroup.sets.max[count]}`;
+    labelWeight.style.visibility = "hidden";
+    labelRest.style.visibility = "hidden";
+    labelReps.style.visibility = "hidden";
+    labelSets.style.visibility = "hidden";
+    labelNextSet.style.visibility = "hidden";
+    btn_NextSet.style.visibility = "hidden";
+    btn_EditSelect.style.visibility = "hidden";
+    btn_toggleExerciseList.style.visibility = "hidden";
+    btn_CloseActiveModal.style.visibility = "hidden";
+    setTimeout(function () {
+      labelWeight.style.visibility = "visible";
+      labelRest.style.visibility = "visible";
+      labelReps.style.visibility = "visible";
+      labelSets.style.visibility = "visible";
+      labelNextSet.style.visibility = "visible";
+      btn_NextSet.style.visibility = "visible";
+      btn_EditSelect.style.visibility = "visible";
+      btn_toggleExerciseList.style.visibility = "visible";
+      btn_CloseActiveModal.style.visibility = "visible";
+      restTimerModal.style.display = "none";
+    }, 3000);
+  }
+  if (exerciseGroup.sets.min[count] === exerciseGroup.sets.max[count]) {
+    setTimeout(function () {
+      btn_NextExercise.classList.remove("hidden");
+      labelNextExercise.classList.remove("hidden");
+    }, 3000);
+    btn_NextSet.classList.toggle("hidden");
+    labelNextSet.classList.toggle("hidden");
+    console.log(`You've finished your set! begin next exercise`);
+    // btn_NextExercise.classList.toggle("hidden");
+    // labelNextExercise.classList.toggle("hidden");
+  }
 
-Now, lets write a function to choose the next item by modifying i. We may want to consider what we want to happen when i is bigger than (or equal to) arr.length as well.
+  console.log(labelSets.innerHTML, exerciseGroup.sets.min);
 
-function nextItem() {
-i = i + 1; // increase i by one
-i = i % arr.length; // if we've gone too high, start from `0` again
-return arr[i]; // give us back the item of where we are now
-}
+  // for (let i = 0; i < exerciseGroup.sets.min.length; i++) {
+  //   exerciseGroup.sets.min[i]++;
+  //   labelSets.innerHTML = `Set: ${exerciseGroup.sets.min[i]} / ${exerciseGroup.sets.max[i]}`;
 
-Next, lets do the reverse, this time we might want to consider what should happen for negative i
+  //   if (exerciseGroup.sets.min[i] === exerciseGroup.sets.max[i]) {
+  //     btn_NextSet.classList.toggle("hidden");
+  //     labelNextSet.classList.toggle("hidden");
+  //     console.log(`You've finished your set! begin next exercise`);
+  //     btn_NextExercise.classList.toggle("hidden");
+  //     labelNextExercise.classList.toggle("hidden");
+  //   }
+  //   console.log(labelSets.innerHTML, exerciseGroup.sets.min);
+  //   break;
+  // }
 
-function prevItem() {
-if (i === 0) { // i would become 0
-i = arr.length; // so put it at the other end of the array
-}
-i = i - 1; // decrease by one
-return arr[i]; // give us back the item of where we are now
-}
+  console.log(`next set`);
+});
+```
 
-So far,
+This is an example of the next exercise code:
 
-nextItem(); // "bar" (i === 1)
-prevItem(); // "foo" (i === 0 as we did `0 + 1 - 1`)
-// also
-prevItem(); // "baz" (decreased on 0)
-nextItem(); // "foo" (increased at end of arr)
+```
+btn_NextExercise.addEventListener("click", function () {
+  // count_Set++;
+  for (let i = 0; i < exerciseGroup.workoutList.length; i++) {
+    btn_NextSet.classList.toggle("hidden");
+    labelNextSet.classList.toggle("hidden");
+    btn_NextExercise.classList.toggle("hidden");
+    labelNextExercise.classList.toggle("hidden");
+    count++;
+    exerciseEditExercise_Title.innerHTML = `Exercise: ${exerciseGroup.workoutList[count]}`;
+    labelExercise.innerHTML = `Exercise: ${exerciseGroup.workoutList[count]}`;
+    labelWeight.innerHTML = `Weight: ${exerciseGroup.weight[count]}`;
+    labelSets.innerHTML = `Set: ${exerciseGroup.sets.min[count]} / ${exerciseGroup.sets.max[count]}`;
+    labelRest.innerHTML = `Rest: ${exerciseGroup.rest.minutes[count]}m ${exerciseGroup.rest.seconds[count]}s`;
+
+    if (count === exerciseGroup.workoutList.length) {
+      exerciseEditExercise_Title.innerHTML = `Exercise:`;
+      labelExercise.innerHTML = `Exercise: `;
+      labelWeight.innerHTML = `Weight: `;
+      labelSets.innerHTML = `Set: `;
+      labelRest.innerHTML = `Rest: `;
+      labelReps.innerHTML = `Reps: `;
+      console.log(`no more exercises`);
+    }
+    console.log(`Exercise: ${exerciseGroup.workoutList[count]}`);
+    break;
+  }
+});
+```
+
+In both instances the variable `count` was used instead of using a loop. I declared it outside of the code block in the global state.
+
+# Rest Timer modal

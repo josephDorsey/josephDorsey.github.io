@@ -6,7 +6,11 @@ const container_Weight = document.querySelector(".weight");
 const container_Sets = document.querySelector(".sets");
 const container_Reps = document.querySelector(".reps");
 const container_Rest = document.querySelector(".rest");
+// imgs
 
+const img_Modal_AddExercise = document.querySelector(".i-AddExercise");
+const img_Modal_ExerciseList = document.querySelector(".i-Barbell");
+const img_Modal_ActiveExercise = document.querySelector(".i-PlayCircle");
 // DIV CONTAINERS
 
 const container_ExerciseInfo = document.querySelector(".exercise-information");
@@ -98,12 +102,17 @@ const mainNav_Style = function () {
   }
 };
 
-let inactiveExercises_Modal,
+let activeExercises_Modal,
+  inactiveExercises_Modal,
   addExercises_Modal,
   createExercises_Modal,
   exerciseList_Modal,
   editExercises_Modal;
 const state_addExercises = function () {
+  if (activeExercises_Modal) {
+    img_Modal_ActiveExercise.src = `../img/pause-circle-outline.svg`;
+    span_Nav_StartWorkout.innerHTML = `Resume Workout`;
+  }
   if (inactiveExercises_Modal) {
     btn_EditExerciseStorage.classList.add("hidden");
   }

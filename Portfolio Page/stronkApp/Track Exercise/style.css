@@ -11,7 +11,8 @@
   position: relative;
   width: 50%;
   margin: 0 auto;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  box-shadow: 0px 20px 90px 0px rgba(0, 0, 0, 0.2);
   padding: 20px 30px;
   border-radius: 25px;
   /* grid-template-columns: 0.25fr 1fr; */
@@ -62,7 +63,8 @@
 }
 .exercise-list {
   position: relative;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  box-shadow: 0px 20px 90px 0px rgba(0, 0, 0, 0.2);
   border-radius: 25px;
   padding: 70px 40px;
   width: 300px;
@@ -96,11 +98,12 @@
 
 .modal-exercise-info {
   position: relative;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  box-shadow: 0px 20px 90px 0px rgba(0, 0, 0, 0.2);
   width: 300px;
   border-radius: 25px;
   /* margin: 0 auto; */
-  padding: 60px 30px;
+  padding: 80px;
 }
 
 .btn--close-exercise {
@@ -364,6 +367,7 @@
 .button_navigation--modal {
   display: grid;
   border: 1px solid black;
+
   width: 25%;
   border-radius: 25px;
   position: absolute;
@@ -403,7 +407,8 @@
   grid-template-columns: repeat(3, 1fr);
   width: 50%;
   margin: 0 auto;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  box-shadow: 0px 20px 90px 0px rgba(0, 0, 0, 0.2);
   padding: 20px 30px;
   border-radius: 25px;
   grid-row: 3;
@@ -450,5 +455,52 @@
 }
 .btn-active {
   background-color: #3b5bdb;
+  color: #fff;
+}
+
+.rest-timer-modal {
+  padding: 45px;
+  position: absolute;
+  box-shadow: 0px 15px 20px 0px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  text-align: center;
+  left: 0;
+  right: 0;
+  top: 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.icons {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.rest-timer-title {
+  grid-column: 1/-1;
+  grid-row: 1;
+}
+
+.rest-timer-h3 {
+  grid-column: 2/4;
+}
+
+.btn--cancel-rest {
+  cursor: pointer;
+  text-align: center;
+  margin: 0 auto;
+  justify-self: center;
+  grid-column: 1/-1;
+  border-radius: 25px;
+  border: 1px solid black;
+  padding: 2px 15px;
+}
+
+.btn--cancel-rest:hover {
+  background-color: royalblue;
   color: #fff;
 }
