@@ -117,6 +117,22 @@ const exercise_List_editMode = function () {
 
 btn_ReturnToActiveModal.addEventListener("click", function () {
   main_Nav_styleState = 1;
+  restTimerModal.style.display = "none";
+  if (exerciseGroup.workoutList.length === 0) {
+    exerciseEditExercise_Title.innerHTML = `Exercise:`;
+    labelExercise.innerHTML = `Exercise:`;
+    labelWeight.innerHTML = `Weight:`;
+    labelSets.innerHTML = `Set:`;
+    labelReps.innerHTML = `Reps:`;
+    labelRest.innerHTML = `Rest:`;
+  } else if (!(exerciseGroup.workoutList.length === 0)) {
+    exerciseEditExercise_Title.innerHTML = `Exercise: ${exerciseGroup.workoutList[count]}`;
+    labelExercise.innerHTML = `Exercise: ${exerciseGroup.workoutList[count]}`;
+    labelWeight.innerHTML = `Weight: ${exerciseGroup.weight[count]}`;
+    labelSets.innerHTML = `Set: ${exerciseGroup.sets.min[count]} / ${exerciseGroup.sets.max[count]}`;
+    labelReps.innerHTML = `Reps: ${exerciseGroup.reps[count]}`;
+    labelRest.innerHTML = `Rest: ${exerciseGroup.rest.minutes[count]}m ${exerciseGroup.rest.seconds[count]}s`;
+  }
   exerciseList_Container.classList.toggle("hidden");
   activeModalContainer.classList.toggle("hidden");
   exercise_List_editMode();

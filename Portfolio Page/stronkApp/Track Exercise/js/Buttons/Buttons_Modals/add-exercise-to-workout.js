@@ -143,11 +143,36 @@ btn_PushDataToArray.addEventListener("click", function () {
     }
   }
   for (let i = 0; i < exerciseGroup.workoutList.length; i++) {
-    div.classList.add("exercise-list-exercise");
-    div.innerHTML = `
+    if (option_Barbell.selected) {
+      div.classList.add("exercise-list-exercise");
+      div.innerHTML = `
   <input type="radio" name="exercise-list-radio" class="exercise-list-radio"/>
-  <label>Exercise ${exerciseGroup.workoutList[i]}</label>
+  <label>${option_Barbell.innerHTML}: ${exerciseGroup.workoutList[i]}</label>
   `;
+    } else if (option_Dumbbell.selected) {
+      div.classList.add("exercise-list-exercise");
+      div.innerHTML = `
+  <input type="radio" name="exercise-list-radio" class="exercise-list-radio"/>
+  <label>${option_Dumbbell.innerHTML}: ${exerciseGroup.workoutList[i]}</label>
+  `;
+    } else if (option_Rope.selected) {
+      div.classList.add("exercise-list-exercise");
+      div.innerHTML = `
+  <input type="radio" name="exercise-list-radio" class="exercise-list-radio"/>
+  <label>${option_Rope.innerHTML}: ${exerciseGroup.workoutList[i]}</label>
+  `;
+    } else if (option_Body.selected) {
+      div.classList.add("exercise-list-exercise");
+      div.innerHTML = `
+  <input type="radio" name="exercise-list-radio" class="exercise-list-radio"/>
+  <label>${option_Body.innerHTML}: ${exerciseGroup.workoutList[i]}</label>
+  `;
+    }
+    //   div.classList.add("exercise-list-exercise");
+    //   div.innerHTML = `
+    // <input type="radio" name="exercise-list-radio" class="exercise-list-radio"/>
+    // <label>Exercise ${exerciseGroup.workoutList[i]}</label>
+    // `;
   }
   // for (let i = 0; i < exerciseGroup.name.length; i++) {
   //   div.innerHTML = `
