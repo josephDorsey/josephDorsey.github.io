@@ -30,6 +30,7 @@ btn_StartWorkout.addEventListener("click", function () {
     btn_NextSet.classList.remove("hidden");
     labelPreviousExercise.classList.remove("hidden");
     btn_PreviousExercise.classList.remove("hidden");
+    exercise_Completed.classList.add("hidden");
     if (count === 0) {
       labelPreviousExercise.classList.add("hidden");
       btn_PreviousExercise.classList.add("hidden");
@@ -40,6 +41,7 @@ btn_StartWorkout.addEventListener("click", function () {
     btn_NextSet.classList.add("hidden");
     labelPreviousExercise.classList.remove("hidden");
     btn_PreviousExercise.classList.remove("hidden");
+    exercise_Completed.classList.remove("hidden");
     if (count === 0) {
       labelPreviousExercise.classList.add("hidden");
       btn_PreviousExercise.classList.add("hidden");

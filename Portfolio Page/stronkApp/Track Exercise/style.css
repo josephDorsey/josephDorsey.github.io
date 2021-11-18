@@ -193,6 +193,14 @@
   right: 0;
   text-align: center;
 }
+.exercise-completed {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  color: green;
+  top: 35px;
+  left: 140px;
+}
 
 .label-btn-next-exercise {
   position: absolute;

@@ -264,9 +264,9 @@ btn_EditSelect.addEventListener("click", function () {
   exerciseEditMode_Title.classList.toggle("hidden");
   exerciseEditExercise_Title.classList.toggle("hidden");
   btn_CloseActiveModal.classList.toggle("hidden");
-  btn_PreviousExercise.classList.toggle("hidden");
+
   btn_NextExercise.classList.toggle("hidden");
-  labelPreviousExercise.classList.toggle("hidden");
+
   labelNextExercise.classList.toggle("hidden");
   btn_EditExercise.classList.add("hidden");
   btn_EditWeight.classList.add("hidden");
@@ -274,6 +274,20 @@ btn_EditSelect.addEventListener("click", function () {
   btn_EditReps.classList.add("hidden");
   btn_EditRest.classList.add("hidden");
 
+  if (
+    labelPreviousExercise.classList.contains("hidden") &&
+    btn_PreviousExercise.classList.contains("hidden")
+  ) {
+    labelPreviousExercise.classList.add("hidden");
+    btn_PreviousExercise.classList.add("hidden");
+  }
+  if (count === 0) {
+    labelPreviousExercise.classList.add("hidden");
+    btn_PreviousExercise.classList.add("hidden");
+  } else if (count > 0) {
+    labelPreviousExercise.classList.remove("hidden");
+    btn_PreviousExercise.classList.remove("hidden");
+  }
   repsEdit_Input.classList.add("hidden");
   setsMinEdit_Input.classList.add("hidden");
   setsMaxEdit_Input.classList.add("hidden");

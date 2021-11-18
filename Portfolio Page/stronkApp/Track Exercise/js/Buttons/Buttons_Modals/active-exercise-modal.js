@@ -73,6 +73,12 @@ btn_EditSets.addEventListener("click", function () {
     "exercises_Sets_Max",
     JSON.stringify(exerciseGroup.sets.max)
   );
+  if (exerciseGroup.sets.min[count] < exerciseGroup.sets.max[count]) {
+    exercise_Completed.classList.add("hidden");
+  }
+  if (exerciseGroup.sets.min[count] === exerciseGroup.sets.max[count]) {
+    exercise_Completed.classList.remove("hidden");
+  }
   setsMinEdit_Input.classList.toggle("hidden");
   setsMaxEdit_Input.classList.toggle("hidden");
   btn_EditSets.classList.toggle("hidden");

@@ -105,6 +105,7 @@ const labelPreviousExercise = document.querySelector(
 const current_Exercise_List = document.querySelector(
   ".current-exercise-number"
 );
+const exercise_Completed = document.querySelector(".exercise-completed");
 
 btn_NextSet.addEventListener("click", function () {
   clearInterval(interval);
@@ -121,6 +122,7 @@ btn_NextSet.addEventListener("click", function () {
       "exercises_Sets_Min",
       JSON.stringify(exerciseGroup.sets.min)
     );
+    exercise_Completed.classList.add("hidden");
     labelSets.innerHTML = `Set: ${exerciseGroup.sets.min[count]} / ${exerciseGroup.sets.max[count]}`;
     labelWeight.style.visibility = "hidden";
     labelRest.style.visibility = "hidden";
@@ -154,6 +156,7 @@ btn_NextSet.addEventListener("click", function () {
     // btn_NextSet.classList.toggle("hidden");
     // labelNextSet.classList.toggle("hidden");
     console.log(`You've finished your set! begin next exercise`);
+    exercise_Completed.classList.remove("hidden");
     // btn_NextExercise.classList.toggle("hidden");
     // labelNextExercise.classList.toggle("hidden");
   }
@@ -225,12 +228,14 @@ btn_NextExercise.addEventListener("click", function () {
       btn_NextSet.classList.remove("hidden");
       labelPreviousExercise.classList.remove("hidden");
       btn_PreviousExercise.classList.remove("hidden");
+      exercise_Completed.classList.add("hidden");
     }
     if (exerciseGroup.sets.min[count] === exerciseGroup.sets.max[count]) {
       labelNextSet.classList.add("hidden");
       btn_NextSet.classList.add("hidden");
       labelPreviousExercise.classList.remove("hidden");
       btn_PreviousExercise.classList.remove("hidden");
+      exercise_Completed.classList.remove("hidden");
     }
     current_Exercise_List.innerHTML = `Exercise (${count + 1} / ${
       exerciseGroup.workoutList.length
@@ -281,10 +286,12 @@ btn_PreviousExercise.addEventListener("click", function () {
       btn_NextSet.classList.remove("hidden");
       labelNextExercise.classList.remove("hidden");
       btn_NextExercise.classList.remove("hidden");
+      exercise_Completed.classList.add("hidden");
     }
     if (exerciseGroup.sets.min[count] === exerciseGroup.sets.max[count]) {
       labelNextSet.classList.add("hidden");
       btn_NextSet.classList.add("hidden");
+      exercise_Completed.classList.remove("hidden");
     }
     current_Exercise_List.innerHTML = `Exercise (${count + 1} / ${
       exerciseGroup.workoutList.length
