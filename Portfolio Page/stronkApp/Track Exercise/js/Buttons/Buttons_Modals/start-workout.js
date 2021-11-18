@@ -7,6 +7,13 @@ const btn_CloseActiveModal = document.querySelector(".btn--close-activeModal");
 
 btn_StartWorkout.addEventListener("click", function () {
   // activeExercises_Modal = true;
+  if (count + 1 === exerciseGroup.workoutList.length) {
+    btn_NextExercise.classList.add("hidden");
+    labelNextExercise.classList.add("hidden");
+  }
+  current_Exercise_List.innerHTML = `Exercise (${count + 1} / ${
+    exerciseGroup.workoutList.length
+  })`;
   localStorage.setItem("activeExercises_Modal", activeExercises_Modal);
   // span_Nav_StartWorkout.innerHTML = `Resume Workout`;
   // localStorage.setItem(
@@ -18,6 +25,26 @@ btn_StartWorkout.addEventListener("click", function () {
   // mainNav_Style();
   // Hides the Rest Timer Modal
 
+  if (exerciseGroup.sets.min[count] < exerciseGroup.sets.max[count]) {
+    labelNextSet.classList.remove("hidden");
+    btn_NextSet.classList.remove("hidden");
+    labelPreviousExercise.classList.remove("hidden");
+    btn_PreviousExercise.classList.remove("hidden");
+    if (count === 0) {
+      labelPreviousExercise.classList.add("hidden");
+      btn_PreviousExercise.classList.add("hidden");
+    }
+  }
+  if (exerciseGroup.sets.min[count] === exerciseGroup.sets.max[count]) {
+    labelNextSet.classList.add("hidden");
+    btn_NextSet.classList.add("hidden");
+    labelPreviousExercise.classList.remove("hidden");
+    btn_PreviousExercise.classList.remove("hidden");
+    if (count === 0) {
+      labelPreviousExercise.classList.add("hidden");
+      btn_PreviousExercise.classList.add("hidden");
+    }
+  }
   restTimerModal.style.display = "none";
   activeModalContainer.classList.toggle("hidden");
   container_MainNav_Buttons.style.display = "none";

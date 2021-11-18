@@ -116,6 +116,9 @@ const exercise_List_editMode = function () {
 
 btn_ReturnToActiveModal.addEventListener("click", function () {
   // main_Nav_styleState = 1;
+  current_Exercise_List.innerHTML = `Exercise (${count + 1} / ${
+    exerciseGroup.workoutList.length
+  })`;
   restTimerModal.style.display = "none";
   if (exerciseGroup.workoutList.length === 0) {
     exerciseEditExercise_Title.innerHTML = `Exercise:`;

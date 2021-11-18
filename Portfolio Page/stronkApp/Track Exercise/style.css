@@ -185,6 +185,14 @@
   height: 20px;
   cursor: pointer;
 }
+.current-exercise-number {
+  position: absolute;
+  top: 40px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
 
 .label-btn-next-exercise {
   position: absolute;
