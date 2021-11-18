@@ -4,6 +4,7 @@ const exerciseEdit_Radio = document.querySelector(".exercise-edit-radio");
 const exerciseEdit_Input = document.querySelector(".exercise-edit-input");
 const labelExercise = document.querySelector(".label-exercise");
 const btn_EditExercise = document.querySelector(".btn--edit-exercise");
+
 btn_EditExercise.addEventListener("click", function () {
   labelExercise.innerHTML = `Exercise: ${exerciseEdit_Input.value}`;
   exerciseEditExercise_Title.innerHTML = `Exercise: ${exerciseEdit_Input.value}`;
@@ -15,13 +16,35 @@ btn_EditExercise.addEventListener("click", function () {
   exerciseEdit_Input.classList.toggle("hidden");
   btn_EditExercise.classList.toggle("hidden");
   exerciseEdit_Radio.checked = false;
+  if (!exercises_Barbell.includes(`${exerciseEdit_Input.value}`)) {
+    exercises_Barbell.push(exerciseEdit_Input.value);
+    localStorage.setItem("exercises_Barbell", exercises_Barbell);
+  }
+  if (!exercises_Dumbbell.includes(`${exerciseEdit_Input.value}`)) {
+    exercises_Dumbbell.push(exerciseEdit_Input.value);
+    localStorage.setItem("exercises_Dumbbell", exercises_Dumbbell);
+  }
+  if (!exercises_Body.includes(`${exerciseEdit_Input.value}`)) {
+    exercises_Body.push(exerciseEdit_Input.value);
+    localStorage.setItem("exercises_Body", exercises_Body);
+  }
+  if (!exercises_Rope.includes(`${exerciseEdit_Input.value}`)) {
+    exercises_Rope.push(exerciseEdit_Input.value);
+    localStorage.setItem("exercises_Rope", exercises_Rope);
+  }
 });
+
+const option_Barbell_Edit = document.querySelector(".barbell-edit");
+const option_Body_Edit = document.querySelector(".body-edit");
+const option_Dumbbell_Edit = document.querySelector(".dumbbell-edit");
+const option_Rope_Edit = document.querySelector(".rope-edit");
 
 // Reps
 const repsEdit_Radio = document.querySelector(".reps-edit-radio");
 const repsEdit_Input = document.querySelector(".reps-edit-input");
 const labelReps = document.querySelector(".label-reps");
 const btn_EditReps = document.querySelector(".btn--edit-reps");
+
 btn_EditReps.addEventListener("click", function () {
   labelReps.innerHTML = `Reps: ${repsEdit_Input.value}`;
   exerciseGroup.reps.splice(count, 1, Number(repsEdit_Input.value));
@@ -37,6 +60,7 @@ const setsMinEdit_Input = document.querySelector(".setsMin-edit-input");
 const setsMaxEdit_Input = document.querySelector(".setsMax-edit-input");
 const labelSets = document.querySelector(".label-sets");
 const btn_EditSets = document.querySelector(".btn--edit-sets");
+
 btn_EditSets.addEventListener("click", function () {
   labelSets.innerHTML = `Set: ${setsMinEdit_Input.value} / ${setsMaxEdit_Input.value}`;
   exerciseGroup.sets.min.splice(count, 1, Number(setsMinEdit_Input.value));
@@ -61,6 +85,7 @@ const restMinEdit_Input = document.querySelector(".restMin-edit-input");
 const restSecEdit_Input = document.querySelector(".restSec-edit-input");
 const labelRest = document.querySelector(".label-rest");
 const btn_EditRest = document.querySelector(".btn--edit-rest");
+
 btn_EditRest.addEventListener("click", function () {
   labelRest.innerHTML = `Rest: ${restMinEdit_Input.value}m ${restSecEdit_Input.value}s`;
   exerciseGroup.rest.minutes.splice(count, 1, Number(restMinEdit_Input.value));

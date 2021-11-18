@@ -22,7 +22,7 @@
             />
           </svg>
         </a>
-        <h1 class="exercise-title">Track Exercise 0:00:00</h1>
+        <h1 class="exercise-title">0:00:00</h1>
         <a class="container--user-profile">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -40,6 +40,10 @@
           </svg>
         </a>
       </div>
+      <div class="start-end-workout-modal">
+        <button class="btn--startWorkout">Start Workout</button>
+        <button>End Workout</button>
+      </div>
       <div class="main--nav-buttons">
         <h3 class="main--nav-buttons-title">What would you like to do?</h3>
         <div class="container--nav-img">
@@ -54,12 +58,12 @@
             <span class="span--exercise-list">Exercises (0)</span>
           </a>
         </div>
-        <div class="container--nav-img">
+        <!-- <div class="container--nav-img">
           <a href="#" class="btn--startWorkout">
             <img class="nav-img i-PlayCircle" src="img/play-circle-outline.svg" />
             <span class="span--start-workout">Start Workout</span>
           </a>
-        </div>
+        </div> -->
       </div>
       <div class="exercise-information hidden">
         <svg
@@ -97,7 +101,7 @@
           />
         </div>
         <div class="grid-exercise-select">
-          <select class="select--equipment" onchange="state_addExercises()">
+          <select class="select--equipment" onchange="select_Equipment_Test()">
             <option class="select-please" value="selectOption">
               (Select equipment)
             </option>
@@ -316,43 +320,41 @@
             <img class="icons" src="img/add-circle-outline.svg">
             <span class="btn--cancel-rest">Skip Rest</span>
           </div>
-          <label class="label-btn-next-set" for="next-set">Next Set</label>
-          <label class="label-btn-next-exercise hidden" for="next-set">Next Exercise</label>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 btn--next-set"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
-              clip-rule="evenodd"
-            />
-            <path
-              fill-rule="evenodd"
-              d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 btn--next-exercise hidden"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
-              clip-rule="evenodd"
-            />
-            <path
-              fill-rule="evenodd"
-              d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
           
+          
+          <div class="container--previous-exercise">
+            <label class="label-btn-previous-exercise" for="previous-exercise">Previous Exercise</label>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 btn--previous-exercise" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="container--next-set">
+            <label class="label-btn-next-set" for="next-set">Next Set</label>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 btn--next-set" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="container--next-exercise">
+            <label class="label-btn-next-exercise" for="next-set">Next Exercise</label>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 btn--next-exercise"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+                clip-rule="evenodd"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            
+          </div>
           <h3 class="exercise-edit-mode-title hidden">Edit Mode</h3>
           <h3 class="exercise-edit-exercise-title">Exercise:</h3>
           <div class="exercise hidden flex">

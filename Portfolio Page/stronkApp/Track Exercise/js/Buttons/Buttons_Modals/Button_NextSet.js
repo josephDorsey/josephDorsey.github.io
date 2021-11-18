@@ -90,7 +90,7 @@ btn_CancelRest.addEventListener("click", function () {
   }
 });
 
-let count = 0;
+let count = JSON.parse(localStorage.getItem("current_Exercise_Count")) || 0;
 let count_Set = 0;
 
 // Next Set
@@ -114,6 +114,10 @@ btn_NextSet.addEventListener("click", function () {
   interval = setInterval(intervalFunction, 1000);
   if (exerciseGroup.sets.min[count] < exerciseGroup.sets.max[count]) {
     exerciseGroup.sets.min[count]++;
+    localStorage.setItem(
+      "exercises_Sets_Min",
+      JSON.stringify(exerciseGroup.sets.min)
+    );
     labelSets.innerHTML = `Set: ${exerciseGroup.sets.min[count]} / ${exerciseGroup.sets.max[count]}`;
     labelWeight.style.visibility = "hidden";
     labelRest.style.visibility = "hidden";
@@ -138,6 +142,10 @@ btn_NextSet.addEventListener("click", function () {
     // }, 3000);
   }
   if (exerciseGroup.sets.min[count] === exerciseGroup.sets.max[count]) {
+    localStorage.setItem(
+      "exercises_Sets_Min",
+      JSON.stringify(exerciseGroup.sets.min)
+    );
     // btn_NextExercise.classList.remove("hidden");
     // labelNextExercise.classList.remove("hidden");
     // btn_NextSet.classList.toggle("hidden");
@@ -163,21 +171,29 @@ btn_NextSet.addEventListener("click", function () {
   //   console.log(labelSets.innerHTML, exerciseGroup.sets.min);
   //   break;
   // }
-
+  localStorage.setItem("current_Exercise_Count", JSON.stringify(count));
   console.log(`next set`);
 });
 
 btn_NextExercise.addEventListener("click", function () {
   // count_Set++;
+  if (count === 0) {
+    labelPreviousExercise.classList.toggle("hidden");
+    btn_PreviousExercise.classList.toggle("hidden");
+  } else if (count > 0) {
+    labelPreviousExercise.classList.remove("hidden");
+    btn_PreviousExercise.classList.remove("hidden");
+  }
   restTimer_Time.innerHTML = "";
   btn_NextSet.style.visibility = "visible";
   labelNextSet.style.visibility = "visible";
   btn_NextSet.classList.remove("hidden");
   labelNextSet.classList.remove("hidden");
-  btn_NextExercise.classList.toggle("hidden");
-  labelNextExercise.classList.toggle("hidden");
+  // btn_NextExercise.classList.toggle("hidden");
+  // labelNextExercise.classList.toggle("hidden");
   for (let i = 0; i < exerciseGroup.workoutList.length; i++) {
     count++;
+    localStorage.setItem("current_Exercise_Count", JSON.stringify(count));
     exerciseEditExercise_Title.innerHTML = `Exercise: ${exerciseGroup.workoutList[count]}`;
     labelExercise.innerHTML = `Exercise: ${exerciseGroup.workoutList[count]}`;
     labelWeight.innerHTML = `Weight: ${exerciseGroup.weight[count]}`;
@@ -198,6 +214,32 @@ btn_NextExercise.addEventListener("click", function () {
   }
 });
 
+btn_PreviousExercise.addEventListener("click", function () {
+  // count_Set++;
+  restTimer_Time.innerHTML = "";
+  btn_NextSet.style.visibility = "visible";
+  labelNextSet.style.visibility = "visible";
+  btn_NextSet.classList.remove("hidden");
+  labelNextSet.classList.remove("hidden");
+  // btn_NextExercise.classList.toggle("hidden");
+  // labelNextExercise.classList.toggle("hidden");
+  for (let i = 0; i < exerciseGroup.workoutList.length; i++) {
+    count--;
+    localStorage.setItem("current_Exercise_Count", JSON.stringify(count));
+    exerciseEditExercise_Title.innerHTML = `Exercise: ${exerciseGroup.workoutList[count]}`;
+    labelExercise.innerHTML = `Exercise: ${exerciseGroup.workoutList[count]}`;
+    labelWeight.innerHTML = `Weight: ${exerciseGroup.weight[count]}`;
+    labelSets.innerHTML = `Set: ${exerciseGroup.sets.min[count]} / ${exerciseGroup.sets.max[count]}`;
+    labelRest.innerHTML = `Rest: ${exerciseGroup.rest.minutes[count]}m ${exerciseGroup.rest.seconds[count]}s`;
+
+    if (count === 0) {
+      labelPreviousExercise.classList.toggle("hidden");
+      btn_PreviousExercise.classList.toggle("hidden");
+    }
+    console.log(`Exercise: ${exerciseGroup.workoutList[count]}`);
+    break;
+  }
+});
 // function nextSet() {
 //   i = i + 1;
 //   i = i % exerciseGroup.sets.min.length;

@@ -50,67 +50,75 @@ btn_ExitEditStorage.addEventListener("click", function () {
 const findIndexOfExercises = function () {
   // select_Barbell_Exercises.options[0].value = "Bench Press"
   // select_Barbell_Exercises.options[0].selected
-  for (let i = 0; i < select_Barbell_Exercises.options.length; i++) {
-    if (
-      select_Barbell_Exercises.options[i].selected &&
-      select_Barbell_Exercises.options[i].value === exercises_Barbell[i]
-    ) {
-      exercises_Barbell.splice(i, 1);
-      exercisesGroup.workoutList.splice(i, 1);
-      select_Barbell_Exercises.options[i].remove();
-      localStorage.setItem(
-        "exercises_Barbell",
-        JSON.stringify(exercises_Barbell)
-      );
-      // userExercises.body = exercises_Body;
-      console.log(exercises_Barbell);
+  if (option_Barbell.selected) {
+    for (let i = 0; i < select_Barbell_Exercises.options.length; i++) {
+      if (
+        select_Barbell_Exercises.options[i].selected &&
+        select_Barbell_Exercises.options[i].value === exercises_Barbell[i]
+      ) {
+        exercises_Barbell.splice(i, 1);
+        exerciseGroup.workoutList.splice(i, 1);
+        select_Barbell_Exercises.options[i].remove();
+        localStorage.setItem(
+          "exercises_Barbell",
+          JSON.stringify(exercises_Barbell)
+        );
+
+        // userExercises.body = exercises_Body;
+        console.log(exercises_Barbell);
+      }
     }
   }
+  if (option_Dumbbell.selected) {
+    for (let i = 0; i < select_Dumbbell_Exercises.options.length; i++) {
+      if (
+        select_Dumbbell_Exercises.options[i].selected &&
+        select_Dumbbell_Exercises.options[i].value === exercises_Dumbbell[i]
+      ) {
+        exercises_Dumbbell.splice(i, 1);
+        exerciseGroup.workoutList.splice(i, 1);
+        select_Dumbbell_Exercises.options[i].remove();
+        localStorage.setItem(
+          "exercises_Dumbbell",
+          JSON.stringify(exercises_Dumbbell)
+        );
 
-  for (let i = 0; i < select_Dumbbell_Exercises.options.length; i++) {
-    if (
-      select_Dumbbell_Exercises.options[i].selected &&
-      select_Dumbbell_Exercises.options[i].value === exercises_Dumbbell[i]
-    ) {
-      exercises_Dumbbell.splice(i, 1);
-      exercisesGroup.workoutList.splice(i, 1);
-      select_Dumbbell_Exercises.options[i].remove();
-      localStorage.setItem(
-        "exercises_Dumbbell",
-        JSON.stringify(exercises_Dumbbell)
-      );
-
-      // userExercises.body = exercises_Body;
-      console.log(exercises_Dumbbell);
+        // userExercises.body = exercises_Body;
+        console.log(exercises_Dumbbell);
+      }
     }
   }
+  if (option_Body.selected) {
+    for (let i = 0; i < select_Body_Exercises.options.length; i++) {
+      if (
+        select_Body_Exercises.options[i].selected &&
+        select_Body_Exercises.options[i].value === exercises_Body[i]
+      ) {
+        // exercises_Body.splice(i, 1);
+        exercises_Body.splice(i, 1);
+        exerciseGroup.workoutList.splice(i, 1);
+        select_Body_Exercises.options[i].remove();
+        localStorage.setItem("exercises_Body", JSON.stringify(exercises_Body));
 
-  for (let i = 0; i < select_Body_Exercises.options.length; i++) {
-    if (
-      select_Body_Exercises.options[i].selected &&
-      select_Body_Exercises.options[i].value === exercises_Body[i]
-    ) {
-      // exercises_Body.splice(i, 1);
-      exercises_Body.splice(i, 1);
-      exercisesGroup.workoutList.splice(i, 1);
-      select_Body_Exercises.options[i].remove();
-      localStorage.setItem("exercises_Body", JSON.stringify(exercises_Body));
-      // userExercises.body = exercises_Body;
-      console.log(exercises_Body);
+        // userExercises.body = exercises_Body;
+        console.log(exercises_Body);
+      }
     }
   }
-  for (let i = 0; i < select_Rope_Exercises.options.length; i++) {
-    if (
-      select_Rope_Exercises.options[i].selected &&
-      select_Rope_Exercises.options[i].value === exercises_Rope[i]
-    ) {
-      exercises_Rope.splice(i, 1);
-      exercisesGroup.workoutList.splice(i, 1);
-      select_Rope_Exercises.options[i].remove();
-      localStorage.setItem("exercises_Rope", JSON.stringify(exercises_Rope));
+  if (option_Rope.selected) {
+    for (let i = 0; i < select_Rope_Exercises.options.length; i++) {
+      if (
+        select_Rope_Exercises.options[i].selected &&
+        select_Rope_Exercises.options[i].value === exercises_Rope[i]
+      ) {
+        exercises_Rope.splice(i, 1);
+        exerciseGroup.workoutList.splice(i, 1);
+        select_Rope_Exercises.options[i].remove();
+        localStorage.setItem("exercises_Rope", JSON.stringify(exercises_Rope));
 
-      // userExercises.body = exercises_Body;
-      console.log(exercises_Rope);
+        // userExercises.body = exercises_Body;
+        console.log(exercises_Rope);
+      }
     }
   }
 };

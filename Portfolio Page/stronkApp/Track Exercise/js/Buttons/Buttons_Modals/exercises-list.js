@@ -11,12 +11,13 @@ const exercise_List_CurrentExercise = document.querySelector(
 );
 const span_Nav_Exercises = document.querySelector(".span--exercise-list");
 const span_Nav_StartWorkout = document.querySelector(".span--start-workout");
+const exercise_List_Labels = document.getElementsByClassName(
+  "exercise-list-label"
+);
 const exercise_List_Hint = document.querySelector(".exercise-list-hint");
 const exerciseList_Container = document.querySelector(".exercise-list");
 const btn_toggleExerciseList = document.querySelector(".btn--exercise-list");
-const exerciseList_Radio = document.getElementsByClassName(
-  "exercise-list-radio"
-);
+
 const btn_SetActive = document.querySelector(".btn--set-active");
 const btn_Edit_ExerciseList = document.querySelector(
   ".btn--edit-exercise-list"
@@ -44,8 +45,8 @@ btn_Edit_ExerciseList.addEventListener("click", function () {
 });
 
 btn_DeleteExerciseListItems.addEventListener("click", function () {
-  for (let i = 0; i < exerciseList_Radio.length; i++) {
-    if (exerciseList_Radio[i].checked) {
+  for (let i = 0; i < exercise_List_Radios.length; i++) {
+    if (exercise_List_Radios[i].checked) {
       exercise_List_Exercises[i].remove();
       exerciseGroup.workoutList.splice(i, 1);
       localStorage.setItem(
@@ -84,9 +85,14 @@ btn_DeleteExerciseListItems.addEventListener("click", function () {
         "exercises_Rest_Seconds",
         JSON.stringify(exerciseGroup.rest.seconds)
       );
+
+      // localStorage.setItem("current_Exercise_Count", count);
       // userExercises.body = exercises_Body;
+
+      exercise_List_CurrentExercise.innerHTML = `Current exercise: ${exerciseGroup.workoutList[count]}`;
       console.log(exerciseGroup.workoutList, exerciseGroup);
     }
+
     if (exerciseGroup.workoutList.length === 0) {
       span_Nav_Exercises.innerHTML = `Exercises (${exerciseGroup.workoutList.length})`;
     } else {
@@ -99,13 +105,6 @@ btn_DeleteExerciseListItems.addEventListener("click", function () {
 
 let exercise_List_activeState, editMode;
 
-const init = function () {
-  exercise_List_activeState = 0;
-  main_Nav_styleState = 0;
-  editMode = false;
-};
-init();
-
 const exercise_List_editMode = function () {
   exercise_List_activeState = exercise_List_activeState === 0 ? 1 : 0;
   if (exercise_List_activeState === 0) {
@@ -116,7 +115,7 @@ const exercise_List_editMode = function () {
 };
 
 btn_ReturnToActiveModal.addEventListener("click", function () {
-  main_Nav_styleState = 1;
+  // main_Nav_styleState = 1;
   restTimerModal.style.display = "none";
   if (exerciseGroup.workoutList.length === 0) {
     exerciseEditExercise_Title.innerHTML = `Exercise:`;
@@ -135,7 +134,7 @@ btn_ReturnToActiveModal.addEventListener("click", function () {
   }
   exerciseList_Container.classList.toggle("hidden");
   activeModalContainer.classList.toggle("hidden");
-  exercise_List_editMode();
+  // exercise_List_editMode();
   if (exerciseList_Container.classList.contains("hidden")) {
     activeModalContainer.style.gap = "0";
   } else if (!exerciseList_Container.classList.contains("hidden")) {
@@ -151,24 +150,29 @@ const exerciseList_state_listMode = function () {
 const exerciseList_state_editMode = function () {};
 
 btn_CloseExerciseList.addEventListener("click", function () {
-  main_Nav_styleState = 1;
-  if (exercise_List_activeState === 1) {
-    exerciseList_state_listMode();
+  // main_Nav_styleState = 1;
+  // if (exercise_List_activeState === 1) {
+  //   exerciseList_state_listMode();
+  // }
+  // if (main_Nav_styleState === 1) {
+  //   mainNav_Style();
+  // }
+  container_MainNav_Buttons.style.display = "grid";
+  for (let i = 0; i < exercise_List_Radios.length; i++) {
+    exercise_List_Radios[i].checked = false;
   }
-  if (main_Nav_styleState === 1) {
-    mainNav_Style();
-  }
+  exercise_List_CurrentExercise.innerHTML = `Current exercise: ${exerciseGroup.workoutList[count]}`;
   exerciseList_Container.classList.toggle("hidden");
   container_MainNav_Buttons.classList.toggle("hidden");
 });
 
 btnMain_ToggleExerciseList.addEventListener("click", function () {
-  mainNav_Style();
-  main_Nav_styleState = 0;
+  // mainNav_Style();
+  // main_Nav_styleState = 0;
   exerciseList_state_listMode();
-  exerciseList_Modal = true;
+  // exerciseList_Modal = true;
   exerciseList_Container.classList.toggle("hidden");
-  container_MainNav_Buttons.classList.toggle("hidden");
+  container_MainNav_Buttons.style.display = "none";
   if (exerciseGroup.workoutList.length === 0) {
     exercise_List_P.classList.remove("hidden");
     exercise_List_Hint.classList.remove("hidden");
@@ -198,5 +202,19 @@ btn_toggleExerciseList.addEventListener("click", function () {
   } else if (exerciseGroup.workoutList.length > 0) {
     exercise_List_P.classList.add("hidden");
     exercise_List_Hint.classList.add("hidden");
+    btn_SetActive.classList.remove("hidden");
+    exercise_List_CurrentExercise.classList.remove("hidden");
+    exercise_List_CurrentExercise.innerHTML = `Current Exercise: ${exerciseGroup.workoutList[count]}`;
+  }
+});
+
+btn_SetActive.addEventListener("click", function () {
+  for (let i = 0; i < exercise_List_Radios.length; i++) {
+    if (exercise_List_Radios[i].checked) {
+      count = i;
+      localStorage.setItem("current_Exercise_Count", count);
+      exercise_List_CurrentExercise.innerHTML = `Current Exercise: ${exerciseGroup.workoutList[count]}`;
+      console.log(count);
+    }
   }
 });
