@@ -13,7 +13,7 @@
         <a class="container--btn-home" href="../index.html">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 btn-returnHome"
+            class="h-5 w-5 btn-returnHome hidden"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -22,42 +22,64 @@
             />
           </svg>
         </a>
-        <h1 class="exercise-title">0:00:00</h1>
-        <a class="container--user-profile">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6 btn--user-profile"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-        </a>
+        
+        
       </div>
-      <div class="start-end-workout-modal">
-        <button class="btn--startWorkout">Start Workout</button>
-        <button>End Workout</button>
-      </div>
+      
       <div class="main--nav-buttons">
-        <h3 class="main--nav-buttons-title">What would you like to do?</h3>
+        <!-- <h3 class="main--nav-buttons-title">What would you like to do?</h3> -->
         <div class="container--nav-img">
-          <a href="#" class="btn--open-add-exercise-modal">
-            <img class="nav-img i-AddExercise" src="img/add-circle-outline.svg" />
-            <span>Add Exercises</span>
+          <a href="#">
+            <img src="img/home-outline.svg">
+            Home
+          </a>
+        </div>
+        <!-- <div class="container--nav-img">
+          <a class="i-user-profile">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 btn--user-profile"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            Profile
+          </a>
+        </div> -->
+        <div class="container--nav-img">
+          <a href="#" class="btn--workouts-modal">
+            <img src="img/clipboard-outline.svg">
+            <span>Workouts</span>
+          </a>
+        </div>
+        <div class="container--nav-img">
+          <a href="#">
+            <img src="img/calendar-outline.svg">
+            History
           </a>
         </div>
         <div class="container--nav-img">
           <a href="#" class="btn--view-exercise-list">
             <img class="nav-img i-Barbell" src="img/barbell-outline.svg" />
-            <span class="span--exercise-list">Exercises (0)</span>
+            <span class="span--exercise-list">Exercises(0)</span>
           </a>
         </div>
+        <!-- <div class="container--nav-img">
+          <a href="#" class="btn--open-add-exercise-modal">
+            <img class="nav-img i-AddExercise" src="img/add-circle-outline.svg" />
+            <span>Add Exercises</span>
+          </a>
+        </div> -->
+        
+        
+        
         <!-- <div class="container--nav-img">
           <a href="#" class="btn--startWorkout">
             <img class="nav-img i-PlayCircle" src="img/play-circle-outline.svg" />
@@ -65,372 +87,419 @@
           </a>
         </div> -->
       </div>
-      <div class="exercise-information hidden">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5 btn--close-exercise-info"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-            clip-rule="evenodd"
-          />
-        </svg>
-
-        <a href="#" class="btn btn--link-createExercise">Create Exercise</a>
-        <a href="#" class="btn btn--link-addExercise">Add Exercise</a>
-        <h3 class="exercise-info-title">
-          Please enter data to the workout list
-        </h3>
-        <h3 class="title--exerciseStorage">Create new exercise</h3>
-        <div class="grid-exercise-name">
-          <label class="exercise-name-label" for="exercise-name"
-            >Exercise:</label
-          >
-          <input
-            type="text"
-            class="exercise-name"
-            placeholder="add exercise to workout"
-          />
-          <input
-            type="text"
-            class="input--exerciseStorage"
-            placeholder="add to exercise archive"
-          />
+      <div class="main--task--container">
+      
+        <div class="container--user-profile hidden">
+          
         </div>
-        <div class="grid-exercise-select">
-          <select class="select--equipment" onchange="select_Equipment_Test()">
-            <option class="select-please" value="selectOption">
-              (Select equipment)
-            </option>
-            <option class="barbell" value="barbell">Barbell</option>
-            <option class="dumbbell" value="dumbbell">Dumbbell</option>
-            <option class="rope" value="rope">Rope</option>
-            <option class="body" value="body">Body</option>
-          </select>
-          <select class="select--barbell-exercises"></select>
-          <select class="select--dumbbell-exercises"></select>
-          <select class="select--body-exercises"></select>
-          <select class="select--rope-exercises"></select>
-        </div>
-        <div>
-          <label class="label--addExercise-weight" for="exercise-weight"
-            >Weight:</label
-          >
-          <input type="number" class="exercise-weight" placeholder="lbs" />
-        </div>
-        <div>
-          <label class="label--addExercise-sets" for="exercise-sets"
-            >Sets:</label
-          >
-          <input type="number" class="exercise-sets" placeholder="sets" />
-        </div>
-        <div>
-          <label class="label--addExercise-reps" for="exercise-reps"
-            >Reps:</label
-          >
-          <input type="number" class="exercise-reps" placeholder="reps" />
-        </div>
-        <div>
-          <label class="label--addExercise-rest" for="exercise-rest"
-            >Rest:</label
-          >
-          <input type="number" class="exercise-minutes" placeholder="min" />
-          <input type="number" class="exercise-seconds" placeholder="sec" />
-        </div>
-        <div class="exercise-modal-buttons">
-          <button class="btn--push-data-to-array">Add to Workout</button>
-
-          <button class="btn--add-to-exercise-storage">Add to Archive</button>
-          <button class="btn--edit-exercise-storage">Edit Archive</button>
-          <button class="btn--delete-exercise-storage">Delete Exercise</button>
-          <button class="btn--exit-edit-exercise-storage">
-            Exit Edit Mode
-          </button>
-        </div>
-      </div>
-      <div class="modal-active-container">
-        <div class="modal-exercise-list">
-          <div class="exercise-list hidden">
-            <!-- <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 btn--close-exercise-list"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clip-rule="evenodd"
-              />
-            </svg> -->
-            <!-- <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 btn--return-to-activeModal"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-              /> -->
-              <img class="exercise-list-btn-start btn--return-to-activeModal" src="img/play-circle-outline.svg">
-              <img class="exercise-list-btn-add btn--open-add-exercise-modal"src="img/add-circle-outline.svg">
-              <!-- <img
-                class="btn--return-to-activeModal"
-                src="img/barbell-outline.svg"
-              /> -->
-            </svg>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 btn--close-exercise-list"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 btn--delete-exercise hidden"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 btn--edit-exercise-list"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"
-              />
-              <path
-                fill-rule="evenodd"
-                d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                clip-rule="evenodd"
-              />
-            </svg>
-
-            <h3 class="exercise-list-title">Exercise List</h3>
-
-            <p class="exercise-list-current-exercise hidden">
-              Current exercise: (DB Bench)
-            </p>
-            <button class="btn--set-active hidden">Set Active</button>
-            <p class="exercise-list-p">No exercises listed</p>
-            <p class="exercise-list-hint">
-              Hint: add some exercises to the list!
-            </p>
-            <!-- <div class="ex1">
-              <input type="radio" />
-              <label>Barbell Bench</label>
+        <div class="container--workouts">
+          <img class="btn--createWorkout_WorkoutGroup" src="img/add-circle-outline.svg">
+          <h1 class="workout-timer hidden">00:00:00</h1>
+          <div class="start-end-workout-modal hidden">
+            <button class="btn--startWorkout">Start Workout</button>
+            <button class="btn--pauseWorkout hidden">Pause Workout</button>
+            <button class="btn--endWorkout">End Workout</button>
+          </div>
+          <h2 class="createWorkout-title">Workouts</h2>
+          <div class="createWorkout_WorkoutGroup-modal hidden">
+            <div class="create-workoutgroup-buttons">
+              <h4 class="create-workoutgroup-buttons-title">What would you like to create?</h4>
+              <div class="createWorkout_Modal">
+                <a class="btn--create-workoutgroup-buttons-workout" href="#">
+                
+                  Workout</a>
+                  <img class="create-workout-img" src="img/add-circle-outline.svg">
+              </div>
+              <div class="createWorkoutGroup_Modal">
+                <a class="btn--create-workoutgroup-buttons-workoutGroup" href="#">Workout Group</a>
+                <img class="create-workoutgroup-img" src="img/folder-outline.svg">
+              </div>
             </div>
-            <div class="ex2">
-              <input type="radio" />
-              <label>DB Flyes</label>
+          </div>
+          <div class="createWorkout-modal" style="display: none;">
+              <h3 class="createWorkout-label">Create Workout</h3>
+              <input class="createWorkout-input"type="text" placeholder="name of workout">
+              <button class="btn--createWorkout">Create Workout</button>
+              <button class="btn--open-add-exercise-modal">Add Exercises</button>
+              <button class="btn--cancel-createWorkoutexercise">Cancel</button>
+          </div>
+          <div class="ungroupedWorkout"><h3>Ungrouped Workout</h3></div>
+          <div class="groupedWorkout"><h3>Grouped Workout</h3>
             </div>
-            <div class="ex3">
-              <input type="radio" />
-              <label>DB Shoulder Press</label>
+            <button class="btn--view-workout">View Workout</button>
+          <div class="exercise-information hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 btn--close-exercise-info"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <a href="#" class="btn btn--link-createExercise">Create Exercise</a>
+              <a href="#" class="btn btn--link-addExercise">Add Exercise</a>
+              <a href="#" class="btn btn--link-viewWorkout">View Workout</a>
+              <h3 class="exercise-info-title">
+                Please enter data to the workout list
+              </h3>
+              <h3 class="title--exerciseStorage">Create new exercise</h3>
+              <div class="grid-exercise-name">
+                <label class="exercise-name-label" for="exercise-name"
+                  >Exercise:</label
+                >
+                <input
+                  type="text"
+                  class="exercise-name"
+                  placeholder="add exercise to workout"
+                />
+                <input
+                  type="text"
+                  class="input--exerciseStorage"
+                  placeholder="add to exercise archive"
+                />
+              </div>
+              <div class="grid-exercise-select">
+                <select class="select--equipment" onchange="select_Equipment_Test()">
+                  <option class="select-please" value="selectOption">
+                    (Select equipment)
+                  </option>
+                  <option class="barbell" value="barbell">Barbell</option>
+                  <option class="dumbbell" value="dumbbell">Dumbbell</option>
+                  <option class="rope" value="rope">Rope</option>
+                  <option class="body" value="body">Body</option>
+                </select>
+                <select class="select--barbell-exercises"></select>
+                <select class="select--dumbbell-exercises"></select>
+                <select class="select--body-exercises"></select>
+                <select class="select--rope-exercises"></select>
+              </div>
+              <div>
+                <label class="label--addExercise-weight" for="exercise-weight"
+                  >Weight:</label
+                >
+                <input type="number" class="exercise-weight" placeholder="lbs" />
+              </div>
+              <div>
+                <label class="label--addExercise-sets" for="exercise-sets"
+                  >Sets:</label
+                >
+                <input type="number" class="exercise-sets" placeholder="sets" />
+              </div>
+              <div>
+                <label class="label--addExercise-reps" for="exercise-reps"
+                  >Reps:</label
+                >
+                <input type="number" class="exercise-reps" placeholder="reps" />
+              </div>
+              <div>
+                <label class="label--addExercise-rest" for="exercise-rest"
+                  >Rest:</label
+                >
+                <input type="number" class="exercise-minutes" placeholder="min" />
+                <input type="number" class="exercise-seconds" placeholder="sec" />
+              </div>
+              <div class="exercise-modal-buttons">
+                <button class="btn--push-data-to-array">Add to Workout</button>
+      
+                <button class="btn--add-to-exercise-storage">Add to Archive</button>
+                <button class="btn--edit-exercise-storage">Edit Archive</button>
+                <button class="btn--delete-exercise-storage">Delete Exercise</button>
+                <button class="btn--exit-edit-exercise-storage">
+                  Exit Edit Mode
+                </button>
+              </div>
+          </div>
+          <div class="modal-active-container">
+            <div class="modal-exercise-list">
+              <div class="exercise-list hidden">
+                <!-- <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 btn--close-exercise-list"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                    clip-rule="evenodd"
+                  />
+                </svg> -->
+                <!-- <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 btn--return-to-activeModal"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  /> -->
+                  <img class="exercise-list-btn-start btn--return-to-activeModal" src="img/play-circle-outline.svg">
+                  <img class="exercise-list-btn-add btn--open-add-exercise-modal"src="img/add-circle-outline.svg">
+                  <!-- <img
+                    class="btn--return-to-activeModal"
+                    src="img/barbell-outline.svg"
+                  /> -->
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 btn--close-exercise-list"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 btn--delete-exercise hidden"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 btn--edit-exercise-list"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+    
+                <h3 class="exercise-list-title">Exercise List</h3>
+    
+                <p class="exercise-list-current-exercise hidden">
+                  Current exercise: (DB Bench)
+                </p>
+                <button class="btn--set-active hidden">Set Active</button>
+                <p class="exercise-list-p">No exercises listed</p>
+                <p class="exercise-list-hint">
+                  Hint: add some exercises to the list!
+                </p>
+                <!-- <div class="ex1">
+                  <input type="radio" />
+                  <label>Barbell Bench</label>
+                </div>
+                <div class="ex2">
+                  <input type="radio" />
+                  <label>DB Flyes</label>
+                </div>
+                <div class="ex3">
+                  <input type="radio" />
+                  <label>DB Shoulder Press</label>
+                </div>
+                <div class="ex1">
+                  <input type="radio" />
+                  <label>DB Incline Press</label>
+                </div>
+                <div class="ex2">
+                  <input type="radio" />
+                  <label>DB Overhead Press</label>
+                </div>
+                <div class="ex3">
+                  <input type="radio" />
+                  <label>DB Grip Walk</label>
+                </div> -->
+              </div>
             </div>
-            <div class="ex1">
-              <input type="radio" />
-              <label>DB Incline Press</label>
+            <div class="modal-exercise-info hidden">
+              <!-- <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 btn--exercise-list"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  clip-rule="evenodd"
+                />
+              </svg> -->
+              <!-- <img class="btn--modal-add-exercise" src="img/add-circle-outline.svg" /> -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 btn--close-activeModal"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 btn--exercise-list"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 btn--edit-select"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <div class="rest-timer-modal">
+                <img class="icons" src="img/remove-circle-outline.svg">
+                <h3 class="rest-timer-title">Rest</h3>
+                <h3 class="rest-timer-h3"></h3>
+                <img class="icons" src="img/add-circle-outline.svg">
+                <span class="btn--cancel-rest">Skip Rest</span>
+              </div>
+              
+              
+              <div class="container--previous-exercise">
+                <label class="label-btn-previous-exercise" for="previous-exercise">Previous Exercise</label>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 btn--previous-exercise" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <div class="container--next-set">
+                <label class="label-btn-next-set" for="next-set">Next Set</label>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 btn--next-set" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <div class="container--next-exercise">
+                <label class="label-btn-next-exercise" for="next-set">Next Exercise</label>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 btn--next-exercise"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+                    clip-rule="evenodd"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                
+              </div>
+              <h3 class="exercise-edit-mode-title hidden">Edit Mode</h3>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 exercise-completed hidden" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <h3 class="exercise-edit-exercise-title">Exercise:</h3>
+              <p class="current-exercise-number">Exercise (2/8)</p>
+              <div class="exercise hidden flex">
+                <input type="radio" class="exercise-edit-radio hidden" />
+                <label class="label-exercise">Exercise:</label>
+                <input
+                  type="text"
+                  class="exercise-edit-input hidden"
+                  placeholder="Edit exercise"
+                />
+                <button class="btn--edit-exercise hidden">Update</button>
+              </div>
+              <div class="weight flex">
+                <input type="radio" class="weight-edit-radio hidden" />
+                <label class="label-weight" for="weight">Weight:</label>
+                <input
+                  type="number"
+                  class="weight-edit-input hidden"
+                  placeholder="Edit weight"
+                />
+                <button class="btn--edit-weight hidden">Update</button>
+              </div>
+              <div class="sets flex">
+                <input type="radio" class="sets-edit-radio hidden" />
+                <label class="label-sets" for="sets1">Set:</label>
+                <input
+                  type="number"
+                  class="setsMin-edit-input hidden"
+                  placeholder="start"
+                />
+                <input
+                  type="number"
+                  class="setsMax-edit-input hidden"
+                  placeholder="end"
+                />
+                <button class="btn--edit-sets hidden">Update</button>
+              </div>
+              <div class="reps flex">
+                <input type="radio" class="reps-edit-radio hidden" />
+                <label class="label-reps" for="reps">Reps:</label>
+                <input type="number" class="reps-edit-input hidden" />
+                <button class="btn--edit-reps hidden">Update</button>
+              </div>
+              <div class="rest flex">
+                <input type="radio" class="rest-edit-radio hidden" />
+                <label class="label-rest" for="rest1">Rest:</label>
+                <input
+                  type="number"
+                  class="restMin-edit-input hidden"
+                  placeholder="minutes"
+                />
+                <label class="label-rest-min" for="rest2"></label>
+                <input
+                  type="number"
+                  class="restSec-edit-input hidden"
+                  placeholder="seconds"
+                />
+                <label class="label-rest-sec" for="rest2"></label>
+                <button class="btn--edit-rest hidden">Update</button>
+              </div>
+              <div class="buttons">
+                <!-- <button class="btn--edit-select">Edit</button> -->
+                <!-- <button class="btn--next-set">Next Set</button> -->
+              </div>
             </div>
-            <div class="ex2">
-              <input type="radio" />
-              <label>DB Overhead Press</label>
-            </div>
-            <div class="ex3">
-              <input type="radio" />
-              <label>DB Grip Walk</label>
+            <!-- <div class="button_navigation--modal">
+              <a href="#"> Add exercises to workout </a>
+              <a href="#"> Create exercises </a>
+              <a href="#"> Exercises (0) </a>
+              <a href="#"> Start Workout </a>
             </div> -->
           </div>
         </div>
-        <div class="modal-exercise-info hidden">
-          <!-- <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 btn--exercise-list"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-              clip-rule="evenodd"
-            />
-          </svg> -->
-          <!-- <img class="btn--modal-add-exercise" src="img/add-circle-outline.svg" /> -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 btn--close-activeModal"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-              clip-rule="evenodd"
-            />
-          </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 btn--exercise-list"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-              clip-rule="evenodd"
-            />
-          </svg>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 btn--edit-select"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"
-            />
-            <path
-              fill-rule="evenodd"
-              d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-              clip-rule="evenodd"
-            />
-          </svg>
-          <div class="rest-timer-modal">
-            <img class="icons" src="img/remove-circle-outline.svg">
-            <h3 class="rest-timer-title">Rest</h3>
-            <h3 class="rest-timer-h3"></h3>
-            <img class="icons" src="img/add-circle-outline.svg">
-            <span class="btn--cancel-rest">Skip Rest</span>
-          </div>
-          
-          
-          <div class="container--previous-exercise">
-            <label class="label-btn-previous-exercise" for="previous-exercise">Previous Exercise</label>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 btn--previous-exercise" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-            </svg>
-          </div>
-          <div class="container--next-set">
-            <label class="label-btn-next-set" for="next-set">Next Set</label>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 btn--next-set" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-            </svg>
-          </div>
-          <div class="container--next-exercise">
-            <label class="label-btn-next-exercise" for="next-set">Next Exercise</label>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 btn--next-exercise"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
-                clip-rule="evenodd"
-              />
-              <path
-                fill-rule="evenodd"
-                d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            
-          </div>
-          <h3 class="exercise-edit-mode-title hidden">Edit Mode</h3>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 exercise-completed hidden" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-          </svg>
-          <h3 class="exercise-edit-exercise-title">Exercise:</h3>
-          <p class="current-exercise-number">Exercise (2/8)</p>
-          <div class="exercise hidden flex">
-            <input type="radio" class="exercise-edit-radio hidden" />
-            <label class="label-exercise">Exercise:</label>
-            <input
-              type="text"
-              class="exercise-edit-input hidden"
-              placeholder="Edit exercise"
-            />
-            <button class="btn--edit-exercise hidden">Update</button>
-          </div>
-          <div class="weight flex">
-            <input type="radio" class="weight-edit-radio hidden" />
-            <label class="label-weight" for="weight">Weight:</label>
-            <input
-              type="number"
-              class="weight-edit-input hidden"
-              placeholder="Edit weight"
-            />
-            <button class="btn--edit-weight hidden">Update</button>
-          </div>
-          <div class="sets flex">
-            <input type="radio" class="sets-edit-radio hidden" />
-            <label class="label-sets" for="sets1">Set:</label>
-            <input
-              type="number"
-              class="setsMin-edit-input hidden"
-              placeholder="start"
-            />
-            <input
-              type="number"
-              class="setsMax-edit-input hidden"
-              placeholder="end"
-            />
-            <button class="btn--edit-sets hidden">Update</button>
-          </div>
-          <div class="reps flex">
-            <input type="radio" class="reps-edit-radio hidden" />
-            <label class="label-reps" for="reps">Reps:</label>
-            <input type="number" class="reps-edit-input hidden" />
-            <button class="btn--edit-reps hidden">Update</button>
-          </div>
-          <div class="rest flex">
-            <input type="radio" class="rest-edit-radio hidden" />
-            <label class="label-rest" for="rest1">Rest:</label>
-            <input
-              type="number"
-              class="restMin-edit-input hidden"
-              placeholder="minutes"
-            />
-            <label class="label-rest-min" for="rest2"></label>
-            <input
-              type="number"
-              class="restSec-edit-input hidden"
-              placeholder="seconds"
-            />
-            <label class="label-rest-sec" for="rest2"></label>
-            <button class="btn--edit-rest hidden">Update</button>
-          </div>
-          <div class="buttons">
-            <!-- <button class="btn--edit-select">Edit</button> -->
-            <!-- <button class="btn--next-set">Next Set</button> -->
-          </div>
-        </div>
-        <!-- <div class="button_navigation--modal">
-          <a href="#"> Add exercises to workout </a>
-          <a href="#"> Create exercises </a>
-          <a href="#"> Exercises (0) </a>
-          <a href="#"> Start Workout </a>
-        </div> -->
+        <div class="container--history hidden">
+        </div>  
       </div>
+      
+      
+      
     </div>
     <script src="js/Init.js"></script>
     <script src="js/Buttons/Buttons_Modals/active-exercise-modal.js"></script>

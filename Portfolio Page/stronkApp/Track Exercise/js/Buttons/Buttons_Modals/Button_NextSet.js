@@ -7,6 +7,7 @@ const restTimer_Time = document.querySelector(".rest-timer-h3");
 const btn_CancelRest = document.querySelector(".btn--cancel-rest");
 
 let timeLeft;
+
 let timeLeftMil;
 let interval;
 const convertTime = function (minutes, seconds) {
@@ -59,6 +60,7 @@ const intervalFunction = () => {
   timeLeft--;
   restTimer_Time.innerHTML = timeLeft;
 };
+
 btn_CancelRest.addEventListener("click", function () {
   clearInterval(interval);
   restTimer_Time.innerHTML = "";
@@ -109,6 +111,7 @@ const exercise_Completed = document.querySelector(".exercise-completed");
 
 btn_NextSet.addEventListener("click", function () {
   clearInterval(interval);
+  modal_Exercise_Info.display = "none";
   restTimer_Time.innerHTML = "Begin Rest!";
   restTimerModal.style.display = "grid";
   convertTime(

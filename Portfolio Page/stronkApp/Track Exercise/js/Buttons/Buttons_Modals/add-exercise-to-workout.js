@@ -97,11 +97,17 @@ btn_PushDataToArray.addEventListener("click", function () {
   // labelSets.innerHTML = `Set: 1 / ${exercise_Sets.value}`;
   // labelReps.innerHTML = `Reps: ${exercise_Reps.value}`;
   // labelRest.innerHTML = `Rest: ${exercise_Minutes.value}m ${exercise_Seconds.value}s`;
+
   if (option_Barbell.selected) {
     for (let i = 0; i < select_Barbell_Exercises.options.length; i++) {
       if (select_Barbell_Exercises.options[i].selected) {
+        tempWorkoutList.push(select_Barbell_Exercises.options[i].value);
         exerciseGroup.workoutList.push(
           select_Barbell_Exercises.options[i].value
+        );
+        localStorage.setItem(
+          `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Exercises`,
+          JSON.stringify(tempWorkoutList)
         );
         localStorage.setItem(
           "exercises_WorkoutList",
@@ -112,8 +118,13 @@ btn_PushDataToArray.addEventListener("click", function () {
   } else if (option_Dumbbell.selected) {
     for (let i = 0; i < select_Dumbbell_Exercises.options.length; i++) {
       if (select_Dumbbell_Exercises.options[i].selected) {
+        tempWorkoutList.push(select_Dumbbell_Exercises.options[i].value);
         exerciseGroup.workoutList.push(
           select_Dumbbell_Exercises.options[i].value
+        );
+        localStorage.setItem(
+          `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Exercises`,
+          JSON.stringify(tempWorkoutList)
         );
         localStorage.setItem(
           "exercises_WorkoutList",
@@ -124,7 +135,12 @@ btn_PushDataToArray.addEventListener("click", function () {
   } else if (option_Body.selected) {
     for (let i = 0; i < select_Body_Exercises.options.length; i++) {
       if (select_Body_Exercises.options[i].selected) {
+        tempWorkoutList.push(select_Body_Exercises.options[i].value);
         exerciseGroup.workoutList.push(select_Body_Exercises.options[i].value);
+        localStorage.setItem(
+          `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Exercises`,
+          JSON.stringify(tempWorkoutList)
+        );
         localStorage.setItem(
           "exercises_WorkoutList",
           JSON.stringify(exerciseGroup.workoutList)
@@ -135,6 +151,11 @@ btn_PushDataToArray.addEventListener("click", function () {
     for (let i = 0; i < select_Rope_Exercises.options.length; i++) {
       if (select_Rope_Exercises.options[i].selected) {
         exerciseGroup.workoutList.push(select_Rope_Exercises.options[i].value);
+        tempWorkoutList.push(select_Rope_Exercises.options[i].value);
+        localStorage.setItem(
+          `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Exercises`,
+          JSON.stringify(tempWorkoutList)
+        );
         localStorage.setItem(
           "exercises_WorkoutList",
           JSON.stringify(exerciseGroup.workoutList)
@@ -206,8 +227,15 @@ btn_PushDataToArray.addEventListener("click", function () {
 });
 
 btn_CloseExerciseInfoModal.addEventListener("click", function () {
-  container_MainNav_Buttons.style.display = "grid";
+  ungroupedWorkoutList.classList.remove("hidden");
+  groupedWorkoutList.classList.remove("hidden");
+  workout_Timer.classList.add("hidden");
+  workouts_Title.innerHTML = `Workouts`;
+  container_workoutTimer_Buttons.classList.add("hidden");
   container_ExerciseInfo.style.display = "none";
+  btn_viewWorkOut.classList.remove("hidden");
+  activeModalContainer.style.gridRow = "3/6";
+  // modal_Exercise_Info.style.display = "none";
   hide_AddExercise_LabelsInputs();
   // editExercises_Modal = false;
   for (let i = 0; i < buttons_AddExerciseModal.length; i++) {
@@ -526,10 +554,10 @@ btn_linkAddExercise.addEventListener("click", function () {
   exercise_Reps.classList.remove("hidden");
   exercise_Seconds.classList.remove("hidden");
   exercise_Minutes.classList.remove("hidden");
-  exercise_Name.classList.add("hidden");
+  exercise_Name.classList.remove("hidden");
   title_AddExercise.classList.remove("hidden");
   select_Equipment.classList.remove("hidden");
-  label_addExercise_Exercise.classList.add("hidden");
+  label_addExercise_Exercise.classList.remove("hidden");
   exerciseStorage_Title.classList.add("hidden");
   exerciseWordBank_Input.classList.add("hidden");
 });
