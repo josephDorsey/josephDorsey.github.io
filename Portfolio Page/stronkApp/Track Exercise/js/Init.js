@@ -1,17 +1,98 @@
 "use strict";
 
 // let workout_Timer_Count = 50;
-let workout_Timer_Count =
-  JSON.parse(localStorage.getItem("workout_Timer_Count")) || 0;
-let workout_Interval;
 
 // Containers
 
 let workoutName_Count = 0;
-const tempWorkoutList =
+
+const exerciseGroup = {
+  exerciseEquipment: {
+    barbell: JSON.parse(localStorage.getItem("exercises_Barbell")) || [],
+    dumbbell: JSON.parse(localStorage.getItem("exercises_Dumbbell")) || [],
+    rope: JSON.parse(localStorage.getItem("exercises_Rope")) || [],
+    body: JSON.parse(localStorage.getItem("exercises_Body")) || [],
+    // type: JSON.parse(localStorage.getItem("exercises_Equipment_Type")) || [],
+  },
+  workoutName: [],
+  // workoutList: JSON.parse(localStorage.getItem("exercises_WorkoutList")) || [],
+  workoutList: [],
+  // name: [],
+  // weight: JSON.parse(localStorage.getItem("exercises_Weight")) || [],
+  weight: [],
+  sets: {
+    // min: JSON.parse(localStorage.getItem("exercises_Sets_Min")) || [],
+    // max: JSON.parse(localStorage.getItem("exercises_Sets_Max")) || [],
+    min: [],
+    max: [],
+  },
+  // reps: JSON.parse(localStorage.getItem("exercises_Reps")) || [],
+  reps: [],
+  rest: {
+    // minutes: JSON.parse(localStorage.getItem("exercises_Rest_Minutes")) || [],
+    // seconds: JSON.parse(localStorage.getItem("exercises_Rest_Seconds")) || [],
+    minutes: [],
+    seconds: [],
+  },
+  archived: [],
+};
+
+let archive_Workout_Name =
+  JSON.parse(localStorage.getItem("archived_exercises_WorkoutName")) || [];
+let temp_Workout_Name =
+  JSON.parse(localStorage.getItem("exercises_WorkoutName")) || [];
+let tempWorkoutList =
   JSON.parse(
-    localStorage.getItem(`workoutName_${workoutName_Count}_Exercises`)
+    localStorage.getItem(
+      `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Exercises`
+    )
   ) || [];
+let temp_Weight =
+  JSON.parse(
+    localStorage.getItem(
+      `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Weight`
+    )
+  ) || [];
+let temp_Rest_Seconds =
+  JSON.parse(
+    localStorage.getItem(
+      `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Rest_Seconds`
+    )
+  ) || [];
+let temp_Rest_Minutes =
+  JSON.parse(
+    localStorage.getItem(
+      `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Rest_Minutes`
+    )
+  ) || [];
+let temp_Sets_Min =
+  JSON.parse(
+    localStorage.getItem(
+      `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Sets_Min`
+    )
+  ) || [];
+let temp_Sets_Max =
+  JSON.parse(
+    localStorage.getItem(
+      `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Sets_Max`
+    )
+  ) || [];
+let temp_Reps =
+  JSON.parse(
+    localStorage.getItem(
+      `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Reps`
+    )
+  ) || [];
+
+let workout_Timer_Count =
+  JSON.parse(
+    localStorage.getItem(
+      `workoutName_${temp_Workout_Name[workoutName_Count]}_Timer_Count`
+    )
+  ) || 0;
+let workout_Interval;
+console.log(localStorage);
+
 let modalStates_Count = 0;
 let workoutState_Count =
   JSON.parse(localStorage.getItem("workoutState_Count")) || 0;
@@ -31,30 +112,6 @@ const img_Modal_ActiveExercise = document.querySelector(".i-PlayCircle");
 
 const container_ExerciseInfo = document.querySelector(".exercise-information");
 const container_MainNav_Buttons = document.querySelector(".main--nav-buttons");
-
-const exerciseGroup = {
-  exerciseEquipment: {
-    barbell: JSON.parse(localStorage.getItem("exercises_Barbell")) || [],
-    dumbbell: JSON.parse(localStorage.getItem("exercises_Dumbbell")) || [],
-    rope: JSON.parse(localStorage.getItem("exercises_Rope")) || [],
-    body: JSON.parse(localStorage.getItem("exercises_Body")) || [],
-    // type: JSON.parse(localStorage.getItem("exercises_Equipment_Type")) || [],
-  },
-  workoutName: JSON.parse(localStorage.getItem("exercises_WorkoutName")) || [],
-  // workoutList: JSON.parse(localStorage.getItem("exercises_WorkoutList")) || [],
-  workoutList: [],
-  // name: [],
-  weight: JSON.parse(localStorage.getItem("exercises_Weight")) || [],
-  sets: {
-    min: JSON.parse(localStorage.getItem("exercises_Sets_Min")) || [],
-    max: JSON.parse(localStorage.getItem("exercises_Sets_Max")) || [],
-  },
-  reps: JSON.parse(localStorage.getItem("exercises_Reps")) || [],
-  rest: {
-    minutes: JSON.parse(localStorage.getItem("exercises_Rest_Minutes")) || [],
-    seconds: JSON.parse(localStorage.getItem("exercises_Rest_Seconds")) || [],
-  },
-};
 
 const userExercises = {
   barbell: "",
@@ -83,7 +140,7 @@ const createWorkoutLocalStorage = function (input) {
   // pushes workout name to array and then adds to localstorage
   localStorage.setItem(
     `exercises_WorkoutName`,
-    JSON.stringify(exerciseGroup.workoutName)
+    JSON.stringify(temp_Workout_Name)
   );
 };
 
@@ -104,14 +161,24 @@ const retrieveWorkoutLocalStorage = function () {
 };
 
 window.onload = function () {
-  for (let i = 0; i < exerciseGroup.workoutName.length; i++) {
+  exerciseGroup.workoutName =
+    JSON.parse(localStorage.getItem("exercises_WorkoutName")) || [];
+  for (let i = 0; i < temp_Workout_Name.length; i++) {
     const div = document.createElement("div");
     div.innerHTML = `
-  <input class="workouts-radios" name="workouts-radios" type="radio">
-  <label class="label-workouts-radios">${exerciseGroup.workoutName[i]}</label>
+    <input class="workouts-radios" name="workouts-radios" type="radio">
+    <label class="label-workouts-radios">${temp_Workout_Name[i]}</label>
   
-  `;
+    `;
     ungroupedWorkoutList.appendChild(div);
+  }
+  for (let i = 0; i < exerciseGroup.archived.length; i++) {
+    const div = document.createElement("div");
+    div.innerHTML = `
+    <input class="archived-workouts-radios" name="archived-workouts-radios" type="radio">
+    <label class="label-archived-workouts-radios">${exerciseGroup.archived[i]}</label>
+    `;
+    archivedWorkoutList.appendChild(div);
   }
   // exerciseGroup.workoutList =
   //   JSON.parse(
@@ -129,9 +196,30 @@ window.onload = function () {
   if (workoutState[workoutState_Count] === "Active") {
     btn_StartWorkout.classList.add("hidden");
     btn_PauseWorkout.classList.remove("hidden");
-    workout_Timer_Count = JSON.parse(
-      localStorage.getItem("workout_Timer_Count")
-    );
+    workout_Timer_Count =
+      JSON.parse(
+        localStorage.getItem(
+          `workoutName_${temp_Workout_Name[workoutName_Count]}_Timer_Count`
+        )
+      ) || 0;
+    trackerTimer.app_Seconds =
+      JSON.parse(
+        localStorage.getItem(
+          `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Seconds`
+        )
+      ) || 0;
+    trackerTimer.app_Minutes =
+      JSON.parse(
+        localStorage.getItem(
+          `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Minutes`
+        )
+      ) || 0;
+    trackerTimer.app_Hours =
+      JSON.parse(
+        localStorage.getItem(
+          `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Hours`
+        )
+      ) || 0;
     workout_Interval = setInterval(appTimer, 1000);
     workout_Timer.innerHTML = `${
       trackerTimer.app_Hours < 10
@@ -148,6 +236,24 @@ window.onload = function () {
     }`;
   }
   if (workoutState[workoutState_Count] === "Pause") {
+    trackerTimer.app_Seconds =
+      JSON.parse(
+        localStorage.getItem(
+          `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Seconds`
+        )
+      ) || 0;
+    trackerTimer.app_Minutes =
+      JSON.parse(
+        localStorage.getItem(
+          `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Minutes`
+        )
+      ) || 0;
+    trackerTimer.app_Hours =
+      JSON.parse(
+        localStorage.getItem(
+          `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Hours`
+        )
+      ) || 0;
     workout_Timer.innerHTML = `${
       trackerTimer.app_Hours < 10
         ? `0${trackerTimer.app_Hours}`
@@ -166,8 +272,8 @@ window.onload = function () {
     btn_PauseWorkout.textContent = `Resume Workout`;
   }
   count = JSON.parse(localStorage.getItem("current_Exercise_Count")) || 0;
-  exerciseGroup.sets.min =
-    JSON.parse(localStorage.getItem("exercises_Sets_Min")) || [];
+  // exerciseGroup.sets.min =
+  //   JSON.parse(localStorage.getItem("exercises_Sets_Min")) || [];
   if (exerciseGroup.sets.min[count] === exerciseGroup.sets.max[count]) {
     labelNextSet.classList.toggle("hidden");
     btn_NextSet.classList.toggle("hidden");
@@ -266,7 +372,6 @@ window.onload = function () {
     // `;
     exercise_List.appendChild(div);
   }
-  span_Nav_Exercises.innerHTML = `Exercises (${exerciseGroup.workoutList.length})`;
 };
 
 // let main_Nav_styleState;

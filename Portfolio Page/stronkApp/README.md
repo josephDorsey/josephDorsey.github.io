@@ -232,3 +232,23 @@ btn_NextExercise.addEventListener("click", function () {
 In both instances the variable `count` was used instead of using a loop. I declared it outside of the code block in the global state.
 
 # Rest Timer modal
+
+# How to delete localStorage items
+
+I was having an issue where I could not delete the localStorage items that were strings that had more than one item in them. To work around this I had to do the following:
+
+```
+exerciseGroup.sets.min = [];
+localStorage.setItem(`workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Sets_Min`)
+localStorage.removeItem(`workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Sets_Min`)
+```
+
+So the idea is to set the item that we were previously trying to delete back to empty. Then save it to the localStorage, and then remove it from the localStorage. This seemed to be the workaround.
+
+# How to save a spliced index to a new array
+
+```
+arr.splice(1,1).pop();
+```
+
+Note that in the example above, `splice` is chained with `pop` because `splice` always returns an `array`, so pop is used to extract the single value from `array` returned by `splice`.

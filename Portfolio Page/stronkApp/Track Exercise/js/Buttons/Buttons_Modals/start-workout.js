@@ -14,10 +14,30 @@ const container_workoutTimer_Buttons = document.querySelector(
 
 const workout_Timer = document.querySelector(".workout-timer");
 const trackerTimer = {
-  app_Seconds: JSON.parse(localStorage.getItem("app_Seconds")) || 0,
-  app_Minutes: JSON.parse(localStorage.getItem("app_Minutes")) || 0,
-  app_Hours: JSON.parse(localStorage.getItem("app_Hours")) || 0,
-  app_Days: JSON.parse(localStorage.getItem("app_Days")) || 0,
+  app_Seconds:
+    JSON.parse(
+      localStorage.getItem(
+        `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Seconds`
+      )
+    ) || 0,
+  app_Minutes:
+    JSON.parse(
+      localStorage.getItem(
+        `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Minutes`
+      )
+    ) || 0,
+  app_Hours:
+    JSON.parse(
+      localStorage.getItem(
+        `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Hours`
+      )
+    ) || 0,
+  app_Days:
+    JSON.parse(
+      localStorage.getItem(
+        `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Days`
+      )
+    ) || 0,
 };
 // let app_Seconds = 0, app_Minutes = 0, app_Hours = 0, app_Days = 0;
 const appTimer = () => {
@@ -26,12 +46,20 @@ const appTimer = () => {
 
     workout_Timer_Count = 0;
     workout_Timer_Count--;
-    localStorage.setItem("app_Minutes", trackerTimer.app_Minutes);
+    // localStorage.setItem("app_Minutes", trackerTimer.app_Minutes);
+    localStorage.setItem(
+      `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Minutes`,
+      trackerTimer.app_Minutes
+    );
   }
   if (trackerTimer.app_Minutes === 59) {
     trackerTimer.app_Hours++;
     trackerTimer.app_Minutes = 0;
-    localStorage.setItem("app_Hours", trackerTimer.app_Hours);
+    // localStorage.setItem("app_Hours", trackerTimer.app_Hours);
+    localStorage.setItem(
+      `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Hours`,
+      trackerTimer.app_Hours
+    );
   }
   if (trackerTimer.app_Hours === 24) {
     trackerTimer.app_Days++;
@@ -40,11 +68,28 @@ const appTimer = () => {
 
   workout_Timer_Count++;
   trackerTimer.app_Seconds = workout_Timer_Count;
-  localStorage.setItem("workout_Timer_Count", workout_Timer_Count);
-  localStorage.setItem("app_Seconds", trackerTimer.app_Seconds);
-  localStorage.setItem("app_Minutes", trackerTimer.app_Minutes);
-  localStorage.setItem("app_Hours", trackerTimer.app_Hours);
-  localStorage.setItem("app_Days", trackerTimer.app_Days);
+  // localStorage.setItem("workout_Timer_Count", workout_Timer_Count);
+  localStorage.setItem(
+    `workoutName_${temp_Workout_Name[workoutName_Count]}_Timer_Count`,
+    workout_Timer_Count
+  );
+  localStorage.setItem(
+    `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Seconds`,
+    trackerTimer.app_Seconds
+  );
+  localStorage.setItem(
+    `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Minutes`,
+    trackerTimer.app_Minutes
+  );
+  localStorage.setItem(
+    `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Hours`,
+    trackerTimer.app_Hours
+  );
+  localStorage.setItem(
+    `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Days`,
+    trackerTimer.app_Days
+  );
+
   workout_Timer.innerHTML = `${
     trackerTimer.app_Hours < 10
       ? `0${trackerTimer.app_Hours}`
@@ -111,7 +156,6 @@ btn_StartWorkout.addEventListener("click", function () {
     container_MainNav_Buttons.style.display = "none";
     console.log(`Start workout state activated. Start timer!`);
     if (exerciseGroup.workoutList.length === 0) {
-      labelEquipment.innerHTML = `Equipment: `;
       exerciseEditExercise_Title.innerHTML = `Exercise:`;
       labelExercise.innerHTML = `Exercise:`;
       labelWeight.innerHTML = `Weight:`;
@@ -137,10 +181,22 @@ btn_PauseWorkout.addEventListener("click", function () {
       workoutState_Count++;
       localStorage.setItem("workoutState_Count", workoutState_Count);
     }, 1000);
-    localStorage.setItem("workout_Timer_Count", workout_Timer_Count);
-    localStorage.setItem("app_Seconds", trackerTimer.app_Seconds);
-    localStorage.setItem("app_Minutes", trackerTimer.app_Minutes);
-    localStorage.setItem("app_Hours", trackerTimer.app_Hours);
+    localStorage.setItem(
+      `workoutName_${temp_Workout_Name[workoutName_Count]}_Timer_Count`,
+      workout_Timer_Count
+    );
+    localStorage.setItem(
+      `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Seconds`,
+      trackerTimer.app_Seconds
+    );
+    localStorage.setItem(
+      `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Minutes`,
+      trackerTimer.app_Minutes
+    );
+    localStorage.setItem(
+      `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Hours`,
+      trackerTimer.app_Hours
+    );
     btn_PauseWorkout.textContent = `Resume Workout`;
     console.log(
       `${
@@ -159,6 +215,29 @@ btn_PauseWorkout.addEventListener("click", function () {
     );
   }
   if (workoutState[workoutState_Count] === "Pause") {
+    workout_Timer_Count = JSON.parse(
+      localStorage.getItem(
+        `workoutName_${temp_Workout_Name[workoutName_Count]}_Timer_Count`
+      )
+    );
+    trackerTimer.app_Seconds =
+      JSON.parse(
+        localStorage.getItem(
+          `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Seconds`
+        )
+      ) || 0;
+    trackerTimer.app_Minutes =
+      JSON.parse(
+        localStorage.getItem(
+          `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Minutes`
+        )
+      ) || 0;
+    trackerTimer.app_Hours =
+      JSON.parse(
+        localStorage.getItem(
+          `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Hours`
+        )
+      ) || 0;
     setTimeout(function () {
       workoutState_Count--;
       localStorage.setItem("workoutState_Count", workoutState_Count);
@@ -195,24 +274,9 @@ btn_EndWorkout.addEventListener("click", function () {
   }
 });
 btn_CloseActiveModal.addEventListener("click", function () {
-  // mainNav_Style();
-
-  // span_Nav_StartWorkout.innerHTML = `Resume Workout`;
-  // localStorage.setItem(
-  //   "span_Nav_StartWorkout",
-  //   (span_Nav_StartWorkout.innerHTML = `Resume Workout`)
-  // );
   modal_Exercise_Info.classList.toggle("hidden");
   container_ExerciseInfo.style.display = "grid";
 });
-
-// exerciseEditExercise_Title.innerHTML = `Exercise: ${exerciseGroup.workoutList[0]}`;
-//   labelExercise.innerHTML = `Exercise: ${exerciseGroup.workoutList[0]}`;
-//   labelWeight.innerHTML = `Weight: ${exerciseGroup.weight[0]}`;
-//   labelSets.innerHTML = `Set: ${exerciseGroup.sets.min[0]} / ${exerciseGroup.sets.max[0]}`;
-//   labelReps.innerHTML = `Reps: ${exerciseGroup.reps[0]}`;
-//   labelRest.innerHTML = `Rest: ${exerciseGroup.rest.minutes[0]}m ${exerciseGroup.rest.seconds[0]}s`;
-
 // Workouts button
 
 const btn_Workouts_Modal = document.querySelector(".btn--workouts-modal");
@@ -242,6 +306,9 @@ let createWorkout_WorkoutGroup_Modal_count = 0;
 const createWorkout_WorkoutGroup_Modal_state = ["Inactive", "Active"];
 
 btn_createWorkout_WorkoutGroup.addEventListener("click", function () {
+  for (let i = tempWorkoutList.length; i >= 0; i--) {
+    tempWorkoutList.splice(i, 1);
+  }
   createWorkout_WorkoutGroup_Modal.classList.toggle("hidden");
   workouts_Title.classList.toggle("hidden");
 });
@@ -266,10 +333,11 @@ btn_createWorkout_Modal.addEventListener("click", function () {
 
 const ungroupedWorkoutList = document.querySelector(".ungroupedWorkout");
 const groupedWorkoutList = document.querySelector(".groupedWorkout");
+const archivedWorkoutList = document.querySelector(".archivedWorkout");
 
 btn_createWorkout.addEventListener("click", function () {
   const div = document.createElement("div");
-  exerciseGroup.workoutName.push(createWorkout_Input.value);
+  temp_Workout_Name.push(createWorkout_Input.value);
   createWorkoutLocalStorage(createWorkout_Input.value);
   // exerciseGroup.workoutName.push(createWorkout_Input.value);
   // localStorage.setItem(
@@ -283,10 +351,10 @@ btn_createWorkout.addEventListener("click", function () {
   ungroupedWorkoutList.classList.toggle("hidden");
 
   // div.classList.add("")
-  for (let i = 0; i < exerciseGroup.workoutName.length; i++) {
+  for (let i = 0; i < temp_Workout_Name.length; i++) {
     div.innerHTML = `
     <input class="workouts-radios" name="workouts-radios" type="radio">
-    <label class="label-workouts-radios">${exerciseGroup.workoutName[i]}</label>
+    <label class="label-workouts-radios">${temp_Workout_Name[i]}</label>
     
     `;
     ungroupedWorkoutList.appendChild(div);
@@ -296,8 +364,6 @@ btn_createWorkout.addEventListener("click", function () {
 btn_createWorkoutGroup.addEventListener("click", function () {
   createWorkout_WorkoutGroup_Modal.classList.toggle("hidden");
 });
-
-//
 
 const workouts_Modal_List = document.getElementsByClassName("workouts-radios");
 const workouts_Modal_List_Labels = document.getElementsByClassName(
@@ -310,15 +376,100 @@ btn_viewWorkOut.addEventListener("click", function () {
 
   //   const modalStates = ["Inactive", "Create Exercise", "Add Exercise"];
   // let modalStates_Count = 0;
+  workoutState_Count = 0;
+  if (workoutState[workoutState_Count] === "Inactive") {
+    btn_PauseWorkout.classList.toggle("hidden");
+    btn_StartWorkout.classList.toggle("hidden");
+  }
+
   for (let i = 0; i < workouts_Modal_List.length; i++) {
     if (workouts_Modal_List[i].checked === true) {
       workoutName_Count = i;
-      console.log(`checked`);
-
+      console.log(`Workout: ${temp_Workout_Name[workoutName_Count]} selected`);
+      tempWorkoutList =
+        JSON.parse(
+          localStorage.getItem(
+            `workoutName_${temp_Workout_Name[workoutName_Count]}_Exercises`
+          )
+        ) || [];
+      temp_Weight =
+        JSON.parse(
+          localStorage.getItem(
+            `workoutName_${temp_Workout_Name[workoutName_Count]}_Weight`
+          )
+        ) || [];
+      temp_Rest_Seconds =
+        JSON.parse(
+          localStorage.getItem(
+            `workoutName_${temp_Workout_Name[workoutName_Count]}_Rest_Seconds`
+          )
+        ) || [];
+      temp_Rest_Minutes =
+        JSON.parse(
+          localStorage.getItem(
+            `workoutName_${temp_Workout_Name[workoutName_Count]}_Rest_Minutes`
+          )
+        ) || [];
+      temp_Sets_Min =
+        JSON.parse(
+          localStorage.getItem(
+            `workoutName_${temp_Workout_Name[workoutName_Count]}_Sets_Min`
+          )
+        ) || [];
+      temp_Sets_Max =
+        JSON.parse(
+          localStorage.getItem(
+            `workoutName_${temp_Workout_Name[workoutName_Count]}_Sets_Max`
+          )
+        ) || [];
+      temp_Reps =
+        JSON.parse(
+          localStorage.getItem(
+            `workoutName_${temp_Workout_Name[workoutName_Count]}_Reps`
+          )
+        ) || [];
+      trackerTimer.app_Seconds =
+        JSON.parse(
+          localStorage.getItem(
+            `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Seconds`
+          )
+        ) || 0;
+      trackerTimer.app_Minutes =
+        JSON.parse(
+          localStorage.getItem(
+            `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Minutes`
+          )
+        ) || 0;
+      trackerTimer.app_Hours =
+        JSON.parse(
+          localStorage.getItem(
+            `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Hours`
+          )
+        ) || 0;
+      if (trackerTimer.app_Seconds > 0) {
+        workoutState_Count = 2;
+        if (workoutState[workoutState_Count] === "Pause") {
+          btn_StartWorkout.classList.toggle("hidden");
+          btn_PauseWorkout.classList.toggle("hidden");
+        }
+      }
+      workout_Timer.innerHTML = `${
+        trackerTimer.app_Hours < 10
+          ? `0${trackerTimer.app_Hours}`
+          : `${trackerTimer.app_Hours}`
+      }:${
+        trackerTimer.app_Minutes < 10
+          ? `0${trackerTimer.app_Minutes}`
+          : `${trackerTimer.app_Minutes}`
+      }:${
+        trackerTimer.app_Seconds < 10
+          ? `0${trackerTimer.app_Seconds}`
+          : `${trackerTimer.app_Seconds}`
+      }`;
       groupedWorkoutList.classList.toggle("hidden");
       ungroupedWorkoutList.classList.toggle("hidden");
       btn_viewWorkOut.classList.toggle("hidden");
-      workouts_Title.innerHTML = `${exerciseGroup.workoutName[i]}`;
+      workouts_Title.innerHTML = `${temp_Workout_Name[i]}`;
       container_ExerciseInfo.style.display = "grid";
       if (modalStates[modalStates_Count] === "Inactive") {
         btn_PushDataToArray.classList.add("hidden");
@@ -368,11 +519,51 @@ btn_linkViewWorkout.addEventListener("click", function () {
     if (workouts_Modal_List[i].checked === true) {
       workoutName_Count = i;
       console.log(`checked`);
-      exerciseGroup.workoutList = JSON.parse(
-        localStorage.getItem(
-          `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Exercises`
-        )
+      exerciseGroup.workoutName = JSON.parse(
+        localStorage.getItem(`exercises_WorkoutName`)
       );
+      exerciseGroup.workoutList =
+        JSON.parse(
+          localStorage.getItem(
+            `workoutName_${temp_Workout_Name[workoutName_Count]}_Exercises`
+          )
+        ) || [];
+      exerciseGroup.weight =
+        JSON.parse(
+          localStorage.getItem(
+            `workoutName_${temp_Workout_Name[workoutName_Count]}_Weight`
+          )
+        ) || [];
+      exerciseGroup.sets.min =
+        JSON.parse(
+          localStorage.getItem(
+            `workoutName_${temp_Workout_Name[workoutName_Count]}_Sets_Min`
+          )
+        ) || [];
+      exerciseGroup.sets.max =
+        JSON.parse(
+          localStorage.getItem(
+            `workoutName_${temp_Workout_Name[workoutName_Count]}_Sets_Max`
+          )
+        ) || [];
+      exerciseGroup.reps =
+        JSON.parse(
+          localStorage.getItem(
+            `workoutName_${temp_Workout_Name[workoutName_Count]}_Reps`
+          )
+        ) || [];
+      exerciseGroup.rest.minutes =
+        JSON.parse(
+          localStorage.getItem(
+            `workoutName_${temp_Workout_Name[workoutName_Count]}_Rest_Minutes`
+          )
+        ) || [];
+      exerciseGroup.rest.seconds =
+        JSON.parse(
+          localStorage.getItem(
+            `workoutName_${temp_Workout_Name[workoutName_Count]}_Rest_Seconds`
+          )
+        ) || [];
     }
   }
 
@@ -398,5 +589,249 @@ btn_linkViewWorkout.addEventListener("click", function () {
     labelSets.innerHTML = `Set: ${exerciseGroup.sets.min[count]} / ${exerciseGroup.sets.max[count]}`;
     labelReps.innerHTML = `Reps: ${exerciseGroup.reps[count]}`;
     labelRest.innerHTML = `Rest: ${exerciseGroup.rest.minutes[count]}m ${exerciseGroup.rest.seconds[count]}s`;
+  }
+  if (exerciseGroup.sets.min[count] === exerciseGroup.sets.max[count]) {
+    labelNextSet.classList.toggle("hidden");
+    btn_NextSet.classList.toggle("hidden");
+    // btn_NextExercise.classList.remove("hidden");
+    // labelNextExercise.classList.remove("hidden");
+    // btn_NextSet.classList.toggle("hidden");
+    // labelNextSet.classList.toggle("hidden");
+    console.log(`You've finished your set! begin next exercise`);
+    // btn_NextExercise.classList.toggle("hidden");
+    // labelNextExercise.classList.toggle("hidden");
+  }
+  if (exerciseGroup.sets.min[count] < exerciseGroup.sets.max[count]) {
+    labelNextSet.classList.remove("hidden");
+    btn_NextSet.classList.remove("hidden");
+  }
+  if (count === 0) {
+    labelPreviousExercise.classList.add("hidden");
+    btn_PreviousExercise.classList.add("hidden");
+  } else if (count > 0) {
+    labelPreviousExercise.classList.remove("hidden");
+    btn_PreviousExercise.classList.remove("hidden");
+  }
+});
+
+const btn_Edit_Workout_WorkoutGroup = document.querySelector(
+  ".btn--edit-Workout-WorkoutGroup"
+);
+const btn_Delete_Workout_WorkoutGroup = document.querySelector(
+  ".btn--delete-workout"
+);
+const btn_Archive_Workout_WorkoutGroup = document.querySelector(
+  ".btn--archive-workout"
+);
+const btn_View_Archive_Workout_WorkoutGroup = document.querySelector(
+  ".btn--view-archived-workout"
+);
+const btn_Restore_Archive_Workout_WorkoutGroup = document.querySelector(
+  ".btn--restore-archived-workout"
+);
+const archived_Workout_List = document.getElementsByClassName(
+  "archived-workouts-radios"
+);
+const archived_Workout_List_Labels = document.getElementsByClassName(
+  "label-archived-workouts-radios"
+);
+
+btn_Edit_Workout_WorkoutGroup.addEventListener("click", function () {
+  btn_viewWorkOut.classList.toggle("hidden");
+  btn_Delete_Workout_WorkoutGroup.classList.toggle("hidden");
+  btn_Archive_Workout_WorkoutGroup.classList.toggle("hidden");
+  btn_View_Archive_Workout_WorkoutGroup.classList.toggle("hidden");
+  if (btn_Edit_Workout_WorkoutGroup.innerHTML === "Done") {
+    btn_Edit_Workout_WorkoutGroup.innerHTML = `Edit`;
+  } else {
+    btn_Edit_Workout_WorkoutGroup.innerHTML = `Done`;
+  }
+});
+
+btn_Delete_Workout_WorkoutGroup.addEventListener("click", function () {
+  for (let i = 0; i < workouts_Modal_List.length; i++) {
+    if (workouts_Modal_List[i].checked === true) {
+      workoutName_Count = i;
+      workouts_Modal_List[i].remove();
+      workouts_Modal_List_Labels[i].remove();
+      deleteSavedWorkout();
+      exerciseGroup.workoutName.splice(i, 1);
+      temp_Workout_Name.splice(i, 1);
+      localStorage.setItem(
+        "exercises_WorkoutName",
+        JSON.stringify(exerciseGroup.workoutName)
+      );
+      break;
+    }
+  }
+
+  console.log(localStorage);
+});
+
+const deleteSavedWorkout = function () {
+  // set [], save to local, delete from local
+  exerciseGroup.workoutList = [];
+  localStorage.setItem(
+    `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Exercises`,
+    JSON.stringify(exerciseGroup.workoutList)
+  );
+  localStorage.removeItem(
+    `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Exercises`
+  );
+  // delete weight
+  exerciseGroup.weight = [];
+  localStorage.setItem(
+    `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Weight`,
+    JSON.stringify(exerciseGroup.weight)
+  );
+  localStorage.removeItem(
+    `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Weight`
+  );
+
+  // delete sets min
+  exerciseGroup.sets.min = [];
+  localStorage.setItem(
+    `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Sets_Min`,
+    JSON.stringify(exerciseGroup.sets.min)
+  );
+  localStorage.removeItem(
+    `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Sets_Min`
+  );
+
+  // delete sets max
+  exerciseGroup.sets.max = [];
+  localStorage.setItem(
+    `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Sets_Max`,
+    JSON.stringify(exerciseGroup.sets.max)
+  );
+  localStorage.removeItem(
+    `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Sets_Max`
+  );
+
+  // delete reps
+  exerciseGroup.reps = [];
+  localStorage.setItem(
+    `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Reps`,
+    JSON.stringify(exerciseGroup.reps)
+  );
+  localStorage.removeItem(
+    `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Reps`
+  );
+
+  // delete rest minutes
+  exerciseGroup.rest.minutes = [];
+  localStorage.setItem(
+    `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Rest_Minutes`,
+    JSON.stringify(exerciseGroup.rest.minutes)
+  );
+  localStorage.removeItem(
+    `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Rest_Minutes`
+  );
+
+  // delete rest seconds
+  exerciseGroup.rest.seconds = [];
+  localStorage.setItem(
+    `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Rest_Seconds`,
+    JSON.stringify(exerciseGroup.rest.seconds)
+  );
+  localStorage.removeItem(
+    `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Rest_Seconds`
+  );
+
+  // Run this loop backwards so that way the spliced indexs dont get mixed up
+  for (let i = tempWorkoutList.length; i >= 0; i--) {
+    tempWorkoutList.splice(i, 1);
+  }
+  for (let i = temp_Reps.length; i >= 0; i--) {
+    temp_Reps.splice(i, 1);
+  }
+  for (let i = temp_Rest_Seconds.length; i >= 0; i--) {
+    temp_Rest_Seconds.splice(i, 1);
+  }
+  for (let i = temp_Rest_Minutes.length; i >= 0; i--) {
+    temp_Rest_Minutes.splice(i, 1);
+  }
+  for (let i = temp_Sets_Max.length; i >= 0; i--) {
+    temp_Sets_Max.splice(i, 1);
+  }
+  for (let i = temp_Sets_Min.length; i >= 0; i--) {
+    temp_Sets_Min.splice(i, 1);
+  }
+  for (let i = temp_Weight.length; i >= 0; i--) {
+    temp_Weight.splice(i, 1);
+  }
+};
+
+btn_Archive_Workout_WorkoutGroup.addEventListener("click", function () {
+  for (let i = 0; i < workouts_Modal_List.length; i++) {
+    if (workouts_Modal_List[i].checked === true) {
+      workoutName_Count = i;
+      workouts_Modal_List[i].remove();
+      workouts_Modal_List_Labels[i].remove();
+      archive_Workout_Name.push(exerciseGroup.workoutName.splice(i, 1).pop());
+      temp_Workout_Name.splice(i, 1);
+      localStorage.setItem(
+        "exercises_WorkoutName",
+        JSON.stringify(temp_Workout_Name)
+      );
+      localStorage.setItem(
+        "archived_exercises_WorkoutName",
+        JSON.stringify(archive_Workout_Name)
+      );
+      break;
+    }
+  }
+});
+
+btn_View_Archive_Workout_WorkoutGroup.addEventListener("click", function () {
+  groupedWorkoutList.classList.toggle("hidden");
+  btn_Archive_Workout_WorkoutGroup.classList.toggle("hidden");
+  btn_Delete_Workout_WorkoutGroup.classList.toggle("hidden");
+  ungroupedWorkoutList.classList.toggle("hidden");
+  archivedWorkoutList.classList.toggle("hidden");
+  btn_Restore_Archive_Workout_WorkoutGroup.classList.toggle("hidden");
+  exerciseGroup.archived =
+    JSON.parse(localStorage.getItem("archived_exercises_WorkoutName")) || [];
+  const div = document.createElement("div");
+  for (let i = 0; i < exerciseGroup.archived.length; i++) {
+    div.innerHTML = `
+    <input class="archived-workouts-radios" name="archived-workouts-radios" type="radio">
+    <label class="label-archived-workouts-radios">${exerciseGroup.archived[i]}</label>
+    `;
+    archivedWorkoutList.appendChild(div);
+  }
+
+  if (btn_View_Archive_Workout_WorkoutGroup.innerHTML === "View Archive") {
+    btn_View_Archive_Workout_WorkoutGroup.innerHTML = "Close Archive";
+  } else {
+    btn_View_Archive_Workout_WorkoutGroup.innerHTML = "View Archive";
+  }
+});
+btn_Restore_Archive_Workout_WorkoutGroup.addEventListener("click", function () {
+  for (let i = 0; i < archived_Workout_List.length; i++) {
+    if (archived_Workout_List[i].checked === true) {
+      archived_Workout_List[i].remove();
+      archived_Workout_List_Labels[i].remove();
+      temp_Workout_Name.push(exerciseGroup.archived.splice(i, 1).pop());
+      archive_Workout_Name.splice(i, 1);
+      localStorage.setItem(
+        "archived_exercises_WorkoutName",
+        JSON.stringify(archive_Workout_Name)
+      );
+      localStorage.setItem(
+        "exercises_WorkoutName",
+        JSON.stringify(temp_Workout_Name)
+      );
+      const div = document.createElement("div");
+      for (let i = 0; i < temp_Workout_Name.length; i++) {
+        div.innerHTML = `
+        <input class="workouts-radios" name="workouts-radios" type="radio">
+        <label class="label-workouts-radios">${temp_Workout_Name[i]}</label>
+        
+        `;
+        ungroupedWorkoutList.appendChild(div);
+      }
+      break;
+    }
   }
 });

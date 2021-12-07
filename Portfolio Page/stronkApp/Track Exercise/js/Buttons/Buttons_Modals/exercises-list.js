@@ -92,14 +92,6 @@ btn_DeleteExerciseListItems.addEventListener("click", function () {
       exercise_List_CurrentExercise.innerHTML = `Current exercise: ${exerciseGroup.workoutList[count]}`;
       console.log(exerciseGroup.workoutList, exerciseGroup);
     }
-
-    if (exerciseGroup.workoutList.length === 0) {
-      span_Nav_Exercises.innerHTML = `Exercises (${exerciseGroup.workoutList.length})`;
-    } else {
-      span_Nav_Exercises.innerHTML = `Exercises (${
-        exerciseGroup.workoutList.length + 1
-      })`;
-    }
   }
 });
 
