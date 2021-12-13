@@ -3,42 +3,24 @@
 const modal_Exercise_Info = document.querySelector(".modal-exercise-info");
 
 const activeModalContainer = document.querySelector(".modal-active-container");
+
+const btn_Open_Exercises_Window = document.querySelector(
+  ".btn--Open-Exercises-Window"
+);
 const btn_StartWorkout = document.querySelector(".btn--startWorkout");
 const btn_PauseWorkout = document.querySelector(".btn--pauseWorkout");
+const btn_ResumeWorkout = document.querySelector(".btn--resumeWorkout");
 const btn_EndWorkout = document.querySelector(".btn--endWorkout");
 const btn_CloseActiveModal = document.querySelector(".btn--close-activeModal");
+
+// CONTAINER WORKOUT MODAL
 const container_WorkoutsModal = document.querySelector(".container--workouts");
 const container_workoutTimer_Buttons = document.querySelector(
   ".start-end-workout-modal"
 );
 
 const workout_Timer = document.querySelector(".workout-timer");
-const trackerTimer = {
-  app_Seconds:
-    JSON.parse(
-      localStorage.getItem(
-        `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Seconds`
-      )
-    ) || 0,
-  app_Minutes:
-    JSON.parse(
-      localStorage.getItem(
-        `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Minutes`
-      )
-    ) || 0,
-  app_Hours:
-    JSON.parse(
-      localStorage.getItem(
-        `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Hours`
-      )
-    ) || 0,
-  app_Days:
-    JSON.parse(
-      localStorage.getItem(
-        `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Days`
-      )
-    ) || 0,
-};
+
 // let app_Seconds = 0, app_Minutes = 0, app_Hours = 0, app_Days = 0;
 const appTimer = () => {
   if (trackerTimer.app_Seconds === 59) {
@@ -104,6 +86,7 @@ const appTimer = () => {
       : `${trackerTimer.app_Seconds}`
   }`;
 };
+
 btn_StartWorkout.addEventListener("click", function () {
   // const workoutState = [
   //   "Start Workout",
@@ -197,7 +180,9 @@ btn_PauseWorkout.addEventListener("click", function () {
       `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Hours`,
       trackerTimer.app_Hours
     );
-    btn_PauseWorkout.textContent = `Resume Workout`;
+    // btn_PauseWorkout.textContent = `Resume Workout`;
+    btn_PauseWorkout.classList.toggle("hidden");
+    btn_ResumeWorkout.classList.toggle("hidden");
     console.log(
       `${
         trackerTimer.app_Hours < 10
@@ -214,6 +199,67 @@ btn_PauseWorkout.addEventListener("click", function () {
       }`
     );
   }
+  //   if (workoutState[workoutState_Count] === "Pause") {
+  //     workout_Timer_Count = JSON.parse(
+  //       localStorage.getItem(
+  //         `workoutName_${temp_Workout_Name[workoutName_Count]}_Timer_Count`
+  //       )
+  //     );
+  //     trackerTimer.app_Seconds =
+  //       JSON.parse(
+  //         localStorage.getItem(
+  //           `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Seconds`
+  //         )
+  //       ) || 0;
+  //     trackerTimer.app_Minutes =
+  //       JSON.parse(
+  //         localStorage.getItem(
+  //           `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Minutes`
+  //         )
+  //       ) || 0;
+  //     trackerTimer.app_Hours =
+  //       JSON.parse(
+  //         localStorage.getItem(
+  //           `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Hours`
+  //         )
+  //       ) || 0;
+  //     setTimeout(function () {
+  //       workoutState_Count--;
+  //       localStorage.setItem("workoutState_Count", workoutState_Count);
+  //     }, 1000);
+  //     console.log(`workout begin`);
+  //     // workoutState_Count++;
+  //     workout_Interval = setInterval(appTimer, 1000);
+  //     btn_PauseWorkout.textContent = `Pause Workout`;
+  //   }
+});
+
+btn_EndWorkout.addEventListener("click", function () {
+  workoutState_Count = 0;
+  if (workoutState[workoutState_Count] === "Inactive") {
+    clearInterval(workout_Interval);
+    btn_PauseWorkout.classList.add("hidden");
+    btn_StartWorkout.classList.remove("hidden");
+    workout_Timer.innerHTML = `00:00:00`;
+    console.log(
+      `WORKOUT ENDED: ${
+        trackerTimer.app_Hours < 10
+          ? `0${trackerTimer.app_Hours}`
+          : `${trackerTimer.app_Hours}`
+      }:${
+        trackerTimer.app_Minutes < 10
+          ? `0${trackerTimer.app_Minutes}`
+          : `${trackerTimer.app_Minutes}`
+      }:${
+        trackerTimer.app_Seconds < 10
+          ? `0${trackerTimer.app_Seconds}`
+          : `${trackerTimer.app_Seconds}`
+      }`
+    );
+  }
+});
+
+btn_ResumeWorkout.addEventListener("click", function () {
   if (workoutState[workoutState_Count] === "Pause") {
     workout_Timer_Count = JSON.parse(
       localStorage.getItem(
@@ -245,34 +291,12 @@ btn_PauseWorkout.addEventListener("click", function () {
     console.log(`workout begin`);
     // workoutState_Count++;
     workout_Interval = setInterval(appTimer, 1000);
-    btn_PauseWorkout.textContent = `Pause Workout`;
+    // btn_PauseWorkout.textContent = `Pause Workout`;
+    btn_PauseWorkout.classList.toggle("hidden");
+    btn_ResumeWorkout.classList.toggle("hidden");
   }
 });
 
-btn_EndWorkout.addEventListener("click", function () {
-  workoutState_Count = 0;
-  if (workoutState[workoutState_Count] === "Inactive") {
-    clearInterval(workout_Interval);
-    btn_PauseWorkout.classList.add("hidden");
-    btn_StartWorkout.classList.remove("hidden");
-    workout_Timer.innerHTML = `00:00:00`;
-    console.log(
-      `WORKOUT ENDED: ${
-        trackerTimer.app_Hours < 10
-          ? `0${trackerTimer.app_Hours}`
-          : `${trackerTimer.app_Hours}`
-      }:${
-        trackerTimer.app_Minutes < 10
-          ? `0${trackerTimer.app_Minutes}`
-          : `${trackerTimer.app_Minutes}`
-      }:${
-        trackerTimer.app_Seconds < 10
-          ? `0${trackerTimer.app_Seconds}`
-          : `${trackerTimer.app_Seconds}`
-      }`
-    );
-  }
-});
 btn_CloseActiveModal.addEventListener("click", function () {
   modal_Exercise_Info.classList.toggle("hidden");
   container_ExerciseInfo.style.display = "grid";
@@ -317,6 +341,7 @@ btn_Workouts_Modal.addEventListener("click", function () {
   // btn_createWorkout_WorkoutGroup.classList.toggle("hidden");
   if (container_WorkoutsModal.style.display === "none") {
     container_WorkoutsModal.style.display = "grid";
+    container_ExercisesModal.style.display = "none";
   } else if ((container_WorkoutsModal.style.display = "grid")) {
     container_WorkoutsModal.style.display = "none";
   }
@@ -373,7 +398,10 @@ const btn_viewWorkOut = document.querySelector(".btn--view-workout");
 
 btn_viewWorkOut.addEventListener("click", function () {
   // createWorkoutLocalStorage(exerciseGroup.workoutName[workoutName_Count]);
-
+  btn_createWorkout_WorkoutGroup.classList.add("hidden");
+  btn_Edit_Workout_WorkoutGroup.classList.add("hidden");
+  btn_CloseExerciseInfoModal.classList.toggle("hidden");
+  span_CloseExerciseInfoModal.classList.toggle("hidden");
   //   const modalStates = ["Inactive", "Create Exercise", "Add Exercise"];
   // let modalStates_Count = 0;
   workoutState_Count = 0;
@@ -381,8 +409,16 @@ btn_viewWorkOut.addEventListener("click", function () {
     btn_PauseWorkout.classList.toggle("hidden");
     btn_StartWorkout.classList.toggle("hidden");
   }
+  if (workoutState[workoutState_Count] === "Pause") {
+    btn_PauseWorkout.classList.add("hidden");
+    btn_ResumeWorkout.classList.toggle("hidden");
+  }
 
   for (let i = 0; i < workouts_Modal_List.length; i++) {
+    if (tempWorkoutList.length === 1) {
+      btn_NextExercise.classList.add("hidden");
+      labelNextExercise.classList.add("hidden");
+    }
     if (workouts_Modal_List[i].checked === true) {
       workoutName_Count = i;
       console.log(`Workout: ${temp_Workout_Name[workoutName_Count]} selected`);
@@ -449,9 +485,23 @@ btn_viewWorkOut.addEventListener("click", function () {
       if (trackerTimer.app_Seconds > 0) {
         workoutState_Count = 2;
         if (workoutState[workoutState_Count] === "Pause") {
-          btn_StartWorkout.classList.toggle("hidden");
-          btn_PauseWorkout.classList.toggle("hidden");
+          btn_StartWorkout.classList.add("hidden");
+          btn_PauseWorkout.classList.add("hidden");
+          btn_ResumeWorkout.classList.remove("hidden");
+          btn_EndWorkout.classList.remove("hidden");
+          btn_Open_Exercises_Window.style.transform = "translateX(0%)";
         }
+      } else if (
+        trackerTimer.app_Seconds === 0 &&
+        trackerTimer.app_Minutes === 0 &&
+        trackerTimer.app_Hours === 0
+      ) {
+        btn_StartWorkout.classList.remove("hidden");
+        btn_PauseWorkout.classList.add("hidden");
+        btn_ResumeWorkout.classList.add("hidden");
+        btn_EndWorkout.classList.add("hidden");
+        btn_Open_Exercises_Window.style.transform = "translateX(-15%)";
+        // btn_OpenExerciseInfoModal.style.transform = "translateX(0%)";
       }
       workout_Timer.innerHTML = `${
         trackerTimer.app_Hours < 10
@@ -516,6 +566,13 @@ const btn_linkViewWorkout = document.querySelector(".btn--link-viewWorkout");
 
 btn_linkViewWorkout.addEventListener("click", function () {
   for (let i = 0; i < workouts_Modal_List.length; i++) {
+    if (tempWorkoutList.length === 1) {
+      btn_NextExercise.classList.add("hidden");
+      labelNextExercise.classList.add("hidden");
+    } else if (tempWorkoutList.length > 1) {
+      btn_NextExercise.classList.remove("hidden");
+      labelNextExercise.classList.remove("hidden");
+    }
     if (workouts_Modal_List[i].checked === true) {
       workoutName_Count = i;
       console.log(`checked`);

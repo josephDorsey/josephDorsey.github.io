@@ -30,6 +30,9 @@ const btn_PushDataToArray = document.querySelector(".btn--push-data-to-array");
 const btn_CloseExerciseInfoModal = document.querySelector(
   ".btn--close-exercise-info"
 );
+const span_CloseExerciseInfoModal = document.querySelector(
+  ".span--close-exercise-info"
+);
 const btn_OpenExerciseInfoModal = document.getElementsByClassName(
   "btn--open-add-exercise-modal"
 );
@@ -279,6 +282,10 @@ btn_CloseExerciseInfoModal.addEventListener("click", function () {
   container_workoutTimer_Buttons.classList.add("hidden");
   container_ExerciseInfo.style.display = "none";
   btn_viewWorkOut.classList.remove("hidden");
+  btn_createWorkout_WorkoutGroup.classList.toggle("hidden");
+  btn_Edit_Workout_WorkoutGroup.classList.toggle("hidden");
+  btn_CloseExerciseInfoModal.classList.toggle("hidden");
+  span_CloseExerciseInfoModal.classList.toggle("hidden");
   activeModalContainer.style.gridRow = "3/6";
   // modal_Exercise_Info.style.display = "none";
   hide_AddExercise_LabelsInputs();

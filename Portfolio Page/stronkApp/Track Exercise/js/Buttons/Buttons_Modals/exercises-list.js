@@ -188,25 +188,26 @@ btn_CloseExerciseList.addEventListener("click", function () {
   container_MainNav_Buttons.classList.toggle("hidden");
 });
 
-btnMain_ToggleExerciseList.addEventListener("click", function () {
-  // mainNav_Style();
-  // main_Nav_styleState = 0;
-  exerciseList_state_listMode();
-  // exerciseList_Modal = true;
-  exerciseList_Container.classList.toggle("hidden");
-  container_MainNav_Buttons.style.display = "none";
-  if (exerciseGroup.workoutList.length === 0) {
-    exercise_List_P.classList.remove("hidden");
-    exercise_List_Hint.classList.remove("hidden");
-    exercise_List_CurrentExercise.classList.add("hidden");
-    btn_SetActive.classList.add("hidden");
-  } else if (exerciseGroup.workoutList.length > 0) {
-    exercise_List_P.classList.add("hidden");
-    exercise_List_Hint.classList.add("hidden");
-    exercise_List_CurrentExercise.classList.remove("hidden");
-    btn_SetActive.classList.remove("hidden");
-  }
-});
+// main exercise list btn
+// btnMain_ToggleExerciseList.addEventListener("click", function () {
+//   // mainNav_Style();
+//   // main_Nav_styleState = 0;
+//   exerciseList_state_listMode();
+//   // exerciseList_Modal = true;
+//   exerciseList_Container.classList.toggle("hidden");
+//   container_MainNav_Buttons.style.display = "none";
+//   if (exerciseGroup.workoutList.length === 0) {
+//     exercise_List_P.classList.remove("hidden");
+//     exercise_List_Hint.classList.remove("hidden");
+//     exercise_List_CurrentExercise.classList.add("hidden");
+//     btn_SetActive.classList.add("hidden");
+//   } else if (exerciseGroup.workoutList.length > 0) {
+//     exercise_List_P.classList.add("hidden");
+//     exercise_List_Hint.classList.add("hidden");
+//     exercise_List_CurrentExercise.classList.remove("hidden");
+//     btn_SetActive.classList.remove("hidden");
+//   }
+// });
 
 btn_toggleExerciseList.addEventListener("click", function () {
   exerciseList_Container.classList.toggle("hidden");

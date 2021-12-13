@@ -66,15 +66,25 @@
           </a>
         </div>
         <div class="container--nav-img">
-          <a href="#" class="btn--view-exercise-list">
+          <!-- <a href="#" class="btn--view-exercise-list">
+            <img class="nav-img i-Barbell" src="img/barbell-outline.svg" />
+            <span class="span--exercise-list">Exercises</span>
+          </a> -->
+          <a href="#" class="btn--exercises-modal">
             <img class="nav-img i-Barbell" src="img/barbell-outline.svg" />
             <span class="span--exercise-list">Exercises</span>
           </a>
         </div>
         <div class="container--nav-img">
-          <a href="#" class="btn--open-add-exercise-modal">
-            <img class="nav-img i-AddExercise" src="img/add-circle-outline.svg" />
-            <span>Archive</span>
+          <a href="#" class="btn--user-health">
+            <img class="nav-img" src="img/fast-food-outline.svg" />
+            <span>Calories</span>
+          </a>
+        </div>
+        <div class="container--nav-img">
+          <a href="#" class="btn--user-stats">
+            <img class="nav-img" src="img/body-outline.svg" />
+            <span>Health</span>
           </a>
         </div>
         
@@ -89,17 +99,31 @@
       </div>
       <div class="main--task--container">
       
-        <div class="container--user-profile hidden">
+        <div class="container--home hidden">
           
-        </div>
+        </div>  
         <div class="container--workouts">
           <img class="btn--createWorkout_WorkoutGroup" src="img/add-circle-outline.svg">
           <span class="btn--edit-Workout-WorkoutGroup">Edit</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 btn--close-exercise-info hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          <span class="span--close-exercise-info hidden">Workouts</span>
           <h1 class="workout-timer hidden">00:00:00</h1>
           <div class="start-end-workout-modal hidden">
-            <button class="btn--startWorkout">Start Workout</button>
-            <button class="btn--pauseWorkout hidden">Pause Workout</button>
-            <button class="btn--endWorkout">End Workout</button>
+            <button class="btn--startWorkout">
+              <img class="img--startWorkout" src="img/play.svg">
+              Start Workout</button>
+            <button class="btn--pauseWorkout hidden">
+              <img class="img--pauseWorkout" src="img/pause.svg">
+              Pause Workout</button>
+            <button class="btn--resumeWorkout hidden">
+              <img class="img--resumeWorkout" src="img/play.svg">
+              Resume Workout</button>
+            <button class="btn--endWorkout">
+              <img class="img--endWorkout" src="img/stop.svg">
+              End Workout</button>
+            <button class="btn--Open-Exercises-Window"><img class="img--addExercises" src="img/add.svg">Add Exercises</button>
           </div>
           <h2 class="createWorkout-title">Workouts</h2>
           <div class="createWorkout_WorkoutGroup-modal hidden">
@@ -135,18 +159,7 @@
             <button class="btn--restore-archived-workout hidden">Restore Workout</button>
 
           <div class="exercise-information hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5 btn--close-exercise-info"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-                  clip-rule="evenodd"
-                />
-              </svg>
+              
               <a href="#" class="btn btn--link-createExercise">Create Exercise</a>
               <a href="#" class="btn btn--link-addExercise">Add Exercise</a>
               <a href="#" class="btn btn--link-viewWorkout">View Workout</a>
@@ -502,6 +515,18 @@
           </div>
         </div>
         <div class="container--history hidden">
+        </div>
+        <div class="container--exercises" style="display:none">
+          
+          <div class="container--exercises-search">
+            <h2>Exercises</h2>
+            <input class="input--exercises-search"type="search" placeholder="Search">
+          <img class="exercises-search"src="img/search.svg">
+          </div>
+          <div class="container--all-exercises"></div>
+          
+        </div>
+        <div class="container--user-health hidden">   
         </div>  
       </div>
       
@@ -516,6 +541,7 @@
     <script src="js/Buttons/Buttons_Modals/start-workout.js"></script>
     <script src="js/Buttons/Buttons_Modals/delete-exercise.js"></script>
     <script src="js/Buttons/Buttons_Modals/Button_NextSet.js"></script>
+    <script src="js/Buttons/Buttons_Modals/exercises-all.js"></script>
   </body>
 </html>
 

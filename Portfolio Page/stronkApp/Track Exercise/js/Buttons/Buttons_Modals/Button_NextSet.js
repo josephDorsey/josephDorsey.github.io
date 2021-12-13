@@ -92,7 +92,14 @@ btn_CancelRest.addEventListener("click", function () {
   }
 });
 
-let count = JSON.parse(localStorage.getItem("current_Exercise_Count")) || 0;
+// let count = JSON.parse(localStorage.getItem("current_Exercise_Count")) || 0;
+
+let count =
+  JSON.parse(
+    localStorage.getItem(
+      `workoutName_${temp_Workout_Name[workoutName_Count]}_Count`
+    )
+  ) || 0;
 let count_Set = 0;
 
 // Next Set
@@ -122,7 +129,7 @@ btn_NextSet.addEventListener("click", function () {
   if (exerciseGroup.sets.min[count] < exerciseGroup.sets.max[count]) {
     exerciseGroup.sets.min[count]++;
     localStorage.setItem(
-      "exercises_Sets_Min",
+      `workoutName_${temp_Workout_Name[workoutName_Count]}_Sets_Min`,
       JSON.stringify(exerciseGroup.sets.min)
     );
     exercise_Completed.classList.add("hidden");
@@ -151,7 +158,7 @@ btn_NextSet.addEventListener("click", function () {
   }
   if (exerciseGroup.sets.min[count] === exerciseGroup.sets.max[count]) {
     localStorage.setItem(
-      "exercises_Sets_Min",
+      `workoutName_${temp_Workout_Name[workoutName_Count]}_Sets_Min`,
       JSON.stringify(exerciseGroup.sets.min)
     );
     // btn_NextExercise.classList.remove("hidden");
@@ -180,7 +187,11 @@ btn_NextSet.addEventListener("click", function () {
   //   console.log(labelSets.innerHTML, exerciseGroup.sets.min);
   //   break;
   // }
-  localStorage.setItem("current_Exercise_Count", JSON.stringify(count));
+  // localStorage.setItem("current_Exercise_Count", JSON.stringify(count));
+  localStorage.setItem(
+    `workoutName_${temp_Workout_Name[workoutName_Count]}_Count`,
+    JSON.stringify(count)
+  );
   console.log(`next set`);
 });
 
@@ -210,7 +221,10 @@ btn_NextExercise.addEventListener("click", function () {
       btn_NextExercise.style.display = "none";
       labelNextExercise.style.display = "none";
     }
-    localStorage.setItem("current_Exercise_Count", JSON.stringify(count));
+    localStorage.setItem(
+      `workoutName_${temp_Workout_Name[workoutName_Count]}_Count`,
+      JSON.stringify(count)
+    );
     exerciseEditExercise_Title.innerHTML = `Exercise: ${exerciseGroup.workoutList[count]}`;
     labelExercise.innerHTML = `Exercise: ${exerciseGroup.workoutList[count]}`;
     labelWeight.innerHTML = `Weight: ${exerciseGroup.weight[count]}`;
@@ -265,6 +279,8 @@ btn_PreviousExercise.addEventListener("click", function () {
     if (count === 0) {
       labelPreviousExercise.classList.add("hidden");
       btn_PreviousExercise.classList.add("hidden");
+      btn_NextExercise.style.display = "block";
+      labelNextExercise.style.display = "block";
     } else if (count > 0) {
       labelPreviousExercise.classList.remove("hidden");
       btn_PreviousExercise.classList.remove("hidden");
@@ -277,7 +293,10 @@ btn_PreviousExercise.addEventListener("click", function () {
       btn_NextExercise.style.display = "none";
       labelNextExercise.style.display = "none";
     }
-    localStorage.setItem("current_Exercise_Count", JSON.stringify(count));
+    localStorage.setItem(
+      `workoutName_${temp_Workout_Name[workoutName_Count]}_Count`,
+      JSON.stringify(count)
+    );
     exerciseEditExercise_Title.innerHTML = `Exercise: ${exerciseGroup.workoutList[count]}`;
     labelExercise.innerHTML = `Exercise: ${exerciseGroup.workoutList[count]}`;
     labelWeight.innerHTML = `Weight: ${exerciseGroup.weight[count]}`;

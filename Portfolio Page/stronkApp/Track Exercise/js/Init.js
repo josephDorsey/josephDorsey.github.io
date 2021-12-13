@@ -36,11 +36,11 @@ const exerciseGroup = {
   },
   archived: [],
 };
-
 let archive_Workout_Name =
   JSON.parse(localStorage.getItem("archived_exercises_WorkoutName")) || [];
 let temp_Workout_Name =
   JSON.parse(localStorage.getItem("exercises_WorkoutName")) || [];
+
 let tempWorkoutList =
   JSON.parse(
     localStorage.getItem(
@@ -92,6 +92,33 @@ let workout_Timer_Count =
   ) || 0;
 let workout_Interval;
 console.log(localStorage);
+
+const trackerTimer = {
+  app_Seconds:
+    JSON.parse(
+      localStorage.getItem(
+        `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Seconds`
+      )
+    ) || 0,
+  app_Minutes:
+    JSON.parse(
+      localStorage.getItem(
+        `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Minutes`
+      )
+    ) || 0,
+  app_Hours:
+    JSON.parse(
+      localStorage.getItem(
+        `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Hours`
+      )
+    ) || 0,
+  app_Days:
+    JSON.parse(
+      localStorage.getItem(
+        `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Days`
+      )
+    ) || 0,
+};
 
 let modalStates_Count = 0;
 let workoutState_Count =
@@ -268,8 +295,8 @@ window.onload = function () {
         : `${trackerTimer.app_Seconds}`
     }`;
     btn_StartWorkout.classList.add("hidden");
-    btn_PauseWorkout.classList.remove("hidden");
-    btn_PauseWorkout.textContent = `Resume Workout`;
+    btn_PauseWorkout.classList.add("hidden");
+    btn_ResumeWorkout.classList.remove("hidden");
   }
   count = JSON.parse(localStorage.getItem("current_Exercise_Count")) || 0;
   // exerciseGroup.sets.min =
