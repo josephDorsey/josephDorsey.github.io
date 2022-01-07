@@ -47,6 +47,9 @@ const btn_EditSelect = document.querySelector(".btn--edit-select");
 const exercise_List_Radios = document.getElementsByClassName(
   "exercise-list-radio"
 );
+const container_EIE = document.querySelector(
+  ".exercise-information-exercises-container"
+);
 const resetDataInfoPush = function () {
   exercise_Name.value = "";
   exercise_Weight.value = "";
@@ -60,164 +63,91 @@ btn_PushDataToArray.addEventListener("click", function () {
   const div = document.createElement("div");
 
   // Change this to a loop ?
-  exerciseEditExercise_Title.innerHTML = `Exercise: ${exercise_Name.value}`;
+  // exerciseEditExercise_Title.innerHTML = `Exercise: ${exercise_Name.value}`;
   // workoutNameP.innerHTML = workout_Name.value;
   // exerciseGroup.workoutName = workout_Name.value;
   // exerciseGroup.workoutList.push(exercise_Name.value);
   // exerciseGroup.weight.push(Number(exercise_Weight.value));
-  temp_Weight.push(Number(exercise_Weight.value));
+
+  // temp_Weight.push(Number(exercise_Weight.value));
 
   // localStorage.setItem(
   //   "exercises_Weight",
   //   JSON.stringify(exerciseGroup.weight)
   // );
-  localStorage.setItem(
-    `workoutName_${temp_Workout_Name[workoutName_Count]}_Weight`,
-    JSON.stringify(temp_Weight)
-  );
+  // localStorage.setItem(
+  //   `workoutName_${temp_Workout_Name[workoutName_Count]}_Weight`,
+  //   JSON.stringify(temp_Weight)
+  // );
 
   // exerciseGroup.sets.min.push(1);
-  temp_Sets_Min.push(1);
+  // temp_Sets_Min.push(1);
 
   // localStorage.setItem(
   //   "exercises_Sets_Min",
   //   JSON.stringify(exerciseGroup.sets.min)
   // );
-  localStorage.setItem(
-    `workoutName_${temp_Workout_Name[workoutName_Count]}_Sets_Min`,
-    JSON.stringify(temp_Sets_Min)
-  );
+  // localStorage.setItem(
+  //   `workoutName_${temp_Workout_Name[workoutName_Count]}_Sets_Min`,
+  //   JSON.stringify(temp_Sets_Min)
+  // );
 
   // exerciseGroup.sets.max.push(Number(exercise_Sets.value));
-  temp_Sets_Max.push(Number(exercise_Sets.value));
+  // temp_Sets_Max.push(Number(exercise_Sets.value));
 
   // localStorage.setItem(
   //   "exercises_Sets_Max",
   //   JSON.stringify(exerciseGroup.sets.max)
   // );
-  localStorage.setItem(
-    `workoutName_${temp_Workout_Name[workoutName_Count]}_Sets_Max`,
-    JSON.stringify(temp_Sets_Max)
-  );
+  // localStorage.setItem(
+  //   `workoutName_${temp_Workout_Name[workoutName_Count]}_Sets_Max`,
+  //   JSON.stringify(temp_Sets_Max)
+  // );
 
   // exerciseGroup.reps.push(Number(exercise_Reps.value));
-  temp_Reps.push(Number(exercise_Reps.value));
+  // temp_Reps.push(Number(exercise_Reps.value));
 
   // localStorage.setItem("exercises_Reps", JSON.stringify(exerciseGroup.reps));
-  localStorage.setItem(
-    `workoutName_${temp_Workout_Name[workoutName_Count]}_Reps`,
-    JSON.stringify(temp_Reps)
-  );
+  // localStorage.setItem(
+  //   `workoutName_${temp_Workout_Name[workoutName_Count]}_Reps`,
+  //   JSON.stringify(temp_Reps)
+  // );
 
   // exerciseGroup.rest.minutes.push(Number(exercise_Minutes.value));
 
-  temp_Rest_Minutes.push(Number(exercise_Minutes.value));
+  // temp_Rest_Minutes.push(Number(exercise_Minutes.value));
   // localStorage.setItem(
   //   "exercises_Rest_Minutes",
   //   JSON.stringify(exerciseGroup.rest.minutes)
   // );
-  localStorage.setItem(
-    `workoutName_${temp_Workout_Name[workoutName_Count]}_Rest_Minutes`,
-    JSON.stringify(temp_Rest_Minutes)
-  );
+  // localStorage.setItem(
+  //   `workoutName_${temp_Workout_Name[workoutName_Count]}_Rest_Minutes`,
+  //   JSON.stringify(temp_Rest_Minutes)
+  // );
 
   // exerciseGroup.rest.seconds.push(Number(exercise_Seconds.value));
-  temp_Rest_Seconds.push(Number(exercise_Seconds.value));
+  // temp_Rest_Seconds.push(Number(exercise_Seconds.value));
 
   // localStorage.setItem(
   //   "exercises_Rest_Seconds",
   //   JSON.stringify(exerciseGroup.rest.seconds)
   // );
-  localStorage.setItem(
-    `workoutName_${temp_Workout_Name[workoutName_Count]}_Rest_Seconds`,
-    JSON.stringify(temp_Rest_Seconds)
-  );
+  // localStorage.setItem(
+  //   `workoutName_${temp_Workout_Name[workoutName_Count]}_Rest_Seconds`,
+  //   JSON.stringify(temp_Rest_Seconds)
+  // );
   // labelExercise.innerHTML = `Exercise: ${exercise_Name.value}`;
   // labelWeight.innerHTML = `Weight: ${exercise_Weight.value}-lbs`;
   // labelSets.innerHTML = `Set: 1 / ${exercise_Sets.value}`;
   // labelReps.innerHTML = `Reps: ${exercise_Reps.value}`;
   // labelRest.innerHTML = `Rest: ${exercise_Minutes.value}m ${exercise_Seconds.value}s`;
 
-  if (option_Barbell.selected) {
-    for (let i = 0; i < select_Barbell_Exercises.options.length; i++) {
-      if (select_Barbell_Exercises.options[i].selected) {
-        tempWorkoutList.push(select_Barbell_Exercises.options[i].value);
-        exerciseGroup.workoutList.push(
-          select_Barbell_Exercises.options[i].value
-        );
-        localStorage.setItem(
-          `workoutName_${exerciseGroup.workoutName[workoutName_Count]}_Exercises`,
-          JSON.stringify(tempWorkoutList)
-        );
-        localStorage.setItem(
-          "exercises_WorkoutList",
-          JSON.stringify(exerciseGroup.workoutList)
-        );
-      }
-    }
-  } else if (option_Dumbbell.selected) {
-    for (let i = 0; i < select_Dumbbell_Exercises.options.length; i++) {
-      if (select_Dumbbell_Exercises.options[i].selected) {
-        tempWorkoutList.push(select_Dumbbell_Exercises.options[i].value);
-        localStorage.setItem(
-          `workoutName_${temp_Workout_Name[workoutName_Count]}_Exercises`,
-          JSON.stringify(tempWorkoutList)
-        );
-      }
-    }
-  } else if (option_Body.selected) {
-    for (let i = 0; i < select_Body_Exercises.options.length; i++) {
-      if (select_Body_Exercises.options[i].selected) {
-        tempWorkoutList.push(select_Body_Exercises.options[i].value);
-        localStorage.setItem(
-          `workoutName_${temp_Workout_Name[workoutName_Count]}_Exercises`,
-          JSON.stringify(tempWorkoutList)
-        );
-      }
-    }
-  } else if (option_Rope.selected) {
-    for (let i = 0; i < select_Rope_Exercises.options.length; i++) {
-      if (select_Rope_Exercises.options[i].selected) {
-        tempWorkoutList.push(select_Rope_Exercises.options[i].value);
-        localStorage.setItem(
-          `workoutName_${temp_Workout_Name[workoutName_Count]}_Exercises`,
-          JSON.stringify(tempWorkoutList)
-        );
-      }
-    }
-  }
-  for (let i = 0; i < tempWorkoutList.length; i++) {
-    if (option_Barbell.selected) {
-      div.classList.add("exercise-list-exercise");
-      div.innerHTML = `
-  <input type="radio" name="exercise-list-radio" class="exercise-list-radio"/>
-  <label class="exercise-list-label">${option_Barbell.innerHTML}: ${tempWorkoutList[i]}</label>
-  `;
-    } else if (option_Dumbbell.selected) {
-      div.classList.add("exercise-list-exercise");
-      div.innerHTML = `
-  <input type="radio" name="exercise-list-radio" class="exercise-list-radio"/>
-  <labe class="exercise-list-label"l>${option_Dumbbell.innerHTML}: ${tempWorkoutList[i]}</label>
-  `;
-    } else if (option_Rope.selected) {
-      div.classList.add("exercise-list-exercise");
-      div.innerHTML = `
-  <input type="radio" name="exercise-list-radio" class="exercise-list-radio"/>
-  <label class="exercise-list-label">${option_Rope.innerHTML}: ${tempWorkoutList[i]}</label>
-  `;
-    } else if (option_Body.selected) {
-      div.classList.add("exercise-list-exercise");
-      div.innerHTML = `
-  <input type="radio" name="exercise-list-radio" class="exercise-list-radio"/>
-  <label class="exercise-list-label">${option_Body.innerHTML}: ${tempWorkoutList[i]}</label>
-  `;
-    }
-    //   div.classList.add("exercise-list-exercise");
-    //   div.innerHTML = `
-    // <input type="radio" name="exercise-list-radio" class="exercise-list-radio"/>
-    // <label>Exercise ${exerciseGroup.workoutList[i]}</label>
-    // `;
-  }
+  //   div.classList.add("exercise-list-exercise");
+  //   div.innerHTML = `
+  // <input type="radio" name="exercise-list-radio" class="exercise-list-radio"/>
+  // <label>Exercise ${exerciseGroup.workoutList[i]}</label>
+  // `;
+
   // for (let i = 0; i < exerciseGroup.name.length; i++) {
   //   div.innerHTML = `
   // <input type="radio" name="exercise-list-radio" class="exercise-list-radio"/>
@@ -229,24 +159,60 @@ btn_PushDataToArray.addEventListener("click", function () {
   //     if (exercise_List_Radios[i] === 1) console.log(`clicked`);
   //   });
   // }
-  if (tempWorkoutList.length === 0) {
-    exercise_List_P.classList.remove("hidden");
-    exercise_List_Hint.classList.remove("hidden");
-  } else if (tempWorkoutList.length > 0) {
-    exercise_List_P.classList.add("hidden");
-    exercise_List_Hint.classList.add("hidden");
-    exercise_List_CurrentExercise.innerHTML = `Current exercise: ${exerciseGroup.workoutList[count]}`;
+  for (let i = 0; i < exercises_Radio.length; i++) {
+    if (exercises_Radio[i].checked === true) {
+      tempWorkoutList.push(exercises_Radio_Label[i].innerText);
+      exercises_Radio[i].checked = false;
+    }
   }
-  // if (exerciseGroup.name.length === 0) {
-  //   exercise_List_P.classList.remove("hidden");
-  //   exercise_List_Hint.classList.remove("hidden");
-  // } else if (exerciseGroup.name.length > 0) {
-  //   exercise_List_P.classList.add("hidden");
-  //   exercise_List_Hint.classList.add("hidden");
-  // }
-  exercise_List.appendChild(div);
+  for (let i = 0; i < tempWorkoutList.length; i++) {
+    const div = document.createElement("div");
+    div.classList.add("row");
+    div.classList.add("hidden");
+    createExercise(
+      `${temp_Workout_Name[workoutName_Count]}`,
+      `${tempWorkoutList[i]}`
+    );
+    div.innerHTML = `
+    <label>
+    <input type="radio" name="exercise-list" class="exercise-list">
+    <h3 class="exercises-row-title">${tempWorkoutList[i]}</h3>
+    <div class="exercises-row-caption">
+      <p class="exercises-row-label row-sets">Sets</p>
+      <p class="exercises-row-label row-lbs">Weight</p>
+      <p class="exercises-row-label row-reps">Reps</p>
+    </div>
+    <div class="exercises-row">
+      <img src="img/arrow-forward-outline.svg" class="current-set">
+      <img src="img/checkmark-circle-outline.svg" class="completed-set hidden">
+      <input name="exercises-row-radio" class="exercises-row-radio hidden" type="radio">
+      <p>1</p>
+      <input type="number" class="input--weight">
+      <input type="number" class="input--reps">
+      <p class="hidden">135</p>
+      <p class="hidden">10</p>
+      <img src="img/create-outline.svg" class="edit-set">
+          
+    </div>
+    <div class="">
+      <button class="btn--add-set" onclick="addSet()">
+      <img class="ion-icon" src="img/add.svg">Add set
+      </button>
+    </div>
+    <div class="">
+      <button class="btn--remove-set">
+      
+      <img class="ion-icon" src="img/remove-outline.svg">Remove set
+      </button>
+    </div>
+    </label>
+    `;
+    modal_Exercise_Info.appendChild(div);
+  }
+
+  // exercise_List.appendChild(div);
   console.log(tempWorkoutList);
-  resetDataInfoPush();
+  // resetDataInfoPush();
 });
 
 btn_CloseExerciseInfoModal.addEventListener("click", function () {
@@ -334,56 +300,56 @@ for (let i = 0; i < btn_OpenExerciseInfoModal.length; i++) {
   });
 }
 
-btn_EditSelect.addEventListener("click", function () {
-  container_Exercise.classList.toggle("hidden");
-  repsEdit_Radio.classList.toggle("hidden");
-  setsEdit_Radio.classList.toggle("hidden");
-  weightEdit_Radio.classList.toggle("hidden");
-  exerciseEdit_Radio.classList.toggle("hidden");
-  restEdit_Radio.classList.toggle("hidden");
-  exerciseEditMode_Title.classList.toggle("hidden");
-  exerciseEditExercise_Title.classList.toggle("hidden");
-  btn_CloseActiveModal.classList.toggle("hidden");
+// btn_EditSelect.addEventListener("click", function () {
+//   container_Exercise.classList.toggle("hidden");
+//   repsEdit_Radio.classList.toggle("hidden");
+//   setsEdit_Radio.classList.toggle("hidden");
+//   weightEdit_Radio.classList.toggle("hidden");
+//   exerciseEdit_Radio.classList.toggle("hidden");
+//   restEdit_Radio.classList.toggle("hidden");
+//   exerciseEditMode_Title.classList.toggle("hidden");
+//   exerciseEditExercise_Title.classList.toggle("hidden");
+//   btn_CloseActiveModal.classList.toggle("hidden");
 
-  btn_NextExercise.classList.toggle("hidden");
+//   btn_NextExercise.classList.toggle("hidden");
 
-  labelNextExercise.classList.toggle("hidden");
-  btn_EditExercise.classList.add("hidden");
-  btn_EditWeight.classList.add("hidden");
-  btn_EditSets.classList.add("hidden");
-  btn_EditReps.classList.add("hidden");
-  btn_EditRest.classList.add("hidden");
+//   labelNextExercise.classList.toggle("hidden");
+//   btn_EditExercise.classList.add("hidden");
+//   btn_EditWeight.classList.add("hidden");
+//   btn_EditSets.classList.add("hidden");
+//   btn_EditReps.classList.add("hidden");
+//   btn_EditRest.classList.add("hidden");
 
-  if (
-    labelPreviousExercise.classList.contains("hidden") &&
-    btn_PreviousExercise.classList.contains("hidden")
-  ) {
-    labelPreviousExercise.classList.add("hidden");
-    btn_PreviousExercise.classList.add("hidden");
-  }
-  if (count === 0) {
-    labelPreviousExercise.classList.add("hidden");
-    btn_PreviousExercise.classList.add("hidden");
-  } else if (count > 0) {
-    labelPreviousExercise.classList.remove("hidden");
-    btn_PreviousExercise.classList.remove("hidden");
-  }
-  repsEdit_Input.classList.add("hidden");
-  setsMinEdit_Input.classList.add("hidden");
-  setsMaxEdit_Input.classList.add("hidden");
-  weightEdit_Input.classList.add("hidden");
-  exerciseEdit_Input.classList.add("hidden");
-  restMinEdit_Input.classList.add("hidden");
-  restSecEdit_Input.classList.add("hidden");
+//   if (
+//     labelPreviousExercise.classList.contains("hidden") &&
+//     btn_PreviousExercise.classList.contains("hidden")
+//   ) {
+//     labelPreviousExercise.classList.add("hidden");
+//     btn_PreviousExercise.classList.add("hidden");
+//   }
+//   if (count === 0) {
+//     labelPreviousExercise.classList.add("hidden");
+//     btn_PreviousExercise.classList.add("hidden");
+//   } else if (count > 0) {
+//     labelPreviousExercise.classList.remove("hidden");
+//     btn_PreviousExercise.classList.remove("hidden");
+//   }
+//   repsEdit_Input.classList.add("hidden");
+//   setsMinEdit_Input.classList.add("hidden");
+//   setsMaxEdit_Input.classList.add("hidden");
+//   weightEdit_Input.classList.add("hidden");
+//   exerciseEdit_Input.classList.add("hidden");
+//   restMinEdit_Input.classList.add("hidden");
+//   restSecEdit_Input.classList.add("hidden");
 
-  labelNextSet.classList.toggle("hidden");
-  btn_NextSet.classList.toggle("hidden");
-  repsEdit_Radio.checked = false;
-  setsEdit_Radio.checked = false;
-  weightEdit_Radio.checked = false;
-  exerciseEdit_Radio.checked = false;
-  restEdit_Radio.checked = false;
-});
+//   labelNextSet.classList.toggle("hidden");
+//   btn_NextSet.classList.toggle("hidden");
+//   repsEdit_Radio.checked = false;
+//   setsEdit_Radio.checked = false;
+//   weightEdit_Radio.checked = false;
+//   exerciseEdit_Radio.checked = false;
+//   restEdit_Radio.checked = false;
+// });
 const select_Equipment_Test = function () {
   for (let i = 0; i < modalStates.length; i++) {
     if (modalStates[states_Count] === modalStates[0]) {
@@ -458,56 +424,56 @@ const select_Equipment_Test = function () {
 
 // if ()
 // select_Equipment_Test();
-const editExerciseFunc = function () {
-  if (repsEdit_Radio.checked) {
-    labelReps.innerHTML = `Reps:`;
-    repsEdit_Input.classList.remove("hidden");
-    btn_EditReps.classList.remove("hidden");
-  }
-  if (setsEdit_Radio.checked) {
-    labelSets.innerHTML = `Set:`;
-    setsMinEdit_Input.classList.remove("hidden");
-    setsMaxEdit_Input.classList.remove("hidden");
-    btn_EditSets.classList.remove("hidden");
-  }
-  if (weightEdit_Radio.checked) {
-    labelWeight.innerHTML = `Weight: `;
-    weightEdit_Input.classList.remove("hidden");
-    btn_EditWeight.classList.remove("hidden");
-  }
-  if (exerciseEdit_Radio.checked) {
-    labelExercise.innerHTML = `Exercise: `;
-    exerciseEdit_Input.classList.remove("hidden");
-    btn_EditExercise.classList.remove("hidden");
-  }
-  if (restEdit_Radio.checked) {
-    labelRest.innerHTML = `Rest:`;
-    restMinEdit_Input.classList.remove("hidden");
-    restSecEdit_Input.classList.remove("hidden");
-    btn_EditRest.classList.remove("hidden");
-  }
-};
+// const editExerciseFunc = function () {
+//   if (repsEdit_Radio.checked) {
+//     labelReps.innerHTML = `Reps:`;
+//     repsEdit_Input.classList.remove("hidden");
+//     btn_EditReps.classList.remove("hidden");
+//   }
+//   if (setsEdit_Radio.checked) {
+//     labelSets.innerHTML = `Set:`;
+//     setsMinEdit_Input.classList.remove("hidden");
+//     setsMaxEdit_Input.classList.remove("hidden");
+//     btn_EditSets.classList.remove("hidden");
+//   }
+//   if (weightEdit_Radio.checked) {
+//     labelWeight.innerHTML = `Weight: `;
+//     weightEdit_Input.classList.remove("hidden");
+//     btn_EditWeight.classList.remove("hidden");
+//   }
+//   if (exerciseEdit_Radio.checked) {
+//     labelExercise.innerHTML = `Exercise: `;
+//     exerciseEdit_Input.classList.remove("hidden");
+//     btn_EditExercise.classList.remove("hidden");
+//   }
+//   if (restEdit_Radio.checked) {
+//     labelRest.innerHTML = `Rest:`;
+//     restMinEdit_Input.classList.remove("hidden");
+//     restSecEdit_Input.classList.remove("hidden");
+//     btn_EditRest.classList.remove("hidden");
+//   }
+// };
 
-const resetEditFunc = function () {
-  repsEdit_Input.classList.toggle("hidden");
-  btn_EditReps.classList.toggle("hidden");
-  setsMinEdit_Input.classList.toggle("hidden");
-  setsMaxEdit_Input.classList.toggle("hidden");
-  btn_EditSets.classList.toggle("hidden");
-  weightEdit_Input.classList.toggle("hidden");
-  btn_EditWeight.classList.toggle("hidden");
-  exerciseEdit_Input.classList.toggle("hidden");
-  btn_EditExercise.classList.toggle("hidden");
-  restMinEdit_Input.classList.toggle("hidden");
-  restSecEdit_Input.classList.toggle("hidden");
-  btn_EditRest.classList.toggle("hidden");
-  edit_Select_Equipment.classList.toggle("hidden");
-  btn_EditEquipment.classList.toggle("hidden");
-};
-document.addEventListener("click", editExerciseFunc);
+// const resetEditFunc = function () {
+//   repsEdit_Input.classList.toggle("hidden");
+//   btn_EditReps.classList.toggle("hidden");
+//   setsMinEdit_Input.classList.toggle("hidden");
+//   setsMaxEdit_Input.classList.toggle("hidden");
+//   btn_EditSets.classList.toggle("hidden");
+//   weightEdit_Input.classList.toggle("hidden");
+//   btn_EditWeight.classList.toggle("hidden");
+//   exerciseEdit_Input.classList.toggle("hidden");
+//   btn_EditExercise.classList.toggle("hidden");
+//   restMinEdit_Input.classList.toggle("hidden");
+//   restSecEdit_Input.classList.toggle("hidden");
+//   btn_EditRest.classList.toggle("hidden");
+//   edit_Select_Equipment.classList.toggle("hidden");
+//   btn_EditEquipment.classList.toggle("hidden");
+// };
+// document.addEventListener("click", editExerciseFunc);
 
-const btn_linkCreateExercise = document.querySelector(
-  ".btn--link-createExercise"
+const btn_CreateExerciseWindow = document.querySelector(
+  ".btn--create-exercise-window"
 );
 const btn_linkAddExercise = document.querySelector(".btn--link-addExercise");
 const select_WorkoutType = document.querySelector(".select--workout-type");
@@ -527,7 +493,7 @@ const container_ExerciseSelectContainer = document.querySelector(
   ".grid-exercise-select"
 );
 
-btn_linkCreateExercise.addEventListener("click", function () {
+btn_CreateExerciseWindow.addEventListener("click", function () {
   // createExercises_Modal = true;
   // addExercises_Modal = false;
   // inactiveExercises_Modal = false;

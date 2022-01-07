@@ -252,3 +252,159 @@ arr.splice(1,1).pop();
 ```
 
 Note that in the example above, `splice` is chained with `pop` because `splice` always returns an `array`, so pop is used to extract the single value from `array` returned by `splice`.
+
+# How to remove duplicates from an array using a Set
+
+A `Set` is a collection of unique values. To remove duplicates from an array:
+
+First, convert an array of duplicates to a `Set`. The new `Set` will implicitly remove duplicate elements.
+Then, convert the set back to an array.
+The following example uses a `Set` to remove duplicates from an array:
+
+```
+let exercises_Barbell = ["Bench Press","Bench Press","Front Squat","Hip Thrust","Standing Calf Raise","Row","Deadlift","Overhead Press","Good Mornings","Shrugs","Landmine Row (T-Bar)","Squat"];
+let exercises_Barbell_unique = [..new Set(chars)];
+console.log(exercises_Barbell_unique);
+```
+
+The output would become:
+
+```
+["Bench Press","Front Squat","Hip Thrust","Standing Calf Raise","Row","Deadlift","Overhead Press","Good Mornings","Shrugs","Landmine Row (T-Bar)","Squat"];
+```
+
+Thus removing the extra bench press exercises that was in the array.
+
+# Exercise Modal Notes
+
+## How to add exercises from different arrays with the same name to display their relevant equipment name
+
+## How to make INPUT="SEARCH" filter to show only the inputted exercise
+
+```
+let filter, a, equipment, txtValue;
+function searchExercise() {
+  filter = input_Search_Exercise.value.toUpperCase();
+  for (let i = 0; i < exercises_Radio_Label.length; i++) {
+    a = exercises_Radio_Label[i];
+    equipment = equipment_Ul[i];
+    txtValue = a.innerHTML;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      exercises_Radio_Label[i].style.display = "";
+      exercises_Radio[i].style.display = "";
+      equipment_Ul[i].style.display = "";
+    } else {
+      exercises_Radio_Label[i].style.display = "none";
+      exercises_Radio[i].style.display = "none";
+      equipment_Ul[i].style.display = "none";
+    }
+  }
+}
+```
+
+First things first. We had to declare 4 variables to make this event possible. `filter, a, equipment, txtValue`.
+
+1. Create a function called searchExercise
+2. Assigned `filter` the `input_Search_Exercise.value` and made it .toUpperCase();
+
+3. Then created a for loop for the exercises_Radio_Label array
+
+4. Assigned `a` the current iteration of the for loop: `a = exercises_Radio_Label[i]`.
+
+5. Assigned `equipment` the current iteration of the for loop `equipment = equipment_Ul[i]`
+
+6. Assigned `txtValue` the innerHTML of `a`.
+
+7. This is where we started using `indexOf`. `indexOf` is very useful in terms of being able to search for things in arrays or input fields. So the idea is here is that if the input value is greater than -1 then show what was being searched. If its -1 (meaning that its false and doesn't contain the searched exercise) it will hide all exercises.
+
+8. And then we go to the html and attach this function as an onkeyup event:
+
+```
+<input type="search" class="input--exercise-search" onkeyup="searchExercise()">
+```
+
+This makes it so every time we type in the input field it will be constantly adjusting if the input is in the array or not.
+
+## Continued --- How to make it search for equipment names
+
+## How to dynamically create exerciseName, workoutName, reps, sets, weight
+
+```
+const createWorkout = function (workoutName) {
+  exerciseObject[`${workoutName}`] = new Object();
+};
+const createExercise = function (
+  workoutName,
+  exerciseName,
+  sets,
+  reps,
+  weight
+) {
+  exerciseObject[`${workoutName}`][`${exerciseName}`] = new Object();
+  exerciseObject[`${workoutName}`][`${exerciseName}`].sets = [];
+  exerciseObject[`${workoutName}`][`${exerciseName}`].reps = [];
+  testObject[`${workoutName}`][`${exerciseName}`].weight = [];
+  for (let i = 0; i < sets; i++) {
+    exerciseObject[`${workoutName}`][`${exerciseName}`].sets.push(
+      Number(`${i + 1}`)
+    );
+    exerciseObject[`${workoutName}`][`${exerciseName}`].reps.push(Number(reps));
+    exerciseObject[`${workoutName}`][`${exerciseName}`].weight.push(
+      Number(weight)
+    );
+  }
+};
+
+
+```
+
+## How to make appending new set to list only append once
+
+```
+function addSet() {
+  for (let i = 0; i < radio_ExerciseList.length; i++) {
+    addSet_Count = i;
+    if (radio_ExerciseList[addSet_Count].checked === true) {
+      exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+        `${tempWorkoutList[addSet_Count]}`
+      ].increaseSet++;
+
+      exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+        `${tempWorkoutList[addSet_Count]}`
+      ].sets.push(
+        exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+          `${tempWorkoutList[addSet_Count]}`
+        ].increaseSet
+      );
+      exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+        `${tempWorkoutList[addSet_Count]}`
+      ].weight.push();
+      exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+        `${tempWorkoutList[addSet_Count]}`
+      ].reps.push();
+      const div = document.createElement("div");
+      div.classList.add("exercises-row");
+      div.innerHTML = `
+        <img src="img/arrow-forward-outline.svg" class="current-set">
+        <img src="img/checkmark-circle-outline.svg" class="completed-set hidden">
+        <input name="exercises-row-radio" class="exercises-row-radio hidden" type="radio">
+        <p>${
+          exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+            `${tempWorkoutList[addSet_Count]}`
+          ].increaseSet
+        }</p>
+        <input type="number" class="input--weight">
+        <input type="number" class="input--reps">
+        <p class="hidden">135</p>
+        <p class="hidden">10</p>
+        <img src="img/create-outline.svg" class="edit-set">
+            `;
+
+      row_Div[addSet_Count].appendChild(div);
+      console.log(`button ${i} clicked`);
+    }
+  }
+}
+```
+
+I found this method to be better than using the for loop for btn_addSet because for whatever reason it kept adding more divs on each press. Ex. Button click #1 = 1 row, Button click #2 = 2 rows etc.

@@ -209,27 +209,27 @@ btn_CloseExerciseList.addEventListener("click", function () {
 //   }
 // });
 
-btn_toggleExerciseList.addEventListener("click", function () {
-  exerciseList_Container.classList.toggle("hidden");
-  modal_Exercise_Info.classList.toggle("hidden");
-  exerciseList_state_listMode();
+// btn_toggleExerciseList.addEventListener("click", function () {
+//   exerciseList_Container.classList.toggle("hidden");
+//   modal_Exercise_Info.classList.toggle("hidden");
+//   exerciseList_state_listMode();
 
-  if (exerciseList_Container.classList.contains("hidden")) {
-    modal_Exercise_Info.style.gap = "0";
-  } else if (!exerciseList_Container.classList.contains("hidden")) {
-    modal_Exercise_Info.style.gap = "10px";
-  }
-  if (exerciseGroup.workoutList.length === 0) {
-    exercise_List_P.classList.remove("hidden");
-    exercise_List_Hint.classList.remove("hidden");
-  } else if (exerciseGroup.workoutList.length > 0) {
-    exercise_List_P.classList.add("hidden");
-    exercise_List_Hint.classList.add("hidden");
-    btn_SetActive.classList.remove("hidden");
-    exercise_List_CurrentExercise.classList.remove("hidden");
-    exercise_List_CurrentExercise.innerHTML = `Current Exercise: ${exerciseGroup.workoutList[count]}`;
-  }
-});
+//   if (exerciseList_Container.classList.contains("hidden")) {
+//     modal_Exercise_Info.style.gap = "0";
+//   } else if (!exerciseList_Container.classList.contains("hidden")) {
+//     modal_Exercise_Info.style.gap = "10px";
+//   }
+//   if (exerciseGroup.workoutList.length === 0) {
+//     exercise_List_P.classList.remove("hidden");
+//     exercise_List_Hint.classList.remove("hidden");
+//   } else if (exerciseGroup.workoutList.length > 0) {
+//     exercise_List_P.classList.add("hidden");
+//     exercise_List_Hint.classList.add("hidden");
+//     btn_SetActive.classList.remove("hidden");
+//     exercise_List_CurrentExercise.classList.remove("hidden");
+//     exercise_List_CurrentExercise.innerHTML = `Current Exercise: ${exerciseGroup.workoutList[count]}`;
+//   }
+// });
 
 btn_SetActive.addEventListener("click", function () {
   for (let i = 0; i < exercise_List_Radios.length; i++) {

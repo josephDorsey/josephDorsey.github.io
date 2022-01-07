@@ -1,4 +1,43 @@
 "use strict";
+let container_Workouts_Page;
+
+const container_WorkoutsPage_Func = function () {
+  if (container_Workouts_Page === 0) {
+    console.log(`Main Workouts Modal Page`);
+  } else if (container_Workouts_Page === 1) {
+    console.log(`Selected Workouts Modal Page`);
+  }
+};
+container_WorkoutsPage_Func();
+const exerciseObject = {};
+
+const createWorkout = function (workoutName) {
+  exerciseObject[`${workoutName}`] = new Object();
+};
+const createExercise = function (workoutName, exerciseName) {
+  exerciseObject[`${workoutName}`][`${exerciseName}`] = new Object();
+  exerciseObject[`${workoutName}`][`${exerciseName}`].sets = [];
+  exerciseObject[`${workoutName}`][`${exerciseName}`].sets.push(1);
+  exerciseObject[`${workoutName}`][`${exerciseName}`].increaseSet = 1;
+  exerciseObject[`${workoutName}`][`${exerciseName}`].reps = [];
+  exerciseObject[`${workoutName}`][`${exerciseName}`].weight = [];
+};
+
+const createSetsRepsWeight = function (sets, reps, weight) {
+  exerciseObject[`${workoutName}`][`${exerciseName}`].sets = [];
+  exerciseObject[`${workoutName}`][`${exerciseName}`].reps = [];
+  exerciseObject[`${workoutName}`][`${exerciseName}`].weight = [];
+  exerciseObject[`${workoutName}`][`${exerciseName}`].increaseSet = 1;
+  for (let i = 0; i < sets; i++) {
+    exerciseObject[`${workoutName}`][`${exerciseName}`].sets.push(
+      Number(`${i + 1}`)
+    );
+    exerciseObject[`${workoutName}`][`${exerciseName}`].reps.push(Number(reps));
+    exerciseObject[`${workoutName}`][`${exerciseName}`].weight.push(
+      Number(weight)
+    );
+  }
+};
 
 // let workout_Timer_Count = 50;
 
@@ -12,6 +51,16 @@ const exerciseGroup = {
     dumbbell: JSON.parse(localStorage.getItem("exercises_Dumbbell")) || [],
     rope: JSON.parse(localStorage.getItem("exercises_Rope")) || [],
     body: JSON.parse(localStorage.getItem("exercises_Body")) || [],
+    Bag: [],
+    Ball: [],
+    Bands: [],
+    Cable: [],
+    EZBar: [],
+    FoamRoll: [],
+    KettleBell: [],
+    Landmine: [],
+    Machine: [],
+    Other: [],
     // type: JSON.parse(localStorage.getItem("exercises_Equipment_Type")) || [],
   },
   workoutName: [],
@@ -148,12 +197,115 @@ const userExercises = {
 };
 
 // Puts all the array variables back in the exercise array
-const exercises_Barbell =
-  JSON.parse(localStorage.getItem("exercises_Barbell")) || [];
-const exercises_Dumbbell =
-  JSON.parse(localStorage.getItem("exercises_Dumbbell")) || [];
-const exercises_Rope = JSON.parse(localStorage.getItem("exercises_Rope")) || [];
-const exercises_Body = JSON.parse(localStorage.getItem("exercises_Body")) || [];
+const exercises_Barbell = [
+  "Bent-Over Row",
+  "Bench Press",
+  "Squat",
+  "Stiff Legged Deadlift",
+  "Romanian Deadlift",
+  "Military Press",
+  "Biceps Curl",
+  "Lunge",
+  "Front Squat",
+  "Good-mornings",
+  "Calf Raises",
+  "Push Press",
+  "Snatch",
+  "Shrug",
+  "Hip Thrusts",
+  "Bulgarian Split Squat",
+  "T-Bar Row",
+  "Reverse Curl",
+  "Skull Crushers",
+];
+const exercises_Dumbbell = [
+  "Goblet Squat",
+  "Arnold Press",
+  "Dumbbell Clean",
+  "Renegade Row",
+  "Farmer's Walk",
+  "Flat Dumbbell Flye",
+  "Bent-Over Row",
+  "Dumbbell Uppercut",
+  "Two-Arm Stiff Legged Deadlift",
+  "Kickbacks",
+  "One Arm Swing",
+  "Bench Press",
+  "Shoulder Press",
+  "Cross Body Hammer Curl",
+  "Upright Row",
+  "Step-ups",
+  "Spider Curl",
+  "Scaption",
+  "Bent Arm Pull Over",
+  "Lunges",
+  "One Leg Deadlift",
+  "Single Dumbbell Shoulder Raise",
+  "Calf Raises",
+  "Hollow Body Skullcrushers",
+  "Rotational Decline Weighted Sit-ups",
+  "Devil's Press",
+  "Hip Thrusts",
+];
+const exercises_Rope = [
+  "Crossover",
+  "Standing Biceps Curl",
+  "Overhead Curl",
+  "Abdominal Crunches",
+  "Flyes",
+  "Wide-Grip Lat Pulldowns",
+  "Seated Rows",
+  "Triceps Pushdown",
+  "Standing Single Arm Cable Rows",
+  "Squat",
+  "Lunges",
+  "Standing Press",
+  "Reverse Grip Cable Pulldowns",
+  "One-Legged Cable Kickback",
+  "Standing Cable Calf Raise",
+];
+const exercises_Body = [
+  "Push-Up",
+  "Groiners",
+  "Spider Crawl",
+  "Standing Long Jump",
+  "Burpees",
+  "Handstand Wall Walk",
+  "Wide-Grip Pull-Up",
+  "Glute Bridge",
+  "Inverted Row",
+  "Close-Grip Push-Up",
+  "Pike Push-Up",
+  "Diamond Push-Up",
+  "Clap Push-Up",
+  "Plank-to-Push-Up",
+  "Reverse Crunch",
+  "Sit-up",
+  "Mountain Climber",
+  "Plank",
+  "Side Plank",
+  "Star Plank",
+  "Bicycle Crunch",
+  "Frozen V-Sit",
+  "Single-Leg Glute Bridge",
+  "Bulgarian Split Squat",
+  "Squats",
+  "Jump Squats",
+  "Overhead Lunge",
+  "Step-Up with Knee Raises",
+  "Bench Dips",
+];
+
+const exercises_Bag = [];
+const exercises_Ball = [];
+const exercises_Bands = [];
+const exercises_Cable = [];
+const exercises_EZBar = [];
+const exercises_FoamRoll = [];
+const exercises_KettleBell = [];
+const exercises_Landmine = [];
+const exercises_Machine = [];
+const exercises_Other = [];
 
 const modalStates = ["Inactive", "Create Exercise", "Add Exercise"];
 const workoutState = ["Inactive", "Active", "Pause"];
@@ -188,6 +340,7 @@ const retrieveWorkoutLocalStorage = function () {
 };
 
 window.onload = function () {
+  container_WorkoutsPage_Func();
   exerciseGroup.workoutName =
     JSON.parse(localStorage.getItem("exercises_WorkoutName")) || [];
   for (let i = 0; i < temp_Workout_Name.length; i++) {
@@ -302,8 +455,8 @@ window.onload = function () {
   // exerciseGroup.sets.min =
   //   JSON.parse(localStorage.getItem("exercises_Sets_Min")) || [];
   if (exerciseGroup.sets.min[count] === exerciseGroup.sets.max[count]) {
-    labelNextSet.classList.toggle("hidden");
-    btn_NextSet.classList.toggle("hidden");
+    // labelNextSet.classList.toggle("hidden");
+    // btn_NextSet.classList.toggle("hidden");
     // btn_NextExercise.classList.remove("hidden");
     // labelNextExercise.classList.remove("hidden");
     // btn_NextSet.classList.toggle("hidden");
@@ -312,17 +465,17 @@ window.onload = function () {
     // btn_NextExercise.classList.toggle("hidden");
     // labelNextExercise.classList.toggle("hidden");
   }
-  if (exerciseGroup.sets.min[count] < exerciseGroup.sets.max[count]) {
-    labelNextSet.classList.remove("hidden");
-    btn_NextSet.classList.remove("hidden");
-  }
-  if (count === 0) {
-    labelPreviousExercise.classList.toggle("hidden");
-    btn_PreviousExercise.classList.toggle("hidden");
-  } else if (count > 0) {
-    labelPreviousExercise.classList.remove("hidden");
-    btn_PreviousExercise.classList.remove("hidden");
-  }
+  // if (exerciseGroup.sets.min[count] < exerciseGroup.sets.max[count]) {
+  //   labelNextSet.classList.remove("hidden");
+  //   btn_NextSet.classList.remove("hidden");
+  // }
+  // if (count === 0) {
+  //   labelPreviousExercise.classList.toggle("hidden");
+  //   btn_PreviousExercise.classList.toggle("hidden");
+  // } else if (count > 0) {
+  //   labelPreviousExercise.classList.remove("hidden");
+  //   btn_PreviousExercise.classList.remove("hidden");
+  // }
   // exerciseGroup.exerciseEquipment.type =
   //   JSON.parse(localStorage.getItem("exercises_Equipment_Type")) || [];
   for (let i = 0; i < exercises_Barbell.length; i++) {
