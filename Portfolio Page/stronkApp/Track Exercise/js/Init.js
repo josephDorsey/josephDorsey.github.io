@@ -1,4 +1,10 @@
 "use strict";
+// const testNumber = document.querySelector(".testNumber");
+// for (let i = 0; i < 1001; i++) {
+//   const option = document.createElement("option");
+//   option.innerHTML = i;
+//   testNumber.appendChild(option);
+// }
 let container_Workouts_Page;
 
 const container_WorkoutsPage_Func = function () {
@@ -18,9 +24,13 @@ const createExercise = function (workoutName, exerciseName) {
   exerciseObject[`${workoutName}`][`${exerciseName}`] = new Object();
   exerciseObject[`${workoutName}`][`${exerciseName}`].sets = [];
   exerciseObject[`${workoutName}`][`${exerciseName}`].sets.push(1);
+  exerciseObject[`${workoutName}`][`${exerciseName}`].name = exerciseName;
   exerciseObject[`${workoutName}`][`${exerciseName}`].increaseSet = 1;
+  exerciseObject[`${workoutName}`][`${exerciseName}`].loopSet = 0;
   exerciseObject[`${workoutName}`][`${exerciseName}`].reps = [];
   exerciseObject[`${workoutName}`][`${exerciseName}`].weight = [];
+  exerciseObject[`${workoutName}`][`${exerciseName}`].reps.push(0);
+  exerciseObject[`${workoutName}`][`${exerciseName}`].weight.push(0);
 };
 
 const createSetsRepsWeight = function (sets, reps, weight) {

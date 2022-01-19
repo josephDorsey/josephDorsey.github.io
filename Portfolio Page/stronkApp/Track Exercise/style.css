@@ -20,6 +20,7 @@
 .row {
   border: 1px solid black;
   position: relative;
+  row-gap: 10px;
   border-radius: 25px;
   padding: 13px 30px;
   width: 450px;
@@ -62,6 +63,9 @@
   bottom: -22px;
 }
 .exercises-row-radio {
+  position: absolute;
+  left: 0px;
+  top: 14px;
 }
 
 .current-set {
@@ -150,24 +154,26 @@
 }
 .exercises-row {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  position: relative;
+  grid-template-columns: repeat(4, 1fr);
   gap: 70px;
-  border-bottom: 1px solid black;
+  /* border-bottom: 1px solid black; */
   align-items: center;
-  border: 1px solid green;
+  justify-items: end;
+  border: 1px solid black;
   border-radius: 25px;
 }
-.exercises-row:last-child {
-  display: flex;
+/* .exercises-row:last-child {
+  
   gap: 70px;
   border-bottom: 0px;
-}
+} */
 .exercises-row-caption {
   display: flex;
   gap: 60px;
   position: absolute;
   top: 55px;
-  left: 94px;
+  left: 53px;
   text-align: center;
 }
 
@@ -179,9 +185,10 @@
 .completed-set {
   width: 24px;
   height: 24px;
-  /* position: absolute; */
-  /* bottom: 15px;
-  right: 11px; */
+  position: absolute;
+  bottom: 15px;
+  right: 25px;
+  cursor: pointer;
 }
 
 .row-sets,
@@ -245,6 +252,7 @@
 }
 .exercise-list {
   position: absolute;
+  opacity: 0;
   left: 5px;
   top: 10px;
 }

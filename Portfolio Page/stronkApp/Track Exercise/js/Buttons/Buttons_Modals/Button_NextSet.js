@@ -353,8 +353,9 @@ const input_Weight = document.getElementsByClassName("input--weight");
 const input_Reps = document.getElementsByClassName("input--reps");
 const radio_ExerciseList = document.getElementsByClassName("exercise-list");
 let addSet_Count;
+let tempEN_Count;
 let increaseSet = 1;
-
+let updateWeightCount = 0;
 // function addSet() {
 //   for (let i = 0; i < btn_addSet.length; i++) {
 //     btn_addSet[i].addEventListener("click", function () {
@@ -403,46 +404,213 @@ let increaseSet = 1;
 //   }
 // }
 function addSet() {
-  for (let i = 0; i < radio_ExerciseList.length; i++) {
-    addSet_Count = i;
-    if (radio_ExerciseList[addSet_Count].checked === true) {
+  for (let j = 0; j < radio_ExerciseList.length; j++) {
+    if (radio_ExerciseList[j].checked === true) {
       exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
-        `${tempWorkoutList[addSet_Count]}`
+        `${tempWorkoutList[tempEN_Count]}`
       ].increaseSet++;
 
       exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
-        `${tempWorkoutList[addSet_Count]}`
+        `${tempWorkoutList[tempEN_Count]}`
       ].sets.push(
         exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
-          `${tempWorkoutList[addSet_Count]}`
+          `${tempWorkoutList[tempEN_Count]}`
         ].increaseSet
       );
-      exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
-        `${tempWorkoutList[addSet_Count]}`
-      ].weight.push();
-      exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
-        `${tempWorkoutList[addSet_Count]}`
-      ].reps.push();
-      const div = document.createElement("div");
-      div.classList.add("exercises-row");
-      div.innerHTML = `
-        <img src="img/arrow-forward-outline.svg" class="current-set">
-        <img src="img/checkmark-circle-outline.svg" class="completed-set hidden">
-        <input name="exercises-row-radio" class="exercises-row-radio hidden" type="radio">
-        <p>${
+      for (let i = 0; i < exercises_Row_Radio.length; i++) {
+        const label = document.createElement("label");
+        if (exercises_Row_Radio[i].checked === true) {
           exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
-            `${tempWorkoutList[addSet_Count]}`
-          ].increaseSet
-        }</p>
-        <input type="number" class="input--weight">
-        <input type="number" class="input--reps">
-        <p class="hidden">135</p>
-        <p class="hidden">10</p>
-        <img src="img/create-outline.svg" class="edit-set">
-            `;
+            `${tempWorkoutList[tempEN_Count]}`
+          ].weight.push(Number(input_Weight[i].value));
+          exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+            `${tempWorkoutList[tempEN_Count]}`
+          ].reps.push(Number(input_Reps[i].value));
 
-      row_Div[addSet_Count].appendChild(div);
-      console.log(`button ${i} clicked`);
+          if (
+            input_Weight[
+              `${
+                exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+                  `${tempWorkoutList[tempEN_Count]}`
+                ].loopSet
+              }`
+            ].value === "" &&
+            input_Reps[
+              `${
+                exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+                  `${tempWorkoutList[tempEN_Count]}`
+                ].loopSet
+              }`
+            ].value === ""
+          ) {
+            label.innerHTML = `<div class="exercises-row">
+              <img src="img/checkmark-circle-outline.svg" class="completed-set">
+              <input name="exercises-row-radio" class="exercises-row-radio" type="radio">
+              <p>${
+                exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+                  `${tempWorkoutList[tempEN_Count]}`
+                ].increaseSet
+              }</p>
+              <input type="number" class="input--weight"onchange="updateWeight()">
+              <input type="number" class="input--reps" onchange="updateReps()">
+              <p class="hidden">135</p>
+              <p class="hidden">10</p>
+              <img src="img/create-outline.svg" class="edit-set">
+              </div> `;
+
+            row_Div[j].appendChild(label);
+            console.log(`button ${i} clicked`);
+          } else if (
+            !(
+              input_Weight[
+                `${
+                  exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+                    `${tempWorkoutList[tempEN_Count]}`
+                  ].loopSet
+                }`
+              ].value === ""
+            ) &&
+            !(
+              input_Reps[
+                `${
+                  exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+                    `${tempWorkoutList[tempEN_Count]}`
+                  ].loopSet
+                }`
+              ].value === ""
+            )
+          ) {
+            label.innerHTML = `<div class="exercises-row">
+            <img src="img/checkmark-circle-outline.svg" class="completed-set">
+            <input name="exercises-row-radio" class="exercises-row-radio" type="radio">
+            <p>${
+              exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+                `${tempWorkoutList[tempEN_Count]}`
+              ].increaseSet
+            }</p>
+            <input type="number" onchange="updateWeight()" class="input--weight" value="${
+              exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+                `${tempWorkoutList[tempEN_Count]}`
+              ].weight[
+                exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+                  `${tempWorkoutList[tempEN_Count]}`
+                ].loopSet
+              ]
+            }">
+            <input type="number" onchange="updateReps()" class="input--reps"
+            value="${
+              exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+                `${tempWorkoutList[tempEN_Count]}`
+              ].reps[
+                exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+                  `${tempWorkoutList[tempEN_Count]}`
+                ].loopSet
+              ]
+            }">
+            <p class="hidden">135</p>
+            <p class="hidden">10</p>
+            <img src="img/create-outline.svg" class="edit-set">
+            </div>
+                `;
+
+            exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+              `${tempWorkoutList[tempEN_Count]}`
+            ].loopSet++;
+
+            row_Div[j].appendChild(label);
+            console.log(`button ${i} clicked`);
+          } else if (
+            !(
+              input_Weight[
+                `${
+                  exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+                    `${tempWorkoutList[tempEN_Count]}`
+                  ].loopSet
+                }`
+              ].value === ""
+            ) &&
+            input_Reps[
+              `${
+                exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+                  `${tempWorkoutList[tempEN_Count]}`
+                ].loopSet
+              }`
+            ].value === ""
+          ) {
+            label.innerHTML = `<div class="exercises-row">
+            <img src="img/checkmark-circle-outline.svg" class="completed-set">
+            <input name="exercises-row-radio" class="exercises-row-radio" type="radio">
+            <p>${
+              exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+                `${tempWorkoutList[tempEN_Count]}`
+              ].increaseSet
+            }</p>
+            <input type="number" onchange="updateWeight()"class="input--weight" value="${
+              exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+                `${tempWorkoutList[tempEN_Count]}`
+              ].weight[
+                exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+                  `${tempWorkoutList[tempEN_Count]}`
+                ].loopSet
+              ]
+            }">
+            <input type="number" class="input--reps" onchange="updateReps()">
+            <p class="hidden">135</p>
+            <p class="hidden">10</p>
+            <img src="img/create-outline.svg" class="edit-set">
+            </div>
+                `;
+
+            row_Div[j].appendChild(label);
+            console.log(`button ${i} clicked`);
+          } else if (
+            !(
+              input_Reps[
+                `${
+                  exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+                    `${tempWorkoutList[tempEN_Count]}`
+                  ].loopSet
+                }`
+              ].value === ""
+            ) &&
+            input_Weight[
+              `${
+                exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+                  `${tempWorkoutList[tempEN_Count]}`
+                ].loopSet
+              }`
+            ].value === ""
+          ) {
+            label.innerHTML = `<div class="exercises-row">
+            <img src="img/checkmark-circle-outline.svg" class="completed-set">
+            <input name="exercises-row-radio" class="exercises-row-radio" type="radio">
+            <p>${
+              exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+                `${tempWorkoutList[tempEN_Count]}`
+              ].increaseSet
+            }</p>
+            <input type="number" onchange="updateWeight()"class="input--weight" value="">
+            <input type="number" onchange="updateReps()" class="input--reps" value="${
+              exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+                `${tempWorkoutList[tempEN_Count]}`
+              ].reps[
+                exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+                  `${tempWorkoutList[tempEN_Count]}`
+                ].loopSet
+              ]
+            }">
+            <p class="hidden">135</p>
+            <p class="hidden">10</p>
+            <img src="img/create-outline.svg" class="edit-set">
+            </div>
+                `;
+
+            row_Div[j].appendChild(label);
+            console.log(`button ${i} clicked`);
+          }
+          console.log(exerciseObject);
+        }
+      }
     }
   }
 }
@@ -457,3 +625,88 @@ for (let i = 0; i < btn_removeSet.length; i++) {
     }
   });
 }
+
+function updateWeight() {
+  for (let i = 0; i < exercises_Row_Radio.length; i++) {
+    if (exercises_Row_Radio[i].checked === true) {
+      exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+        `${tempWorkoutList[tempEN_Count]}`
+      ].weight.splice(
+        exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+          `${tempWorkoutList[tempEN_Count]}`
+        ].loopSet,
+        1,
+        Number(input_Weight[i].value)
+      );
+
+      console.log(
+        `Updating ${
+          exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+            `${tempWorkoutList[tempEN_Count]}`
+          ].name
+        } weight to ${Number(input_Weight[i].value)}!`,
+        exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+          `${tempWorkoutList[tempEN_Count]}`
+        ].weight
+      );
+    }
+  }
+}
+function updateReps() {
+  for (let i = 0; i < exercises_Row_Radio.length; i++) {
+    if (exercises_Row_Radio[i].checked === true) {
+      exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+        `${tempWorkoutList[tempEN_Count]}`
+      ].reps.splice(
+        exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+          `${tempWorkoutList[tempEN_Count]}`
+        ].loopSet,
+        1,
+        Number(input_Reps[i].value)
+      );
+
+      console.log(
+        `Updating exercise:${
+          exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+            `${tempWorkoutList[tempEN_Count]}`
+          ].name
+        } reps to : ${Number(
+          input_Reps[
+            exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+              `${tempWorkoutList[tempEN_Count]}`
+            ].loopSet
+          ].value
+        )}!`,
+        exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+          `${tempWorkoutList[tempEN_Count]}`
+        ].reps
+      );
+    }
+  }
+}
+function activeSet() {
+  for (let i = 0; i < exercises_Row_Radio.length; i++) {
+    if (exercises_Row_Radio[i].checked === true) {
+      exercises_Row[i].style.border = "2px solid green";
+
+      // exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+      //   `${tempWorkoutList[tempEN_Count]}`
+      // ].loopSet = i;
+    } else {
+      exercises_Row[i].style.border = "1px solid black";
+    }
+  }
+}
+const update_tempEN_Count = function () {
+  for (let i = 0; i < radio_ExerciseList.length; i++) {
+    if (radio_ExerciseList[i].checked === true) {
+      row_Div[i].style.border = "3px solid #3b5bdb";
+      tempEN_Count = i;
+      addSet_Count = i;
+    } else {
+      row_Div[i].style.border = "1px solid black";
+    }
+  }
+};
+document.body.addEventListener("click", update_tempEN_Count);
+document.body.addEventListener("click", activeSet);

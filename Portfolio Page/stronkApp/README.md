@@ -408,3 +408,90 @@ function addSet() {
 ```
 
 I found this method to be better than using the for loop for btn_addSet because for whatever reason it kept adding more divs on each press. Ex. Button click #1 = 1 row, Button click #2 = 2 rows etc.
+
+## How to update input fields on change (weight and reps)
+
+```
+function updateWeight() {
+  for (
+    let i = 0;
+    i <
+    exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+      `${tempWorkoutList[tempEN_Count]}`
+    ].weight.length;
+    i++
+  ) {
+    addSet_Count = i;
+    exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+      `${tempWorkoutList[tempEN_Count]}`
+    ].weight.splice(addSet_Count, 1, Number(input_Weight[addSet_Count].value));
+
+    console.log(
+      `Updating!`,
+      exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+        `${tempWorkoutList[tempEN_Count]}`
+      ].weight
+    );
+  }
+}
+```
+
+This makes it so no matter which input field we are correcting it updates it to the correct index in the objects array.
+
+## How to have addSet_Count equal the currently checked radio button
+
+```
+const setAddSetCount = function () {
+  for (let i = 0; i < radio_ExerciseList.length; i++) {
+    if (radio_ExerciseList[i].checked === true) {
+      addSet_Count = i;
+    }
+  }
+};
+document.body.addEventListener("click", setAddSetCount);
+
+```
+
+This makes it so every time we click on the exercise via radio button the addSet_Count variable gets updated to the current iteration.
+
+## How to hide the radio buttons for selecting the current exercise
+
+we simply set the opacity to 0 and since we have it wrapped in a label whenever we click it the Row_Div is selected.
+
+## Pseudo code for adding sets increment on most recent weight
+
+```
+<input type="number" class="input--reps"
+        value="${
+          exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+            `${tempWorkoutList[tempEN_Count]}`
+          ].reps[0]
+        }" onchange="updateReps()">
+        <p class="hidden">135</p>
+        <p class="hidden">10</p>
+        <img src="img/create-outline.svg" class="edit-set">
+        </div>
+            `;
+```
+
+Instead of it being hardcoded to `0` we could create a variable that increments every time the addSet button is clicked. The goal is to have it so whenever the addSet button is clicked that the most recently added weight also has the previous amount of weight.
+
+We would change it to look like:
+
+```
+<input type="number" class="input--reps"
+        value="${
+          exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+            `${tempWorkoutList[tempEN_Count]}`
+          ].reps[exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+                `${tempWorkoutList[tempEN_Count]}`
+              ].loopSet]
+        }" onchange="updateReps()">
+        <p class="hidden">135</p>
+        <p class="hidden">10</p>
+        <img src="img/create-outline.svg" class="edit-set">
+        </div>
+            `;
+```
+
+This is target the current iteration of the loopSet and then push that value down to the next set

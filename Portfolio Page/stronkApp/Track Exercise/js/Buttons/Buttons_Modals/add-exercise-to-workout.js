@@ -182,18 +182,18 @@ btn_PushDataToArray.addEventListener("click", function () {
       <p class="exercises-row-label row-lbs">Weight</p>
       <p class="exercises-row-label row-reps">Reps</p>
     </div>
+    <label style="position: relative;">
     <div class="exercises-row">
-      <img src="img/arrow-forward-outline.svg" class="current-set">
-      <img src="img/checkmark-circle-outline.svg" class="completed-set hidden">
-      <input name="exercises-row-radio" class="exercises-row-radio hidden" type="radio">
+      <img src="img/checkmark-circle-outline.svg" class="completed-set">
+      <input name="exercises-row-radio" class="exercises-row-radio" type="radio">
       <p>1</p>
-      <input type="number" class="input--weight">
-      <input type="number" class="input--reps">
+      <input type="number" value="0" class="input--weight" onchange="updateWeight()">
+      <input type="number" value="0" class="input--reps" onchange="updateReps()">
       <p class="hidden">135</p>
       <p class="hidden">10</p>
       <img src="img/create-outline.svg" class="edit-set">
-          
-    </div>
+      </div>
+      </label>
     <div class="">
       <button class="btn--add-set" onclick="addSet()">
       <img class="ion-icon" src="img/add.svg">Add set
