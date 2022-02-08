@@ -14,12 +14,16 @@
   border-radius: 25px;
   position: relative;
 }
-
-h3 {
+.container--age h3,
+.container--height h3,
+.container--weight h3,
+.container--bmi h3,
+.container--gender h3,
+.container--goals h3,
+.container--lifestyle h3 {
   border-bottom: 1px solid black;
   border-top: 1px solid black;
-  padding: 5px 0px;
-  text-align: center;
+  padding: 5px 9px;
   background-color: royalblue;
   color: #fff;
 }
@@ -124,10 +128,10 @@ h1 {
 }
 
 .container--questions {
-  border: 1px solid black;
   position: relative;
   border-radius: 25px;
-  padding-bottom: 20px;
+  padding: 0px 15px;
+  padding-bottom: 60px;
   z-index: 1;
 }
 
@@ -138,7 +142,7 @@ h1 {
   color: #fff;
 }
 .container--login {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 25px;
   padding-bottom: 5px;
 }
@@ -161,4 +165,11 @@ h1 {
 .container--results {
   grid-column: 2;
   grid-row: 1/4;
+}
+
+.list {
+  padding-left: 0;
+}
+.list--vigorously-active {
+  padding-left: 18px;
 }

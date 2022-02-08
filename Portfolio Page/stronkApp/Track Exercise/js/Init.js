@@ -9,8 +9,12 @@ let container_Workouts_Page;
 
 const container_WorkoutsPage_Func = function () {
   if (container_Workouts_Page === 0) {
+    exercises_Nav.style.backgroundColor = "white";
+    exercises_Nav.style.color = "black";
     console.log(`Main Workouts Modal Page`);
   } else if (container_Workouts_Page === 1) {
+    exercises_Nav.style.backgroundColor = "black";
+    exercises_Nav.style.color = "white";
     console.log(`Selected Workouts Modal Page`);
   }
 };
@@ -198,6 +202,12 @@ const img_Modal_ActiveExercise = document.querySelector(".i-PlayCircle");
 
 const container_ExerciseInfo = document.querySelector(".exercise-information");
 const container_MainNav_Buttons = document.querySelector(".main--nav-buttons");
+const containerNav_Home = document.querySelector(".home");
+const containerNav_Workouts = document.querySelector(".workouts");
+const containerNav_History = document.querySelector(".history");
+const containerNav_Exercises = document.querySelector(".exercises");
+const containerNav_Calories = document.querySelector(".calories");
+const containerNav_Health = document.querySelector(".health");
 
 const userExercises = {
   barbell: "",

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../Track Health/stronk--css/styles.css" />
     <title>Track Exercise</title>
   </head>
   <body>
@@ -25,64 +26,299 @@
       </div>
 
       <div class="main--nav-buttons">
-        <!-- <h3 class="main--nav-buttons-title">What would you like to do?</h3> -->
-        <div class="container--nav-img">
-          <a href="/josephdorsey.github.io/index.html">
-            <img src="img/home-outline.svg" />
-            Home
-          </a>
-        </div>
-        <!-- <div class="container--nav-img">
-          <a class="i-user-profile">
+        <!-- <div class="home container--nav-img">
+          <a href="#" class="btn--home-modal">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6 btn--user-profile"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+              class="ionicon nav-img"
+              viewBox="0 0 512 512"
             >
               <path
+                d="M80 212v236a16 16 0 0016 16h96V328a24 24 0 0124-24h80a24 24 0 0124 24v136h96a16 16 0 0016-16V212"
+                fill="none"
+                stroke="currentColor"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="2"
-                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                stroke-width="32"
+              />
+              <path
+                d="M480 256L266.89 52c-5-5.28-16.69-5.34-21.78 0L32 256M400 179V64h-48v69"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="32"
               />
             </svg>
-            Profile
+
+            Home
           </a>
         </div> -->
-        <div class="container--nav-img">
-          <a href="#" class="btn--workouts-modal">
-            <img src="img/clipboard-outline.svg" />
+        <div class="home container--nav-img">
+          <label class="label--home">
+            <input type="radio" name="btn-nav-radio" class="btn--home-modal nav-radio" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="ionicon nav-img"
+              viewBox="0 0 512 512"
+            >
+              <path
+                d="M80 212v236a16 16 0 0016 16h96V328a24 24 0 0124-24h80a24 24 0 0124 24v136h96a16 16 0 0016-16V212"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="32"
+              />
+              <path
+                d="M480 256L266.89 52c-5-5.28-16.69-5.34-21.78 0L32 256M400 179V64h-48v69"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="32"
+              />
+            </svg>
+            Home
+          </label>
+          <!-- <img src="img/home-outline.svg" /> -->
+        </div>
+        <div class="workouts container--nav-img">
+          <label class="label--workouts">
+            <input
+              type="radio"
+              name="btn-nav-radio"
+              class="btn--workouts-modal nav-radio"
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="ionicon nav-img"
+              viewBox="0 0 512 512"
+            >
+              <path
+                d="M336 64h32a48 48 0 0148 48v320a48 48 0 01-48 48H144a48 48 0 01-48-48V112a48 48 0 0148-48h32"
+                fill="none"
+                stroke="currentColor"
+                stroke-linejoin="round"
+                stroke-width="32"
+              />
+              <rect
+                x="176"
+                y="32"
+                width="160"
+                height="64"
+                rx="26.13"
+                ry="26.13"
+                fill="none"
+                stroke="currentColor"
+                stroke-linejoin="round"
+                stroke-width="32"
+              />
+            </svg>
+
             <span>Workouts</span>
-          </a>
+          </label>
+          <!-- <a href="#" class="btn--workouts-modal"> -->
+
+          <!-- </a> -->
         </div>
-        <div class="container--nav-img">
-          <a href="#">
-            <img src="img/calendar-outline.svg" />
+        <div class="history container--nav-img">
+          <!-- <a href="#" class="btn--history"> -->
+          <!-- <img src="img/calendar-outline.svg" /> -->
+          <label class="label--history">
+            <input type="radio" name="btn-nav-radio" class="btn--history nav-radio" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="ionicon nav-img"
+              viewBox="0 0 512 512"
+            >
+              <path
+                d="M145.61 464h220.78c19.8 0 35.55-16.29 33.42-35.06C386.06 308 304 310 304 256s83.11-51 95.8-172.94c2-18.78-13.61-35.06-33.41-35.06H145.61c-19.8 0-35.37 16.28-33.41 35.06C124.89 205 208 201 208 256s-82.06 52-95.8 172.94c-2.14 18.77 13.61 35.06 33.41 35.06z"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="32"
+              />
+              <path
+                d="M343.3 432H169.13c-15.6 0-20-18-9.06-29.16C186.55 376 240 356.78 240 326V224c0-19.85-38-35-61.51-67.2-3.88-5.31-3.49-12.8 6.37-12.8h142.73c8.41 0 10.23 7.43 6.4 12.75C310.82 189 272 204.05 272 224v102c0 30.53 55.71 47 80.4 76.87 9.95 12.04 6.47 29.13-9.1 29.13z"
+              />
+            </svg>
             History
-          </a>
+          </label>
+          <!-- </a> -->
         </div>
-        <div class="container--nav-img">
+        <div class="exercises container--nav-img">
           <!-- <a href="#" class="btn--view-exercise-list">
             <img class="nav-img i-Barbell" src="img/barbell-outline.svg" />
             <span class="span--exercise-list">Exercises</span>
           </a> -->
-          <a href="#" class="btn--exercises-modal">
-            <img class="nav-img i-Barbell" src="img/barbell-outline.svg" />
+          <!-- <a href="#" class="btn--exercises-modal"> -->
+          <!-- <img class="nav-img i-Barbell" src="img/barbell-outline.svg" /> -->
+          <label class="label--exercises">
+            <input
+              type="radio"
+              name="btn-nav-radio"
+              class="btn--exercises-modal nav-radio"
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="ionicon nav-img"
+              viewBox="0 0 512 512"
+            >
+              <path
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="32"
+                d="M48 256h416"
+              />
+              <rect
+                x="384"
+                y="128"
+                width="32"
+                height="256"
+                rx="16"
+                ry="16"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="32"
+              />
+              <rect
+                x="96"
+                y="128"
+                width="32"
+                height="256"
+                rx="16"
+                ry="16"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="32"
+              />
+              <rect
+                x="32"
+                y="192"
+                width="16"
+                height="128"
+                rx="8"
+                ry="8"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="32"
+              />
+              <rect
+                x="464"
+                y="192"
+                width="16"
+                height="128"
+                rx="8"
+                ry="8"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="32"
+              />
+            </svg>
             <span class="span--exercise-list">Exercises</span>
-          </a>
+          </label>
+          <!-- </a> -->
         </div>
-        <div class="container--nav-img">
-          <a href="#" class="btn--user-health">
-            <img class="nav-img" src="img/fast-food-outline.svg" />
+        <div class="calories container--nav-img">
+          <!-- <a href="#" class="btn--track-user-cal"> -->
+          <!-- <img class="nav-img" src="img/fast-food-outline.svg" /> -->
+          <label class="label--calories">
+            <input
+              type="radio"
+              name="btn-nav-radio"
+              class="btn--track-user-cal nav-radio"
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="ionicon nav-img"
+              viewBox="0 0 512 512"
+            >
+              <path
+                d="M322 416c0 35.35-20.65 64-56 64H134c-35.35 0-56-28.65-56-64M336 336c17.67 0 32 17.91 32 40h0c0 22.09-14.33 40-32 40H64c-17.67 0-32-17.91-32-40h0c0-22.09 14.33-40 32-40"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-miterlimit="10"
+                stroke-width="32"
+              />
+              <path
+                d="M344 336H179.31a8 8 0 00-5.65 2.34l-26.83 26.83a4 4 0 01-5.66 0l-26.83-26.83a8 8 0 00-5.65-2.34H56a24 24 0 01-24-24h0a24 24 0 0124-24h288a24 24 0 0124 24h0a24 24 0 01-24 24zM64 276v-.22c0-55 45-83.78 100-83.78h72c55 0 100 29 100 84v-.22M241 112l7.44 63.97"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-miterlimit="10"
+                stroke-width="32"
+              />
+              <path
+                d="M256 480h139.31a32 32 0 0031.91-29.61L463 112"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-miterlimit="10"
+                stroke-width="32"
+              />
+              <path
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="32"
+                d="M368 112l16-64 47-16"
+              />
+              <path
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-miterlimit="10"
+                stroke-width="32"
+                d="M224 112h256"
+              />
+            </svg>
             <span>Calories</span>
-          </a>
+          </label>
+          <!-- </a> -->
         </div>
-        <div class="container--nav-img">
-          <a href="#" class="btn--user-stats">
-            <img class="nav-img" src="img/body-outline.svg" />
-            <span>Health</span>
+        <div class="health container--nav-img">
+          <!-- <a href="#" class="btn--user-health"> -->
+            <!-- <img class="nav-img" src="img/body-outline.svg" /> -->
+            <label class="label--health">
+              <input type="radio" name="btn-nav-radio" class="btn--user-health nav-radio">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="ionicon nav-img"
+                viewBox="0 0 512 512"
+              >
+                <circle
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-miterlimit="10"
+                  stroke-width="32"
+                  cx="256"
+                  cy="56"
+                  r="40"
+                />
+                <path
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-miterlimit="10"
+                  stroke-width="32"
+                  d="M199.3 295.62h0l-30.4 172.2a24 24 0 0019.5 27.8 23.76 23.76 0 0027.6-19.5l21-119.9v.2s5.2-32.5 17.5-32.5h3.1c12.5 0 17.5 32.5 17.5 32.5v-.1l21 119.9a23.92 23.92 0 1047.1-8.4l-30.4-172.2-4.9-29.7c-2.9-18.1-4.2-47.6.5-59.7 4-10.4 14.13-14.2 23.2-14.2H424a24 24 0 000-48H88a24 24 0 000 48h92.5c9.23 0 19.2 3.8 23.2 14.2 4.7 12.1 3.4 41.6.5 59.7z"
+                />
+              </svg>
+              <span>Health</span>
+            </label>
           </a>
         </div>
 
@@ -94,52 +330,53 @@
         </div> -->
       </div>
       <div class="main--task--container">
-        <div class="container--home hidden"></div>
-        <div class="container--workouts">
+        <div class="container--home hidden">
+          <div class="container--login">
+            <div class="container--logo">
+              <h1 class="logo--title">Welcome to Stronk App</h1>
+              <div class="container--name">
+                <form class="form--enter-login">
+                  <h3 class="user--title">Please enter a username</h3>
+                  <input class="input--username" type="text" />
+                  <p class="user--greet hidden">Welcome, test!</p>
+                  <button type="button" class="btn--login">Login</button>
+                </form>
+
+                <!-- <label for="name">Last:</label>
+                <input class="input--last-name" type="text" /> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container--workouts hidden">
           <!-- <select class="testNumber"></select> -->
           <img
             class="btn--createWorkout_WorkoutGroup"
             src="img/add-circle-outline.svg"
           />
+
           <span class="btn--edit-Workout-WorkoutGroup">Edit</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6 btn--close-exercise-info hidden"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-          <span class="span--close-exercise-info hidden">Workouts</span>
-          <h1 class="workout-timer hidden">00:00:00</h1>
-          <div class="start-end-workout-modal hidden">
-            <button class="btn--startWorkout">
-              <img class="img--startWorkout" src="img/play.svg" />
-              Start Workout
-            </button>
-            <button class="btn--pauseWorkout hidden">
-              <img class="img--pauseWorkout" src="img/pause.svg" />
-              Pause Workout
-            </button>
-            <button class="btn--resumeWorkout hidden">
-              <img class="img--resumeWorkout" src="img/play.svg" />
-              Resume Workout
-            </button>
-            <button class="btn--endWorkout">
-              <img class="img--endWorkout" src="img/stop.svg" />
-              End Workout
-            </button>
-            <button class="btn--open-exercises-window">
-              <img class="img--addExercises" src="img/add.svg" />Add Exercises
-            </button>
+          <div class="exercise-nav">
+            <label class="span--close-exercise-info hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 btn--close-exercise-info hidden"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+              Workouts</label
+            >
+            <h1 class="workout-timer hidden">00:00:00</h1>
           </div>
-          <h2 class="createWorkout-title">Workouts</h2>
+
           <div class="createWorkout_WorkoutGroup-modal hidden">
             <div class="create-workoutgroup-buttons">
               <h4 class="create-workoutgroup-buttons-title">
@@ -283,20 +520,42 @@
             </div>
           </div>
           <div class="modal-active-container">
+            <div class="container--currentExercise hidden">
+              <label class="currentExercise--label">Abdominal Crunches</label>
+              <button class="currentExercise--btn">Next Set</button>
+            </div>
             <div class="modal-exercise-list"></div>
-            <div class="modal-exercise-info hidden">
-              <!-- <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5 btn--exercise-list"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                  clip-rule="evenodd"
-                />
-              </svg> -->
+            <div class="modal-exercise-info">
+              <div class="container--title-notes">
+                <h2 class="createWorkout-title">Workouts</h2>
+                <textarea
+                  class="createWorkout-title-notes hidden"
+                  placeholder="Add notes
+                "
+                ></textarea>
+              </div>
+              <div class="start-end-workout-modal hidden">
+                <button class="btn--startWorkout">
+                  <img class="img--startWorkout" src="img/play.svg" />
+                  Start Workout
+                </button>
+                <button class="btn--pauseWorkout hidden">
+                  <img class="img--pauseWorkout" src="img/pause.svg" />
+                  Pause Workout
+                </button>
+                <button class="btn--resumeWorkout hidden">
+                  <img class="img--resumeWorkout" src="img/play.svg" />
+                  Resume Workout
+                </button>
+                <button class="btn--endWorkout">
+                  <img class="img--endWorkout" src="img/stop.svg" />
+                  End Workout
+                </button>
+                <button class="btn--open-exercises-window">
+                  <img class="img--addExercises" src="img/add.svg" />Add
+                  Exercises
+                </button>
+              </div>
               <!-- <img class="btn--modal-add-exercise" src="img/add-circle-outline.svg" /> -->
               <!-- <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -448,7 +707,7 @@
           </div>
         </div>
         <div class="container--history hidden"></div>
-        <div class="container--exercises" style="display: none">
+        <div class="container--exercises hidden">
           <div class="container--exercises-search">
             <img class="btn--createExercise" src="img/add-circle-outline.svg" />
             <h2>Exercises</h2>
@@ -463,18 +722,266 @@
           </div>
           <div class="container--all-exercises"></div>
         </div>
-        <div class="container--user-health hidden"></div>
+        <div class="container--track-user-calories hidden"></div>
+        <div class="container--user-health hidden">
+          <form class="container--questions hidden">
+            <div class="container--age">
+              <h3>Age</h3>
+              <!-- <label for="age">Age:</label> -->
+              <input class="input--age" type="text" placeholder="years" />
+            </div>
+            <div class="container--gender">
+              <h3>Sex</h3>
+              <input type="radio" name="gender" class="radio--male" />
+              <label for="male">Male</label>
+              <input type="radio" name="gender" class="radio--female" />
+              <label for="female">Female</label>
+            </div>
+            <div class="container--height">
+              <h3>Height</h3>
+              <select>
+                <option class="option--feet">Feet</option>
+                <option class="option--meters">Meters</option>
+              </select>
+              <input type="text" class="input--feet" placeholder="feet" />
+
+              <input type="text" class="input--inches" placeholder="inches" />
+            </div>
+            <div class="container--weight_bmi">
+              <div class="container--weight">
+                <h3>Weight</h3>
+                <select>
+                  <option class="option--pounds">Pounds</option>
+                  <option class="option--kilograms">Kilograms</option>
+                </select>
+                <input class="input--weight" type="text" placeholder="lbs" />
+
+                <div class="container--weight-range hidden">
+                  <div class="flex--weight-range">
+                    <p class="weight-range--summary"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="container--bmi hidden">
+                <h3>BMI</h3>
+                <p class="bmi--results">Your BMI is: 30</p>
+                <p class="bmi--summary">test</p>
+              </div>
+              <div class="bmi--categories">
+                <p>Click this button to see the BMI Categories</p>
+                <button type="button" class="btn--bmi-categories" href="#">
+                  BMI Categories
+                </button>
+              </div>
+            </div>
+            <div class="goals">
+              <div class="container--goals">
+                <h3>Goal</h3>
+                <div class="goals--maintain">
+                  <input
+                    class="radio--maintain"
+                    name="goals"
+                    type="radio"
+                  /><label for="maintain--weight">Maintain Weight</label>
+                </div>
+              </div>
+              <div class="container--goals">
+                <div class="goals--lose">
+                  <input class="radio--lose" name="goals" type="radio" /><label
+                    for="lose--weight"
+                    >Lose Weight</label
+                  >
+                </div>
+              </div>
+              <div class="container--goals">
+                <div class="goals--weight">
+                  <input class="radio--gain" name="goals" type="radio" /><label
+                    for="gain--weight"
+                    >Gain Weight</label
+                  >
+                  <select class="container--slow_fast hidden">
+                    <option class="option_Slow" value="slow">Slow</option>
+                    <option class="option_Fast" value="fast">Fast</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="container--lifestyle">
+              <h3>Which life style best describes you?</h3>
+              <select>
+                <option class="option--sedentary">
+                  Sedentary: little or no exercise
+                </option>
+                <option class="option--light">
+                  Light: exercise 1-3 times/week
+                </option>
+                <option class="option--active">
+                  Active: daily exercise or intense exercise 3-4 times/week
+                </option>
+                <option class="option--very-active">
+                  Very Active: intense exercise 6-7 times/week
+                </option>
+                <option class="option--vigorously-active">
+                  Vigorously Active: very intense exercise daily, or physical
+                  job
+                </option>
+              </select>
+              <div class="container--results hidden">
+                <h3 class="lifestyle--definition">
+                  What is a ${lifestyle} lifestyle?
+                </h3>
+                <div class="list">
+                  <ul class="list--sedentary hidden">
+                    <li>
+                      Activities of daily living only, such as shopping,
+                      cleaning, watering plants, taking out the trash, walking
+                      the dog, mowing the lawn and gardening.
+                    </li>
+                    <li>No moderate of vigorous activities.</li>
+                    <li>
+                      Unless you do at least 30 minutes per day of intentional
+                      exercise, you are considered sedentary.
+                    </li>
+                    <li>
+                      Spending most of the day sitting (e.g. bank teller, desk
+                      job).
+                    </li>
+                    <li>
+                      The majority of people will be considered sedentary.
+                    </li>
+                  </ul>
+                  <ul class="list--light-active hidden">
+                    <li>
+                      Activities of daily living only, such as shopping,
+                      cleaning, watering plants, taking out the trash, walking
+                      the dog, mowing the lawn and gardening.
+                    </li>
+                    <li>
+                      Daily exercise that is equal to walking for 30 minutes at
+                      4mph. For an adult of average weight, this amount of
+                      exercise will burn about 130-160 additional calories.
+                    </li>
+                    <li>
+                      More intense exercise can be performed for less time to
+                      achieve the same goal. For example, 15-20 minutes of
+                      vigorous activity, such as aerobics, skiing or jogging on
+                      a daily basis would put you in this category.
+                    </li>
+                    <li>
+                      Spending a good part of the day on your feet (e.g.
+                      teacher, salesman)
+                    </li>
+                  </ul>
+                  <ul class="list--active hidden">
+                    <li>
+                      Activities of daily living, such as shopping, cleaning,
+                      watering plants, taking out the trash, walking the dog,
+                      mowing the lawn, and gardening.
+                    </li>
+                    <li>
+                      Daily exercise that is equal to walking for 1 hour and 45
+                      minutes at 4mph.
+                    </li>
+                    <li>
+                      For an adult of average weight, this amount of exercise
+                      will burn about 470-580 additional calories.
+                    </li>
+                    <li>
+                      More intense exercise can be performed for less time.
+                    </li>
+                    <li>
+                      For example, jogging for 50 minutes per day. Spending a
+                      good part of the day doing some physical activity (e.g.
+                      waitress, mailman).
+                    </li>
+                  </ul>
+                  <ul class="list--very-active hidden">
+                    <li>
+                      Activities of daily living only, such as shopping,
+                      cleaning, watering plants, taking out the trash, walking
+                      the dog, mowing the lawn and gardening.
+                    </li>
+                    <li>
+                      Daily exercise that is equal to walking for 4 hours and 15
+                      minutes at 4mph. For an adult of average weight, this
+                      amount of exercise will burn about 1,150-1400 additional
+                      calories.
+                    </li>
+                    <li>
+                      More intense exercise can be performed for less time. For
+                      example, jogging for 2 hours minutes per day.
+                    </li>
+                    <li>
+                      Spending most of the day doing heavy physical activity
+                      (e.g. bike messenger, carpenter).
+                    </li>
+                  </ul>
+                  <ul class="list--vigorously-active hidden">
+                    <li>
+                      These people engage regularly in strenuous work or in
+                      strenuous leisure activities for several hours.
+                    </li>
+                    <li>
+                      Examples are women with non-sedentary occupations who swim
+                      or dance an average of two hours each day, or
+                      non-mechanized agricultural labourers who work with a
+                      machete, hoe or axe for several hours daily and walk long
+                      distances over rugged terrains, often carrying heavy
+                      loads.
+                    </li>
+                  </ul>
+                </div>
+                <p class="general--summary">Height and weight and lifestyle</p>
+                <p class="calorie--summary">Calorie-intake</p>
+                <p class="protein--summary">Protein-intake</p>
+              </div>
+            </div>
+            <button type="button" class="btn--calculate" value="Calculate!">
+              Calculate!
+            </button>
+          </form>
+          <div class="bmi--info hidden">
+            <h3>BMI Categories</h3>
+            <ol>
+              <li>Underweight = < 18.5</li>
+              <li>Normal weight = 18.5–24.9</li>
+              <li>Overweight = 25–29.9</li>
+              <li>Obesity = BMI of 30 or greater</li>
+            </ol>
+            <h3>Who shouldn't use a BMI calculator?</h3>
+            <p>
+              BMI is not used for muscle builders, long distance athletes,
+              pregnant women, the elderly or young children. This is because BMI
+              does not take into account whether the weight is carried as muscle
+              or fat, just the number. Those with a higher muscle mass, such as
+              athletes, may have a high BMI but not be at greater health risk.
+              Those with a lower muscle mass, such as children who have not
+              completed their growth or the elderly who may be losing some
+              muscle mass may have a lower BMI. During pregnancy and lactation,
+              a woman's body composition changes, so using BMI is not
+              appropriate.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
+    <!-- Track Exercises JS Files -->
     <script src="js/Init.js"></script>
     <script src="js/Buttons/Buttons_Modals/active-exercise-modal.js"></script>
     <script src="js/Buttons/Buttons_Modals/add-exercise-to-workout.js"></script>
     <script src="js/Buttons/Buttons_Modals/create-exercise.js"></script>
-
     <script src="js/Buttons/Buttons_Modals/start-workout.js"></script>
     <script src="js/Buttons/Buttons_Modals/delete-exercise.js"></script>
     <script src="js/Buttons/Buttons_Modals/Button_NextSet.js"></script>
     <script src="js/Buttons/Buttons_Modals/exercises-all.js"></script>
+    <script src="js/Buttons/Buttons_Modals/btn_Home.js"></script>
+    <script src="js/Buttons/Buttons_Modals/btn_History.js"></script>
+    <script src="js/Buttons/Buttons_Modals/btn_Calories.js"></script>
+
+    <!-- Track Health JS Files -->
+    <script src="../Track Health/stronk--js/index.js"></script>
+    <script src="../Track Health/stronk--js/proteinCalc.js"></script>
+    <script src="../Track Health/stronk--js/heightCalc.js"></script>
   </body>
 </html>
 

@@ -352,6 +352,8 @@ const btn_removeSet = document.getElementsByClassName("btn--remove-set");
 const input_Weight = document.getElementsByClassName("input--weight");
 const input_Reps = document.getElementsByClassName("input--reps");
 const radio_ExerciseList = document.getElementsByClassName("exercise-list");
+const p_Sets = document.getElementsByClassName("exercises-row-set");
+const btn_CompletedSet = document.getElementsByClassName("completed-set");
 let addSet_Count;
 let tempEN_Count;
 let increaseSet = 1;
@@ -444,9 +446,11 @@ function addSet() {
             ].value === ""
           ) {
             label.innerHTML = `<div class="exercises-row">
-              <img src="img/checkmark-circle-outline.svg" class="completed-set">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 completed-set" onclick="completeSet()" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+</svg>
               <input name="exercises-row-radio" class="exercises-row-radio" type="radio">
-              <p>${
+              <p class="exercises-row-set">${
                 exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
                   `${tempWorkoutList[tempEN_Count]}`
                 ].increaseSet
@@ -481,9 +485,12 @@ function addSet() {
             )
           ) {
             label.innerHTML = `<div class="exercises-row">
-            <img src="img/checkmark-circle-outline.svg" class="completed-set">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 completed-set" fill="none" viewBox="0 0 24 24" onclick="completeSet()" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+</svg>
             <input name="exercises-row-radio" class="exercises-row-radio" type="radio">
-            <p>${
+            <p class="exercises-row-set">${
               exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
                 `${tempWorkoutList[tempEN_Count]}`
               ].increaseSet
@@ -538,9 +545,13 @@ function addSet() {
             ].value === ""
           ) {
             label.innerHTML = `<div class="exercises-row">
-            <img src="img/checkmark-circle-outline.svg" class="completed-set">
+            
+            
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 completed-set" fill="none" viewBox="0 0 24 24" onclick="completeSet()" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
             <input name="exercises-row-radio" class="exercises-row-radio" type="radio">
-            <p>${
+            <p class="exercises-row-set">${
               exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
                 `${tempWorkoutList[tempEN_Count]}`
               ].increaseSet
@@ -582,9 +593,12 @@ function addSet() {
             ].value === ""
           ) {
             label.innerHTML = `<div class="exercises-row">
-            <img src="img/checkmark-circle-outline.svg" class="completed-set">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 completed-set" onclick="completeSet()" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+</svg>
             <input name="exercises-row-radio" class="exercises-row-radio" type="radio">
-            <p>${
+            <p class="exercises-row-set">${
               exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
                 `${tempWorkoutList[tempEN_Count]}`
               ].increaseSet
@@ -651,6 +665,20 @@ function updateWeight() {
       );
     }
   }
+  // for (
+  //   let i = 0;
+  //   i <
+  //   exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+  //     `${tempWorkoutList[tempEN_Count]}`
+  //   ].sets.length;
+  //   i++
+  // ) {
+  //   if (exercises_Row_Radio[i].checked === true) {
+  //     exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+  //       `${tempWorkoutList[tempEN_Count]}`
+  //     ].weight.splice(i, 1, Number(input_Weight[i].value));
+  //   }
+  // }
 }
 function updateReps() {
   for (let i = 0; i < exercises_Row_Radio.length; i++) {
@@ -688,15 +716,39 @@ function activeSet() {
   for (let i = 0; i < exercises_Row_Radio.length; i++) {
     if (exercises_Row_Radio[i].checked === true) {
       exercises_Row[i].style.border = "2px solid green";
-
-      // exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
-      //   `${tempWorkoutList[tempEN_Count]}`
-      // ].loopSet = i;
     } else {
       exercises_Row[i].style.border = "1px solid black";
     }
   }
 }
+
+function completeSet() {
+  for (let i = 0; i < exercises_Row_Radio.length; i++) {
+    if (exercises_Row_Radio[i].checked === true) {
+      if (
+        input_Weight[i].disabled === false &&
+        input_Reps[i].disabled === false
+      ) {
+        p_Sets[i].style.color = "green";
+        btn_CompletedSet[i].style.color = "green";
+        input_Reps[i].disabled = true;
+        input_Weight[i].disabled = true;
+      } else if (
+        input_Weight[i].disabled === true &&
+        input_Reps[i].disabled === true
+      ) {
+        p_Sets[i].style.color = "black";
+        btn_CompletedSet[i].style.color = "black";
+        input_Reps[i].disabled = false;
+        input_Weight[i].disabled = false;
+      }
+    }
+  }
+}
+for (let i = 0; i < btn_CompletedSet.length; i++) {
+  btn_CompletedSet[i].addEventListener("click", completeSet);
+}
+
 const update_tempEN_Count = function () {
   for (let i = 0; i < radio_ExerciseList.length; i++) {
     if (radio_ExerciseList[i].checked === true) {
@@ -710,3 +762,29 @@ const update_tempEN_Count = function () {
 };
 document.body.addEventListener("click", update_tempEN_Count);
 document.body.addEventListener("click", activeSet);
+
+document.addEventListener("keydown", function (e) {
+  console.log(e.key);
+  if (e.key === "Escape" && !(container_EIE.style.display === "none")) {
+    container_EIE.style.display = "none";
+
+    exercises_Nav.classList.remove("hidden");
+    container_ExerciseInfo.style.display = "none";
+    container_workoutTimer_Buttons.classList.remove("hidden");
+    btn_Open_Exercises_Window.style.display = "";
+    workout_Timer.classList.remove("hidden");
+    // Hide workouts timer
+    container_TitleNotes.style.top = "4px";
+    workouts_Title.classList.remove("hidden");
+    workouts_Title.style.left = "-14px";
+    workouts_Title.style.top = "-22px";
+    exerciseNotes.classList.remove("hidden");
+    exerciseNotes.style.left = "-12px";
+    exerciseNotes.style.top = "41px";
+    btn_CloseExerciseInfoModal.classList.remove("hidden");
+    span_CloseExerciseInfoModal.classList.remove("hidden");
+    for (let i = 0; i < row_Div.length; i++) {
+      row_Div[i].classList.remove("hidden");
+    }
+  }
+});

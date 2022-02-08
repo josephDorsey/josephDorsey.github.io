@@ -60,105 +60,6 @@ const resetDataInfoPush = function () {
 };
 
 btn_PushDataToArray.addEventListener("click", function () {
-  const div = document.createElement("div");
-
-  // Change this to a loop ?
-  // exerciseEditExercise_Title.innerHTML = `Exercise: ${exercise_Name.value}`;
-  // workoutNameP.innerHTML = workout_Name.value;
-  // exerciseGroup.workoutName = workout_Name.value;
-  // exerciseGroup.workoutList.push(exercise_Name.value);
-  // exerciseGroup.weight.push(Number(exercise_Weight.value));
-
-  // temp_Weight.push(Number(exercise_Weight.value));
-
-  // localStorage.setItem(
-  //   "exercises_Weight",
-  //   JSON.stringify(exerciseGroup.weight)
-  // );
-  // localStorage.setItem(
-  //   `workoutName_${temp_Workout_Name[workoutName_Count]}_Weight`,
-  //   JSON.stringify(temp_Weight)
-  // );
-
-  // exerciseGroup.sets.min.push(1);
-  // temp_Sets_Min.push(1);
-
-  // localStorage.setItem(
-  //   "exercises_Sets_Min",
-  //   JSON.stringify(exerciseGroup.sets.min)
-  // );
-  // localStorage.setItem(
-  //   `workoutName_${temp_Workout_Name[workoutName_Count]}_Sets_Min`,
-  //   JSON.stringify(temp_Sets_Min)
-  // );
-
-  // exerciseGroup.sets.max.push(Number(exercise_Sets.value));
-  // temp_Sets_Max.push(Number(exercise_Sets.value));
-
-  // localStorage.setItem(
-  //   "exercises_Sets_Max",
-  //   JSON.stringify(exerciseGroup.sets.max)
-  // );
-  // localStorage.setItem(
-  //   `workoutName_${temp_Workout_Name[workoutName_Count]}_Sets_Max`,
-  //   JSON.stringify(temp_Sets_Max)
-  // );
-
-  // exerciseGroup.reps.push(Number(exercise_Reps.value));
-  // temp_Reps.push(Number(exercise_Reps.value));
-
-  // localStorage.setItem("exercises_Reps", JSON.stringify(exerciseGroup.reps));
-  // localStorage.setItem(
-  //   `workoutName_${temp_Workout_Name[workoutName_Count]}_Reps`,
-  //   JSON.stringify(temp_Reps)
-  // );
-
-  // exerciseGroup.rest.minutes.push(Number(exercise_Minutes.value));
-
-  // temp_Rest_Minutes.push(Number(exercise_Minutes.value));
-  // localStorage.setItem(
-  //   "exercises_Rest_Minutes",
-  //   JSON.stringify(exerciseGroup.rest.minutes)
-  // );
-  // localStorage.setItem(
-  //   `workoutName_${temp_Workout_Name[workoutName_Count]}_Rest_Minutes`,
-  //   JSON.stringify(temp_Rest_Minutes)
-  // );
-
-  // exerciseGroup.rest.seconds.push(Number(exercise_Seconds.value));
-  // temp_Rest_Seconds.push(Number(exercise_Seconds.value));
-
-  // localStorage.setItem(
-  //   "exercises_Rest_Seconds",
-  //   JSON.stringify(exerciseGroup.rest.seconds)
-  // );
-  // localStorage.setItem(
-  //   `workoutName_${temp_Workout_Name[workoutName_Count]}_Rest_Seconds`,
-  //   JSON.stringify(temp_Rest_Seconds)
-  // );
-  // labelExercise.innerHTML = `Exercise: ${exercise_Name.value}`;
-  // labelWeight.innerHTML = `Weight: ${exercise_Weight.value}-lbs`;
-  // labelSets.innerHTML = `Set: 1 / ${exercise_Sets.value}`;
-  // labelReps.innerHTML = `Reps: ${exercise_Reps.value}`;
-  // labelRest.innerHTML = `Rest: ${exercise_Minutes.value}m ${exercise_Seconds.value}s`;
-
-  //   div.classList.add("exercise-list-exercise");
-  //   div.innerHTML = `
-  // <input type="radio" name="exercise-list-radio" class="exercise-list-radio"/>
-  // <label>Exercise ${exerciseGroup.workoutList[i]}</label>
-  // `;
-
-  // for (let i = 0; i < exerciseGroup.name.length; i++) {
-  //   div.innerHTML = `
-  // <input type="radio" name="exercise-list-radio" class="exercise-list-radio"/>
-  // <label>Exercise ${i + 1}: ${exerciseGroup.name[i]}</label>
-  // `;
-  // }
-  // for (let i = 0; i < exercise_List_Radios.length; i++) {
-  //   exercise_List_Radios[i].addEventListener("click", function () {
-  //     if (exercise_List_Radios[i] === 1) console.log(`clicked`);
-  //   });
-  // }
   for (let i = 0; i < exercises_Radio.length; i++) {
     if (exercises_Radio[i].checked === true) {
       tempWorkoutList.push(exercises_Radio_Label[i].innerText);
@@ -184,9 +85,11 @@ btn_PushDataToArray.addEventListener("click", function () {
     </div>
     <label style="position: relative;">
     <div class="exercises-row">
-      <img src="img/checkmark-circle-outline.svg" class="completed-set">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 completed-set" onclick="completeSet()" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+</svg>
       <input name="exercises-row-radio" class="exercises-row-radio" type="radio">
-      <p>1</p>
+      <p class="exercises-row-set">1</p>
       <input type="number" value="0" class="input--weight" onchange="updateWeight()">
       <input type="number" value="0" class="input--reps" onchange="updateReps()">
       <p class="hidden">135</p>
@@ -217,6 +120,10 @@ btn_PushDataToArray.addEventListener("click", function () {
 
 btn_CloseExerciseInfoModal.addEventListener("click", function () {
   workoutName_Count = 0;
+  exercises_Nav.style.backgroundColor = "white";
+  exercises_Nav.style.color = "black";
+  exerciseNotes.classList.add("hidden");
+  workouts_Title.style.top = "-216px";
   for (let i = tempWorkoutList.length; i >= 0; i--) {
     tempWorkoutList.splice(i, 1);
   }

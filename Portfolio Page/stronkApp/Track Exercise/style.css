@@ -66,6 +66,7 @@
   position: absolute;
   left: 0px;
   top: 14px;
+  visibility: hidden;
 }
 
 .current-set {
@@ -161,8 +162,19 @@
   align-items: center;
   justify-items: end;
   border: 1px solid black;
-  border-radius: 25px;
+  border-radius: 10px;
 }
+
+.container--currentExercise {
+  position: fixed;
+  text-align: center;
+  bottom: 117px;
+  border: 1px solid black;
+  z-index: 99;
+  padding: 30px 229px;
+  border-radius: 0px 0px 25px 25px;
+}
+
 /* .exercises-row:last-child {
   
   gap: 70px;
@@ -472,9 +484,17 @@
   gap: 0px;
   margin: 0 auto;
   grid-row: 3/6;
-  /* padding-bottom: 90px; */
+  padding-bottom: 90px;
   grid-column: 1/-1;
   width: 100%;
+}
+
+.exercise-nav {
+  text-align: center;
+  /* margin: 0 auto; */
+  /* width: 100%; */
+  grid-column: 1/-1;
+  height: 50px;
 }
 
 .exercise-edit-mode-title,
@@ -557,8 +577,8 @@
   height: 25px;
   cursor: pointer;
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: -5px;
+  left: -30px;
 }
 .span--close-exercise-info {
   font-size: 1em;
@@ -591,7 +611,13 @@
   right: 0;
   left: 0;
 }
-
+.btn--startWorkout {
+  position: absolute;
+  margin: 0 auto;
+  width: 150px;
+  left: 0;
+  right: 0;
+}
 .btn--set-active {
   position: absolute;
   text-align: center;
@@ -614,8 +640,8 @@
 }
 
 .nav-img {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   justify-self: center;
   padding-bottom: 10px;
 }
@@ -625,6 +651,7 @@
   width: 50%;
   justify-content: center;
   margin: 0 auto;
+  text-align: center;
 }
 
 .container--nav-img a {
@@ -675,7 +702,7 @@
   width: 150px;
   margin: 0 auto;
   /* justify-self: center; */
-  top: 30px;
+  top: 139px;
   transform: translateX(0%);
   /* z-index: -1; */
 }
@@ -782,10 +809,11 @@
 }
 
 .start-end-workout-modal {
-  grid-row: 2;
+  grid-row: 1;
   grid-column: 1/-1;
   margin: 0 auto;
-  transform: translate(0%, -90%);
+  padding-top: 30px;
+  padding-bottom: 15px;
 }
 
 /* Main Task Container */
@@ -806,11 +834,33 @@
   display: grid;
   height: 640px;
 }
-
+/* Labels for Nav Buttons */
+.label--home {
+  cursor: pointer;
+}
+.nav-radio {
+  /* visibility: hidden; */
+  display: none;
+}
+/* after btnviewworkout is pressed */
+.container--title-notes {
+  position: absolute;
+  top: 21px;
+}
 .createWorkout-title {
   position: absolute;
-  left: 15px;
-  top: 30px;
+  left: -235px;
+  /* top: -152px; */
+  top: -216px;
+  padding-top: 10px;
+}
+.createWorkout-title-notes {
+  position: absolute;
+  left: -233px;
+  top: -86px;
+  border: 0;
+  width: 630px;
+  height: 55px;
 }
 
 .container--workouts {
@@ -824,6 +874,55 @@
   border-radius: 25px;
   column-gap: 10px;
   overflow-y: scroll;
+}
+
+.container--home {
+  display: grid;
+  /* border: 1px solid red; */
+  width: 100%;
+  margin: 0 auto;
+  /* grid-template-rows: repeat(6, 1fr); */
+  grid-template-columns: 1fr;
+  /* row-gap: 15px; */
+  border-radius: 25px;
+  column-gap: 10px;
+  overflow-y: scroll;
+}
+.container--track-user-calories {
+  display: grid;
+  /* border: 1px solid red; */
+  width: 100%;
+  margin: 0 auto;
+  /* grid-template-rows: repeat(6, 1fr); */
+  grid-template-columns: 1fr;
+  /* row-gap: 15px; */
+  border-radius: 25px;
+  column-gap: 10px;
+  overflow-y: scroll;
+}
+.container--history {
+  display: grid;
+  /* border: 1px solid red; */
+  width: 100%;
+  margin: 0 auto;
+  /* grid-template-rows: repeat(6, 1fr); */
+  grid-template-columns: 1fr;
+  /* row-gap: 15px; */
+  border-radius: 25px;
+  column-gap: 10px;
+  overflow-y: scroll;
+}
+
+.container--user-health {
+  overflow-y: scroll;
+
+  margin: 0 auto;
+  width: 100%;
+  padding: 15px 30px;
+  /* grid-template-columns: 1fr 1fr; */
+  display: grid;
+  border-radius: 25px;
+  position: relative;
 }
 
 .container--exercises {

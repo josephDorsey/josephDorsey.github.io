@@ -137,6 +137,7 @@ const convertMinBMI = 18.5 / 703;
 const convertMaxBMI = 24.9 / 703;
 
 const btn_Calculate = document.querySelector(".btn--calculate");
+
 let age,
   weight,
   weight_Kilo,
@@ -577,11 +578,20 @@ const healthyWeightRange = function () {
   return weightRange.textContent;
 };
 
-document.addEventListener("click", function () {
+document.addEventListener("change", function () {
   if (option_Pounds.selected) {
-    userWeight.placeholder = "pounds";
+    userWeight.placeholder = "lbs";
   } else if (option_Kilograms.selected) {
-    userWeight.placeholder = "kilograms";
+    userWeight.placeholder = "kg";
+  }
+});
+document.addEventListener("change", function () {
+  if (option_Feet.selected) {
+    feet.placeholder = "feet";
+    inches.placeholder = "inches";
+  } else if (option_Meters.selected) {
+    feet.placeholder = "meters";
+    inches.placeholder = "centimeters";
   }
 });
 btn_Login.addEventListener("click", closeLogin);
