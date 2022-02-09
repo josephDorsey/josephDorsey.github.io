@@ -1,10 +1,26 @@
+* {
+  box-sizing: border-box;
+}
 .container--age,
 .container--height,
 .container--weight,
 .container--bmi,
-.container--gender {
+.container--gender,
+.container--lifestyle,
+.container--goals,
+.container--calories,
+.container--protein {
   position: relative;
   /* display: block; */
+}
+.container--lifestyle {
+  grid-column: 2;
+
+  border-radius: 25px;
+  padding-bottom: 15px;
+}
+.select-lifestyle {
+  width: 250px;
 }
 .container--main {
   margin: 0 auto;
@@ -21,7 +37,9 @@
 .container--bmi h3,
 .container--gender h3,
 .container--goals h3,
-.container--lifestyle h3 {
+.container--lifestyle h3,
+.container--calories h3,
+.container--protein h3 {
   padding: 5px 9px;
   background-color: #fff;
   color: #3b5bdb;
@@ -214,7 +232,7 @@ h1 {
 .form-enter-ahwkg {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(4, 0.25fr);
+  grid-template-rows: repeat(5, 0.5fr);
   column-gap: 10px;
   row-gap: 15px;
 }
@@ -230,22 +248,26 @@ h1 {
 }
 .container--age,
 .container--gender,
+.container--goals,
 .container--height,
 .container--weight,
 .container--bmi,
-.goals,
-.container--lifestyle,
-.btn--calculate {
-  grid-column: 1;
+.btn--calculate,
+.container--calories,
+.container--protein {
+  /* grid-column: 1; */
   border-radius: 25px;
-  border: 1px solid black;
   padding-bottom: 15px;
 }
 .container--age,
+.container--lifestyle,
+.container--goals,
 .container--gender,
 .container--height,
 .container--weight,
-.container--bmi {
+.container--bmi,
+.container--calories,
+.container--protein {
   box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 30%);
   border: 0px;
 }
@@ -255,6 +277,7 @@ h1 {
 }
 .container--bmi {
   grid-column: 1/-1;
+  grid-row: 5;
 }
 
 .post-calculate {

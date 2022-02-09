@@ -11,6 +11,15 @@ const title_Stronk = document.querySelector(".logo--title");
 const container_Question = document.querySelector(".container--questions");
 const container_AHWKG = document.querySelector(".container--ahwkg");
 const containerAge = document.querySelector(".container--age");
+const containerGoals = document.querySelector(".container--goals");
+const container_MaintainWeight = document.querySelector(
+  ".container--maintain-weight"
+);
+const container_LoseWeight = document.querySelector(".container--lose-weight");
+const container_GainWeight = document.querySelector(".container--gain-weight");
+const containerLifestyle = document.querySelector(".container--lifestyle");
+const lifestyle_Title = document.querySelector(".lifestyle--title");
+const select_Lifestyle = document.querySelector(".select-lifestyle");
 const containerGender = document.querySelector(".container--gender");
 const containerHeight = document.querySelector(".container--height");
 const containerName = document.querySelector(".container--name");
@@ -18,6 +27,7 @@ const containerBMI = document.querySelector(".container--bmi");
 const containerWeight = document.querySelector(".container--weight");
 const infoContainerBMI = document.querySelector(".bmi--info");
 const containerProtein = document.querySelector(".container--protein");
+const containerCalories = document.querySelector(".container--calories");
 const containerWeightRange = document.querySelector(".container--weight-range");
 const containerResults = document.querySelector(".container--results");
 
@@ -41,6 +51,9 @@ const lifestyleText = document.querySelector(".lifestyle--summary");
 const summaryCalories = document.querySelector(".calorie--summary");
 const summaryProtein = document.querySelector(".protein--summary");
 const summaryGeneral = document.querySelector(".general--summary");
+const value_Protein = document.querySelector(".protein--value");
+const value_Calories = document.querySelector(".calorie--value");
+const selected_Goal = document.querySelector(".selected--goal");
 
 // list
 const listSummary_Sedentary = document.querySelector(".list--sedentary");
@@ -133,6 +146,7 @@ const user = {
     max: "",
   },
   lifeStyle: "",
+  goal: "",
 };
 
 const convertMinBMI = 18.5 / 703;
@@ -484,7 +498,11 @@ const showWBP = function () {
   containerBMI.classList.remove("hidden");
   containerWeightRange.classList.remove("hidden");
   lifestyleDefinition.classList.remove("hidden");
+  lifestyle_Title.classList.add("hidden");
+  select_Lifestyle.classList.add("hidden");
   containerResults.classList.remove("hidden");
+  containerProtein.classList.remove("hidden");
+  containerCalories.classList.remove("hidden");
   // proteinRange.classList.toggle("hidden");
 };
 const showLifeStyleSummary = function () {
@@ -714,34 +732,20 @@ btn_BMICategories.addEventListener("click", function () {
 
 const summaryGoal_Maintain = function () {
   lifeStyleRequirement(user.lifeStyle);
-  summaryGeneral.textContent = `As a ${feet.value}'${inches.value}" ${
-    userWeight.value
-  }${option_Pounds.selected ? `lb` : `kg`} ${
-    userGenderM.checked ? `male` : `female`
-  }, in order to maintain your same weight with a ${user.lifeStyle} lifestyle:`;
+  summaryGeneral.textContent = `In order to maintain your same weight with a ${user.lifeStyle} lifestyle:`;
   summaryCalories.textContent = `You need to consume ${user.calorie.max} calories a day.`;
   summaryProtein.textContent = `You also need to consume ${user.protein.max} grams of protein. This daily protein target can help you focus on body recomposition, or gradually burning fat and building muscle, while focusing on your health.`;
 };
 const summaryGoal_Lose = function () {
   lifeStyleRequirement(user.lifeStyle);
-  summaryGeneral.textContent = `As a ${feet.value}'${inches.value}" ${
-    userWeight.value
-  }${option_Pounds.selected ? `lb` : `kg`} ${
-    userGenderM.checked ? `male` : `female`
-  }, in order to lose weight with a ${user.lifeStyle} lifestyle:`;
+  summaryGeneral.textContent = `In order to lose weight with a ${user.lifeStyle} lifestyle:`;
   summaryCalories.textContent = `You need to consume ${user.calorie.max} calories a day.`;
   summaryProtein.textContent = `You also need to consume ${user.protein.max} grams of protein. This daily protein target can help you lose weight in the form of body fat while minimizing muscle loss.`;
 };
 const summaryGoal_Gain = function () {
   lifeStyleRequirement(user.lifeStyle);
   if (option_Slow.selected) {
-    summaryGeneral.textContent = `As a ${feet.value}'${inches.value}" ${
-      userWeight.value
-    }${option_Pounds.selected ? `lb` : `kg`} ${
-      userGenderM.checked ? `male` : `female`
-    }, in order to gain weight in a slow progression with a ${
-      user.lifeStyle
-    } lifestyle:`;
+    summaryGeneral.textContent = `In order to gain weight in a slow progression with a ${user.lifeStyle} lifestyle:`;
     summaryCalories.textContent = `You need to consume between ${user.calorie.min} to ${user.calorie.max} calories a day.`;
     summaryProtein.textContent = `You also need to consume between ${user.protein.min} to ${user.protein.max} grams of protein. This daily protein target can help you build lean muscle mass while minimizing body-fat gains.`;
   } else if (option_Fast.selected) {

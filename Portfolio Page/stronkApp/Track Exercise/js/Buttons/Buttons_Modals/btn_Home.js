@@ -51,6 +51,8 @@ const radio_Home_Gender = document.querySelector(".home-gender-radio");
 const radio_Home_Height = document.querySelector(".home-height-radio");
 const radio_Home_Weight = document.querySelector(".home-weight-radio");
 const radio_Home_BMI = document.querySelector(".home-bmi-radio");
+const radio_Home_Goals = document.querySelector(".home-goals-radio");
+const radio_Home_Lifestyle = document.querySelector(".home-lifestyle-radio");
 
 function hover_Option_Age() {
   radio_Home_Age.checked = true;
@@ -63,6 +65,10 @@ function hover_Option_Age() {
   radio_Home_Weight.checked = false;
   radio_Home_BMI.checked = false;
   containerBMI.style.border = "";
+  containerLifestyle.style.border = "";
+  containerGoals.style.border = "";
+  radio_Home_Lifestyle.checked = false;
+  radio_Home_Goals.checked = false;
 }
 function hover_Option_Gender() {
   radio_Home_Age.checked = false;
@@ -75,6 +81,10 @@ function hover_Option_Gender() {
   containerHeight.style.border = "";
   containerWeight.style.border = "";
   containerBMI.style.border = "";
+  containerLifestyle.style.border = "";
+  containerGoals.style.border = "";
+  radio_Home_Lifestyle.checked = false;
+  radio_Home_Goals.checked = false;
 }
 function hover_Option_Height() {
   radio_Home_Age.checked = false;
@@ -87,13 +97,20 @@ function hover_Option_Height() {
   containerHeight.style.border = "3px solid #3b5bdb";
   containerWeight.style.border = "";
   containerBMI.style.border = "";
+  containerLifestyle.style.border = "";
+  containerGoals.style.border = "";
+  radio_Home_Lifestyle.checked = false;
+  radio_Home_Goals.checked = false;
 }
 function hover_Option_Weight() {
   radio_Home_Age.checked = false;
   radio_Home_Gender.checked = false;
   radio_Home_Height.checked = false;
   radio_Home_Weight.checked = true;
-
+  containerLifestyle.style.border = "";
+  containerGoals.style.border = "";
+  radio_Home_Lifestyle.checked = false;
+  radio_Home_Goals.checked = false;
   radio_Home_BMI.checked = false;
   containerAge.style.border = "";
   containerGender.style.border = "";
@@ -107,11 +124,47 @@ function hover_Option_BMI() {
   radio_Home_Height.checked = false;
   radio_Home_Weight.checked = false;
   radio_Home_BMI.checked = true;
+  containerLifestyle.style.border = "";
+  containerGoals.style.border = "";
+  radio_Home_Lifestyle.checked = false;
+  radio_Home_Goals.checked = false;
   containerAge.style.border = "";
   containerGender.style.border = "";
   containerHeight.style.border = "";
   containerWeight.style.border = "";
   containerBMI.style.border = "3px solid #3b5bdb";
+}
+function hover_Option_Goals() {
+  containerAge.style.border = "";
+  containerGender.style.border = "";
+  containerHeight.style.border = "";
+  containerWeight.style.border = "";
+  containerBMI.style.border = "";
+  containerGoals.style.border = "3px solid #3b5bdb";
+  containerLifestyle.style.border = "";
+  radio_Home_Lifestyle.checked = false;
+  radio_Home_Goals.checked = true;
+  radio_Home_Age.checked = false;
+  radio_Home_Gender.checked = false;
+  radio_Home_Height.checked = false;
+  radio_Home_Weight.checked = false;
+  radio_Home_BMI.checked = false;
+}
+function hover_Option_Lifestyle() {
+  containerAge.style.border = "";
+  containerGender.style.border = "";
+  containerHeight.style.border = "";
+  containerWeight.style.border = "";
+  containerBMI.style.border = "";
+  containerLifestyle.style.border = "3px solid #3b5bdb";
+  containerGoals.style.border = "";
+  radio_Home_Age.checked = false;
+  radio_Home_Goals.checked = false;
+  radio_Home_Lifestyle.checked = true;
+  radio_Home_Gender.checked = false;
+  radio_Home_Height.checked = false;
+  radio_Home_Weight.checked = false;
+  radio_Home_BMI.checked = false;
 }
 
 // HOME BUTTON P
@@ -132,7 +185,7 @@ const label_GenderF = document.querySelector(".label--home-gender-f");
 // });
 
 function nav_Home() {
-  label_Home.style.color = "green";
+  label_Home.style.color = "#3b5bdb";
   label_Workouts.style.color = "black";
   label_History.style.color = "black";
   label_History.style.fill = "black";
@@ -151,6 +204,83 @@ function nav_Home() {
   container_TrackCalories.style.display = "none";
   container_ExercisesModal.style.display = "none";
   container_History.style.display = "none";
+  if (user.firstName === "") {
+    user.firstName = localStorage.getItem("user_firstName") || "";
+    btn_Login.classList.add("hidden");
+    userName.classList.add("hidden");
+    userTitle.classList.add("hidden");
+    userGreet.classList.toggle("hidden");
+    lifestyleDefinition.classList.toggle("hidden");
+    userGreet.textContent = `User: ${user.firstName}`;
+    // container_Question.classList.toggle("hidden");
+    container_AHWKG.style.display = "grid";
+    btn_Edit_Home_Containers.classList.remove("hidden");
+
+    // if (
+    //   user.age === "" &&
+    //   user.height.feet === "" &&
+    //   user.height.inches === "" &&
+    //   user.calorie.max === "" &&
+    //   user.weight === "" &&
+    //   user.protein.max === "" &&
+    //   user.lifeStyle === "" &&
+    //   user.goal === "" &&
+    //   user.gender === ""
+    // ) {
+    retrieveHomeLocalStorage();
+    homeResult_Age.innerHTML = user.age;
+    homeResult_Height.innerHTML = `${user.height["feet"]}' ${user.height["inches"]}"`;
+    homeResult_Sex.innerHTML = JSON.parse(localStorage.getItem("user_Gender"));
+    homeResult_Weight.innerHTML = `${user.weight} lbs`;
+    selected_Goal.innerHTML = JSON.parse(localStorage.getItem("user_Goal"));
+    resultsBMI.textContent = `${user.BMI}`;
+    if (selected_Goal.innerHTML === "Maintain Weight") {
+      summaryGoal_Maintain();
+    } else if (selected_Goal.innerHTML === "Lose Weight") {
+      summaryGoal_Lose();
+    } else if (selected_Goal.innerHTML === "Gain Weight") {
+      summaryGoal_Gain();
+    }
+    if (user.BMI <= 18.5) {
+      userBMI.textContent = `With a BMI of ${user.BMI} you are considered underweight. A few more pounds can lessen your chances of thinning bones and a weakened immune system, as well as feeling tired. Women who are underweight may have irregular periods or stop having them altogether. Underweight men may have lower sperm counts. The healthy range for BMI in your height and weight range is between 18.5 and 24.9.`;
+    } else if (user.BMI >= 18.5 && user.BMI <= 24.9) {
+      userBMI.textContent = `With a BMI of ${user.BMI} you're in a good place now. The healthy range for BMI in your height and weight range is between 18.5 and 24.9. Keep up your healthy habits to maintain your weight.`;
+    } else if (user.BMI >= 25 && user.BMI <= 29.9) {
+      userBMI.textContent = `With a BMI of ${user.BMI} your weight puts you in the overweight range. Losing some extra pounds is a good first step toward lowering your chances of health problems. The healthy range for BMI in your height and weight range is between 18.5 and 24.9. If you have a very muscular build, though, you could have an overweight BMI and still be OK.`;
+    } else if (user.BMI >= 30) {
+      userBMI.textContent = `With a BMI of ${user.BMI} your weight puts you in the obese range. You're much more likely to have serious health problems. The healthy range for BMI in your height and weight range is between 18.5 and 24.9.`;
+    }
+    homeResult_Age.classList.remove("hidden");
+    homeResult_Height.classList.remove("hidden");
+    homeResult_Sex.classList.remove("hidden");
+    homeResult_Weight.classList.remove("hidden");
+    userWeight.classList.add("hidden");
+    feet.classList.add("hidden");
+    inches.classList.add("hidden");
+    userAge.classList.add("hidden");
+    userGenderF.classList.add("hidden");
+    userGenderM.classList.add("hidden");
+    label_GenderM.classList.add("hidden");
+    label_GenderF.classList.add("hidden");
+    container_WeightOptions.classList.add("hidden");
+    container_HeightOptions.classList.add("hidden");
+    containerBMI.classList.remove("hidden");
+    containerWeightRange.classList.remove("hidden");
+    btn_SaveUserStats.classList.add("hidden");
+    summaryProtein.classList.remove("hidden");
+    summaryCalories.classList.remove("hidden");
+    summaryGeneral.classList.remove("hidden");
+    value_Calories.innerHTML = `${user.calorie["max"]}cal`;
+    value_Protein.innerHTML = `${user.protein["max"]}g`;
+    container_MaintainWeight.classList.add("hidden");
+    container_LoseWeight.classList.add("hidden");
+    container_GainWeight.classList.add("hidden");
+    selected_Goal.classList.remove("hidden");
+    showLifeStyleSummary();
+    healthyWeightRange();
+    showWBP();
+    // }
+  }
 }
 function nav_UserHealth() {
   label_Home.style.color = "black";
@@ -159,7 +289,7 @@ function nav_UserHealth() {
   label_History.style.fill = "black";
   label_Exercises.style.color = "black";
   label_Calories.style.color = "black";
-  label_Health.style.color = "green";
+  label_Health.style.color = "#3b5bdb";
   container_UserHealth.classList.remove("hidden");
   container_Question.classList.remove("hidden");
   container_Home.classList.add("hidden");
@@ -176,7 +306,7 @@ function nav_UserHealth() {
 }
 function nav_WorkoutsModal() {
   label_Home.style.color = "black";
-  label_Workouts.style.color = "green";
+  label_Workouts.style.color = "#3b5bdb";
   label_History.style.color = "black";
   label_History.style.fill = "black";
   label_Exercises.style.color = "black";
@@ -201,7 +331,7 @@ function nav_TrackCalories() {
   label_History.style.color = "black";
   label_History.style.fill = "black";
   label_Exercises.style.color = "black";
-  label_Calories.style.color = "green";
+  label_Calories.style.color = "#3b5bdb";
   label_Health.style.color = "black";
   container_UserHealth.classList.add("hidden");
   container_Home.classList.add("hidden");
@@ -221,7 +351,7 @@ function nav_ExercisesModal() {
   label_Workouts.style.color = "black";
   label_History.style.color = "black";
   label_History.style.fill = "black";
-  label_Exercises.style.color = "green";
+  label_Exercises.style.color = "#3b5bdb";
   label_Calories.style.color = "black";
   label_Health.style.color = "black";
   container_UserHealth.classList.add("hidden");
@@ -371,8 +501,8 @@ function nav_ExercisesModal() {
 function nav_History() {
   label_Home.style.color = "black";
   label_Workouts.style.color = "black";
-  label_History.style.color = "green";
-  label_History.style.fill = "green";
+  label_History.style.color = "#3b5bdb";
+  label_History.style.fill = "#3b5bdb";
   label_Exercises.style.color = "black";
   label_Calories.style.color = "black";
   label_Health.style.color = "black";
@@ -555,12 +685,52 @@ document.addEventListener("change", switchNavModals);
 //   }
 // });
 const btn_SaveUserStats = document.querySelector(".btn--save-user-stats");
+
+function saveHomeLocalStorage() {
+  localStorage.setItem("user_firstName", user.firstName);
+  localStorage.setItem("user_Age", JSON.stringify(user.age));
+  localStorage.setItem("user_Height_Feet", JSON.stringify(user.height["feet"]));
+  localStorage.setItem(
+    "user_Height_Inches",
+    JSON.stringify(user.height["inches"])
+  );
+  localStorage.setItem(
+    "user_Height_Total",
+    JSON.stringify(user.height["total"])
+  );
+  localStorage.setItem("user_Weight", JSON.stringify(user.weight));
+  localStorage.setItem("user_BMI", JSON.stringify(user.BMI));
+  localStorage.setItem("user_Lifestyle", JSON.stringify(user.lifeStyle));
+  localStorage.setItem(
+    "user_Calories_Max",
+    JSON.stringify(user.calorie["max"])
+  );
+  localStorage.setItem("user_Protein_Max", JSON.stringify(user.protein["max"]));
+  localStorage.setItem("user_Goal", JSON.stringify(user.goal));
+  localStorage.setItem("user_Gender", JSON.stringify(user.gender));
+}
+function retrieveHomeLocalStorage() {
+  user.age = JSON.parse(localStorage.getItem("user_Age")) || "";
+  user.height.feet = JSON.parse(localStorage.getItem("user_Height_Feet")) | "";
+  user.height.inches =
+    JSON.parse(localStorage.getItem("user_Height_Inches")) | "";
+  user.height.total =
+    JSON.parse(localStorage.getItem("user_Height_Total")) | "";
+  user.calorie.max = JSON.parse(localStorage.getItem("user_Calories_Max")) | "";
+  user.weight = JSON.parse(localStorage.getItem("user_Weight")) | "";
+  user.protein.max = JSON.parse(localStorage.getItem("user_Protein_Max")) | "";
+  user.lifeStyle = JSON.parse(localStorage.getItem("user_Lifestyle"));
+  user.gender = JSON.parse(localStorage.getItem("user_Gender"));
+  user.goal = JSON.parse(localStorage.getItem("user_Goal"));
+  user.BMI = JSON.parse(localStorage.getItem("user_BMI"));
+}
 btn_SaveUserStats.addEventListener("click", function () {
   user.age = Number(userAge.value);
   user.gender = userGenderM.checked ? "Male" : "Female";
   user.height["feet"] = Number(feet.value);
   user.height["inches"] = Number(inches.value);
   user.height["total"] = user.height["feet"] * 12 + user.height["inches"];
+
   user.weight = Number(userWeight.value);
   homeResult_Age.innerHTML = user.age;
   homeResult_Height.innerHTML = `${user.height["feet"]}' ${user.height["inches"]}"`;
@@ -585,6 +755,32 @@ btn_SaveUserStats.addEventListener("click", function () {
   btn_SaveUserStats.classList.add("hidden");
   calculateBMIStandard();
   healthyWeightRange();
+  showLifeStyleSummary();
+  calcCalories();
+  showWBP();
+
+  summaryProtein.classList.remove("hidden");
+  summaryCalories.classList.remove("hidden");
+  summaryGeneral.classList.remove("hidden");
+  value_Calories.innerHTML = `${user.calorie["max"]}cal`;
+  value_Protein.innerHTML = `${user.protein["max"]}g`;
+  container_MaintainWeight.classList.add("hidden");
+  container_LoseWeight.classList.add("hidden");
+  container_GainWeight.classList.add("hidden");
+  selected_Goal.classList.remove("hidden");
+  if (option_MaintainWeight.checked === true) {
+    selected_Goal.innerHTML = "Maintain Weight";
+    user.goal = selected_Goal.innerHTML;
+  }
+  if (option_LoseWeight.checked === true) {
+    selected_Goal.innerHTML = "Lose Weight";
+    user.goal = selected_Goal.innerHTML;
+  }
+  if (option_GainWeight.checked === true) {
+    selected_Goal.innerHTML = "Gain Weight";
+    user.goal = selected_Goal.innerHTML;
+  }
+  saveHomeLocalStorage();
 });
 
 btn_Edit_Home_Containers.addEventListener("click", function () {
