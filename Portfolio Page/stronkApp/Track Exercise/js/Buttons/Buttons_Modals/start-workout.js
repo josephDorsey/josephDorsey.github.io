@@ -331,8 +331,17 @@ btn_createWorkout_WorkoutGroup.addEventListener("click", function () {
   for (let i = tempWorkoutList.length; i >= 0; i--) {
     tempWorkoutList.splice(i, 1);
   }
-  createWorkout_WorkoutGroup_Modal.classList.toggle("hidden");
-  workouts_Title.classList.toggle("hidden");
+  if (createWorkout_WorkoutGroup_Modal.classList.contains("hidden") === true) {
+    createWorkout_WorkoutGroup_Modal.classList.remove("hidden");
+    workouts_Title.style.visibility = "hidden";
+    ungroupedWorkoutList_Title.style.visibility = "hidden";
+  } else if (
+    createWorkout_WorkoutGroup_Modal.classList.contains("hidden") === false
+  ) {
+    workouts_Title.style.visibility = "visible";
+    ungroupedWorkoutList_Title.style.visibility = "visible";
+    createWorkout_WorkoutGroup_Modal.classList.add("hidden");
+  }
 });
 
 btn_createWorkout_Modal.addEventListener("click", function () {
@@ -344,6 +353,9 @@ btn_createWorkout_Modal.addEventListener("click", function () {
 });
 
 const ungroupedWorkoutList = document.querySelector(".ungroupedWorkout");
+const ungroupedWorkoutList_Title = document.querySelector(
+  ".ungroupedWorkout-title"
+);
 const groupedWorkoutList = document.querySelector(".groupedWorkout");
 const archivedWorkoutList = document.querySelector(".archivedWorkout");
 

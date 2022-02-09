@@ -763,28 +763,28 @@ const update_tempEN_Count = function () {
 document.body.addEventListener("click", update_tempEN_Count);
 document.body.addEventListener("click", activeSet);
 
-document.addEventListener("keydown", function (e) {
-  console.log(e.key);
-  if (e.key === "Escape" && !(container_EIE.style.display === "none")) {
-    container_EIE.style.display = "none";
+// document.addEventListener("keydown", function (e) {
+//   console.log(e.key);
+//   if (e.key === "Escape" && !(container_EIE.style.display === "none")) {
+//     container_EIE.style.display = "none";
 
-    exercises_Nav.classList.remove("hidden");
-    container_ExerciseInfo.style.display = "none";
-    container_workoutTimer_Buttons.classList.remove("hidden");
-    btn_Open_Exercises_Window.style.display = "";
-    workout_Timer.classList.remove("hidden");
-    // Hide workouts timer
-    container_TitleNotes.style.top = "4px";
-    workouts_Title.classList.remove("hidden");
-    workouts_Title.style.left = "-14px";
-    workouts_Title.style.top = "-22px";
-    exerciseNotes.classList.remove("hidden");
-    exerciseNotes.style.left = "-12px";
-    exerciseNotes.style.top = "41px";
-    btn_CloseExerciseInfoModal.classList.remove("hidden");
-    span_CloseExerciseInfoModal.classList.remove("hidden");
-    for (let i = 0; i < row_Div.length; i++) {
-      row_Div[i].classList.remove("hidden");
-    }
-  }
-});
+//     exercises_Nav.classList.remove("hidden");
+//     container_ExerciseInfo.style.display = "none";
+//     container_workoutTimer_Buttons.classList.remove("hidden");
+//     btn_Open_Exercises_Window.style.display = "";
+//     workout_Timer.classList.remove("hidden");
+//     // Hide workouts timer
+//     container_TitleNotes.style.top = "4px";
+//     workouts_Title.classList.remove("hidden");
+//     workouts_Title.style.left = "-14px";
+//     workouts_Title.style.top = "-22px";
+//     exerciseNotes.classList.remove("hidden");
+//     exerciseNotes.style.left = "-12px";
+//     exerciseNotes.style.top = "41px";
+//     btn_CloseExerciseInfoModal.classList.remove("hidden");
+//     span_CloseExerciseInfoModal.classList.remove("hidden");
+//     for (let i = 0; i < row_Div.length; i++) {
+//       row_Div[i].classList.remove("hidden");
+//     }
+//   }
+// });

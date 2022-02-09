@@ -5,9 +5,11 @@ const userName = document.querySelector(".input--username");
 const userGreet = document.querySelector(".user--greet");
 const testP = document.querySelector(".test");
 const spanWeightData = document.querySelector(".span-weight--data");
+const title_Stronk = document.querySelector(".logo--title");
 
 // Containers
 const container_Question = document.querySelector(".container--questions");
+const container_AHWKG = document.querySelector(".container--ahwkg");
 const containerAge = document.querySelector(".container--age");
 const containerGender = document.querySelector(".container--gender");
 const containerHeight = document.querySelector(".container--height");
@@ -26,7 +28,7 @@ const userGenderM = document.querySelector(".radio--male");
 const userGenderF = document.querySelector(".radio--female");
 const feet = document.querySelector(".input--feet");
 const inches = document.querySelector(".input--inches");
-const userWeight = document.querySelector(".input--weight");
+const userWeight = document.querySelector(".input--user-weight");
 
 // The p elements and h3
 const proteinRange = document.querySelector(".protein--summary");
@@ -465,8 +467,11 @@ const closeLogin = function () {
   userTitle.classList.add("hidden");
   userGreet.classList.toggle("hidden");
   lifestyleDefinition.classList.toggle("hidden");
-  userGreet.textContent = `Welcome, ${user.firstName}!`;
-  container_Question.classList.toggle("hidden");
+  userGreet.textContent = `User: ${user.firstName}`;
+  // container_Question.classList.toggle("hidden");
+  container_AHWKG.style.display = "grid";
+  btn_Edit_Home_Containers.classList.remove("hidden");
+
   console.log(user);
 };
 // const enterKey = function (e) {
@@ -559,15 +564,15 @@ const calculateBMIStandard = function () {
   let BMI = withoutFactorBMI * 703;
   // alert(BMI.toFixed(2));
   user.BMI = Number(BMI.toFixed(2));
-  resultsBMI.textContent = `BMI: ${user.BMI}`;
+  resultsBMI.textContent = `${user.BMI}`;
   if (user.BMI <= 18.5) {
-    userBMI.textContent = `With a BMI of ${user.BMI} you are considered underweight. A few more pounds can lessen your chances of thinning bones and a weakened immune system, as well as feeling tired. Women who are underweight may have irregular periods or stop having them altogether. Underweight men may have lower sperm counts. The healthy range for BMI is between 18.5 and 24.9.`;
+    userBMI.textContent = `With a BMI of ${user.BMI} you are considered underweight. A few more pounds can lessen your chances of thinning bones and a weakened immune system, as well as feeling tired. Women who are underweight may have irregular periods or stop having them altogether. Underweight men may have lower sperm counts. The healthy range for BMI in your height and weight range is between 18.5 and 24.9.`;
   } else if (user.BMI >= 18.5 && user.BMI <= 24.9) {
-    userBMI.textContent = `With a BMI of ${user.BMI} you're in a good place now. The healthy range for BMI is between 18.5 and 24.9. Keep up your healthy habits to maintain your weight.`;
+    userBMI.textContent = `With a BMI of ${user.BMI} you're in a good place now. The healthy range for BMI in your height and weight range is between 18.5 and 24.9. Keep up your healthy habits to maintain your weight.`;
   } else if (user.BMI >= 25 && user.BMI <= 29.9) {
-    userBMI.textContent = `With a BMI of ${user.BMI} your weight puts you in the overweight range. Losing some extra pounds is a good first step toward lowering your chances of health problems. The healthy range for BMI is between 18.5 and 24.9. If you have a very muscular build, though, you could have an overweight BMI and still be OK.`;
+    userBMI.textContent = `With a BMI of ${user.BMI} your weight puts you in the overweight range. Losing some extra pounds is a good first step toward lowering your chances of health problems. The healthy range for BMI in your height and weight range is between 18.5 and 24.9. If you have a very muscular build, though, you could have an overweight BMI and still be OK.`;
   } else if (user.BMI >= 30) {
-    userBMI.textContent = `With a BMI of ${user.BMI} your weight puts you in the obese range. You're much more likely to have serious health problems. The healthy range for BMI is between 18.5 and 24.9.`;
+    userBMI.textContent = `With a BMI of ${user.BMI} your weight puts you in the obese range. You're much more likely to have serious health problems. The healthy range for BMI in your height and weight range is between 18.5 and 24.9.`;
   }
 };
 const healthyWeightRange = function () {
@@ -598,11 +603,22 @@ btn_Login.addEventListener("click", closeLogin);
 btn_Calculate.addEventListener("click", calculateUserData);
 // document.addEventListener("keydown", enterKey);
 btn_BMICategories.addEventListener("click", function () {
-  if (infoContainerBMI.classList.contains("hidden")) {
+  if (infoContainerBMI.classList.contains("hidden") === true) {
     infoContainerBMI.classList.remove("hidden");
     container_Question.style.opacity = "rgba(0, 0, 0, 0.7)";
-  } else if (!infoContainerBMI.classList.contains("hidden")) {
+    containerAge.style.display = "none";
+    // containerBMI.style.visibility = "hidden";
+    containerWeight.style.display = "none";
+    containerGender.style.display = "none";
+    containerHeight.style.display = "none";
+  } else if (!(infoContainerBMI.classList.contains("hidden") === true)) {
     infoContainerBMI.classList.add("hidden");
+    containerAge.style.display = "";
+    containerBMI.style.display = "";
+    containerGender.style.display = "";
+
+    containerWeight.style.display = "";
+    containerHeight.style.display = "";
   }
 });
 // DEVINE FORMULA FOR IDEAL BODY WEIGHT

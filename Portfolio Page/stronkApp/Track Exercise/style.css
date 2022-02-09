@@ -644,6 +644,7 @@
   height: 40px;
   justify-self: center;
   padding-bottom: 10px;
+  cursor: pointer;
 }
 
 .container--nav-img {

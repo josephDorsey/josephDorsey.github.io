@@ -1,3 +1,4 @@
+.container--age,
 .container--height,
 .container--weight,
 .container--bmi,
@@ -21,11 +22,10 @@
 .container--gender h3,
 .container--goals h3,
 .container--lifestyle h3 {
-  border-bottom: 1px solid black;
-  border-top: 1px solid black;
   padding: 5px 9px;
-  background-color: royalblue;
-  color: #fff;
+  background-color: #fff;
+  color: #3b5bdb;
+  font-size: 1.5rem;
 }
 .container--age h3 {
   border-top: 0px;
@@ -46,7 +46,9 @@ h1 {
   color: #000;
 }
 .user--greet {
-  text-align: center;
+  text-align: start;
+  padding-left: 15px;
+  color: #3b5bdb;
 }
 .flex--weight-range {
   display: flex;
@@ -57,9 +59,12 @@ h1 {
 .span-weight--data {
   color: #35d;
 }
-/* .input--feet {
-  position: relative;
-} */
+.input--feet,
+.input--inches,
+.input--age,
+.input--user-weight {
+  width: 25%;
+}
 
 /* Perfect settings for Firefox, fix for chrome  */
 /* .label--feet,
@@ -107,6 +112,66 @@ h1 {
   text-align: center;
 }
 
+.weight-range--summary,
+.bmi--summary {
+  padding: 0px 13px;
+}
+.container--home-radios {
+  display: none;
+}
+.btn--save-age,
+.btn--edit-age,
+.btn--save-gender,
+.btn--edit-gender,
+.btn--save-height,
+.btn--edit-height,
+.btn--save-weight,
+.btn--edit-weight {
+  position: absolute;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+.btn--edit-home-containers {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  border: 0;
+  color: #3b5bdb;
+  background-color: #fff;
+  cursor: pointer;
+  width: 30px;
+  font-size: 1rem;
+  z-index: 999;
+}
+.btn--edit-home-containers:hover {
+  color: #2041c6;
+}
+/* BTN BEFORE SAVE */
+.btn--save-age,
+.btn--save-height,
+.btn--save-weight,
+.btn--save-gender {
+  top: 15px;
+  right: 25px;
+}
+.btn--edit-age,
+.btn--edit-height,
+.btn--edit-weight,
+.btn--edit-gender {
+  top: 15px;
+  /* right: 55px; */
+  right: 55px;
+}
+/* BTN AFTER SAVE */
+/* .btn--save-age {
+  top: 15px;
+  right: 25px;
+}
+.btn--edit-age {
+  top: 15px;
+  right: 55px;
+} */
 .hidden {
   display: none;
 }
@@ -116,15 +181,13 @@ h1 {
 }
 
 .bmi--info {
-  position: absolute;
   margin: 0 auto;
   z-index: 100;
-  top: 190px;
-  left: 75px;
-  width: 80%;
+  grid-row: 1;
+  grid-column: 1/-1;
   border-radius: 25px;
   /* width: 80%; */
-  box-shadow: 0px 20px 30px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.3);
 }
 
 .container--questions {
@@ -137,24 +200,61 @@ h1 {
 
 .logo--title {
   text-align: center;
-  border-bottom: 1px solid black;
-  background-color: royalblue;
-  color: #fff;
+  background-color: #fff;
+  color: #3b5bdb;
 }
 .container--login {
   /* border: 1px solid black; */
   border-radius: 25px;
   padding-bottom: 5px;
 }
-
+.container--ahwkg {
+  display: none;
+}
+.form-enter-ahwkg {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, 0.25fr);
+  column-gap: 10px;
+  row-gap: 15px;
+}
+.form-enter-ahwkg {
+  text-align: center;
+  padding: 0px 15px;
+}
+.btn--save-user-stats {
+  width: 50%;
+  height: 25px;
+  grid-column: 1/-1;
+  margin: 0 auto;
+}
 .container--age,
 .container--gender,
 .container--height,
-.container--weight_bmi,
+.container--weight,
+.container--bmi,
 .goals,
 .container--lifestyle,
 .btn--calculate {
   grid-column: 1;
+  border-radius: 25px;
+  border: 1px solid black;
+  padding-bottom: 15px;
+}
+.container--age,
+.container--gender,
+.container--height,
+.container--weight,
+.container--bmi {
+  box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 30%);
+  border: 0px;
+}
+.container--gender,
+.container--weight {
+  grid-column: 2/3;
+}
+.container--bmi {
+  grid-column: 1/-1;
 }
 
 .post-calculate {

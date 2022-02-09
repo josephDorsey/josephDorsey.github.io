@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="../Track Health/stronk--css/styles.css" />
-    <title>Track Exercise</title>
+    <title>Stronk: Join me and become strong!</title>
   </head>
   <body>
     <div class="main-app--container">
@@ -333,17 +333,130 @@
         <div class="container--home hidden">
           <div class="container--login">
             <div class="container--logo">
-              <h1 class="logo--title">Welcome to Stronk App</h1>
+              <h1 class="logo--title">Stronk</h1>
+              <button class="btn--edit-home-containers hidden"type="button">Edit</button>
               <div class="container--name">
                 <form class="form--enter-login">
-                  <h3 class="user--title">Please enter a username</h3>
-                  <input class="input--username" type="text" />
-                  <p class="user--greet hidden">Welcome, test!</p>
+                  <h3 class="user--title">Welcome to Stronk! Let me help you become strong.</h3>
+                  <input class="input--username" type="text" placeholder="Please enter your name"/>
+                  <h2 class="user--greet hidden">Welcome, test!</h2>
                   <button type="button" class="btn--login">Login</button>
                 </form>
-
+              
                 <!-- <label for="name">Last:</label>
                 <input class="input--last-name" type="text" /> -->
+              </div>
+              <div class="container--ahwkg hidden">
+                <form class="form-enter-ahwkg">
+                  
+                    <div class="container--age">
+                      <label class="label--container-age" onmouseover="hover_Option_Age()">
+                        <input type="radio" name="container--home-radios" class="home-age-radio container--home-radios">
+                        <h3>Age</h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 btn--edit-age hidden" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ionicon btn--save-age hidden" viewBox="0 0 512 512"><path d="M380.93 57.37A32 32 0 00358.3 48H94.22A46.21 46.21 0 0048 94.22v323.56A46.21 46.21 0 0094.22 464h323.56A46.36 46.36 0 00464 417.78V153.7a32 32 0 00-9.37-22.63zM256 416a64 64 0 1164-64 63.92 63.92 0 01-64 64zm48-224H112a16 16 0 01-16-16v-64a16 16 0 0116-16h192a16 16 0 0116 16v64a16 16 0 01-16 16z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+                        <!-- <label for="age">Age:</label> -->
+                        <input class="input--age" type="text" placeholder="years" />
+                        <h2 class="home-result--age hidden"></h2>
+                        
+                      </label>
+                    </div>
+                    <div class="container--gender">
+                      <label class="label--container-gender" onmouseover="hover_Option_Gender()">
+                        <input type="radio" name="container--home-radios" class="home-gender-radio container--home-radios">
+                        <h3>Gender</h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 btn--edit-gender hidden" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ionicon btn--save-gender hidden" viewBox="0 0 512 512"><path d="M380.93 57.37A32 32 0 00358.3 48H94.22A46.21 46.21 0 0048 94.22v323.56A46.21 46.21 0 0094.22 464h323.56A46.36 46.36 0 00464 417.78V153.7a32 32 0 00-9.37-22.63zM256 416a64 64 0 1164-64 63.92 63.92 0 01-64 64zm48-224H112a16 16 0 01-16-16v-64a16 16 0 0116-16h192a16 16 0 0116 16v64a16 16 0 01-16 16z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+                        <input type="radio" name="gender" class="radio--male" />
+                        <label class="label--home-gender-m"for="male">Male</label>
+                        <input type="radio" name="gender" class="radio--female" />
+                        <label class="label--home-gender-f"for="female">Female</label>
+                        <h2 class="home-result--sex hidden"></h2>
+                      </label>
+                    </div>
+                    <div class="container--height">
+                      <label class="label--container-height" onmouseover="hover_Option_Height()">
+                        <input type="radio" name="container--home-radios" class="home-height-radio container--home-radios">
+                        <h3>Height</h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 btn--edit-height hidden" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ionicon btn--save-height hidden" viewBox="0 0 512 512"><path d="M380.93 57.37A32 32 0 00358.3 48H94.22A46.21 46.21 0 0048 94.22v323.56A46.21 46.21 0 0094.22 464h323.56A46.36 46.36 0 00464 417.78V153.7a32 32 0 00-9.37-22.63zM256 416a64 64 0 1164-64 63.92 63.92 0 01-64 64zm48-224H112a16 16 0 01-16-16v-64a16 16 0 0116-16h192a16 16 0 0116 16v64a16 16 0 01-16 16z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+                        <select class="container--height-options">
+                          <option class="option--feet">Feet</option>
+                          <option class="option--meters">Meters</option>
+                        </select>
+                        <input type="text" class="input--feet" placeholder="feet" />
+                        <input type="text" class="input--inches" placeholder="inches" />
+                        <h2 class="home-result--height hidden"></h2>
+                      </label>
+                    </div>
+                    <div class="container--weight">
+                      <label class="label--container-weight" onmouseover="hover_Option_Weight()">
+                        <input type="radio" name="container--home-radios" class="home-weight-radio container--home-radios">
+                          <h3>Weight</h3>
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 btn--edit-weight hidden" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                          </svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" class="ionicon btn--save-weight hidden" viewBox="0 0 512 512"><path d="M380.93 57.37A32 32 0 00358.3 48H94.22A46.21 46.21 0 0048 94.22v323.56A46.21 46.21 0 0094.22 464h323.56A46.36 46.36 0 00464 417.78V153.7a32 32 0 00-9.37-22.63zM256 416a64 64 0 1164-64 63.92 63.92 0 01-64 64zm48-224H112a16 16 0 01-16-16v-64a16 16 0 0116-16h192a16 16 0 0116 16v64a16 16 0 01-16 16z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+                          <select class="container--weight-options">
+                            <option class="option--pounds">Pounds</option>
+                            <option class="option--kilograms">Kilograms</option>
+                          </select>
+                          <input class="input--user-weight" type="text" placeholder="lbs" />
+                          <h2 class="home-result--weight hidden"></h2>
+                          <div class="container--weight-range hidden">
+                            <div class="flex--weight-range">
+                              <p class="weight-range--summary"></p>
+                            </div>
+                          </div>
+                        
+                        
+                      </label>
+                    </div>
+                    <div class="container--bmi hidden">
+                      <label class="label--container-bmi" onmouseover="hover_Option_BMI()">
+                        <input type="radio" name="container--home-radios" class="home-bmi-radio container--home-radios">
+                        <h3>BMI</h3>
+                        <h2 class="bmi--results">30</h2>
+                        <p class="bmi--summary">test</p>
+                        <div class="bmi--categories">
+                          <p>Click this button to see the BMI Categories</p>
+                          <button type="button" class="btn--bmi-categories" href="#">
+                            BMI Categories
+                          </button>
+                        </div>
+                        
+                      </label>
+                    </div>
+                    <div class="bmi--info hidden">
+                      <h3>BMI Categories</h3>
+                      <ol>
+                        <li>Underweight = < 18.5</li>
+                        <li>Normal weight = 18.5–24.9</li>
+                        <li>Overweight = 25–29.9</li>
+                        <li>Obesity = BMI of 30 or greater</li>
+                      </ol>
+                      <h3>Who shouldn't use a BMI calculator?</h3>
+                      <p>
+                        BMI is not used for muscle builders, long distance athletes,
+                        pregnant women, the elderly or young children. This is because BMI
+                        does not take into account whether the weight is carried as muscle
+                        or fat, just the number. Those with a higher muscle mass, such as
+                        athletes, may have a high BMI but not be at greater health risk.
+                        Those with a lower muscle mass, such as children who have not
+                        completed their growth or the elderly who may be losing some
+                        muscle mass may have a lower BMI. During pregnancy and lactation,
+                        a woman's body composition changes, so using BMI is not
+                        appropriate.
+                      </p>
+                    </div>
+                    <button type="button" class="btn--save-user-stats">Save</button>
+                </form>
               </div>
             </div>
           </div>
@@ -415,7 +528,7 @@
             <button class="btn--open-add-exercise-modal">Add Exercises</button>
             <button class="btn--cancel-createWorkoutexercise">Cancel</button>
           </div>
-          <div class="ungroupedWorkout"><h3>Ungrouped Workout</h3></div>
+          <div class="ungroupedWorkout"><h3 class="ungroupedWorkout-title">Ungrouped Workout</h3></div>
           <div class="groupedWorkout"><h3>Grouped Workout</h3></div>
           <div class="archivedWorkout hidden"><h3>Archived Workout</h3></div>
           <button class="btn--view-workout">View Workout</button>
@@ -443,21 +556,7 @@
             >
 
             <h3 class="title--exerciseStorage">Create new exercise</h3>
-            <!-- <div class="grid-exercise-name">
-                <label class="exercise-name-label" for="exercise-name"
-                  >Exercise:</label
-                >
-                <input
-                  type="text"
-                  class="exercise-name"
-                  placeholder="add exercise to workout"
-                />
-                <input
-                  type="text"
-                  class="input--exerciseStorage"
-                  placeholder="add to exercise archive"
-                />
-              </div> -->
+            
             <div class="grid-exercise-select">
               <select
                 class="select--equipment"
@@ -477,35 +576,6 @@
               <select class="select--rope-exercises"></select>
             </div>
 
-            <!-- <div>
-                <label class="label--addExercise-weight" for="exercise-weight"
-                  >Weight:</label
-                >
-                <input type="number" class="exercise-weight" placeholder="lbs" />
-              </div>
-              <div class="container--sets-input">
-                <label class="label--addExercise-sets" for="exercise-sets">How many sets?</label>
-                <input type="number" class="exercise-sets" placeholder="sets">
-<p>Do you want your sets to have the same weight?</p>
-<select>
-    <option select="">---</option>
-    <option select="">yes</option>
-    <option select="">no</option>
-</select>
-              </div>
-              <div class="container--reps-input">
-                <label class="label--addExercise-reps" for="exercise-reps"
-                  >Reps:</label
-                >
-                <input type="number" class="exercise-reps" placeholder="reps" />
-              </div>
-              <div>
-                <label class="label--addExercise-rest" for="exercise-rest"
-                  >Rest:</label
-                >
-                <input type="number" class="exercise-minutes" placeholder="min" />
-                <input type="number" class="exercise-seconds" placeholder="sec" />
-              </div> -->
             <div class="exercise-modal-buttons">
               <button class="btn--add-to-exercise-storage">
                 Add to Archive
@@ -725,55 +795,6 @@
         <div class="container--track-user-calories hidden"></div>
         <div class="container--user-health hidden">
           <form class="container--questions hidden">
-            <div class="container--age">
-              <h3>Age</h3>
-              <!-- <label for="age">Age:</label> -->
-              <input class="input--age" type="text" placeholder="years" />
-            </div>
-            <div class="container--gender">
-              <h3>Sex</h3>
-              <input type="radio" name="gender" class="radio--male" />
-              <label for="male">Male</label>
-              <input type="radio" name="gender" class="radio--female" />
-              <label for="female">Female</label>
-            </div>
-            <div class="container--height">
-              <h3>Height</h3>
-              <select>
-                <option class="option--feet">Feet</option>
-                <option class="option--meters">Meters</option>
-              </select>
-              <input type="text" class="input--feet" placeholder="feet" />
-
-              <input type="text" class="input--inches" placeholder="inches" />
-            </div>
-            <div class="container--weight_bmi">
-              <div class="container--weight">
-                <h3>Weight</h3>
-                <select>
-                  <option class="option--pounds">Pounds</option>
-                  <option class="option--kilograms">Kilograms</option>
-                </select>
-                <input class="input--weight" type="text" placeholder="lbs" />
-
-                <div class="container--weight-range hidden">
-                  <div class="flex--weight-range">
-                    <p class="weight-range--summary"></p>
-                  </div>
-                </div>
-              </div>
-              <div class="container--bmi hidden">
-                <h3>BMI</h3>
-                <p class="bmi--results">Your BMI is: 30</p>
-                <p class="bmi--summary">test</p>
-              </div>
-              <div class="bmi--categories">
-                <p>Click this button to see the BMI Categories</p>
-                <button type="button" class="btn--bmi-categories" href="#">
-                  BMI Categories
-                </button>
-              </div>
-            </div>
             <div class="goals">
               <div class="container--goals">
                 <h3>Goal</h3>
@@ -940,28 +961,7 @@
               Calculate!
             </button>
           </form>
-          <div class="bmi--info hidden">
-            <h3>BMI Categories</h3>
-            <ol>
-              <li>Underweight = < 18.5</li>
-              <li>Normal weight = 18.5–24.9</li>
-              <li>Overweight = 25–29.9</li>
-              <li>Obesity = BMI of 30 or greater</li>
-            </ol>
-            <h3>Who shouldn't use a BMI calculator?</h3>
-            <p>
-              BMI is not used for muscle builders, long distance athletes,
-              pregnant women, the elderly or young children. This is because BMI
-              does not take into account whether the weight is carried as muscle
-              or fat, just the number. Those with a higher muscle mass, such as
-              athletes, may have a high BMI but not be at greater health risk.
-              Those with a lower muscle mass, such as children who have not
-              completed their growth or the elderly who may be losing some
-              muscle mass may have a lower BMI. During pregnancy and lactation,
-              a woman's body composition changes, so using BMI is not
-              appropriate.
-            </p>
-          </div>
+          
         </div>
       </div>
     </div>

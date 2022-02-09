@@ -18,6 +18,12 @@ const container_TrackCalories = document.querySelector(
   ".container--track-user-calories"
 );
 const container_UserHealth = document.querySelector(".container--user-health");
+const container_WeightOptions = document.querySelector(
+  ".container--weight-options"
+);
+const container_HeightOptions = document.querySelector(
+  ".container--height-options"
+);
 
 // Navigation LABELS
 const label_Home = document.querySelector(".label--home");
@@ -27,6 +33,95 @@ const label_Exercises = document.querySelector(".label--exercises");
 const label_Calories = document.querySelector(".label--calories");
 const label_Health = document.querySelector(".label--health");
 
+const btn_Edit_Home_Containers = document.querySelector(
+  ".btn--edit-home-containers"
+);
+const btn_Edit_Home_Age = document.querySelector(".btn--edit-age");
+const btn_Edit_Home_Gender = document.querySelector(".btn--edit-gender");
+const btn_Edit_Home_Height = document.querySelector(".btn--edit-height");
+const btn_Edit_Home_Weight = document.querySelector(".btn--edit-weight");
+
+const btn_Save_Home_Age = document.querySelector(".btn--save-age");
+const btn_Save_Home_Gender = document.querySelector(".btn--save-gender");
+const btn_Save_Home_Height = document.querySelector(".btn--save-height");
+const btn_Save_Home_Weight = document.querySelector(".btn--save-weight");
+
+const radio_Home_Age = document.querySelector(".home-age-radio");
+const radio_Home_Gender = document.querySelector(".home-gender-radio");
+const radio_Home_Height = document.querySelector(".home-height-radio");
+const radio_Home_Weight = document.querySelector(".home-weight-radio");
+const radio_Home_BMI = document.querySelector(".home-bmi-radio");
+
+function hover_Option_Age() {
+  radio_Home_Age.checked = true;
+  containerAge.style.border = "3px solid #3b5bdb";
+  containerGender.style.border = "";
+  containerHeight.style.border = "";
+  containerWeight.style.border = "";
+  radio_Home_Gender.checked = false;
+  radio_Home_Height.checked = false;
+  radio_Home_Weight.checked = false;
+  radio_Home_BMI.checked = false;
+  containerBMI.style.border = "";
+}
+function hover_Option_Gender() {
+  radio_Home_Age.checked = false;
+  radio_Home_Gender.checked = true;
+  radio_Home_Height.checked = false;
+  radio_Home_Weight.checked = false;
+  radio_Home_BMI.checked = false;
+  containerAge.style.border = "";
+  containerGender.style.border = "3px solid #3b5bdb";
+  containerHeight.style.border = "";
+  containerWeight.style.border = "";
+  containerBMI.style.border = "";
+}
+function hover_Option_Height() {
+  radio_Home_Age.checked = false;
+  radio_Home_Gender.checked = false;
+  radio_Home_Height.checked = true;
+  radio_Home_Weight.checked = false;
+  radio_Home_BMI.checked = false;
+  containerAge.style.border = "";
+  containerGender.style.border = "";
+  containerHeight.style.border = "3px solid #3b5bdb";
+  containerWeight.style.border = "";
+  containerBMI.style.border = "";
+}
+function hover_Option_Weight() {
+  radio_Home_Age.checked = false;
+  radio_Home_Gender.checked = false;
+  radio_Home_Height.checked = false;
+  radio_Home_Weight.checked = true;
+
+  radio_Home_BMI.checked = false;
+  containerAge.style.border = "";
+  containerGender.style.border = "";
+  containerHeight.style.border = "";
+  containerBMI.style.border = "";
+  containerWeight.style.border = "3px solid #3b5bdb";
+}
+function hover_Option_BMI() {
+  radio_Home_Age.checked = false;
+  radio_Home_Gender.checked = false;
+  radio_Home_Height.checked = false;
+  radio_Home_Weight.checked = false;
+  radio_Home_BMI.checked = true;
+  containerAge.style.border = "";
+  containerGender.style.border = "";
+  containerHeight.style.border = "";
+  containerWeight.style.border = "";
+  containerBMI.style.border = "3px solid #3b5bdb";
+}
+
+// HOME BUTTON P
+
+const homeResult_Age = document.querySelector(".home-result--age");
+const homeResult_Sex = document.querySelector(".home-result--sex");
+const homeResult_Height = document.querySelector(".home-result--height");
+const homeResult_Weight = document.querySelector(".home-result--weight");
+const label_GenderM = document.querySelector(".label--home-gender-m");
+const label_GenderF = document.querySelector(".label--home-gender-f");
 // btn_Home.addEventListener("click", function () {
 //   container_Home.classList.toggle("hidden");
 //   if (container_Home.classList.contains("hidden")) {
@@ -310,6 +405,9 @@ function switchNavModals() {
     nav_UserHealth();
   }
 }
+function setMainScreen() {
+  btn_Home.checked = true;
+}
 document.addEventListener("change", switchNavModals);
 
 // btn_Exercises_Modal.addEventListener("click", function () {
@@ -456,3 +554,54 @@ document.addEventListener("change", switchNavModals);
 //     }
 //   }
 // });
+const btn_SaveUserStats = document.querySelector(".btn--save-user-stats");
+btn_SaveUserStats.addEventListener("click", function () {
+  user.age = Number(userAge.value);
+  user.gender = userGenderM.checked ? "Male" : "Female";
+  user.height["feet"] = Number(feet.value);
+  user.height["inches"] = Number(inches.value);
+  user.height["total"] = user.height["feet"] * 12 + user.height["inches"];
+  user.weight = Number(userWeight.value);
+  homeResult_Age.innerHTML = user.age;
+  homeResult_Height.innerHTML = `${user.height["feet"]}' ${user.height["inches"]}"`;
+  homeResult_Sex.innerHTML = user.gender;
+  homeResult_Weight.innerHTML = `${user.weight} lbs`;
+  homeResult_Age.classList.remove("hidden");
+  homeResult_Height.classList.remove("hidden");
+  homeResult_Sex.classList.remove("hidden");
+  homeResult_Weight.classList.remove("hidden");
+  userWeight.classList.add("hidden");
+  feet.classList.add("hidden");
+  inches.classList.add("hidden");
+  userAge.classList.add("hidden");
+  userGenderF.classList.add("hidden");
+  userGenderM.classList.add("hidden");
+  label_GenderM.classList.add("hidden");
+  label_GenderF.classList.add("hidden");
+  container_WeightOptions.classList.add("hidden");
+  container_HeightOptions.classList.add("hidden");
+  containerBMI.classList.remove("hidden");
+  containerWeightRange.classList.remove("hidden");
+  btn_SaveUserStats.classList.add("hidden");
+  calculateBMIStandard();
+  healthyWeightRange();
+});
+
+btn_Edit_Home_Containers.addEventListener("click", function () {
+  if (title_Stronk.innerHTML === "Edit Mode") {
+    title_Stronk.innerHTML = "Stronk";
+
+    btn_Edit_Home_Containers.innerHTML = `Edit`;
+  } else if (title_Stronk.innerHTML === "Stronk") {
+    title_Stronk.innerHTML = "Edit Mode";
+    btn_Edit_Home_Containers.innerHTML = `Exit`;
+  }
+  btn_Edit_Home_Gender.classList.toggle("hidden");
+  btn_Edit_Home_Age.classList.toggle("hidden");
+  btn_Edit_Home_Height.classList.toggle("hidden");
+  btn_Edit_Home_Weight.classList.toggle("hidden");
+  btn_Save_Home_Gender.classList.toggle("hidden");
+  btn_Save_Home_Age.classList.toggle("hidden");
+  btn_Save_Home_Height.classList.toggle("hidden");
+  btn_Save_Home_Weight.classList.toggle("hidden");
+});
