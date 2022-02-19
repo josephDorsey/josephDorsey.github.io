@@ -31,6 +31,9 @@
   border-radius: 25px;
   position: relative;
 }
+.container--goals {
+  padding: 0px 15px;
+}
 .container--age h3,
 .container--height h3,
 .container--weight h3,
@@ -137,6 +140,7 @@ h1 {
 .container--home-radios {
   display: none;
 }
+
 .btn--save-age,
 .btn--edit-age,
 .btn--save-gender,
@@ -144,7 +148,11 @@ h1 {
 .btn--save-height,
 .btn--edit-height,
 .btn--save-weight,
-.btn--edit-weight {
+.btn--edit-weight,
+.btn--save-lifestyle,
+.btn--edit-lifestyle,
+.btn--save-goals,
+.btn--edit-goals {
   position: absolute;
   cursor: pointer;
   width: 24px;
@@ -169,14 +177,18 @@ h1 {
 .btn--save-age,
 .btn--save-height,
 .btn--save-weight,
-.btn--save-gender {
+.btn--save-gender,
+.btn--save-lifestyle,
+.btn--save-goals {
   top: 15px;
   right: 25px;
 }
 .btn--edit-age,
 .btn--edit-height,
 .btn--edit-weight,
-.btn--edit-gender {
+.btn--edit-gender,
+.btn--edit-goals,
+.btn--edit-lifestyle {
   top: 15px;
   /* right: 55px; */
   right: 55px;

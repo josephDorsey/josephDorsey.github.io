@@ -6,6 +6,14 @@
 //   testNumber.appendChild(option);
 // }
 let container_Workouts_Page;
+const active_Navigation_Modal = {
+  home: true,
+  workouts: false,
+  history: false,
+  exercises: false,
+  calories: false,
+  health: false,
+};
 
 const container_WorkoutsPage_Func = function () {
   if (container_Workouts_Page === 0) {
@@ -361,6 +369,154 @@ const retrieveWorkoutLocalStorage = function () {
 
 window.onload = function () {
   container_WorkoutsPage_Func();
+  if (active_Navigation_Modal.home === true) {
+    btn_Home.checked = true;
+    label_Home.style.color = "#3b5bdb";
+    label_Workouts.style.color = "black";
+    label_History.style.color = "black";
+    label_History.style.fill = "black";
+    label_Exercises.style.color = "black";
+    label_Calories.style.color = "black";
+    label_Health.style.color = "black";
+    if (
+      user.firstName === localStorage.getItem("user_firstName") &&
+      user.age === JSON.parse(localStorage.getItem("user_Age")) &&
+      user.gender === localStorage.getItem("user_Gender") &&
+      user.height.feet ===
+        JSON.parse(localStorage.getItem("user_Height_Feet")) &&
+      user.height.inches ===
+        JSON.parse(localStorage.getItem("user_Height_Inches")) &&
+      user.weight === JSON.parse(localStorage.getItem("user_Weight")) &&
+      user.lifeStyle === localStorage.getItem("user_Lifestyle") &&
+      user.goal === localStorage.getItem("user_Goal") &&
+      user.goalWeight === JSON.parse(localStorage.getItem("user_goalWeight"))
+    ) {
+      btn_Login.classList.add("hidden");
+      userName.classList.add("hidden");
+      userTitle.classList.add("hidden");
+      userGreet.classList.remove("hidden");
+      lifestyleDefinition.classList.remove("hidden");
+      userGreet.textContent = `User: ${user.firstName}`;
+      container_SelectWeightGoals.classList.add("hidden");
+      // container_Question.classList.toggle("hidden");
+      container_AHWKG.style.display = "grid";
+      btn_Edit_Home_Containers.classList.remove("hidden");
+
+      retrieveHomeLocalStorage();
+      homeResult_Age.innerHTML = user.age;
+      homeResult_Height.innerHTML = `${user.height["feet"]}' ${user.height["inches"]}"`;
+      homeResult_Sex.innerHTML = localStorage.getItem("user_Gender");
+      homeResult_Weight.innerHTML = `${user.weight} lbs`;
+      homeResult_GoalWeight.innerHTML = JSON.parse(
+        localStorage.getItem("user_goalWeight")
+      );
+      homeResult_GoalWeight_Title.classList.remove("hidden");
+      homeResult_PoundsToLG.classList.remove("hidden");
+      homeResult_PoundsToLG.innerHTML = `${user.weight - user.goalWeight}`;
+      homeResult_GoalWeight_Title.innerHTML = `Weight goal:`;
+      title_Goal.innerHTML = `Goal: ${localStorage.getItem("user_Goal")}`;
+      resultsBMI.textContent = `${user.BMI}`;
+      if (
+        title_Goal.innerHTML === "Maintain Weight" ||
+        user.goal === "Maintain Weight"
+      ) {
+        summaryGoal_Maintain();
+        container_SelectWeightGoals.selectedIndex = 1;
+      } else if (
+        title_Goal.innerHTML === "Lose Weight" ||
+        user.goal === "Lose Weight"
+      ) {
+        summaryGoal_Lose();
+        container_SelectWeightGoals.selectedIndex = 2;
+      } else if (
+        title_Goal.innerHTML === "Gain Weight" ||
+        user.goal === "Gain Weight"
+      ) {
+        summaryGoal_Gain();
+        container_SelectWeightGoals.selectedIndex = 3;
+      }
+      if (user.lifeStyle === "sedentary") {
+        listSummary_Sedentary.classList.remove("hidden");
+        listSummary_LightlyActive.classList.add("hidden");
+        listSummary_Active.classList.add("hidden");
+        listSummary_VeryActive.classList.add("hidden");
+        listSummary_VigActive.classList.add("hidden");
+        lifestyleDefinition.innerHTML = `Sedentary`;
+      } else if (user.lifeStyle === "lightly active") {
+        listSummary_Sedentary.classList.add("hidden");
+        listSummary_LightlyActive.classList.remove("hidden");
+        listSummary_Active.classList.add("hidden");
+        listSummary_VeryActive.classList.add("hidden");
+        listSummary_VigActive.classList.add("hidden");
+        lifestyleDefinition.innerHTML = `Lightly Active`;
+      } else if (user.lifeStyle === "active") {
+        listSummary_Sedentary.classList.add("hidden");
+        listSummary_LightlyActive.classList.add("hidden");
+        listSummary_Active.classList.remove("hidden");
+        listSummary_VeryActive.classList.add("hidden");
+        listSummary_VigActive.classList.add("hidden");
+        lifestyleDefinition.innerHTML = `Active`;
+      } else if (user.lifeStyle === "very active") {
+        listSummary_Sedentary.classList.add("hidden");
+        listSummary_LightlyActive.classList.add("hidden");
+        listSummary_Active.classList.add("hidden");
+        listSummary_VeryActive.classList.remove("hidden");
+        listSummary_VigActive.classList.add("hidden");
+        lifestyleDefinition.innerHTML = `Very Active`;
+      } else if (user.lifeStyle === "vigorously active") {
+        listSummary_Sedentary.classList.add("hidden");
+        listSummary_LightlyActive.classList.add("hidden");
+        listSummary_Active.classList.add("hidden");
+        listSummary_VeryActive.classList.add("hidden");
+        listSummary_VigActive.classList.remove("hidden");
+        lifestyleDefinition.innerHTML = `Vigorously Active`;
+      }
+
+      if (user.BMI <= 18.5) {
+        userBMI.textContent = `With a BMI of ${user.BMI} you are considered underweight. A few more pounds can lessen your chances of thinning bones and a weakened immune system, as well as feeling tired. Women who are underweight may have irregular periods or stop having them altogether. Underweight men may have lower sperm counts. The healthy range for BMI in your height and weight range is between 18.5 and 24.9.`;
+      } else if (user.BMI >= 18.5 && user.BMI <= 24.9) {
+        userBMI.textContent = `With a BMI of ${user.BMI} you're in a good place now. The healthy range for BMI in your height and weight range is between 18.5 and 24.9. Keep up your healthy habits to maintain your weight.`;
+      } else if (user.BMI >= 25 && user.BMI <= 29.9) {
+        userBMI.textContent = `With a BMI of ${user.BMI} your weight puts you in the overweight range. Losing some extra pounds is a good first step toward lowering your chances of health problems. The healthy range for BMI in your height and weight range is between 18.5 and 24.9. If you have a very muscular build, though, you could have an overweight BMI and still be OK.`;
+      } else if (user.BMI >= 30) {
+        userBMI.textContent = `With a BMI of ${user.BMI} your weight puts you in the obese range. You're much more likely to have serious health problems. The healthy range for BMI in your height and weight range is between 18.5 and 24.9.`;
+      }
+      homeResult_Age.classList.remove("hidden");
+      homeResult_Height.classList.remove("hidden");
+      homeResult_Sex.classList.remove("hidden");
+      homeResult_Weight.classList.remove("hidden");
+      homeResult_GoalWeight_Title.classList.remove("hidden");
+      userWeight.classList.add("hidden");
+      feet.classList.add("hidden");
+      inches.classList.add("hidden");
+      userAge.classList.add("hidden");
+      userGenderF.classList.add("hidden");
+      userGenderM.classList.add("hidden");
+      label_GenderM.classList.add("hidden");
+      label_GenderF.classList.add("hidden");
+      container_WeightOptions.classList.add("hidden");
+      container_HeightOptions.classList.add("hidden");
+      containerBMI.classList.remove("hidden");
+      containerWeightRange.classList.remove("hidden");
+      btn_SaveUserStats.classList.add("hidden");
+      summaryProtein.classList.remove("hidden");
+      summaryCalories.classList.remove("hidden");
+      summaryGoalWeight.classList.remove("hidden");
+      value_Calories.innerHTML = `${user.calorie["max"]}cal`;
+      value_Protein.innerHTML = `${user.protein["max"]}g`;
+
+      input_goalWeight.style.display = "none";
+      title_goalWeight.classList.add("hidden");
+      homeResult_GoalWeight.classList.remove("hidden");
+      // showLifeStyleSummary();
+      healthyWeightRange();
+      showWBP();
+      // }
+    } else if (user.firstName.length === 0) {
+      userName.classList.remove("hidden");
+      btn_Login.classList.remove("hidden");
+    }
+  }
   exerciseGroup.workoutName =
     JSON.parse(localStorage.getItem("exercises_WorkoutName")) || [];
   for (let i = 0; i < temp_Workout_Name.length; i++) {

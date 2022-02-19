@@ -6,14 +6,18 @@ const userGreet = document.querySelector(".user--greet");
 const testP = document.querySelector(".test");
 const spanWeightData = document.querySelector(".span-weight--data");
 const title_Stronk = document.querySelector(".logo--title");
-
+const title_goalWeight = document.querySelector(".title--goalWeight");
 // Containers
+const containerFormLogin = document.querySelector(".form-enter-login");
 const container_Question = document.querySelector(".container--questions");
 const container_AHWKG = document.querySelector(".container--ahwkg");
 const containerAge = document.querySelector(".container--age");
 const containerGoals = document.querySelector(".container--goals");
 const container_MaintainWeight = document.querySelector(
   ".container--maintain-weight"
+);
+const container_SelectWeightGoals = document.querySelector(
+  ".container--Select-Weight-Goals"
 );
 const container_LoseWeight = document.querySelector(".container--lose-weight");
 const container_GainWeight = document.querySelector(".container--gain-weight");
@@ -39,21 +43,22 @@ const userGenderF = document.querySelector(".radio--female");
 const feet = document.querySelector(".input--feet");
 const inches = document.querySelector(".input--inches");
 const userWeight = document.querySelector(".input--user-weight");
+const input_goalWeight = document.querySelector(".input--goalWeight");
 
 // The p elements and h3
 const proteinRange = document.querySelector(".protein--summary");
 const proteinTitle = document.querySelector(".protein--title");
 const lifestyleDefinition = document.querySelector(".lifestyle--definition");
+const container_Lifestyle_List = document.querySelector(".list");
 const userBMI = document.querySelector(".bmi--summary");
 const resultsBMI = document.querySelector(".bmi--results");
 const weightRange = document.querySelector(".weight-range--summary");
 const lifestyleText = document.querySelector(".lifestyle--summary");
 const summaryCalories = document.querySelector(".calorie--summary");
 const summaryProtein = document.querySelector(".protein--summary");
-const summaryGeneral = document.querySelector(".general--summary");
+const summaryGoalWeight = document.querySelector(".goalWeight--summary");
 const value_Protein = document.querySelector(".protein--value");
 const value_Calories = document.querySelector(".calorie--value");
-const selected_Goal = document.querySelector(".selected--goal");
 
 // list
 const listSummary_Sedentary = document.querySelector(".list--sedentary");
@@ -86,9 +91,11 @@ const btn_BMICategories = document.querySelector(".btn--bmi-categories");
 const containerBMICategories = document.querySelector(".bmi--categories");
 
 // Goals selection
-const option_MaintainWeight = document.querySelector(".radio--maintain");
-const option_LoseWeight = document.querySelector(".radio--lose");
-const option_GainWeight = document.querySelector(".radio--gain");
+const option_Weight_Maintain = document.querySelector(
+  ".option--maintain-weight"
+);
+const option_Weight_Lose = document.querySelector(".option--lose-weight");
+const option_Weight_Gain = document.querySelector(".option--gain-weight");
 
 // Gains selection
 const containerGainGoal = document.querySelector(".container--slow_fast");
@@ -126,16 +133,17 @@ const lifeStyleChoices = {
 
 // User Data
 const user = {
-  firstName: "",
+  firstName: localStorage.getItem("user_firstName") || "",
   lastName: "",
-  age: "",
-  gender: "",
+  age: JSON.parse(localStorage.getItem("user_Age")) || "",
+  gender: localStorage.getItem("user_Gender") || "",
   height: {
-    feet: "",
-    inches: "",
-    total: "",
+    feet: JSON.parse(localStorage.getItem("user_Height_Feet")) || "",
+    inches: JSON.parse(localStorage.getItem("user_Height_Inches")) || "",
+    total: JSON.parse(localStorage.getItem("user_Height_Total")) || "",
   },
-  weight: "",
+  weight: JSON.parse(localStorage.getItem("user_Weight")) || "",
+
   BMI: "",
   calorie: {
     min: "",
@@ -145,8 +153,14 @@ const user = {
     min: "",
     max: "",
   },
-  lifeStyle: "",
-  goal: "",
+  lifeStyle: localStorage.getItem("user_Lifestyle") || "",
+  goal: localStorage.getItem("user_Goal") || "",
+  // goal: {
+  //   one: "Maintain",
+  //   two: "Lose",
+  //   three: "Gain",
+  // }
+  goalWeight: JSON.parse(localStorage.getItem("user_goalWeight")) || "",
 };
 
 const convertMinBMI = 18.5 / 703;
@@ -166,7 +180,7 @@ let age,
 // userName;
 
 const calcMaintainWeight = function () {
-  if (option_Sedentary.selected) {
+  if (option_Sedentary.selected || user.lifeStyle === "sedentary") {
     user.lifeStyle = lifeStyleChoices.one;
     // If you are sedentary (little or no exercise) : Calorie-Calculation = BMR x 1.2;
     // ME 2353.6
@@ -175,7 +189,7 @@ const calcMaintainWeight = function () {
     user.calorie["max"] = Math.trunc(calories * 1.2);
     user.protein["max"] = Math.trunc(calories * 1.2 * 0.075);
     summaryGoal_Maintain();
-  } else if (option_Light.selected) {
+  } else if (option_Light.selected || user.lifeStyle === "lightly active") {
     user.lifeStyle = lifeStyleChoices.two;
     //   If you are lightly active (light exercise/sports 1-3 days/week) : Calorie-Calculation = BMR x 1.375;
 
@@ -184,7 +198,7 @@ const calcMaintainWeight = function () {
     user.calorie["max"] = Math.trunc(calories * 1.375);
     user.protein["max"] = Math.trunc(calories * 1.375 * 0.075);
     summaryGoal_Maintain();
-  } else if (option_Active.selected) {
+  } else if (option_Active.selected || user.lifeStyle === "active") {
     user.lifeStyle = lifeStyleChoices.three;
 
     // If you are moderately active (moderate exercise/sports 3-5 days/week) : Calorie-Calculation = BMR x 1.55;
@@ -194,7 +208,7 @@ const calcMaintainWeight = function () {
     user.calorie["max"] = Math.trunc(calories * 1.55);
     user.protein["max"] = Math.trunc(calories * 1.55 * 0.075);
     summaryGoal_Maintain();
-  } else if (option_VeryActive.selected) {
+  } else if (option_VeryActive.selected || user.lifeStyle === "very active") {
     user.lifeStyle = lifeStyleChoices.four;
     //   If you are very active (hard exercise/sports 6-7 days a week) : Calorie-Calculation = BMR x 1.725;
 
@@ -203,7 +217,10 @@ const calcMaintainWeight = function () {
     user.calorie["max"] = Math.trunc(calories * 1.725);
     user.protein["max"] = Math.trunc(calories * 1.725 * 0.075);
     summaryGoal_Maintain();
-  } else if (option_vigorouslyActive.selected) {
+  } else if (
+    option_vigorouslyActive.selected ||
+    user.lifeStyle === "vigorously"
+  ) {
     user.lifeStyle = lifeStyleChoices.five;
     //   If you are extra active (very hard exercise/sports & physical job or 2x training) : Calorie-Calculation = BMR x 1.9;
 
@@ -228,7 +245,7 @@ const calcLoseWeight = function () {
   // 4. If calories <= 1800 STOP! This is below the recommended maintenance level, please pick a different amount of calories to cut
   //  This is the total number of calories you need in order to lose your current weight, 500 calories below maintenance
 
-  if (option_Sedentary.selected) {
+  if (option_Sedentary.selected || user.lifeStyle === "sedentary") {
     user.lifeStyle = lifeStyleChoices.one;
     // If you are sedentary (little or no exercise) :
     // Calorie-Calculation = BMR x 1.2 - 500
@@ -236,7 +253,7 @@ const calcLoseWeight = function () {
     user.calorie["max"] = Math.trunc(calories * 1.2 - 500);
     user.protein["max"] = Math.trunc((calories * 1.2 - 500) * 0.075);
     summaryGoal_Lose();
-  } else if (option_Light.selected) {
+  } else if (option_Light.selected || user.lifeStyle === "lightly active") {
     user.lifeStyle = lifeStyleChoices.two;
     // If you are lightly active (light exercise/sports 1-3 days/week) :
     // slow gain
@@ -245,7 +262,7 @@ const calcLoseWeight = function () {
     user.calorie["max"] = Math.trunc(calories * 1.375 - 500);
     user.protein["max"] = Math.trunc((calories * 1.375 - 500) * 0.075);
     summaryGoal_Lose();
-  } else if (option_Active.selected) {
+  } else if (option_Active.selected || user.lifeStyle === "active") {
     user.lifeStyle = lifeStyleChoices.three;
     // If you are moderately active (moderate exercise/sports 3-5 days/week) :
     //slow gain
@@ -254,7 +271,7 @@ const calcLoseWeight = function () {
     user.calorie["max"] = Math.trunc(calories * 1.55 - 500);
     user.protein["max"] = Math.trunc((calories * 1.55 - 500) * 0.075);
     summaryGoal_Lose();
-  } else if (option_VeryActive.selected) {
+  } else if (option_VeryActive.selected || user.lifeStyle === "very active") {
     // If you are very active (hard exercise/sports 6-7 days a week) :
     user.lifeStyle = lifeStyleChoices.four;
     // Calorie-Calculation = BMR x 1.725 - 500;
@@ -263,7 +280,10 @@ const calcLoseWeight = function () {
     user.calorie["max"] = Math.trunc(calories * 1.725 - 500);
     user.protein["max"] = Math.trunc((calories * 1.725 - 500) * 0.075);
     summaryGoal_Lose();
-  } else if (option_vigorouslyActive.selected) {
+  } else if (
+    option_vigorouslyActive.selected ||
+    user.lifeStyle === "vigorously active"
+  ) {
     // If you are extra active (very hard exercise/sports & physical job or 2x training) :
     user.lifeStyle = lifeStyleChoices.five;
     // Calorie-Calculation = BMR x 1.9 - 500
@@ -274,7 +294,7 @@ const calcLoseWeight = function () {
   }
 };
 const calcGainWeight = function () {
-  if (option_Sedentary.selected) {
+  if (option_Sedentary.selected || user.lifeStyle === "sedentary") {
     user.lifeStyle = lifeStyleChoices.one;
     //     If you are sedentary (little or no exercise) : Calorie-Calculation = BMR x 1.2 + 300 (min)
     // Calorie-Calculation = BMR x 1.2 + 500 (max)
@@ -301,7 +321,7 @@ const calcGainWeight = function () {
     // //fast protein gain
     // Calorie-Calculation = BMR x 1.2 + 700 *0.075(min-Protein)
     // Calorie-Calculation = BMR x 1.2 + 1000* 0.075(max-Protein)
-  } else if (option_Light.selected) {
+  } else if (option_Light.selected || user.lifeStyle === "lightly active") {
     user.lifeStyle = lifeStyleChoices.two;
     //     If you are lightly active (light exercise/sports 1-3 days/week) :
     // // slow gain
@@ -329,7 +349,7 @@ const calcGainWeight = function () {
     // //fast protein gain
     // Calorie-Calculation = BMR x 1.375 + 700*0.075 (min-PRotein)
     // Calorie-Calculation = BMR x 1.375 + 1000*0.075 (max-PRotein)
-  } else if (option_Active.selected) {
+  } else if (option_Active.selected || user.lifeStyle === "active") {
     user.lifeStyle = lifeStyleChoices.three;
     // If you are moderately active (moderate exercise/sports 3-5 days/week) :
     //slow gain
@@ -364,7 +384,7 @@ const calcGainWeight = function () {
     // //fast protein gain
     // Calorie-Calculation = BMR x 1.55 + 700*0.075 (min-Protein)
     // Calorie-Calculation = BMR x 1.55 + 1000*0.075 (max-Protein)
-  } else if (option_VeryActive.selected) {
+  } else if (option_VeryActive.selected || user.lifeStyle === "very active") {
     user.lifeStyle = lifeStyleChoices.four;
     // If you are very active (hard exercise/sports 6-7 days a week) :
     // slow gain
@@ -399,7 +419,10 @@ const calcGainWeight = function () {
     // //fast protein gain
     // Calorie-Calculation = BMR x 1.725 + 700*0.075 (min-Protein)
     // Calorie-Calculation = BMR x 1.725 + 1000*0.075 (max-Protein)
-  } else if (option_vigorouslyActive.selected) {
+  } else if (
+    option_vigorouslyActive.selected ||
+    user.lifeStyle === "vigorously active"
+  ) {
     user.lifeStyle = lifeStyleChoices.five;
     //      If you are extra active (very hard exercise/sports & physical job or 2x training) :
     // //slow gain
@@ -441,39 +464,81 @@ const calcCalories = function () {
   // Pounds female
   // Calculate protein off calorie intake
   // To gain weight increase your calories by 300-500 above your maintenance level for slow weight gain, or 700-1000 if you want to gain weight fast
-  if (userGenderM.checked) {
+  if (userGenderM.checked || user.gender === "Male") {
     calories =
       66 + 6.3 * user.weight + 12.9 * user.height.total - 6.8 * user.age;
     user.calorie.max = calories;
-    if (option_MaintainWeight.checked) {
+    if (
+      option_Weight_Maintain.selected === true ||
+      user.goal === "Maintain Weight"
+    ) {
       calcMaintainWeight();
-    } else if (option_LoseWeight.checked) {
+    } else if (
+      option_Weight_Lose.selected === true ||
+      user.goal === "Lose Weight"
+    ) {
       calcLoseWeight();
-    } else if (option_GainWeight.checked) {
+    } else if (
+      option_Weight_Gain.selected === true ||
+      user.goal === "Gain Weight"
+    ) {
       calcGainWeight();
     }
-  } else if (userGenderF.checked) {
+  } else if (userGenderF.checked || user.gender === "Female") {
     calories =
       655 + 4.3 * user.weight + 4.7 * user.height.total - 4.7 * user.age;
     user.calorie.max = calories;
-    if (option_MaintainWeight.checked) {
+    if (
+      option_Weight_Maintain.selected === true ||
+      user.goal === "Maintain Weight"
+    ) {
       calcMaintainWeight();
-    } else if (option_LoseWeight.checked) {
+    } else if (
+      option_Weight_Lose.selected === true ||
+      user.goal === "Lose Weight"
+    ) {
       calcLoseWeight();
-    } else if (option_GainWeight.checked) {
+    } else if (
+      option_Weight_Gain.selected === true ||
+      user.goal === "Gain Weight"
+    ) {
       calcGainWeight();
     }
   }
 };
 const goalSelection = function () {
-  if (option_MaintainWeight.checked || option_LoseWeight.checked) {
+  if (container_SelectWeightGoals.selectedIndex === 0) {
+    // selected_Goal.classList.add("hidden");
+    summaryGoalWeight.classList.add("hidden");
+    summaryProtein.classList.add("hidden");
+    summaryCalories.classList.add("hidden");
+    title_goalWeight.classList.add("hidden");
+    input_goalWeight.classList.add("hidden");
     containerGainGoal.classList.add("hidden");
-  } else if (option_GainWeight.checked) {
+  }
+  if (
+    container_SelectWeightGoals.selectedIndex === 1 ||
+    container_SelectWeightGoals.selectedIndex === 2
+  ) {
+    containerGainGoal.classList.add("hidden");
+  }
+  if (container_SelectWeightGoals.selectedIndex === 3) {
     containerGainGoal.classList.remove("hidden");
+  }
+  if (
+    container_SelectWeightGoals.selectedIndex === 2 ||
+    container_SelectWeightGoals.selectedIndex === 3
+  ) {
+    title_goalWeight.classList.remove("hidden");
+    input_goalWeight.classList.remove("hidden");
+  }
+  if (container_SelectWeightGoals.selectedIndex === 1) {
+    title_goalWeight.classList.add("hidden");
+    input_goalWeight.classList.add("hidden");
   }
 };
 
-document.addEventListener("click", goalSelection);
+document.addEventListener("change", goalSelection);
 const closeLogin = function () {
   user.firstName = userName.value;
   btn_Login.classList.add("hidden");
@@ -485,8 +550,8 @@ const closeLogin = function () {
   // container_Question.classList.toggle("hidden");
   container_AHWKG.style.display = "grid";
   btn_Edit_Home_Containers.classList.remove("hidden");
-
-  console.log(user);
+  localStorage.setItem("user_firstName", user.firstName);
+  console.log(`Welcome, ${user.firstName}!`);
 };
 // const enterKey = function (e) {
 //   if (e.key === "Enter" && !containerName.classList.contains("hidden")) {
@@ -732,31 +797,34 @@ btn_BMICategories.addEventListener("click", function () {
 
 const summaryGoal_Maintain = function () {
   lifeStyleRequirement(user.lifeStyle);
-  summaryGeneral.textContent = `In order to maintain your same weight with a ${user.lifeStyle} lifestyle:`;
+  // summaryGoalWeight.textContent = `In order to maintain your same weight with a ${user.lifeStyle} lifestyle:`;
   summaryCalories.textContent = `You need to consume ${user.calorie.max} calories a day.`;
-  summaryProtein.textContent = `You also need to consume ${user.protein.max} grams of protein. This daily protein target can help you focus on body recomposition, or gradually burning fat and building muscle, while focusing on your health.`;
+  summaryProtein.textContent = `This daily protein target can help you focus on body recomposition, or gradually burning fat and building muscle, while focusing on your health.`;
 };
 const summaryGoal_Lose = function () {
   lifeStyleRequirement(user.lifeStyle);
-  summaryGeneral.textContent = `In order to lose weight with a ${user.lifeStyle} lifestyle:`;
+  summaryGoalWeight.textContent = `In order to reach your goal weight with a ${
+    user.lifeStyle
+  } lifestyle you need to lose ${user.weight - user.goalWeight} lbs.`;
   summaryCalories.textContent = `You need to consume ${user.calorie.max} calories a day.`;
-  summaryProtein.textContent = `You also need to consume ${user.protein.max} grams of protein. This daily protein target can help you lose weight in the form of body fat while minimizing muscle loss.`;
+  summaryProtein.textContent = `This daily protein target can help you lose weight in the form of body fat while minimizing muscle loss.`;
+  title_goalWeight.innerHTML = `Pounds to lose:`;
 };
 const summaryGoal_Gain = function () {
   lifeStyleRequirement(user.lifeStyle);
   if (option_Slow.selected) {
-    summaryGeneral.textContent = `In order to gain weight in a slow progression with a ${user.lifeStyle} lifestyle:`;
-    summaryCalories.textContent = `You need to consume between ${user.calorie.min} to ${user.calorie.max} calories a day.`;
-    summaryProtein.textContent = `You also need to consume between ${user.protein.min} to ${user.protein.max} grams of protein. This daily protein target can help you build lean muscle mass while minimizing body-fat gains.`;
-  } else if (option_Fast.selected) {
-    summaryGeneral.textContent = `As a ${feet.value}'${inches.value}" ${
-      userWeight.value
-    }${option_Pounds.selected ? `lb` : `kg`} ${
-      userGenderM.checked ? `male` : `female`
-    }, in order to gain weight in a fast progression with a ${
+    summaryGoalWeight.textContent = `In order to reach your goal weight in a slow progression with a ${
       user.lifeStyle
-    } lifestyle:`;
+    } lifestyle you need to gain ${user.goalWeight - user.weight} lbs.`;
     summaryCalories.textContent = `You need to consume between ${user.calorie.min} to ${user.calorie.max} calories a day.`;
-    summaryProtein.textContent = `You also need to consume between ${user.protein.min} to ${user.protein.max} grams of protein. This daily protein target can help you build lean muscle mass while minimizing body-fat gains.`;
+    summaryProtein.textContent = `You need to consume between ${user.protein.min} to ${user.protein.max} grams of protein. This daily protein target can help you build lean muscle mass while minimizing body-fat gains.`;
+    title_goalWeight.innerHTML = `Pounds to gain:`;
+  } else if (option_Fast.selected) {
+    summaryGoalWeight.textContent = `In order to reach your goal weight in a fast progression with a ${
+      user.lifeStyle
+    } lifestyle you need to gain ${user.goalWeight - user.weight} lbs.`;
+    summaryCalories.textContent = `You need to consume between ${user.calorie.min} to ${user.calorie.max} calories a day.`;
+    summaryProtein.textContent = `You need to consume between ${user.protein.min} to ${user.protein.max} grams of protein. This daily protein target can help you build lean muscle mass while minimizing body-fat gains.`;
+    title_goalWeight.innerHTML = `Pounds to gain:`;
   }
 };

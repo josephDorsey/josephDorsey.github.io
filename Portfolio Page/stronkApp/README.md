@@ -511,3 +511,11 @@ Open the svg in vscode and then change the `circle` `stroke="currentColor"` to `
 ### 2
 
 Open the img in vscode copy the link and paste in html code if you want
+
+### Smooth Scrolling
+
+```
+html {
+  scroll-behavior: smooth;
+}
+```

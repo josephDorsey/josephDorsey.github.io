@@ -603,6 +603,25 @@
   right: 0;
   left: 0;
 }
+.btn--settings-home-container {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  cursor: pointer;
+}
+.btn--reset-all-home-containers {
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0px;
+  top: 75px;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  color: #3b5bdb;
+}
 
 .exercise-list-hint {
   position: absolute;
