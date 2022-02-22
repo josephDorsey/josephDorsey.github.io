@@ -8,8 +8,8 @@ const btn_Exercises_Modal = document.querySelector(".btn--exercises-modal");
 const btn_TrackCalories = document.querySelector(".btn--track-user-cal");
 const btn_Health = document.querySelector(".btn--user-health");
 
-let navBtn_ModalStates_Count = 0;
-const navBtn_ModalStates = [
+let active_ModalStates_Count = 0;
+const active_ModalStates = [
   "Home",
   "Workouts",
   "History",
@@ -51,6 +51,7 @@ const btn_Reset_Home_Containers = document.querySelector(
   ".btn--reset-all-home-containers"
 );
 const btn_Edit_Home_Age = document.querySelector(".btn--edit-age");
+const btn_Edit_Home_Name = document.querySelector(".btn--edit-name");
 const btn_Edit_Home_Gender = document.querySelector(".btn--edit-gender");
 const btn_Edit_Home_Height = document.querySelector(".btn--edit-height");
 const btn_Edit_Home_Weight = document.querySelector(".btn--edit-weight");
@@ -58,6 +59,7 @@ const btn_Edit_Home_Goals = document.querySelector(".btn--edit-goals");
 const btn_Edit_Home_Lifestyle = document.querySelector(".btn--edit-lifestyle");
 
 const btn_Save_Home_Age = document.querySelector(".btn--save-age");
+const btn_Save_Home_Name = document.querySelector(".btn--save-name");
 const btn_Save_Home_Gender = document.querySelector(".btn--save-gender");
 const btn_Save_Home_Height = document.querySelector(".btn--save-height");
 const btn_Save_Home_Weight = document.querySelector(".btn--save-weight");
@@ -348,7 +350,7 @@ function nav_Home() {
     homeResult_GoalWeight.innerHTML = JSON.parse(
       localStorage.getItem("user_goalWeight")
     );
-    homeResult_PoundsToLG.innerHTML = `${user.weight - user.goalWeight}`;
+
     homeResult_GoalWeight_Title.innerHTML = `Weight goal:`;
     title_Goal.innerHTML = `Goal: ${localStorage.getItem("user_Goal")}`;
     resultsBMI.textContent = `${user.BMI}`;
@@ -428,6 +430,7 @@ function nav_Home() {
     userAge.classList.add("hidden");
     userGenderF.classList.add("hidden");
     userGenderM.classList.add("hidden");
+
     label_GenderM.classList.add("hidden");
     label_GenderF.classList.add("hidden");
     container_WeightOptions.classList.add("hidden");
@@ -867,9 +870,21 @@ function saveHomeLocalStorage() {
   );
   localStorage.setItem("user_Weight", JSON.stringify(user.weight));
   localStorage.setItem("user_goalWeight", JSON.stringify(user.goalWeight));
+  localStorage.setItem("user_poundsToLG", JSON.stringify(user.poundsToLG));
   localStorage.setItem("user_BMI", JSON.stringify(user.BMI));
   localStorage.setItem("user_Lifestyle", user.lifeStyle);
   localStorage.setItem("user_Calorie_Max", JSON.stringify(user.calorie["max"]));
+  if (option_Slow.selected === true || option_Fast.selected === true) {
+    localStorage.setItem(
+      "user_Calorie_Min",
+      JSON.stringify(user.calorie["min"])
+    );
+    localStorage.setItem(
+      "user_Protein_Min",
+      JSON.stringify(user.protein["min"])
+    );
+    localStorage.setItem("user_GainWeight", user.gainWeight);
+  }
   localStorage.setItem("user_Protein_Max", JSON.stringify(user.protein["max"]));
   localStorage.setItem("user_Goal", user.goal);
   localStorage.setItem("user_Gender", user.gender);
@@ -882,12 +897,21 @@ function retrieveHomeLocalStorage() {
   user.height.total = JSON.parse(localStorage.getItem("user_Height_Total"));
   user.calorie.max = JSON.parse(localStorage.getItem("user_Calorie_Max"));
   user.weight = JSON.parse(localStorage.getItem("user_Weight"));
-  user.goalWeight = JSON.parse(localStorage.getItem("user_goalWeight"));
+
   user.protein.max = JSON.parse(localStorage.getItem("user_Protein_Max"));
+  user.gainWeight = localStorage.getItem("user_GainWeight");
   user.lifeStyle = localStorage.getItem("user_Lifestyle");
   user.gender = localStorage.getItem("user_Gender");
   user.goal = localStorage.getItem("user_Goal");
   user.BMI = JSON.parse(localStorage.getItem("user_BMI"));
+  if (user.goal === "Lose Weight" || user.goal === "Gain Weight") {
+    user.poundsToLG = JSON.parse(localStorage.getItem("user_poundsToLG"));
+    user.goalWeight = JSON.parse(localStorage.getItem("user_goalWeight"));
+  }
+  if (user.gainWeight === "Slow" || user.gainWeight === "Fast") {
+    user.calorie.min = JSON.parse(localStorage.getItem("user_Calorie_Min"));
+    user.protein.min = JSON.parse(localStorage.getItem("user_Protein_Min"));
+  }
 }
 btn_SaveUserStats.addEventListener("click", function () {
   // assignment to object -- user
@@ -904,7 +928,7 @@ btn_SaveUserStats.addEventListener("click", function () {
   homeResult_Sex.innerHTML = user.gender;
   homeResult_Weight.innerHTML = `${user.weight} lbs`;
   homeResult_GoalWeight.innerHTML = user.goalWeight;
-  homeResult_PoundsToLG.innerHTML = `${user.weight - user.goalWeight}`;
+
   homeResult_GoalWeight_Title.classList.remove("hidden");
   homeResult_GoalWeight_Title.innerHTML = `Weight goal:`;
   homeResult_Age.classList.remove("hidden");
@@ -930,8 +954,10 @@ btn_SaveUserStats.addEventListener("click", function () {
 
   // Hide the select element + input for weight goals
   container_SelectWeightGoals.classList.add("hidden");
-  input_goalWeight.classList.add("hidden");
-
+  input_goalWeight.style.display = "none";
+  option_Slow.style.display = "none";
+  option_Fast.style.display = "none";
+  containerGainGoal.classList.add("hidden");
   containerBMI.classList.remove("hidden");
   containerWeightRange.classList.remove("hidden");
   btn_SaveUserStats.classList.add("hidden");
@@ -940,14 +966,13 @@ btn_SaveUserStats.addEventListener("click", function () {
   showLifeStyleSummary();
   calcCalories();
   showWBP();
-
+  container_Lifestyle_List.classList.remove("hidden");
+  input_goalWeight.classList.add("hidden");
   summaryProtein.classList.remove("hidden");
   summaryCalories.classList.remove("hidden");
   summaryGoalWeight.classList.remove("hidden");
   // title_goalWeight.classList.add("hidden");
   homeResult_GoalWeight.classList.remove("hidden");
-  value_Calories.innerHTML = `${user.calorie["max"]}cal`;
-  value_Protein.innerHTML = `${user.protein["max"]}g`;
 
   // container_MaintainWeight.classList.add("hidden");
   // container_LoseWeight.classList.add("hidden");
@@ -956,15 +981,32 @@ btn_SaveUserStats.addEventListener("click", function () {
   if (option_Weight_Maintain.selected === true) {
     title_Goal.innerHTML = "Goal: Maintain Weight";
     user.goal = "Maintain Weight";
+    value_Calories.innerHTML = `${user.calorie["max"]}cal`;
+    value_Protein.innerHTML = `${user.protein["max"]}g`;
   }
   if (option_Weight_Lose.selected === true) {
     title_Goal.innerHTML = "Goal: Lose Weight";
     user.goal = "Lose Weight";
+    homeResult_PoundsToLG.innerHTML = `${user.weight - user.goalWeight}`;
+    value_Calories.innerHTML = `${user.calorie["max"]}cal`;
+    value_Protein.innerHTML = `${user.protein["max"]}g`;
   }
   if (option_Weight_Gain.selected === true) {
     title_Goal.innerHTML = "Goal: Gain Weight";
     user.goal = "Gain Weight";
+    homeResult_PoundsToLG.innerHTML = `${user.goalWeight - user.weight}`;
+    if (option_Slow.selected === true) {
+      value_Calories.innerHTML = `${user.calorie["min"]} - ${user.calorie["max"]}cal`;
+      value_Protein.innerHTML = `${user.protein["min"]} - ${user.protein["max"]}g`;
+      user.gainWeight = "Slow";
+    }
+    if (option_Fast.selected === true) {
+      value_Calories.innerHTML = `${user.calorie["min"]} - ${user.calorie["max"]}cal`;
+      value_Protein.innerHTML = `${user.protein["max"]}g`;
+      user.gainWeight = "Fast";
+    }
   }
+  user.poundsToLG = Number(homeResult_PoundsToLG.innerHTML);
   if (user.lifeStyle === "sedentary") {
     listSummary_Sedentary.classList.remove("hidden");
     listSummary_LightlyActive.classList.add("hidden");
@@ -1016,6 +1058,7 @@ btn_Edit_Home_Containers.addEventListener("click", function () {
   }
   // Edit Home Cards
   btn_Edit_Home_Gender.classList.toggle("hidden");
+  btn_Edit_Home_Name.classList.toggle("hidden");
   btn_Edit_Home_Age.classList.toggle("hidden");
   btn_Edit_Home_Height.classList.toggle("hidden");
   btn_Edit_Home_Weight.classList.toggle("hidden");
@@ -1023,6 +1066,7 @@ btn_Edit_Home_Containers.addEventListener("click", function () {
   btn_Edit_Home_Lifestyle.classList.toggle("hidden");
 
   // Save Home Cards
+  btn_Save_Home_Name.classList.toggle("hidden");
   btn_Save_Home_Gender.classList.toggle("hidden");
   btn_Save_Home_Age.classList.toggle("hidden");
   btn_Save_Home_Height.classList.toggle("hidden");
@@ -1030,7 +1074,23 @@ btn_Edit_Home_Containers.addEventListener("click", function () {
   btn_Save_Home_Goals.classList.toggle("hidden");
   btn_Save_Home_Lifestyle.classList.toggle("hidden");
 });
+// Name
 
+btn_Edit_Home_Name.addEventListener("click", function () {
+  userName.style.position = "absolute";
+  userName.style.top = "2px";
+  userName.style.left = "72px";
+  userName.style.width = "176px";
+  userName.style.height = "25px";
+  userName.classList.remove("hidden");
+  userGreet.style.textAlign = "center";
+});
+btn_Save_Home_Name.addEventListener("click", function () {
+  userName.classList.add("hidden");
+  user.firstName = userName.value;
+  userGreet.textContent = `User: ${user.firstName}`;
+  localStorage.setItem("user_firstName", user.firstName);
+});
 // Age
 btn_Edit_Home_Age.addEventListener("click", function () {
   if (title_Stronk.innerHTML === "Edit Mode") {
@@ -1105,6 +1165,7 @@ btn_Save_Home_Height.addEventListener("click", function () {
     user.height.feet = Number(feet.value);
     user.height.inches = Number(inches.value);
     container_HeightOptions.classList.add("hidden");
+
     homeResult_Height.classList.remove("hidden");
     homeResult_Height.innerHTML = `${feet.value}' ${inches.value}"`;
     user.height["total"] = user.height["feet"] * 12 + user.height["inches"];
@@ -1184,7 +1245,19 @@ btn_Save_Home_Weight.addEventListener("click", function () {
     homeResult_Weight.classList.remove("hidden");
     homeResult_Weight.innerHTML = `${userWeight.value} lbs`;
     user.weight = userWeight.value;
+    input_goalWeight.style.display = "none";
+    if (option_Weight_Lose.selected === true) {
+      user.poundsToLG = user.goalWeight - user.weight;
+      homeResult_PoundsToLG.innerHTML = user.poundsToLG;
+      homeResult_GoalWeight_Title.innerHTML = `Pounds to lose:`;
+    } else if (option_Weight_Gain.selected === true) {
+      user.poundsToLG = user.goalWeight - user.weight;
+      homeResult_PoundsToLG.innerHTML = user.poundsToLG;
+      homeResult_GoalWeight_Title.innerHTML = `Pounds to gain:`;
+    }
     localStorage.setItem("user_Weight", JSON.stringify(user.weight));
+    localStorage.setItem("user_poundsToLG", JSON.stringify(user.poundsToLG));
+
     // calcCalories();
     // value_Calories.innerHTML = user.calorie.max;
     // value_Protein.innerHTML = user.protein.max;
@@ -1237,9 +1310,16 @@ btn_Save_Home_Weight.addEventListener("click", function () {
 btn_Edit_Home_Goals.addEventListener("click", function () {
   if (title_Stronk.innerHTML === "Edit Mode") {
     homeResult_GoalWeight.classList.add("hidden");
+    container_SelectWeightGoals.classList.remove("hidden");
+    title_goalWeight.classList.add("hidden");
+    homeResult_GoalWeight_Title.classList.add("hidden");
+    homeResult_PoundsToLG.classList.add("hidden");
     summaryGoalWeight.classList.add("hidden");
     summaryProtein.classList.add("hidden");
     summaryCalories.classList.add("hidden");
+    title_Goal.innerHTML = "Goal";
+    container_SelectWeightGoals.selectedIndex = 0;
+    user.goal = "";
     // option_MaintainWeight.classList.remove("hidden");
     // option_GainWeight.classList.remove("hidden");
     // option_LoseWeight.classList.remove("hidden");
@@ -1253,28 +1333,73 @@ btn_Save_Home_Goals.addEventListener("click", function () {
     summaryGoalWeight.classList.remove("hidden");
     summaryProtein.classList.remove("hidden");
     summaryCalories.classList.remove("hidden");
-    option_Weight_Maintain.classList.add("hidden");
-    option_Weight_Gain.classList.add("hidden");
-    option_Weight_Lose.classList.add("hidden");
+
+    // option_Weight_Maintain.classList.add("hidden");
+    // option_Weight_Gain.classList.add("hidden");
+    // option_Weight_Lose.classList.add("hidden");
+    container_SelectWeightGoals.classList.add("hidden");
+    calcCalories();
     if (option_Weight_Maintain.selected === true) {
       title_Goal.innerHTML = "Goal: Maintain Weight";
       user.goal = "Maintain Weight";
-
-      calcLoseWeight();
+      value_Calories.innerHTML = `${user.calorie["max"]}cal`;
+      value_Protein.innerHTML = `${user.protein["max"]}g`;
+      // calcLoseWeight();
     }
     if (option_Weight_Lose.selected === true) {
+      // calcLoseWeight();
+      homeResult_GoalWeight_Title.classList.remove("hidden");
+      homeResult_PoundsToLG.classList.remove("hidden");
       title_Goal.innerHTML = "Goal: Lose Weight";
       user.goal = "Lose Weight";
       user.goalWeight = input_goalWeight.value;
-      calcLoseWeight();
+      user.poundsToLG = `${Number(user.weight - user.goalWeight)}`;
+      homeResult_PoundsToLG.innerHTML = user.poundsToLG;
+      localStorage.setItem("user_poundsToLG", JSON.stringify(user.poundsToLG));
+      homeResult_GoalWeight_Title.innerHTML = `Pounds to lose:`;
+      homeResult_GoalWeight.innerHTML = input_goalWeight.value;
+      homeResult_GoalWeight_Title.innerHTML = `Weight goal:`;
+      input_goalWeight.style.display = "none";
+      value_Calories.innerHTML = `${user.calorie["max"]}cal`;
+      value_Protein.innerHTML = `${user.protein["max"]}g`;
     }
     if (option_Weight_Gain.selected === true) {
+      // calcGainWeight();
+      homeResult_GoalWeight_Title.classList.remove("hidden");
+      homeResult_PoundsToLG.classList.remove("hidden");
       title_Goal.innerHTML = "Goal: Gain Weight";
       user.goal = "Gain Weight";
       user.goalWeight = input_goalWeight.value;
-      calcGainWeight();
+      homeResult_PoundsToLG.innerHTML = `${Number(
+        user.goalWeight - user.weight
+      )}`;
+
+      homeResult_GoalWeight.innerHTML = input_goalWeight.value;
+      homeResult_GoalWeight_Title.innerHTML = `Weight goal:`;
+      input_goalWeight.style.display = "none";
+      if (option_Slow.selected === true) {
+        title_goalWeight.innerHTML = `Pounds to gain slowly:`;
+        value_Calories.innerHTML = `${user.calorie["min"]} - ${user.calorie["max"]}cal`;
+        value_Protein.innerHTML = `${user.protein["min"]} - ${user.protein["max"]}g`;
+        user.gainWeight = "Slow";
+        localStorage.setItem(
+          "user_poundsToLG",
+          JSON.stringify(user.poundsToLG)
+        );
+      } else if (option_Fast.selected === true) {
+        title_goalWeight.innerHTML = `Pounds to gain fast:`;
+        value_Calories.innerHTML = `${user.calorie["min"]} - ${user.calorie["max"]}cal`;
+        value_Protein.innerHTML = `${user.protein["max"]}g`;
+        user.gainWeight = "Fast";
+        localStorage.setItem(
+          "user_poundsToLG",
+          JSON.stringify(user.poundsToLG)
+        );
+      }
     }
-    localStorage.setItem("user_Goal", JSON.stringify(user.goal));
+    containerGainGoal.classList.add("hidden");
+    localStorage.setItem("user_Goal", user.goal);
+
     console.log(`Goals updated!`);
   }
 });
@@ -1301,37 +1426,48 @@ btn_Save_Home_Lifestyle.addEventListener("click", function () {
 });
 
 btn_Reset_Home_Containers.addEventListener("click", function () {
-  (user.lastName = ""),
-    (user.age = ""),
-    (user.gender = ""),
-    (user.height.feet = ""),
-    (user.height.inches = ""),
-    (user.height.total = ""),
-    (user.weight = ""),
-    (user.BMI = ""),
-    (user.calorie.min = ""),
-    (user.calorie.max = ""),
-    (user.protein.min = ""),
-    (user.protein.max = ""),
-    (user.lifeStyle = ""),
-    (user.goal = ""),
-    (user.goalWeight = "");
-  localStorage.removeItem("user_Age");
-  localStorage.removeItem("user_BMI");
-  localStorage.removeItem("user_Calorie_Max");
-  localStorage.removeItem("user_Calorie_Min");
-  localStorage.removeItem("user_Protein_Max");
-  localStorage.removeItem("user_Protein_Min");
-  localStorage.removeItem("user_Gender");
-  localStorage.removeItem("user_Goal");
-  localStorage.removeItem("user_goalWeight");
-  localStorage.removeItem("user_Height_Inches");
-  localStorage.removeItem("user_Height_Feet");
-  localStorage.removeItem("user_Height_Total");
-  localStorage.removeItem("user_Lifestyle");
-  localStorage.removeItem("user_Weight");
-  hideHomeResults();
-  showHomeInputs();
+  let eraseDataPrompt = prompt("Erase all user data? Type yes or cancel");
+  if (eraseDataPrompt === "yes") {
+    (user.firstName = ""),
+      (user.lastName = ""),
+      (user.age = ""),
+      (user.gender = ""),
+      (user.height.feet = ""),
+      (user.height.inches = ""),
+      (user.height.total = ""),
+      (user.weight = ""),
+      (user.BMI = ""),
+      (user.calorie.min = ""),
+      (user.calorie.max = ""),
+      (user.protein.min = ""),
+      (user.protein.max = ""),
+      (user.lifeStyle = ""),
+      (user.goal = ""),
+      (user.goalWeight = "");
+    title_goalWeight.innerHTML = `What is your desired weight?`;
+    title_goalWeight.classList.add("hidden");
+    container_SelectWeightGoals.selectedIndex = 0;
+    input_goalWeight.classList.add("hidden");
+    userName.classList.remove("hidden");
+    select_Lifestyle.selectedIndex = 0;
+    localStorage.removeItem("user_firstName");
+    localStorage.removeItem("user_Age");
+    localStorage.removeItem("user_BMI");
+    localStorage.removeItem("user_Calorie_Max");
+    localStorage.removeItem("user_Calorie_Min");
+    localStorage.removeItem("user_Protein_Max");
+    localStorage.removeItem("user_Protein_Min");
+    localStorage.removeItem("user_Gender");
+    localStorage.removeItem("user_Goal");
+    localStorage.removeItem("user_goalWeight");
+    localStorage.removeItem("user_Height_Inches");
+    localStorage.removeItem("user_Height_Feet");
+    localStorage.removeItem("user_Height_Total");
+    localStorage.removeItem("user_Lifestyle");
+    localStorage.removeItem("user_Weight");
+    hideHomeResults();
+    showHomeInputs();
+  }
 });
 
 function hideHomeResults() {
@@ -1339,6 +1475,8 @@ function hideHomeResults() {
   homeResult_Height.classList.add("hidden");
   homeResult_Age.classList.add("hidden");
   homeResult_Sex.classList.add("hidden");
+  homeResult_GoalWeight_Title.classList.add("hidden");
+  homeResult_PoundsToLG.classList.add("hidden");
   homeResult_GoalWeight.classList.add("hidden");
   containerWeightRange.classList.add("hidden");
   containerBMI.classList.add("hidden");
@@ -1369,6 +1507,7 @@ function showHomeInputs() {
   container_HeightOptions.classList.remove("hidden");
   btn_SaveUserStats.classList.remove("hidden");
   container_SelectWeightGoals.classList.remove("hidden");
+  // input_goalWeight.classList.remove("hidden");
   title_Goal.innerHTML = "Goal";
 }
 function hideHomeInputs() {}

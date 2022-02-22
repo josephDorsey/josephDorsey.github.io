@@ -369,7 +369,7 @@ const retrieveWorkoutLocalStorage = function () {
 
 window.onload = function () {
   container_WorkoutsPage_Func();
-  if (active_Navigation_Modal.home === true) {
+  if (active_ModalStates[active_ModalStates_Count] === "Home") {
     btn_Home.checked = true;
     label_Home.style.color = "#3b5bdb";
     label_Workouts.style.color = "black";
@@ -412,28 +412,47 @@ window.onload = function () {
       );
       homeResult_GoalWeight_Title.classList.remove("hidden");
       homeResult_PoundsToLG.classList.remove("hidden");
-      homeResult_PoundsToLG.innerHTML = `${user.weight - user.goalWeight}`;
+
       homeResult_GoalWeight_Title.innerHTML = `Weight goal:`;
       title_Goal.innerHTML = `Goal: ${localStorage.getItem("user_Goal")}`;
+      title_goalWeight.classList.remove("hidden");
+      title_goalWeight.innerHTML = `Pounds to lose:`;
       resultsBMI.textContent = `${user.BMI}`;
       if (
-        title_Goal.innerHTML === "Maintain Weight" ||
+        title_Goal.innerHTML === "Goal: Maintain Weight" ||
         user.goal === "Maintain Weight"
       ) {
         summaryGoal_Maintain();
         container_SelectWeightGoals.selectedIndex = 1;
+        value_Calories.innerHTML = `${user.calorie["max"]}cal`;
+        value_Protein.innerHTML = `${user.protein["max"]}g`;
       } else if (
-        title_Goal.innerHTML === "Lose Weight" ||
+        title_Goal.innerHTML === "Goal: Lose Weight" ||
         user.goal === "Lose Weight"
       ) {
         summaryGoal_Lose();
         container_SelectWeightGoals.selectedIndex = 2;
+        homeResult_PoundsToLG.innerHTML = `${user.weight - user.goalWeight}`;
+        value_Calories.innerHTML = `${user.calorie["max"]}cal`;
+        value_Protein.innerHTML = `${user.protein["max"]}g`;
       } else if (
-        title_Goal.innerHTML === "Gain Weight" ||
+        title_Goal.innerHTML === "Goal: Gain Weight" ||
         user.goal === "Gain Weight"
       ) {
         summaryGoal_Gain();
         container_SelectWeightGoals.selectedIndex = 3;
+        homeResult_PoundsToLG.innerHTML = `${user.goalWeight - user.weight}`;
+        if (option_Slow.selected === true) {
+          title_goalWeight.innerHTML = `Pounds to gain slowly:`;
+          value_Calories.innerHTML = `${user.calorie["min"]} - ${user.calorie["max"]}cal`;
+          value_Protein.innerHTML = `${user.protein["min"]} - ${user.protein["max"]}g`;
+          user.gainWeight = "Slow";
+        } else if (option_Fast.selected === true) {
+          title_goalWeight.innerHTML = `Pounds to gain fast:`;
+          value_Calories.innerHTML = `${user.calorie["min"]} - ${user.calorie["max"]}cal`;
+          value_Protein.innerHTML = `${user.protein["max"]}g`;
+          user.gainWeight = "Fast";
+        }
       }
       if (user.lifeStyle === "sedentary") {
         listSummary_Sedentary.classList.remove("hidden");
@@ -502,11 +521,8 @@ window.onload = function () {
       summaryProtein.classList.remove("hidden");
       summaryCalories.classList.remove("hidden");
       summaryGoalWeight.classList.remove("hidden");
-      value_Calories.innerHTML = `${user.calorie["max"]}cal`;
-      value_Protein.innerHTML = `${user.protein["max"]}g`;
 
       input_goalWeight.style.display = "none";
-      title_goalWeight.classList.add("hidden");
       homeResult_GoalWeight.classList.remove("hidden");
       // showLifeStyleSummary();
       healthyWeightRange();

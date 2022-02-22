@@ -161,6 +161,8 @@ const user = {
   //   three: "Gain",
   // }
   goalWeight: JSON.parse(localStorage.getItem("user_goalWeight")) || "",
+  poundsToLG: JSON.parse(localStorage.getItem("user_poundsToLG")) || "",
+  gainWeight: "",
 };
 
 const convertMinBMI = 18.5 / 703;
@@ -514,7 +516,14 @@ const goalSelection = function () {
     summaryCalories.classList.add("hidden");
     title_goalWeight.classList.add("hidden");
     input_goalWeight.classList.add("hidden");
+
+    input_goalWeight.style.display = "none";
     containerGainGoal.classList.add("hidden");
+  }
+  if (container_SelectWeightGoals.selectedIndex === 1) {
+    title_goalWeight.classList.add("hidden");
+    input_goalWeight.classList.add("hidden");
+    input_goalWeight.style.display = "none";
   }
   if (
     container_SelectWeightGoals.selectedIndex === 1 ||
@@ -531,10 +540,26 @@ const goalSelection = function () {
   ) {
     title_goalWeight.classList.remove("hidden");
     input_goalWeight.classList.remove("hidden");
+    input_goalWeight.style.display = "inline-block";
+    title_goalWeight.innerHTML = `What is your desired weight?`;
   }
-  if (container_SelectWeightGoals.selectedIndex === 1) {
-    title_goalWeight.classList.add("hidden");
-    input_goalWeight.classList.add("hidden");
+
+  if (
+    container_SelectWeightGoals.selectedIndex === 2 &&
+    user.goal === `Lose Weight`
+  ) {
+    input_goalWeight.style.display = "none";
+    title_goalWeight.innerHTML = `Pounds to lose:`;
+    homeResult_PoundsToLG.classList.remove("hidden");
+  }
+  if (
+    container_SelectWeightGoals.selectedIndex === 3 &&
+    user.goal === `Gain Weight`
+  ) {
+    input_goalWeight.style.display = "none";
+    option_Slow.style.display = "none";
+    option_Fast.style.display = "none";
+    title_goalWeight.innerHTML = `Pounds to gain:`;
   }
 };
 
@@ -694,6 +719,10 @@ btn_BMICategories.addEventListener("click", function () {
     containerWeight.style.display = "none";
     containerGender.style.display = "none";
     containerHeight.style.display = "none";
+    containerGoals.style.display = "none";
+    containerLifestyle.style.display = "none";
+    containerProtein.style.display = "none";
+    containerCalories.style.display = "none";
   } else if (!(infoContainerBMI.classList.contains("hidden") === true)) {
     infoContainerBMI.classList.add("hidden");
     containerAge.style.display = "";
@@ -702,6 +731,10 @@ btn_BMICategories.addEventListener("click", function () {
 
     containerWeight.style.display = "";
     containerHeight.style.display = "";
+    containerGoals.style.display = "";
+    containerLifestyle.style.display = "";
+    containerProtein.style.display = "";
+    containerCalories.style.display = "";
   }
 });
 // DEVINE FORMULA FOR IDEAL BODY WEIGHT
@@ -803,28 +836,31 @@ const summaryGoal_Maintain = function () {
 };
 const summaryGoal_Lose = function () {
   lifeStyleRequirement(user.lifeStyle);
-  summaryGoalWeight.textContent = `In order to reach your goal weight with a ${
-    user.lifeStyle
-  } lifestyle you need to lose ${user.weight - user.goalWeight} lbs.`;
+  // summaryGoalWeight.textContent = `In order to reach your goal weight with a ${
+  //   user.lifeStyle
+  // } lifestyle you need to lose ${user.weight - user.goalWeight} lbs.`;
   summaryCalories.textContent = `You need to consume ${user.calorie.max} calories a day.`;
   summaryProtein.textContent = `This daily protein target can help you lose weight in the form of body fat while minimizing muscle loss.`;
   title_goalWeight.innerHTML = `Pounds to lose:`;
+  homeResult_PoundsToLG.innerHTML = `${user.weight - user.goalWeight}`;
 };
 const summaryGoal_Gain = function () {
   lifeStyleRequirement(user.lifeStyle);
   if (option_Slow.selected) {
-    summaryGoalWeight.textContent = `In order to reach your goal weight in a slow progression with a ${
-      user.lifeStyle
-    } lifestyle you need to gain ${user.goalWeight - user.weight} lbs.`;
+    // summaryGoalWeight.textContent = `In order to reach your goal weight in a slow progression with a ${
+    //   user.lifeStyle
+    // } lifestyle you need to gain ${user.goalWeight - user.weight} lbs.`;
     summaryCalories.textContent = `You need to consume between ${user.calorie.min} to ${user.calorie.max} calories a day.`;
     summaryProtein.textContent = `You need to consume between ${user.protein.min} to ${user.protein.max} grams of protein. This daily protein target can help you build lean muscle mass while minimizing body-fat gains.`;
     title_goalWeight.innerHTML = `Pounds to gain:`;
+    homeResult_PoundsToLG.innerHTML = `${user.goalWeight - user.weight}`;
   } else if (option_Fast.selected) {
-    summaryGoalWeight.textContent = `In order to reach your goal weight in a fast progression with a ${
-      user.lifeStyle
-    } lifestyle you need to gain ${user.goalWeight - user.weight} lbs.`;
+    // summaryGoalWeight.textContent = `In order to reach your goal weight in a fast progression with a ${
+    //   user.lifeStyle
+    // } lifestyle you need to gain ${user.goalWeight - user.weight} lbs.`;
     summaryCalories.textContent = `You need to consume between ${user.calorie.min} to ${user.calorie.max} calories a day.`;
     summaryProtein.textContent = `You need to consume between ${user.protein.min} to ${user.protein.max} grams of protein. This daily protein target can help you build lean muscle mass while minimizing body-fat gains.`;
     title_goalWeight.innerHTML = `Pounds to gain:`;
+    homeResult_PoundsToLG.innerHTML = `${user.goalWeight - user.weight}`;
   }
 };
