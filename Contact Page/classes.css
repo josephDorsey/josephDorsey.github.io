@@ -47,11 +47,18 @@
   text-align: center;
 }
 
+.contact--header {
+  font-size: 3rem;
+}
 /* .contact--me h2 {
   text-shadow: 0.025em 0.025em 0 yellow, 0.05em 0.05em 0 blue,
     0.075em 0.075em 0 red, 0.1em 0.1em 0 black;
 } */
 
+.contact--img:hover {
+  text-decoration: none;
+  border-bottom: 0;
+}
 .contact--me img {
   width: 13em;
 }

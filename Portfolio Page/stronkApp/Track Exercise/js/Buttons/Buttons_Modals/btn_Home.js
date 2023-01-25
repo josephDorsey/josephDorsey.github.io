@@ -7,16 +7,7 @@ const btn_History = document.querySelector(".btn--history");
 const btn_Exercises_Modal = document.querySelector(".btn--exercises-modal");
 const btn_TrackCalories = document.querySelector(".btn--track-user-cal");
 const btn_Health = document.querySelector(".btn--user-health");
-
-let active_ModalStates_Count = 0;
-const active_ModalStates = [
-  "Home",
-  "Workouts",
-  "History",
-  "Exercises",
-  "Calories",
-  "Health",
-];
+const btn_Nav_Radios = document.getElementsByClassName("nav-radio");
 
 // NAVIGATION CONTAINERS
 const container_Home = document.querySelector(".container--home");
@@ -75,17 +66,6 @@ const radio_Home_Goals = document.querySelector(".home-goals-radio");
 const radio_Home_Lifestyle = document.querySelector(".home-lifestyle-radio");
 const radio_Home_Protein = document.querySelector(".home-protein-radio");
 const radio_Home_Calories = document.querySelector(".home-calories-radio");
-
-if (active_Navigation_Modal.home === true) {
-  btn_Home.checked = true;
-  label_Home.style.color = "#3b5bdb";
-  label_Workouts.style.color = "black";
-  label_History.style.color = "black";
-  label_History.style.fill = "black";
-  label_Exercises.style.color = "black";
-  label_Calories.style.color = "black";
-  label_Health.style.color = "black";
-}
 
 function hover_Option_Age() {
   radio_Home_Age.checked = true;
@@ -297,6 +277,16 @@ const title_Goal = document.querySelector(".title--goal");
 //     btn_Home.style.color = "green";
 //   }
 // });
+// btn_Home.checked = true;
+// if (btn_Home.checked === true) {
+//   label_Home.style.color = "#3b5bdb";
+//   label_Workouts.style.color = "black";
+//   label_History.style.color = "black";
+//   label_History.style.fill = "black";
+//   label_Exercises.style.color = "black";
+//   label_Calories.style.color = "black";
+//   label_Health.style.color = "black";
+// }
 
 function nav_Home() {
   label_Home.style.color = "#3b5bdb";
@@ -445,7 +435,7 @@ function nav_Home() {
     value_Protein.innerHTML = `${user.protein["max"]}g`;
 
     input_goalWeight.style.display = "none";
-    title_goalWeight.classList.add("hidden");
+    title_goalWeight.classList.remove("hidden");
     homeResult_GoalWeight.classList.remove("hidden");
     // showLifeStyleSummary();
     healthyWeightRange();
@@ -708,7 +698,8 @@ function switchNavModals() {
   }
 }
 
-document.addEventListener("change", switchNavModals);
+// document.addEventListener("change", switchNavModals);
+document.addEventListener("change", update_Active_Nav_Modal);
 
 // btn_Exercises_Modal.addEventListener("click", function () {
 //   if (container_ExercisesModal.style.display === "none") {

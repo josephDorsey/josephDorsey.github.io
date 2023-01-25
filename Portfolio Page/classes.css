@@ -10,13 +10,13 @@
 }
 
 /* NAV BAR */
-.blog--menu {
+/* .blog--menu {
   grid-row: 1;
   grid-column: 2/3;
   justify-self: end;
   align-self: center;
   padding: 1rem 2rem;
-}
+} */
 .nav--active {
   color: #3b5bdb;
 }

@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="./pseudo-elements.css" />
     <link rel="stylesheet" href="./elements.css" />
 
-    <title>Blog</title>
+    <title>Murder Mystery Game</title>
   </head>
   <body>
     <div class="main--container">
       <header class="main--header">
-        <div class="logo--container">
+        <!-- <div class="logo--container">
           <a href="../index.html" class="logo--link">
             <h1>
               <span class="logo--span--1">J</span>oseph
@@ -22,8 +22,8 @@
             </h1></a
           >
           <h4>A Front-end Developers Journey</h4>
-        </div>
-        <div class="row board">
+        </div> -->
+        <div class="board row ">
           <div class="score--board">
             <div class="row player--box hidden">
               <div class="player--name">
@@ -33,15 +33,25 @@
                 <div class="play--container">
                   <button class="btn--play">Play</button>
                 </div>
+                <div class="new-game--container">
+                  <button class="btn--new-game hidden">New Game</button>
+                </div>
               </div>
             </div>
             <div class="user--box">
-              <input
-                class="user--input"
-                type="text"
-                placeholder="Please enter username"
-              />
-              <button class="button--user">Enter</button>
+              <div class="user--data">
+                <input
+                  class="user--input"
+                  type="text"
+                  placeholder="Please enter username"
+                />
+                <button class="button--user"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 btn--login" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg></button>
+                <input type="image" src="/josephdorsey.github.io/Games Page/Murder Mystery Game/img/perspective-dice-six-faces-two.svg" class="randomize--name"value="&nbsp;" >
+
+                </input>
+              </div>
             </div>
             <div class="mystery hidden">
               <h3>Mystery</h3>
@@ -65,19 +75,16 @@
               <h3 class="score--3">Score</h3>
               <p class="score--total-points">0</p>
             </div>
+            <div class="high-score hidden">
+              <h3 class="score--4">High Score</h3>
+              <p class="high-score--total-points">0</p>
+            </div>
           </div>
         </div>
         <nav class="blog--menu">
-          <a href="../index.html">About</a>
-          <a href="/josephdorsey.github.io/Portfolio Page/index.html"
-            >Portfolio</a
-          >
-          <a href="/josephdorsey.github.io/Contact Page/index.html">Contact</a>
-          <a
-            class="nav--active"
-            href="/josephdorsey.github.io/Games Page/index.html"
-            >Games</a
-          >
+          <a href="../index.html"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 nav--home" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg></a>
         </nav>
       </header>
       <section class="games--section">
@@ -677,7 +684,8 @@
         </div>
       </section>
     </div>
-    <script src="./mm--js/btn--play.js"></script>
+    <script src="./mm--js/variables.js"></script>
+    <script src="./mm--js/initializeGame.js"></script>
     <script src="./mm--js/rules.js"></script>
     <script src="./mm--js/username.js"></script>
     <script src="./mm--js/greenhouse.js"></script>

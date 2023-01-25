@@ -1,0 +1,61 @@
+:root {
+  --pixel-size: 1;
+  --pixel-idle: 1;
+}
+.pixel {
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+/* character container */
+.character-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.character--1,
+.character--2,
+.character--3,
+.character--4,
+.character--5,
+.character--6 {
+  width: calc(160px * var(--pixel-size));
+  height: calc(144px * var(--pixel-size));
+  overflow: hidden;
+}
+
+/* Jojo Character */
+.animation-jojo--walking,
+.animation-jojo--running,
+.animation-jojo--punch {
+  width: calc(1280px * var(--pixel-size));
+}
+.animation-jojo--attack {
+  width: calc(1760px * var(--pixel-size));
+}
+.animation-jojo--walking {
+  animation: moveSpriteSheet 0.9s steps(8) infinite;
+}
+.animation-jojo--jump {
+  width: calc(2240px * var(--pixel-size));
+  animation: moveSpriteSheet 1s steps(14) infinite;
+}
+
+.animation-jojo--running,
+.animation-jojo--punch {
+  animation: moveSpriteSheet 0.7s steps(8) infinite;
+}
+.animation-jojo--attack {
+  animation: moveSpriteSheet 1s steps(11) infinite;
+}
+.animation-jojo--idle {
+  width: calc(960px * var(--pixel-idle));
+  animation: moveSpriteSheet 0.7s steps(6) infinite;
+}
+/* animation */
+@keyframes moveSpriteSheet {
+  from {
+    transform: translate3d(0px, 0, 0);
+  }
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}

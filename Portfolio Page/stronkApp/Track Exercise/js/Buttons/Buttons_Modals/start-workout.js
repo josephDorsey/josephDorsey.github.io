@@ -1,6 +1,6 @@
 "use strict";
 const container_TitleNotes = document.querySelector(".container--title-notes");
-const exercises_Nav = document.querySelector(".exercise-nav");
+
 const exerciseNotes = document.querySelector(".createWorkout-title-notes");
 const modal_Exercise_Info = document.querySelector(".modal-exercise-info");
 
@@ -310,9 +310,7 @@ const btn_createWorkout_WorkoutGroup = document.querySelector(
 const btn_createWorkout_Modal = document.querySelector(
   ".btn--create-workoutgroup-buttons-workout"
 );
-const btn_createWorkoutGroup = document.querySelector(
-  ".btn--create-workoutgroup-buttons-workoutGroup"
-);
+
 const createWorkout_Modal = document.querySelector(".createWorkout-modal");
 const createWorkoutGroup_Modal = document.querySelector(
   ".createWorkoutGroup-modal"
@@ -323,34 +321,34 @@ const workouts_Title = document.querySelector(".createWorkout-title");
 const createWorkout_WorkoutGroup_Modal = document.querySelector(
   ".createWorkout_WorkoutGroup-modal"
 );
-const btn_createWorkout = document.querySelector(".btn--createWorkout");
+
 let createWorkout_WorkoutGroup_Modal_count = 0;
 const createWorkout_WorkoutGroup_Modal_state = ["Inactive", "Active"];
 
-btn_createWorkout_WorkoutGroup.addEventListener("click", function () {
-  for (let i = tempWorkoutList.length; i >= 0; i--) {
-    tempWorkoutList.splice(i, 1);
-  }
-  if (createWorkout_WorkoutGroup_Modal.classList.contains("hidden") === true) {
-    createWorkout_WorkoutGroup_Modal.classList.remove("hidden");
-    workouts_Title.style.visibility = "hidden";
-    ungroupedWorkoutList_Title.style.visibility = "hidden";
-  } else if (
-    createWorkout_WorkoutGroup_Modal.classList.contains("hidden") === false
-  ) {
-    workouts_Title.style.visibility = "visible";
-    ungroupedWorkoutList_Title.style.visibility = "visible";
-    createWorkout_WorkoutGroup_Modal.classList.add("hidden");
-  }
-});
+// btn_createWorkout_WorkoutGroup.addEventListener("click", function () {
+//   for (let i = tempWorkoutList.length; i >= 0; i--) {
+//     tempWorkoutList.splice(i, 1);
+//   }
+//   if (createWorkout_WorkoutGroup_Modal.classList.contains("hidden") === true) {
+//     createWorkout_WorkoutGroup_Modal.classList.remove("hidden");
+//     workouts_Title.style.visibility = "hidden";
+//     ungroupedWorkoutList_Title.style.visibility = "hidden";
+//   } else if (
+//     createWorkout_WorkoutGroup_Modal.classList.contains("hidden") === false
+//   ) {
+//     workouts_Title.style.visibility = "visible";
+//     ungroupedWorkoutList_Title.style.visibility = "visible";
+//     createWorkout_WorkoutGroup_Modal.classList.add("hidden");
+//   }
+// });
 
-btn_createWorkout_Modal.addEventListener("click", function () {
-  createWorkout_WorkoutGroup_Modal.classList.toggle("hidden");
-  createWorkout_Modal.style.display = "grid";
-  workouts_Title.classList.toggle("hidden");
-  groupedWorkoutList.classList.toggle("hidden");
-  ungroupedWorkoutList.classList.toggle("hidden");
-});
+// btn_createWorkout_Modal.addEventListener("click", function () {
+//   // createWorkout_WorkoutGroup_Modal.classList.toggle("hidden");
+//   createWorkout_Modal.style.display = "grid";
+//   workouts_Title.classList.toggle("hidden");
+//   groupedWorkoutList.classList.toggle("hidden");
+//   ungroupedWorkoutList.classList.toggle("hidden");
+// });
 
 const ungroupedWorkoutList = document.querySelector(".ungroupedWorkout");
 const ungroupedWorkoutList_Title = document.querySelector(
@@ -359,35 +357,19 @@ const ungroupedWorkoutList_Title = document.querySelector(
 const groupedWorkoutList = document.querySelector(".groupedWorkout");
 const archivedWorkoutList = document.querySelector(".archivedWorkout");
 
-btn_createWorkout.addEventListener("click", function () {
-  const div = document.createElement("div");
-  temp_Workout_Name.push(createWorkout_Input.value);
-  createWorkout(createWorkout_Input.value);
-  createWorkoutLocalStorage(createWorkout_Input.value);
-  // exerciseGroup.workoutName.push(createWorkout_Input.value);
-  // localStorage.setItem(
-  //   "exercises_WorkoutName",
-  //   JSON.stringify(exerciseGroup.workoutName)
-  // );
-
-  createWorkout_Input.value = "";
-  createWorkout_Modal.style.display = "none";
-  groupedWorkoutList.classList.toggle("hidden");
-  ungroupedWorkoutList.classList.toggle("hidden");
-
-  // div.classList.add("")
-  for (let i = 0; i < temp_Workout_Name.length; i++) {
-    div.innerHTML = `
-    <input class="workouts-radios" name="workouts-radios" type="radio">
-    <label class="label-workouts-radios">${temp_Workout_Name[i]}</label>
-    
-    `;
-    ungroupedWorkoutList.appendChild(div);
+btn_createWorkout_WorkoutGroup.addEventListener("click", function () {
+  for (let i = tempWorkoutList.length; i >= 0; i--) {
+    tempWorkoutList.splice(i, 1);
   }
-});
-
-btn_createWorkoutGroup.addEventListener("click", function () {
-  createWorkout_WorkoutGroup_Modal.classList.toggle("hidden");
+  if (option_Create_Workout.selected === true) {
+    // createWorkout_WorkoutGroup_Modal.classList.toggle("hidden");
+    createWorkout_Modal.style.display = "grid";
+    // workouts_Title.classList.toggle("hidden");
+    btn_viewWorkOut.classList.add("hidden");
+    groupedWorkoutList.classList.toggle("hidden");
+    ungroupedWorkoutList.classList.toggle("hidden");
+  } else if (option_Create_WorkoutGroup.selected === true) {
+  }
 });
 
 const workouts_Modal_List = document.getElementsByClassName("workouts-radios");
@@ -396,8 +378,9 @@ const workouts_Modal_List_Labels = document.getElementsByClassName(
 );
 const btn_viewWorkOut = document.querySelector(".btn--view-workout");
 
-btn_viewWorkOut.addEventListener("click", function () {
+function viewWorkout() {
   container_Workouts_Page = 1;
+  container_ViewWorkoutButtons.style.display = "none";
   workouts_Title.style.top = "-157px";
   workouts_Title.style.left = "-239px";
   container_WorkoutsPage_Func();
@@ -411,6 +394,10 @@ btn_viewWorkOut.addEventListener("click", function () {
   btn_Edit_Workout_WorkoutGroup.classList.add("hidden");
   btn_CloseExerciseInfoModal.classList.toggle("hidden");
   span_CloseExerciseInfoModal.classList.toggle("hidden");
+  // ungroupedWorkoutList.style.display = "none";
+  workouts_Modal_Title.classList.add("hidden");
+  workouts_Title.classList.remove("hidden");
+  workouts_Modal_Create_Workouts.classList.add("hidden");
   //   const modalStates = ["Inactive", "Create Exercise", "Add Exercise"];
   // let modalStates_Count = 0;
   workoutState_Count = 0;
@@ -435,9 +422,24 @@ btn_viewWorkOut.addEventListener("click", function () {
     }
     if (workouts_Modal_List[i].checked === true) {
       workoutName_Count = i;
+      localStorage.setItem(
+        "workoutName_Count",
+        JSON.stringify(workoutName_Count)
+      );
       createWorkout(
         `${workouts_Modal_List_Labels[workoutName_Count].innerText}`
       );
+      exerciseObject.activePage = true;
+      exerciseObject.activeWorkout = temp_Workout_Name[workoutName_Count];
+      localStorage.setItem(
+        "exerciseObject_ActivePage",
+        JSON.stringify(exerciseObject.activePage)
+      );
+      localStorage.setItem(
+        "active_Workout",
+        temp_Workout_Name[workoutName_Count]
+      );
+      exerciseObject.loadProgress(temp_Workout_Name[workoutName_Count]);
       console.log(`Workout: ${temp_Workout_Name[workoutName_Count]} selected`);
       tempWorkoutList =
         JSON.parse(
@@ -445,6 +447,7 @@ btn_viewWorkOut.addEventListener("click", function () {
             `workoutName_${temp_Workout_Name[workoutName_Count]}_Exercises`
           )
         ) || [];
+
       temp_Weight =
         JSON.parse(
           localStorage.getItem(
@@ -533,8 +536,8 @@ btn_viewWorkOut.addEventListener("click", function () {
           ? `0${trackerTimer.app_Seconds}`
           : `${trackerTimer.app_Seconds}`
       }`;
-      groupedWorkoutList.classList.toggle("hidden");
-      ungroupedWorkoutList.classList.toggle("hidden");
+      groupedWorkoutList.classList.add("hidden");
+      ungroupedWorkoutList.classList.add("hidden");
       btn_viewWorkOut.classList.toggle("hidden");
       workouts_Title.innerHTML = `${temp_Workout_Name[i]}`;
 
@@ -577,7 +580,130 @@ btn_viewWorkOut.addEventListener("click", function () {
       }
     }
   }
-});
+}
+
+function viewWorkoutLoad() {
+  container_Workouts_Page = 1;
+  container_WorkoutsPage_Func();
+  exerciseNotes.classList.remove("hidden");
+
+  // createWorkoutLocalStorage(exerciseGroup.workoutName[workoutName_Count]);
+  container_ExerciseInfo.style.display = "none";
+  // container_ExerciseInfo.style.display = "grid";
+  btn_createWorkout_WorkoutGroup.classList.add("hidden");
+  btn_Edit_Workout_WorkoutGroup.classList.add("hidden");
+  btn_CloseExerciseInfoModal.classList.toggle("hidden");
+  span_CloseExerciseInfoModal.classList.toggle("hidden");
+  // ungroupedWorkoutList.style.display = "none";
+  workouts_Modal_Title.classList.add("hidden");
+  workouts_Title.classList.remove("hidden");
+  workouts_Modal_Create_Workouts.classList.add("hidden");
+  //   const modalStates = ["Inactive", "Create Exercise", "Add Exercise"];
+  // let modalStates_Count = 0;
+  workoutState_Count = 0;
+  // if (tempWorkoutList.length === 0) {
+  //   container_ExerciseInfo.style.display = "none";
+  // } else if (tempWorkoutList.length > 0) {
+  //   container_ExerciseInfo.style.display = "grid";
+  // }
+  if (workoutState[workoutState_Count] === "Inactive") {
+    btn_PauseWorkout.classList.add("hidden");
+    btn_StartWorkout.classList.remove("hidden");
+  }
+  if (workoutState[workoutState_Count] === "Pause") {
+    btn_PauseWorkout.classList.add("hidden");
+    btn_ResumeWorkout.classList.toggle("hidden");
+  }
+
+  for (let i = 0; i < workouts_Modal_List.length; i++) {
+    if (tempWorkoutList.length === 1) {
+      btn_NextExercise.classList.add("hidden");
+      labelNextExercise.classList.add("hidden");
+    }
+    exerciseObject.loadProgress(temp_Workout_Name[workoutName_Count]);
+    console.log(`Workout: ${temp_Workout_Name[workoutName_Count]} selected`);
+
+    trackerTimer.app_Seconds =
+      JSON.parse(
+        localStorage.getItem(
+          `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Seconds`
+        )
+      ) || 0;
+    trackerTimer.app_Minutes =
+      JSON.parse(
+        localStorage.getItem(
+          `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Minutes`
+        )
+      ) || 0;
+    trackerTimer.app_Hours =
+      JSON.parse(
+        localStorage.getItem(
+          `workoutName_${temp_Workout_Name[workoutName_Count]}_app_Hours`
+        )
+      ) || 0;
+    if (trackerTimer.app_Seconds > 0) {
+      workoutState_Count = 2;
+      if (workoutState[workoutState_Count] === "Pause") {
+        btn_StartWorkout.classList.add("hidden");
+        btn_PauseWorkout.classList.add("hidden");
+        btn_ResumeWorkout.classList.remove("hidden");
+        btn_EndWorkout.classList.remove("hidden");
+        // btn_Open_Exercises_Window.style.transform = "translateX(0%)";
+      }
+    }
+    if (
+      trackerTimer.app_Seconds === 0 &&
+      trackerTimer.app_Minutes === 0 &&
+      trackerTimer.app_Hours === 0
+    ) {
+      btn_StartWorkout.classList.remove("hidden");
+      btn_PauseWorkout.classList.add("hidden");
+      btn_ResumeWorkout.classList.add("hidden");
+      btn_EndWorkout.classList.add("hidden");
+      // btn_Open_Exercises_Window.style.transform = "translateX(-15%)";
+      // btn_OpenExerciseInfoModal.style.transform = "translateX(0%)";
+    }
+    workout_Timer.innerHTML = `${
+      trackerTimer.app_Hours < 10
+        ? `0${trackerTimer.app_Hours}`
+        : `${trackerTimer.app_Hours}`
+    }:${
+      trackerTimer.app_Minutes < 10
+        ? `0${trackerTimer.app_Minutes}`
+        : `${trackerTimer.app_Minutes}`
+    }:${
+      trackerTimer.app_Seconds < 10
+        ? `0${trackerTimer.app_Seconds}`
+        : `${trackerTimer.app_Seconds}`
+    }`;
+    groupedWorkoutList.classList.add("hidden");
+    ungroupedWorkoutList.classList.add("hidden");
+    btn_viewWorkOut.classList.toggle("hidden");
+
+    if (modalStates[modalStates_Count] === "Inactive") {
+      btn_PushDataToArray.classList.add("hidden");
+      btn_PushToWordBank.classList.add("hidden");
+      btn_EditExerciseStorage.classList.add("hidden");
+      btn_ExitEditStorage.classList.add("hidden");
+      btn_deleteExerciseStorage.classList.add("hidden");
+
+      exerciseStorage_Title.classList.add("hidden");
+
+      // hide select add exercise
+      select_Equipment.classList.add("hidden");
+      select_Barbell_Exercises.classList.add("hidden");
+      select_Dumbbell_Exercises.classList.add("hidden");
+      select_Body_Exercises.classList.add("hidden");
+      select_Rope_Exercises.classList.add("hidden");
+
+      workout_Timer.classList.remove("hidden");
+      container_workoutTimer_Buttons.classList.remove("hidden");
+      // const exercise_Name = document.querySelector(".exercise-name");
+    }
+  }
+}
+
+btn_viewWorkOut.addEventListener("click", viewWorkout);
 
 const btn_linkViewWorkout = document.querySelector(".btn--link-viewWorkout");
 
@@ -918,7 +1044,7 @@ const btn_Close_Exercises_Window = document.querySelector(
 );
 btn_Open_Exercises_Window.addEventListener("click", function () {
   states_Count = 1;
-  exercises_Nav.classList.add("hidden");
+  workouts_Nav.classList.add("hidden");
   select_Equipment.selectedIndex = 0;
   container_ExerciseInfo.style.display = "grid";
   btn_Open_Exercises_Window.style.display = "none";
@@ -1201,22 +1327,28 @@ btn_Open_Exercises_Window.addEventListener("click", function () {
     }
   }
 });
-btn_Close_Exercises_Window.addEventListener("click", function () {
+
+function closeExercisesWindow() {
   container_EIE.style.display = "none";
 
-  exercises_Nav.classList.remove("hidden");
+  workouts_Nav.classList.remove("hidden");
   container_ExerciseInfo.style.display = "none";
   container_workoutTimer_Buttons.classList.remove("hidden");
   btn_Open_Exercises_Window.style.display = "";
   workout_Timer.classList.remove("hidden");
   // Hide workouts timer
-  container_TitleNotes.style.top = "4px";
-  workouts_Title.classList.remove("hidden");
-  workouts_Title.style.left = "-14px";
-  workouts_Title.style.top = "-22px";
-  exerciseNotes.classList.remove("hidden");
-  exerciseNotes.style.left = "-12px";
-  exerciseNotes.style.top = "41px";
+  if (exerciseObject.activePage === false) {
+    container_TitleNotes.style.top = "4px";
+    workouts_Title.classList.remove("hidden");
+    workouts_Title.style.left = "-14px";
+    workouts_Title.style.top = "-22px";
+    exerciseNotes.classList.remove("hidden");
+    exerciseNotes.style.left = "-12px";
+    exerciseNotes.style.top = "41px";
+  }
+  for (let i = 0; i < exercises_Radio.length; i++) {
+    exercises_Radio[i].checked = false;
+  }
   btn_CloseExerciseInfoModal.classList.remove("hidden");
   span_CloseExerciseInfoModal.classList.remove("hidden");
   for (let i = 0; i < row_Div.length; i++) {
@@ -1226,4 +1358,5 @@ btn_Close_Exercises_Window.addEventListener("click", function () {
       row_Div[i].classList.remove("hidden");
     }
   }
-});
+}
+btn_Close_Exercises_Window.addEventListener("click", closeExercisesWindow);

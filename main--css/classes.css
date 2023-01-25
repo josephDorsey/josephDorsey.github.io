@@ -2,7 +2,7 @@
 .main--container {
   display: grid;
   width: 100%;
-  row-gap: 75px;
+  row-gap: 2em;
 }
 .main--header {
   display: grid;
@@ -15,10 +15,19 @@
   grid-column: 2/3;
   justify-self: end;
   align-self: center;
-  padding: 1rem 2rem;
+  padding: 1em 2em;
 }
 .nav--active {
   color: #3b5bdb;
+}
+
+.nav--inactive {
+  color: black;
+}
+.container--Portfolio,
+.container--Contact,
+.container--Games {
+  display: none;
 }
 
 /* LOGO SECTION */
@@ -42,7 +51,9 @@
 } */
 
 /* Title and Barbadonkulus animated section section--0*/
-
+.title-container {
+  padding-bottom: 2em;
+}
 .about-img {
   width: 13em;
   padding-bottom: 15px;
@@ -66,13 +77,13 @@
 
   font-size: 1.5rem;
 }
-.about--me--col--1,
+/* .about--me--col--1,
 .about--me--col--2,
 .about--me--col--3,
 .about--me--col--4 {
   /* display: grid; */
-  /* justify-items: center; */
-}
+/* justify-items: center;
+} */
 
 .about--me--todd--1,
 .about--me--todd--2,
@@ -87,4 +98,276 @@
 .section--1 img {
   width: 10rem;
   padding-bottom: 15px;
+}
+
+/* Portfolio */
+.container--PortfolioFutureProjects {
+  display: none;
+}
+/* Contact ME */
+
+.contact--me {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact--header {
+  font-size: 3rem;
+}
+/* .contact--me h2 {
+  text-shadow: 0.025em 0.025em 0 yellow, 0.05em 0.05em 0 blue,
+    0.075em 0.075em 0 red, 0.1em 0.1em 0 black;
+} */
+
+.contact--img:hover {
+  text-decoration: none;
+  border-bottom: 0;
+}
+.contact--me img {
+  width: 13em;
+}
+
+.contact--me li {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.contact--p,
+.contact--link,
+.contact--social,
+.contact--list {
+  font-size: 1.5rem;
+}
+
+.contact--p,
+.contact--social,
+.contact--list {
+  padding-bottom: 10px;
+}
+
+.contact--p,
+.contact--social {
+  padding-top: 10px;
+}
+
+/* Games CSS */
+.container--Games {
+  width: 95%;
+  margin: 0 auto;
+}
+.game--container {
+  /* width: 80%;
+  margin: 0 auto; */
+  display: grid;
+  row-gap: 15px;
+  position: relative;
+}
+
+.game--box {
+  box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+  padding-bottom: 16px;
+}
+.game--grid h3 {
+  grid-column: 1/-1;
+  background-color: #3b5bdb;
+  padding: 10px;
+  text-align: center;
+  /* align-content: center; */
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  /* color: #fff; */
+}
+.game--grid a {
+  color: #fff;
+  justify-content: center;
+}
+.game--grid {
+  /* background-color: #3b5bdb; */
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(2, 1fr);
+  /* grid-template-columns: 200px 1fr; */
+}
+.game--img,
+.game--summary {
+  padding-top: 10px;
+}
+.game--img {
+  padding-left: 10px;
+}
+
+.game--summary {
+  padding: 0.5em;
+}
+
+.row {
+  display: flex;
+  /* margin: 0 auto; */
+}
+
+.project--info {
+  display: flex;
+  gap: 10px;
+  padding-top: 10px;
+  padding-bottom: 30px;
+}
+
+.project--item {
+  border: 1px solid #3b5bdb;
+  background-color: #3b5bdb;
+  color: #fff;
+  border-radius: 25px;
+  padding: 0.5px 7px;
+}
+
+/* .row img {
+  width: 3em;
+} */
+
+.radio-box {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 5px;
+}
+
+.story--container {
+  padding: 0 20px;
+}
+
+.story {
+  border-radius: 20px;
+  box-shadow: 0 20px 30px 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+  /* font-size: 14px; */
+  padding-bottom: 15px;
+  /* line-height: 1.4; */
+}
+
+.hidden {
+  display: none;
+}
+
+.button--play:link,
+.button--play:visited {
+  /* position: absolute; */
+  border-radius: 25px;
+  padding: 5px;
+  font-size: 16px;
+  color: #000;
+  border: 2px solid #3b5bdb;
+  background-color: #fff;
+}
+
+.button--play:hover {
+  background-color: #3b5bdb;
+  color: #fff;
+}
+
+.button--play:active {
+  color: #fff;
+  background-color: #233783;
+}
+
+.character {
+  width: calc(64px * var(--pixel-size));
+  height: calc(64px * var(--pixel-size));
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.character--2,
+.character--3,
+.character--4,
+.character--5,
+.character--6,
+.character--7,
+.character--8 {
+  width: calc(160px * var(--pixel-size));
+  height: calc(144px * var(--pixel-size));
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+}
+
+.character--spriteSheet {
+  width: calc(512px * var(--pixel-size));
+}
+.todder-normal--walk,
+.todder--run {
+  width: calc(1280px * var(--pixel-size));
+}
+.character-run {
+  width: calc(1760px * var(--pixel-size));
+}
+.todder-angry--walk {
+  width: calc(1600px * var(--pixel-size));
+}
+
+.todder-normal--walk {
+  animation: moveSpriteSheet 1s steps(8) infinite;
+  position: absolute;
+}
+
+.todder--run {
+  animation: moveSpriteSheet 0.7s steps(8) infinite;
+  position: absolute;
+}
+
+.todder--jump {
+  width: calc(1920px * var(--pixel-size));
+  animation: moveSpriteSheet 1s steps(12) infinite;
+  position: absolute;
+}
+.todder-angry--walk {
+  animation: moveSpriteSheet 1s steps(10) infinite;
+  position: absolute;
+}
+
+.todder-happy--wave {
+  width: calc(2400px * var(--pixel-size));
+  animation: moveSpriteSheet 2.5s steps(16) infinite;
+  position: absolute;
+}
+
+.character--spriteSheet {
+  animation: moveSpriteSheet 6s steps(8) infinite;
+}
+
+.character-run {
+  animation: moveSpriteSheet 1s steps(11) infinite;
+  position: absolute;
+}
+
+.face-right {
+  top: calc(-64px * var(--pixel-size));
+}
+.face-up {
+  top: calc(-128px * var(--pixel-size));
+}
+.face-left {
+  top: calc(-192px * var(--pixel-size));
+}
+
+.character--shadow {
+  position: absolute;
+  width: calc(64px * var(--pixel-size));
+  height: calc(64px * var(--pixel-size));
+}
+@keyframes moveSpriteSheet {
+  from {
+    transform: translate3d(0px, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+/* make a new variable on the root of the html file called pixel size */
+:root {
+  --pixel-size: 1;
 }

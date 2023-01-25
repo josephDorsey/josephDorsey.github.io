@@ -153,3 +153,103 @@
   color: #fff;
   background-color: #233783;
 }
+
+.character {
+  width: calc(64px * var(--pixel-size));
+  height: calc(64px * var(--pixel-size));
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.character--2,
+.character--3,
+.character--4,
+.character--5,
+.character--6,
+.character--7,
+.character--8 {
+  width: calc(160px * var(--pixel-size));
+  height: calc(144px * var(--pixel-size));
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+}
+
+.character--spriteSheet {
+  width: calc(512px * var(--pixel-size));
+}
+.todder-normal--walk,
+.todder--run {
+  width: calc(1280px * var(--pixel-size));
+}
+.character-run {
+  width: calc(1760px * var(--pixel-size));
+}
+.todder-angry--walk {
+  width: calc(1600px * var(--pixel-size));
+}
+
+.todder-normal--walk {
+  animation: moveSpriteSheet 1s steps(8) infinite;
+  position: absolute;
+}
+
+.todder--run {
+  animation: moveSpriteSheet 0.7s steps(8) infinite;
+  position: absolute;
+}
+
+.todder--jump {
+  width: calc(1920px * var(--pixel-size));
+  animation: moveSpriteSheet 1s steps(12) infinite;
+  position: absolute;
+}
+.todder-angry--walk {
+  animation: moveSpriteSheet 1s steps(10) infinite;
+  position: absolute;
+}
+
+.todder-happy--wave {
+  width: calc(2400px * var(--pixel-size));
+  animation: moveSpriteSheet 2.5s steps(16) infinite;
+  position: absolute;
+}
+
+.character--spriteSheet {
+  animation: moveSpriteSheet 6s steps(8) infinite;
+}
+
+.character-run {
+  animation: moveSpriteSheet 1s steps(11) infinite;
+  position: absolute;
+}
+
+.face-right {
+  top: calc(-64px * var(--pixel-size));
+}
+.face-up {
+  top: calc(-128px * var(--pixel-size));
+}
+.face-left {
+  top: calc(-192px * var(--pixel-size));
+}
+
+.character--shadow {
+  position: absolute;
+  width: calc(64px * var(--pixel-size));
+  height: calc(64px * var(--pixel-size));
+}
+@keyframes moveSpriteSheet {
+  from {
+    transform: translate3d(0px, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+/* make a new variable on the root of the html file called pixel size */
+:root {
+  --pixel-size: 1;
+}

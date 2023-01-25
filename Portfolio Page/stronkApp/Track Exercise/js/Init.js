@@ -7,27 +7,111 @@
 // }
 let container_Workouts_Page;
 const active_Navigation_Modal = {
-  home: true,
-  workouts: false,
-  history: false,
-  exercises: false,
-  calories: false,
-  health: false,
+  home: localStorage.getItem("active_Navigation_Home") || "",
+  workouts: localStorage.getItem("active_Navigation_Workouts") || "",
+  history: localStorage.getItem("active_Navigation_History") || "",
+  exercises: localStorage.getItem("active_Navigation_Exercises") || "",
+  calories: localStorage.getItem("active_Navigation_Calories") || "",
+  health: "",
 };
+
+let active_ModalStates_Count = 0;
+const active_ModalStates = [
+  "Home",
+  "Workouts",
+  "History",
+  "Exercises",
+  "Calories",
+  "Health",
+];
 
 const container_WorkoutsPage_Func = function () {
   if (container_Workouts_Page === 0) {
-    exercises_Nav.style.backgroundColor = "white";
-    exercises_Nav.style.color = "black";
+    workouts_Nav.style.backgroundColor = "white";
+    workouts_Nav.style.color = "black";
     console.log(`Main Workouts Modal Page`);
   } else if (container_Workouts_Page === 1) {
-    exercises_Nav.style.backgroundColor = "black";
-    exercises_Nav.style.color = "white";
+    workouts_Nav.style.backgroundColor = "black";
+    workouts_Nav.style.color = "white";
     console.log(`Selected Workouts Modal Page`);
   }
 };
 container_WorkoutsPage_Func();
-const exerciseObject = {};
+const exerciseObject = {
+  groupedWorkoutList: [],
+  ungroupedWorkoutList:
+    JSON.parse(localStorage.getItem("exercises_WorkoutName")) || [],
+  activePage:
+    JSON.parse(localStorage.getItem("exerciseObject_ActivePage")) || "",
+  currentWorkout: localStorage.getItem("active_Workout") || "",
+  saveProgress: function (obj) {
+    localStorage.setItem(
+      `workoutName_${temp_Workout_Name[workoutName_Count]}`,
+      JSON.stringify(obj)
+    );
+  },
+  loadProgress: function (obj) {
+    exerciseObject[`${temp_Workout_Name[workoutName_Count]}`] =
+      JSON.parse(localStorage.getItem(`workoutName_${obj}`)) || {};
+    tempWorkoutList =
+      JSON.parse(
+        localStorage.getItem(
+          `workoutName_${temp_Workout_Name[workoutName_Count]}_Exercises`
+        )
+      ) || [];
+    if (tempWorkoutList.length > 0) {
+      for (let i = 0; i < tempWorkoutList.length; i++) {
+        const div = document.createElement("div");
+        div.classList.add("row");
+        div.classList.add("hidden");
+        div.classList.add(`exercise--${i}`);
+        // createExercise(
+        //   `${temp_Workout_Name[workoutName_Count]}`,
+        //   `${tempWorkoutList[i]}`
+        // );
+        div.innerHTML = `
+            <label class="exercise-label--${i}">
+            <input type="radio" name="exercise-list" class="exercise-list">
+            <h3 class="exercises-row-title">${tempWorkoutList[i]}</h3>
+            <div class="exercises-row-caption">
+              <p class="exercises-row-label row-sets">Sets</p>
+              <p class="exercises-row-label row-lbs">Weight</p>
+              <p class="exercises-row-label row-reps">Reps</p>
+            </div>
+            <label style="position: relative;">
+            <div class="exercises-row exercise--${i}-row">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 completed-set" onclick="completeSet()" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+              <input name="exercises-row-radio exercise-radio--${i}-row" class="exercises-row-radio" type="radio">
+              <p class="exercises-row-set">1</p>
+              <input type="number" value="0" class="input--weight" onchange="updateWeight()">
+              <input type="number" value="0" class="input--reps" onchange="updateReps()">
+              <p class="hidden">135</p>
+              <p class="hidden">10</p>
+              <img src="img/create-outline.svg" class="edit-set">
+              </div>
+              </label>
+            <div class="">
+              <button class="btn--add-set" onclick="addSet()">
+              <img class="ion-icon" src="img/add.svg">Add set
+              </button>
+            </div>
+            <div class="">
+              <button class="btn--remove-set">
+              
+              <img class="ion-icon" src="img/remove-outline.svg">Remove set
+              </button>
+            </div>
+            </label>
+            `;
+        modal_Exercise_Info.appendChild(div);
+      }
+      closeExercisesWindow();
+    }
+    console.log("Loaded Data");
+  },
+};
 
 const createWorkout = function (workoutName) {
   exerciseObject[`${workoutName}`] = new Object();
@@ -65,7 +149,8 @@ const createSetsRepsWeight = function (sets, reps, weight) {
 
 // Containers
 
-let workoutName_Count = 0;
+let workoutName_Count =
+  JSON.parse(localStorage.getItem("workoutName_Count")) || 0;
 
 const exerciseGroup = {
   exerciseEquipment: {
@@ -369,170 +454,186 @@ const retrieveWorkoutLocalStorage = function () {
 
 window.onload = function () {
   container_WorkoutsPage_Func();
-  if (active_ModalStates[active_ModalStates_Count] === "Home") {
-    btn_Home.checked = true;
-    label_Home.style.color = "#3b5bdb";
-    label_Workouts.style.color = "black";
-    label_History.style.color = "black";
-    label_History.style.fill = "black";
-    label_Exercises.style.color = "black";
-    label_Calories.style.color = "black";
-    label_Health.style.color = "black";
-    if (
-      user.firstName === localStorage.getItem("user_firstName") &&
-      user.age === JSON.parse(localStorage.getItem("user_Age")) &&
-      user.gender === localStorage.getItem("user_Gender") &&
-      user.height.feet ===
-        JSON.parse(localStorage.getItem("user_Height_Feet")) &&
-      user.height.inches ===
-        JSON.parse(localStorage.getItem("user_Height_Inches")) &&
-      user.weight === JSON.parse(localStorage.getItem("user_Weight")) &&
-      user.lifeStyle === localStorage.getItem("user_Lifestyle") &&
-      user.goal === localStorage.getItem("user_Goal") &&
-      user.goalWeight === JSON.parse(localStorage.getItem("user_goalWeight"))
-    ) {
-      btn_Login.classList.add("hidden");
-      userName.classList.add("hidden");
-      userTitle.classList.add("hidden");
-      userGreet.classList.remove("hidden");
-      lifestyleDefinition.classList.remove("hidden");
-      userGreet.textContent = `User: ${user.firstName}`;
-      container_SelectWeightGoals.classList.add("hidden");
-      // container_Question.classList.toggle("hidden");
-      container_AHWKG.style.display = "grid";
-      btn_Edit_Home_Containers.classList.remove("hidden");
+  retrieve_ANM_localStorage();
+  update_Active_Nav_Modal();
+  exerciseObject.activePage =
+    JSON.parse(localStorage.getItem("exerciseObject_ActivePage")) || "";
+  if (exerciseObject.activePage === true) {
+    workouts_Title.innerHTML = localStorage.getItem("active_Workout");
+    workout_Timer.classList.remove("hidden");
+    container_workoutTimer_Buttons.classList.remove("hidden");
+    ungroupedWorkoutList.classList.add("hidden");
+    viewWorkoutLoad();
 
-      retrieveHomeLocalStorage();
-      homeResult_Age.innerHTML = user.age;
-      homeResult_Height.innerHTML = `${user.height["feet"]}' ${user.height["inches"]}"`;
-      homeResult_Sex.innerHTML = localStorage.getItem("user_Gender");
-      homeResult_Weight.innerHTML = `${user.weight} lbs`;
-      homeResult_GoalWeight.innerHTML = JSON.parse(
-        localStorage.getItem("user_goalWeight")
-      );
-      homeResult_GoalWeight_Title.classList.remove("hidden");
-      homeResult_PoundsToLG.classList.remove("hidden");
-
-      homeResult_GoalWeight_Title.innerHTML = `Weight goal:`;
-      title_Goal.innerHTML = `Goal: ${localStorage.getItem("user_Goal")}`;
-      title_goalWeight.classList.remove("hidden");
-      title_goalWeight.innerHTML = `Pounds to lose:`;
-      resultsBMI.textContent = `${user.BMI}`;
-      if (
-        title_Goal.innerHTML === "Goal: Maintain Weight" ||
-        user.goal === "Maintain Weight"
-      ) {
-        summaryGoal_Maintain();
-        container_SelectWeightGoals.selectedIndex = 1;
-        value_Calories.innerHTML = `${user.calorie["max"]}cal`;
-        value_Protein.innerHTML = `${user.protein["max"]}g`;
-      } else if (
-        title_Goal.innerHTML === "Goal: Lose Weight" ||
-        user.goal === "Lose Weight"
-      ) {
-        summaryGoal_Lose();
-        container_SelectWeightGoals.selectedIndex = 2;
-        homeResult_PoundsToLG.innerHTML = `${user.weight - user.goalWeight}`;
-        value_Calories.innerHTML = `${user.calorie["max"]}cal`;
-        value_Protein.innerHTML = `${user.protein["max"]}g`;
-      } else if (
-        title_Goal.innerHTML === "Goal: Gain Weight" ||
-        user.goal === "Gain Weight"
-      ) {
-        summaryGoal_Gain();
-        container_SelectWeightGoals.selectedIndex = 3;
-        homeResult_PoundsToLG.innerHTML = `${user.goalWeight - user.weight}`;
-        if (option_Slow.selected === true) {
-          title_goalWeight.innerHTML = `Pounds to gain slowly:`;
-          value_Calories.innerHTML = `${user.calorie["min"]} - ${user.calorie["max"]}cal`;
-          value_Protein.innerHTML = `${user.protein["min"]} - ${user.protein["max"]}g`;
-          user.gainWeight = "Slow";
-        } else if (option_Fast.selected === true) {
-          title_goalWeight.innerHTML = `Pounds to gain fast:`;
-          value_Calories.innerHTML = `${user.calorie["min"]} - ${user.calorie["max"]}cal`;
-          value_Protein.innerHTML = `${user.protein["max"]}g`;
-          user.gainWeight = "Fast";
-        }
-      }
-      if (user.lifeStyle === "sedentary") {
-        listSummary_Sedentary.classList.remove("hidden");
-        listSummary_LightlyActive.classList.add("hidden");
-        listSummary_Active.classList.add("hidden");
-        listSummary_VeryActive.classList.add("hidden");
-        listSummary_VigActive.classList.add("hidden");
-        lifestyleDefinition.innerHTML = `Sedentary`;
-      } else if (user.lifeStyle === "lightly active") {
-        listSummary_Sedentary.classList.add("hidden");
-        listSummary_LightlyActive.classList.remove("hidden");
-        listSummary_Active.classList.add("hidden");
-        listSummary_VeryActive.classList.add("hidden");
-        listSummary_VigActive.classList.add("hidden");
-        lifestyleDefinition.innerHTML = `Lightly Active`;
-      } else if (user.lifeStyle === "active") {
-        listSummary_Sedentary.classList.add("hidden");
-        listSummary_LightlyActive.classList.add("hidden");
-        listSummary_Active.classList.remove("hidden");
-        listSummary_VeryActive.classList.add("hidden");
-        listSummary_VigActive.classList.add("hidden");
-        lifestyleDefinition.innerHTML = `Active`;
-      } else if (user.lifeStyle === "very active") {
-        listSummary_Sedentary.classList.add("hidden");
-        listSummary_LightlyActive.classList.add("hidden");
-        listSummary_Active.classList.add("hidden");
-        listSummary_VeryActive.classList.remove("hidden");
-        listSummary_VigActive.classList.add("hidden");
-        lifestyleDefinition.innerHTML = `Very Active`;
-      } else if (user.lifeStyle === "vigorously active") {
-        listSummary_Sedentary.classList.add("hidden");
-        listSummary_LightlyActive.classList.add("hidden");
-        listSummary_Active.classList.add("hidden");
-        listSummary_VeryActive.classList.add("hidden");
-        listSummary_VigActive.classList.remove("hidden");
-        lifestyleDefinition.innerHTML = `Vigorously Active`;
-      }
-
-      if (user.BMI <= 18.5) {
-        userBMI.textContent = `With a BMI of ${user.BMI} you are considered underweight. A few more pounds can lessen your chances of thinning bones and a weakened immune system, as well as feeling tired. Women who are underweight may have irregular periods or stop having them altogether. Underweight men may have lower sperm counts. The healthy range for BMI in your height and weight range is between 18.5 and 24.9.`;
-      } else if (user.BMI >= 18.5 && user.BMI <= 24.9) {
-        userBMI.textContent = `With a BMI of ${user.BMI} you're in a good place now. The healthy range for BMI in your height and weight range is between 18.5 and 24.9. Keep up your healthy habits to maintain your weight.`;
-      } else if (user.BMI >= 25 && user.BMI <= 29.9) {
-        userBMI.textContent = `With a BMI of ${user.BMI} your weight puts you in the overweight range. Losing some extra pounds is a good first step toward lowering your chances of health problems. The healthy range for BMI in your height and weight range is between 18.5 and 24.9. If you have a very muscular build, though, you could have an overweight BMI and still be OK.`;
-      } else if (user.BMI >= 30) {
-        userBMI.textContent = `With a BMI of ${user.BMI} your weight puts you in the obese range. You're much more likely to have serious health problems. The healthy range for BMI in your height and weight range is between 18.5 and 24.9.`;
-      }
-      homeResult_Age.classList.remove("hidden");
-      homeResult_Height.classList.remove("hidden");
-      homeResult_Sex.classList.remove("hidden");
-      homeResult_Weight.classList.remove("hidden");
-      homeResult_GoalWeight_Title.classList.remove("hidden");
-      userWeight.classList.add("hidden");
-      feet.classList.add("hidden");
-      inches.classList.add("hidden");
-      userAge.classList.add("hidden");
-      userGenderF.classList.add("hidden");
-      userGenderM.classList.add("hidden");
-      label_GenderM.classList.add("hidden");
-      label_GenderF.classList.add("hidden");
-      container_WeightOptions.classList.add("hidden");
-      container_HeightOptions.classList.add("hidden");
-      containerBMI.classList.remove("hidden");
-      containerWeightRange.classList.remove("hidden");
-      btn_SaveUserStats.classList.add("hidden");
-      summaryProtein.classList.remove("hidden");
-      summaryCalories.classList.remove("hidden");
-      summaryGoalWeight.classList.remove("hidden");
-
-      input_goalWeight.style.display = "none";
-      homeResult_GoalWeight.classList.remove("hidden");
-      // showLifeStyleSummary();
-      healthyWeightRange();
-      showWBP();
-      // }
-    } else if (user.firstName.length === 0) {
-      userName.classList.remove("hidden");
-      btn_Login.classList.remove("hidden");
-    }
+    // container_TitleNotes.style.top = "138px";
+    // container_TitleNotes.style.left = "226px";
+    container_ViewWorkoutButtons.style.display = "none";
+    exerciseObject.loadProgress(temp_Workout_Name[workoutName_Count]);
   }
+  // if (active_Navigation_Modal.home === true) {
+  //   btn_Home.checked = true;
+  //   label_Home.style.color = "#3b5bdb";
+  //   label_Workouts.style.color = "black";
+  //   label_History.style.color = "black";
+  //   label_History.style.fill = "black";
+  //   label_Exercises.style.color = "black";
+  //   label_Calories.style.color = "black";
+  //   label_Health.style.color = "black";
+  //   if (
+  //     user.firstName === localStorage.getItem("user_firstName") &&
+  //     user.age === JSON.parse(localStorage.getItem("user_Age")) &&
+  //     user.gender === localStorage.getItem("user_Gender") &&
+  //     user.height.feet ===
+  //       JSON.parse(localStorage.getItem("user_Height_Feet")) &&
+  //     user.height.inches ===
+  //       JSON.parse(localStorage.getItem("user_Height_Inches")) &&
+  //     user.weight === JSON.parse(localStorage.getItem("user_Weight")) &&
+  //     user.lifeStyle === localStorage.getItem("user_Lifestyle") &&
+  //     user.goal === localStorage.getItem("user_Goal") &&
+  //     user.goalWeight === JSON.parse(localStorage.getItem("user_goalWeight"))
+  //   ) {
+  //     btn_Login.classList.add("hidden");
+  //     userName.classList.add("hidden");
+  //     userTitle.classList.add("hidden");
+  //     userGreet.classList.remove("hidden");
+  //     lifestyleDefinition.classList.remove("hidden");
+  //     userGreet.textContent = `User: ${user.firstName}`;
+  //     container_SelectWeightGoals.classList.add("hidden");
+  //     // container_Question.classList.toggle("hidden");
+  //     container_AHWKG.style.display = "grid";
+  //     btn_Edit_Home_Containers.classList.remove("hidden");
+
+  //     retrieveHomeLocalStorage();
+  //     homeResult_Age.innerHTML = user.age;
+  //     homeResult_Height.innerHTML = `${user.height["feet"]}' ${user.height["inches"]}"`;
+  //     homeResult_Sex.innerHTML = localStorage.getItem("user_Gender");
+  //     homeResult_Weight.innerHTML = `${user.weight} lbs`;
+  //     homeResult_GoalWeight.innerHTML = JSON.parse(
+  //       localStorage.getItem("user_goalWeight")
+  //     );
+  //     homeResult_GoalWeight_Title.classList.remove("hidden");
+  //     homeResult_PoundsToLG.classList.remove("hidden");
+
+  //     homeResult_GoalWeight_Title.innerHTML = `Weight goal:`;
+  //     title_Goal.innerHTML = `Goal: ${localStorage.getItem("user_Goal")}`;
+  //     title_goalWeight.classList.remove("hidden");
+  //     title_goalWeight.innerHTML = `Pounds to lose:`;
+  //     resultsBMI.textContent = `${user.BMI}`;
+  //     if (
+  //       title_Goal.innerHTML === "Goal: Maintain Weight" ||
+  //       user.goal === "Maintain Weight"
+  //     ) {
+  //       summaryGoal_Maintain();
+  //       container_SelectWeightGoals.selectedIndex = 1;
+  //       value_Calories.innerHTML = `${user.calorie["max"]}cal`;
+  //       value_Protein.innerHTML = `${user.protein["max"]}g`;
+  //     } else if (
+  //       title_Goal.innerHTML === "Goal: Lose Weight" ||
+  //       user.goal === "Lose Weight"
+  //     ) {
+  //       summaryGoal_Lose();
+  //       container_SelectWeightGoals.selectedIndex = 2;
+  //       homeResult_PoundsToLG.innerHTML = `${user.weight - user.goalWeight}`;
+  //       value_Calories.innerHTML = `${user.calorie["max"]}cal`;
+  //       value_Protein.innerHTML = `${user.protein["max"]}g`;
+  //     } else if (
+  //       title_Goal.innerHTML === "Goal: Gain Weight" ||
+  //       user.goal === "Gain Weight"
+  //     ) {
+  //       summaryGoal_Gain();
+  //       container_SelectWeightGoals.selectedIndex = 3;
+  //       homeResult_PoundsToLG.innerHTML = `${user.goalWeight - user.weight}`;
+  //       if (option_Slow.selected === true) {
+  //         title_goalWeight.innerHTML = `Pounds to gain slowly:`;
+  //         value_Calories.innerHTML = `${user.calorie["min"]} - ${user.calorie["max"]}cal`;
+  //         value_Protein.innerHTML = `${user.protein["min"]} - ${user.protein["max"]}g`;
+  //         user.gainWeight = "Slow";
+  //       } else if (option_Fast.selected === true) {
+  //         title_goalWeight.innerHTML = `Pounds to gain fast:`;
+  //         value_Calories.innerHTML = `${user.calorie["min"]} - ${user.calorie["max"]}cal`;
+  //         value_Protein.innerHTML = `${user.protein["max"]}g`;
+  //         user.gainWeight = "Fast";
+  //       }
+  //     }
+  //     if (user.lifeStyle === "sedentary") {
+  //       listSummary_Sedentary.classList.remove("hidden");
+  //       listSummary_LightlyActive.classList.add("hidden");
+  //       listSummary_Active.classList.add("hidden");
+  //       listSummary_VeryActive.classList.add("hidden");
+  //       listSummary_VigActive.classList.add("hidden");
+  //       lifestyleDefinition.innerHTML = `Sedentary`;
+  //     } else if (user.lifeStyle === "lightly active") {
+  //       listSummary_Sedentary.classList.add("hidden");
+  //       listSummary_LightlyActive.classList.remove("hidden");
+  //       listSummary_Active.classList.add("hidden");
+  //       listSummary_VeryActive.classList.add("hidden");
+  //       listSummary_VigActive.classList.add("hidden");
+  //       lifestyleDefinition.innerHTML = `Lightly Active`;
+  //     } else if (user.lifeStyle === "active") {
+  //       listSummary_Sedentary.classList.add("hidden");
+  //       listSummary_LightlyActive.classList.add("hidden");
+  //       listSummary_Active.classList.remove("hidden");
+  //       listSummary_VeryActive.classList.add("hidden");
+  //       listSummary_VigActive.classList.add("hidden");
+  //       lifestyleDefinition.innerHTML = `Active`;
+  //     } else if (user.lifeStyle === "very active") {
+  //       listSummary_Sedentary.classList.add("hidden");
+  //       listSummary_LightlyActive.classList.add("hidden");
+  //       listSummary_Active.classList.add("hidden");
+  //       listSummary_VeryActive.classList.remove("hidden");
+  //       listSummary_VigActive.classList.add("hidden");
+  //       lifestyleDefinition.innerHTML = `Very Active`;
+  //     } else if (user.lifeStyle === "vigorously active") {
+  //       listSummary_Sedentary.classList.add("hidden");
+  //       listSummary_LightlyActive.classList.add("hidden");
+  //       listSummary_Active.classList.add("hidden");
+  //       listSummary_VeryActive.classList.add("hidden");
+  //       listSummary_VigActive.classList.remove("hidden");
+  //       lifestyleDefinition.innerHTML = `Vigorously Active`;
+  //     }
+
+  //     if (user.BMI <= 18.5) {
+  //       userBMI.textContent = `With a BMI of ${user.BMI} you are considered underweight. A few more pounds can lessen your chances of thinning bones and a weakened immune system, as well as feeling tired. Women who are underweight may have irregular periods or stop having them altogether. Underweight men may have lower sperm counts. The healthy range for BMI in your height and weight range is between 18.5 and 24.9.`;
+  //     } else if (user.BMI >= 18.5 && user.BMI <= 24.9) {
+  //       userBMI.textContent = `With a BMI of ${user.BMI} you're in a good place now. The healthy range for BMI in your height and weight range is between 18.5 and 24.9. Keep up your healthy habits to maintain your weight.`;
+  //     } else if (user.BMI >= 25 && user.BMI <= 29.9) {
+  //       userBMI.textContent = `With a BMI of ${user.BMI} your weight puts you in the overweight range. Losing some extra pounds is a good first step toward lowering your chances of health problems. The healthy range for BMI in your height and weight range is between 18.5 and 24.9. If you have a very muscular build, though, you could have an overweight BMI and still be OK.`;
+  //     } else if (user.BMI >= 30) {
+  //       userBMI.textContent = `With a BMI of ${user.BMI} your weight puts you in the obese range. You're much more likely to have serious health problems. The healthy range for BMI in your height and weight range is between 18.5 and 24.9.`;
+  //     }
+  //     homeResult_Age.classList.remove("hidden");
+  //     homeResult_Height.classList.remove("hidden");
+  //     homeResult_Sex.classList.remove("hidden");
+  //     homeResult_Weight.classList.remove("hidden");
+  //     homeResult_GoalWeight_Title.classList.remove("hidden");
+  //     userWeight.classList.add("hidden");
+  //     feet.classList.add("hidden");
+  //     inches.classList.add("hidden");
+  //     userAge.classList.add("hidden");
+  //     userGenderF.classList.add("hidden");
+  //     userGenderM.classList.add("hidden");
+  //     label_GenderM.classList.add("hidden");
+  //     label_GenderF.classList.add("hidden");
+  //     container_WeightOptions.classList.add("hidden");
+  //     container_HeightOptions.classList.add("hidden");
+  //     containerBMI.classList.remove("hidden");
+  //     containerWeightRange.classList.remove("hidden");
+  //     btn_SaveUserStats.classList.add("hidden");
+  //     summaryProtein.classList.remove("hidden");
+  //     summaryCalories.classList.remove("hidden");
+  //     summaryGoalWeight.classList.remove("hidden");
+
+  //     input_goalWeight.style.display = "none";
+  //     homeResult_GoalWeight.classList.remove("hidden");
+  //     // showLifeStyleSummary();
+  //     healthyWeightRange();
+  //     showWBP();
+  //     // }
+  //   } else if (user.firstName.length === 0) {
+  //     userName.classList.remove("hidden");
+  //     btn_Login.classList.remove("hidden");
+  //   }
+  // }
   exerciseGroup.workoutName =
     JSON.parse(localStorage.getItem("exercises_WorkoutName")) || [];
   for (let i = 0; i < temp_Workout_Name.length; i++) {
@@ -563,7 +664,7 @@ window.onload = function () {
       createWorkout_WorkoutGroup_Modal_count
     ] === "Inactive"
   ) {
-    createWorkout_WorkoutGroup_Modal.style.display === "none";
+    // createWorkout_WorkoutGroup_Modal.style.display === "none";
   }
   if (workoutState[workoutState_Count] === "Active") {
     btn_StartWorkout.classList.add("hidden");
@@ -746,6 +847,110 @@ window.onload = function () {
   }
 };
 
+const update_Active_Nav_Modal = function () {
+  if (active_Navigation_Modal.home === true || btn_Home.checked === true) {
+    // btn_Home.checked = true;
+    active_Navigation_Modal.home = true;
+    active_Navigation_Modal.workouts = false;
+    active_Navigation_Modal.history = false;
+    active_Navigation_Modal.exercises = false;
+    active_Navigation_Modal.calories = false;
+    nav_Home();
+    save_ANM_localStorage();
+  }
+  if (
+    active_Navigation_Modal.workouts === true ||
+    btn_Workouts_Modal.checked === true
+  ) {
+    // btn_Workouts_Modal.checked = true;
+    active_Navigation_Modal.home = false;
+    active_Navigation_Modal.workouts = true;
+    active_Navigation_Modal.history = false;
+    active_Navigation_Modal.exercises = false;
+    active_Navigation_Modal.calories = false;
+    nav_WorkoutsModal();
+    save_ANM_localStorage();
+  }
+  if (
+    active_Navigation_Modal.history === true ||
+    btn_History.checked === true
+  ) {
+    // btn_History.checked = true;
+    active_Navigation_Modal.home = false;
+    active_Navigation_Modal.workouts = false;
+    active_Navigation_Modal.history = true;
+    active_Navigation_Modal.exercises = false;
+    active_Navigation_Modal.calories = false;
+    nav_History();
+    save_ANM_localStorage();
+  }
+  if (
+    active_Navigation_Modal.exercises === true ||
+    btn_Exercises_Modal.checked === true
+  ) {
+    // btn_Exercises_Modal.checked = true;
+    active_Navigation_Modal.home = false;
+    active_Navigation_Modal.workouts = false;
+    active_Navigation_Modal.history = false;
+    active_Navigation_Modal.exercises = true;
+    active_Navigation_Modal.calories = false;
+    nav_ExercisesModal();
+    save_ANM_localStorage();
+  }
+  if (
+    active_Navigation_Modal.calories === true ||
+    btn_TrackCalories.checked === true
+  ) {
+    // btn_TrackCalories.checked = true;
+    active_Navigation_Modal.home = false;
+    active_Navigation_Modal.workouts = false;
+    active_Navigation_Modal.history = false;
+    active_Navigation_Modal.exercises = false;
+    active_Navigation_Modal.calories = true;
+    nav_TrackCalories();
+    save_ANM_localStorage();
+  }
+};
+
+const save_ANM_localStorage = function () {
+  localStorage.setItem(
+    "active_Navigation_Modal_Home",
+    JSON.stringify(active_Navigation_Modal.home)
+  );
+  localStorage.setItem(
+    "active_Navigation_Modal_Workouts",
+    JSON.stringify(active_Navigation_Modal.workouts)
+  );
+  localStorage.setItem(
+    "active_Navigation_Modal_History",
+    JSON.stringify(active_Navigation_Modal.history)
+  );
+  localStorage.setItem(
+    "active_Navigation_Modal_Exercises",
+    JSON.stringify(active_Navigation_Modal.exercises)
+  );
+  localStorage.setItem(
+    "active_Navigation_Modal_Calories",
+    JSON.stringify(active_Navigation_Modal.calories)
+  );
+};
+const retrieve_ANM_localStorage = function () {
+  active_Navigation_Modal.home = JSON.parse(
+    localStorage.getItem("active_Navigation_Modal_Home")
+  );
+  active_Navigation_Modal.workouts = JSON.parse(
+    localStorage.getItem("active_Navigation_Modal_Workouts")
+  );
+  active_Navigation_Modal.history = JSON.parse(
+    localStorage.getItem("active_Navigation_Modal_History")
+  );
+  active_Navigation_Modal.exercises = JSON.parse(
+    localStorage.getItem("active_Navigation_Modal_Exercises")
+  );
+  active_Navigation_Modal.calories = JSON.parse(
+    localStorage.getItem("active_Navigation_Modal_Calories")
+  );
+};
 // let main_Nav_styleState;
 // const init = function () {
 //   // exercise_List_activeState = 0;

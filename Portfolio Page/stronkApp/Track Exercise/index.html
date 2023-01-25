@@ -330,7 +330,7 @@
         </div> -->
       </div>
       <div class="main--task--container">
-        <div class="container--home">
+        <div class="container--home hidden">
           <div class="container--login">
             <div class="container--logo">
               <h1 class="logo--title">Stronk</h1>
@@ -665,13 +665,18 @@
         </div>
         <div class="container--workouts hidden">
           <!-- <select class="testNumber"></select> -->
-          <img
-            class="btn--createWorkout_WorkoutGroup"
-            src="img/add-circle-outline.svg"
-          />
-
-          <span class="btn--edit-Workout-WorkoutGroup">Edit</span>
-          <div class="exercise-nav">
+          <div class="container--workouts-nav">
+            <select class="workouts-modal--create-workout">
+              <option value="">(What would you like to create?)</option>
+              <option class="option--workout-modal"value="">Workout</option>
+              <option class="option--workoutgroup-modal"value="">Workout Group</option>
+            </select>
+            <img
+              class="btn--createWorkout_WorkoutGroup hidden"
+              src="img/add-circle-outline.svg"
+            />
+            <h1 class="workouts-modal--title">Workouts</h1>
+            <span class="btn--edit-Workout-WorkoutGroup">Edit</span>
             <label class="span--close-exercise-info hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -691,8 +696,7 @@
             >
             <h1 class="workout-timer hidden">00:00:00</h1>
           </div>
-
-          <div class="createWorkout_WorkoutGroup-modal hidden">
+          <!-- <div class="createWorkout_WorkoutGroup-modal hidden">
             <div class="create-workoutgroup-buttons">
               <h4 class="create-workoutgroup-buttons-title">
                 What would you like to create?
@@ -708,7 +712,7 @@
               </div>
               <div class="createWorkoutGroup_Modal">
                 <a
-                  class="btn--create-workoutgroup-buttons-workoutGroup"
+                  class="btn--createWorkoutGroup"
                   href="#"
                   >Workout Group</a
                 >
@@ -718,30 +722,38 @@
                 />
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="createWorkout-modal" style="display: none">
-            <h3 class="createWorkout-label">Create Workout</h3>
+            <h3 class="createWorkout-label">Create new workout</h3>
             <input
               class="createWorkout-input"
               type="text"
               placeholder="name of workout"
             />
             <button class="btn--createWorkout">Create Workout</button>
-            <button class="btn--open-add-exercise-modal">Add Exercises</button>
+            <!-- <button class="btn--open-add-exercise-modal">Add Exercises</button> -->
             <button class="btn--cancel-createWorkoutexercise">Cancel</button>
           </div>
-          <div class="ungroupedWorkout"><h3 class="ungroupedWorkout-title">Ungrouped Workout</h3></div>
-          <div class="groupedWorkout"><h3>Grouped Workout</h3></div>
+          <div class="createWorkoutGroup-modal" style="display: none">
+          <h3>Create new workout group</h3>
+          <input type="text">
+          <button class="btn--createWorkoutGroup"type="button">Ok</button>
+          <button type="button">Cancel</button>
+          </div>
+          <div class="ungroupedWorkout"><h3 class="ungroupedWorkout-title">Ungrouped Workouts</h3></div>
+          <div class="groupedWorkout hidden"><h3>Grouped Workout</h3></div>
           <div class="archivedWorkout hidden"><h3>Archived Workout</h3></div>
-          <button class="btn--view-workout">View Workout</button>
-          <button class="btn--delete-workout hidden">Delete Workout</button>
-          <button class="btn--archive-workout hidden">Archive Workout</button>
-          <button class="btn--view-archived-workout hidden">
-            View Archive
-          </button>
-          <button class="btn--restore-archived-workout hidden">
-            Restore Workout
-          </button>
+          <div class="container--view-workout-buttons">
+            <button class="btn--view-workout">View Workout</button>
+            <button class="btn--delete-workout hidden">Delete Workout</button>
+            <button class="btn--archive-workout hidden">Archive Workout</button>
+            <button class="btn--view-archived-workout hidden">
+              View Archive
+            </button>
+            <button class="btn--restore-archived-workout hidden">
+              Restore Workout
+            </button>
+          </div>
 
           <div class="exercise-information hidden">
             <div class="exercise-information-search-container">
@@ -796,10 +808,10 @@
               <label class="currentExercise--label">Abdominal Crunches</label>
               <button class="currentExercise--btn">Next Set</button>
             </div>
-            <div class="modal-exercise-list"></div>
+            <div class="modal-exercise-list hidden"></div>
             <div class="modal-exercise-info">
               <div class="container--title-notes">
-                <h2 class="createWorkout-title">Workouts</h2>
+                <h2 class="createWorkout-title hidden">Workouts</h2>
                 <textarea
                   class="createWorkout-title-notes hidden"
                   placeholder="Add notes
@@ -819,7 +831,7 @@
                   <img class="img--resumeWorkout" src="img/play.svg" />
                   Resume Workout
                 </button>
-                <button class="btn--endWorkout">
+                <button class="btn--endWorkout hidden">
                   <img class="img--endWorkout" src="img/stop.svg" />
                   End Workout
                 </button>
@@ -1016,6 +1028,7 @@
     <script src="js/Buttons/Buttons_Modals/Button_NextSet.js"></script>
     <script src="js/Buttons/Buttons_Modals/exercises-all.js"></script>
     <script src="js/Buttons/Buttons_Modals/btn_Home.js"></script>
+    <script src="js/Buttons/Buttons_Modals/btn_Workouts.js"></script>
     <script src="js/Buttons/Buttons_Modals/btn_History.js"></script>
     <script src="js/Buttons/Buttons_Modals/btn_Calories.js"></script>
 

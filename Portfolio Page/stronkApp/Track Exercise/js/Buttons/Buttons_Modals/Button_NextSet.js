@@ -356,6 +356,8 @@ const p_Sets = document.getElementsByClassName("exercises-row-set");
 const btn_CompletedSet = document.getElementsByClassName("completed-set");
 let addSet_Count;
 let tempEN_Count;
+let activeRep_Count;
+let activeWeight_Count;
 let increaseSet = 1;
 let updateWeightCount = 0;
 // function addSet() {
@@ -405,6 +407,14 @@ let updateWeightCount = 0;
 //     });
 //   }
 // }
+
+for (let i = 0; i < input_Weight.length; i++) {
+  input_Weight[i].addEventListener("onblur", function () {
+    exercises_Row_Radio[i].checked = true;
+    exercises_Row[i].style.border = "2px solid green";
+  });
+}
+
 function addSet() {
   for (let j = 0; j < radio_ExerciseList.length; j++) {
     if (radio_ExerciseList[j].checked === true) {
@@ -421,6 +431,7 @@ function addSet() {
       );
       for (let i = 0; i < exercises_Row_Radio.length; i++) {
         const label = document.createElement("label");
+        label.classList.add(`exercise-label--${i}`);
         if (exercises_Row_Radio[i].checked === true) {
           exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
             `${tempWorkoutList[tempEN_Count]}`
@@ -428,7 +439,7 @@ function addSet() {
           exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
             `${tempWorkoutList[tempEN_Count]}`
           ].reps.push(Number(input_Reps[i].value));
-
+          // IF BOTH INPUTS ARE EMPTY
           if (
             input_Weight[
               `${
@@ -445,7 +456,7 @@ function addSet() {
               }`
             ].value === ""
           ) {
-            label.innerHTML = `<div class="exercises-row">
+            label.innerHTML = `<div class="exercises-row ">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 completed-set" onclick="completeSet()" fill="none" viewBox="0 0 24 24" stroke="currentColor">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
 </svg>
@@ -483,36 +494,28 @@ function addSet() {
                 }`
               ].value === ""
             )
+            // IF BOTH INPUTS ARE ENTERED
           ) {
-            label.innerHTML = `<div class="exercises-row">
-            
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 completed-set" fill="none" viewBox="0 0 24 24" onclick="completeSet()" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-</svg>
-            <input name="exercises-row-radio" class="exercises-row-radio" type="radio">
-            <p class="exercises-row-set">${
-              exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
-                `${tempWorkoutList[tempEN_Count]}`
-              ].increaseSet
-            }</p>
-            <input type="number" onchange="updateWeight()" class="input--weight" value="${
-              exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
-                `${tempWorkoutList[tempEN_Count]}`
-              ].weight[
-                exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
-                  `${tempWorkoutList[tempEN_Count]}`
-                ].loopSet
-              ]
-            }">
+            label.innerHTML = `<div class="exercises-row ">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 completed-set" fill="none" viewBox="0 0 24 24" onclick="completeSet()" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+    </svg>
+    <input name="exercises-row-radio" class="exercises-row-radio" type="radio">
+    <p class="exercises-row-set">${
+      exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+        `${tempWorkoutList[tempEN_Count]}`
+      ].increaseSet
+    }</p>
+    <input type="number" onchange="updateWeight()" class="input--weight" value="${
+      exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
+        `${tempWorkoutList[tempEN_Count]}`
+      ].weight[activeWeight_Count]
+    }">
             <input type="number" onchange="updateReps()" class="input--reps"
             value="${
               exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
                 `${tempWorkoutList[tempEN_Count]}`
-              ].reps[
-                exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
-                  `${tempWorkoutList[tempEN_Count]}`
-                ].loopSet
-              ]
+              ].reps[activeRep_Count]
             }">
             <p class="hidden">135</p>
             <p class="hidden">10</p>
@@ -544,7 +547,7 @@ function addSet() {
               }`
             ].value === ""
           ) {
-            label.innerHTML = `<div class="exercises-row">
+            label.innerHTML = `<div class="exercises-row ">
             
             
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 completed-set" fill="none" viewBox="0 0 24 24" onclick="completeSet()" stroke="currentColor">
@@ -559,11 +562,7 @@ function addSet() {
             <input type="number" onchange="updateWeight()"class="input--weight" value="${
               exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
                 `${tempWorkoutList[tempEN_Count]}`
-              ].weight[
-                exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
-                  `${tempWorkoutList[tempEN_Count]}`
-                ].loopSet
-              ]
+              ].weight[activeWeight_Count]
             }">
             <input type="number" class="input--reps" onchange="updateReps()">
             <p class="hidden">135</p>
@@ -607,11 +606,7 @@ function addSet() {
             <input type="number" onchange="updateReps()" class="input--reps" value="${
               exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
                 `${tempWorkoutList[tempEN_Count]}`
-              ].reps[
-                exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
-                  `${tempWorkoutList[tempEN_Count]}`
-                ].loopSet
-              ]
+              ].reps[activeRep_Count]
             }">
             <p class="hidden">135</p>
             <p class="hidden">10</p>
@@ -649,6 +644,7 @@ function updateWeight() {
         exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
           `${tempWorkoutList[tempEN_Count]}`
         ].loopSet,
+        // activeWeight_Count,
         1,
         Number(input_Weight[i].value)
       );
@@ -689,6 +685,7 @@ function updateReps() {
         exerciseObject[`${temp_Workout_Name[workoutName_Count]}`][
           `${tempWorkoutList[tempEN_Count]}`
         ].loopSet,
+        // activeRep_Count,
         1,
         Number(input_Reps[i].value)
       );
@@ -716,6 +713,9 @@ function activeSet() {
   for (let i = 0; i < exercises_Row_Radio.length; i++) {
     if (exercises_Row_Radio[i].checked === true) {
       exercises_Row[i].style.border = "2px solid green";
+
+      activeWeight_Count = i;
+      activeRep_Count = i;
     } else {
       exercises_Row[i].style.border = "1px solid black";
     }
@@ -757,9 +757,11 @@ const update_tempEN_Count = function () {
       addSet_Count = i;
     } else {
       row_Div[i].style.border = "1px solid black";
+      // exercises_Row_Radio[i].checked = false;
     }
   }
 };
+
 document.body.addEventListener("click", update_tempEN_Count);
 document.body.addEventListener("click", activeSet);
 

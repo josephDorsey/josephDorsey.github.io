@@ -60,68 +60,141 @@ const resetDataInfoPush = function () {
 };
 
 btn_PushDataToArray.addEventListener("click", function () {
-  for (let i = 0; i < exercises_Radio.length; i++) {
-    if (exercises_Radio[i].checked === true) {
-      tempWorkoutList.push(exercises_Radio_Label[i].innerText);
-      exercises_Radio[i].checked = false;
+  if (tempWorkoutList.length === 0) {
+    for (let i = 0; i < exercises_Radio.length; i++) {
+      if (exercises_Radio[i].checked === true) {
+        tempWorkoutList.push(exercises_Radio_Label[i].innerText);
+        exercises_Radio[i].checked = false;
+      }
     }
-  }
-  for (let i = 0; i < tempWorkoutList.length; i++) {
-    const div = document.createElement("div");
-    div.classList.add("row");
-    div.classList.add("hidden");
-    createExercise(
-      `${temp_Workout_Name[workoutName_Count]}`,
-      `${tempWorkoutList[i]}`
-    );
-    div.innerHTML = `
-    <label>
-    <input type="radio" name="exercise-list" class="exercise-list">
-    <h3 class="exercises-row-title">${tempWorkoutList[i]}</h3>
-    <div class="exercises-row-caption">
-      <p class="exercises-row-label row-sets">Sets</p>
-      <p class="exercises-row-label row-lbs">Weight</p>
-      <p class="exercises-row-label row-reps">Reps</p>
-    </div>
-    <label style="position: relative;">
-    <div class="exercises-row">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 completed-set" onclick="completeSet()" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-</svg>
-      <input name="exercises-row-radio" class="exercises-row-radio" type="radio">
-      <p class="exercises-row-set">1</p>
-      <input type="number" value="0" class="input--weight" onchange="updateWeight()">
-      <input type="number" value="0" class="input--reps" onchange="updateReps()">
-      <p class="hidden">135</p>
-      <p class="hidden">10</p>
-      <img src="img/create-outline.svg" class="edit-set">
+    for (let i = 0; i < tempWorkoutList.length; i++) {
+      const div = document.createElement("div");
+      div.classList.add("row");
+      div.classList.add("hidden");
+      createExercise(
+        `${temp_Workout_Name[workoutName_Count]}`,
+        `${tempWorkoutList[i]}`
+      );
+      div.classList.add(`exercise--${[i]}`);
+      div.innerHTML = `
+      <label>
+      <input type="radio" name="exercise-list" class="exercise-list">
+      <h3 class="exercises-row-title">${tempWorkoutList[i]}</h3>
+      <div class="exercises-row-caption">
+        <p class="exercises-row-label row-sets">Sets</p>
+        <p class="exercises-row-label row-lbs">Weight</p>
+        <p class="exercises-row-label row-reps">Reps</p>
+      </div>
+      <label style="position: relative;">
+      <div class="exercises-row">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 completed-set" onclick="completeSet()" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+  </svg>
+        <input name="exercises-row-radio" class="exercises-row-radio" type="radio">
+        <p class="exercises-row-set">1</p>
+        <input type="number" value="0" class="input--weight" onchange="updateWeight()">
+        <input type="number" value="0" class="input--reps" onchange="updateReps()">
+        <p class="hidden">135</p>
+        <p class="hidden">10</p>
+        <img src="img/create-outline.svg" class="edit-set">
+        </div>
+        </label>
+      <div class="">
+        <button class="btn--add-set" onclick="addSet()">
+        <img class="ion-icon" src="img/add.svg">Add set
+        </button>
+      </div>
+      <div class="">
+        <button class="btn--remove-set">
+        
+        <img class="ion-icon" src="img/remove-outline.svg">Remove set
+        </button>
       </div>
       </label>
-    <div class="">
-      <button class="btn--add-set" onclick="addSet()">
-      <img class="ion-icon" src="img/add.svg">Add set
-      </button>
-    </div>
-    <div class="">
-      <button class="btn--remove-set">
-      
-      <img class="ion-icon" src="img/remove-outline.svg">Remove set
-      </button>
-    </div>
-    </label>
-    `;
-    modal_Exercise_Info.appendChild(div);
+      `;
+      modal_Exercise_Info.appendChild(div);
+    }
+  } else if (tempWorkoutList.length > 0) {
+    let addedExercises = [];
+    for (let i = 0; i < exercises_Radio.length; i++) {
+      if (exercises_Radio[i].checked === true) {
+        addedExercises.push(exercises_Radio_Label[i].innerText);
+        tempWorkoutList.push(exercises_Radio_Label[i].innerText);
+        exercises_Radio[i].checked = false;
+      }
+    }
+    for (let i = 0; i < addedExercises.length; i++) {
+      const div = document.createElement("div");
+      div.classList.add("row");
+      div.classList.add("hidden");
+      createExercise(
+        `${temp_Workout_Name[workoutName_Count]}`,
+        `${addedExercises[i]}`
+      );
+      div.innerHTML = `
+      <label>
+      <input type="radio" name="exercise-list" class="exercise-list">
+      <h3 class="exercises-row-title">${addedExercises[i]}</h3>
+      <div class="exercises-row-caption">
+        <p class="exercises-row-label row-sets">Sets</p>
+        <p class="exercises-row-label row-lbs">Weight</p>
+        <p class="exercises-row-label row-reps">Reps</p>
+      </div>
+      <label style="position: relative;">
+      <div class="exercises-row">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 completed-set" onclick="completeSet()" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+  </svg>
+        <input name="exercises-row-radio" class="exercises-row-radio" type="radio">
+        <p class="exercises-row-set">1</p>
+        <input type="number" value="0" class="input--weight" onchange="updateWeight()">
+        <input type="number" value="0" class="input--reps" onchange="updateReps()">
+        <p class="hidden">135</p>
+        <p class="hidden">10</p>
+        <img src="img/create-outline.svg" class="edit-set">
+        </div>
+        </label>
+      <div class="">
+        <button class="btn--add-set" onclick="addSet()">
+        <img class="ion-icon" src="img/add.svg">Add set
+        </button>
+      </div>
+      <div class="">
+        <button class="btn--remove-set">
+        
+        <img class="ion-icon" src="img/remove-outline.svg">Remove set
+        </button>
+      </div>
+      </label>
+      `;
+      modal_Exercise_Info.appendChild(div);
+    }
+    for (let i = 0; i < addedExercises.length; i++) {
+      addedExercises.pop();
+    }
   }
 
   // exercise_List.appendChild(div);
   console.log(tempWorkoutList);
+  localStorage.setItem(
+    `workoutName_${temp_Workout_Name[workoutName_Count]}_Exercises`,
+    JSON.stringify(tempWorkoutList)
+  );
+  exerciseObject.saveProgress(
+    exerciseObject[`${temp_Workout_Name[workoutName_Count]}`]
+  );
   // resetDataInfoPush();
 });
 
 btn_CloseExerciseInfoModal.addEventListener("click", function () {
   workoutName_Count = 0;
-  exercises_Nav.style.backgroundColor = "white";
-  exercises_Nav.style.color = "black";
+  exerciseObject.activePage = false;
+  localStorage.setItem(
+    "exerciseObject_ActivePage",
+    JSON.stringify(exerciseObject.activePage)
+  );
+  workouts_Nav.style.backgroundColor = "white";
+  workouts_Nav.style.color = "black";
   exerciseNotes.classList.add("hidden");
   workouts_Title.style.top = "-216px";
   for (let i = tempWorkoutList.length; i >= 0; i--) {
@@ -149,28 +222,40 @@ btn_CloseExerciseInfoModal.addEventListener("click", function () {
     workouts_Modal_List[i].checked = false;
   }
   ungroupedWorkoutList.classList.remove("hidden");
-  groupedWorkoutList.classList.remove("hidden");
+  console.log(
+    `When grouped workouts implemented: adjust line 225 add-exercise-to-storage to classList.remove("hidden")`
+  );
+  groupedWorkoutList.classList.add("hidden");
   workout_Timer.classList.add("hidden");
   workouts_Title.innerHTML = `Workouts`;
+  workouts_Title.classList.add("hidden");
+  workouts_Modal_Title.classList.remove("hidden");
+  btn_createWorkoutOrWorkoutGroup.classList.add("hidden");
   container_workoutTimer_Buttons.classList.add("hidden");
   container_ExerciseInfo.style.display = "none";
   btn_viewWorkOut.classList.remove("hidden");
+  container_ViewWorkoutButtons.style.display = "block";
   btn_createWorkout_WorkoutGroup.classList.toggle("hidden");
   btn_Edit_Workout_WorkoutGroup.classList.toggle("hidden");
   btn_CloseExerciseInfoModal.classList.toggle("hidden");
   span_CloseExerciseInfoModal.classList.toggle("hidden");
   activeModalContainer.style.gridRow = "3/6";
   // modal_Exercise_Info.style.display = "none";
-  hide_AddExercise_LabelsInputs();
+  // hide_AddExercise_LabelsInputs();
   // editExercises_Modal = false;
   for (let i = 0; i < buttons_AddExerciseModal.length; i++) {
     buttons_AddExerciseModal[i].style.gridRow = "3";
   }
-  btn_linkCreateExercise.classList.remove("btn-active");
+  // btn_linkCreateExercise.classList.remove("btn-active");
   btn_linkAddExercise.classList.remove("btn-active");
   // hide_CreateExercise_LabelsInputs();
   btn_PushDataToArray.classList.add("hidden");
   btn_PushToWordBank.classList.add("hidden");
+  btn_createWorkoutOrWorkoutGroup.classList.add("hidden");
+  workouts_Modal_Create_Workouts.classList.remove("hidden");
+  while (row_Div.length > 0) {
+    row_Div[0].remove();
+  }
   // container_ExerciseInfo.classList.toggle("hidden");
   // container_MainNav_Buttons.classList.toggle("hidden");
 });

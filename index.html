@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./main--css/pseudo-elements.css" />
     <link rel="stylesheet" href="./main--css/elements.css" />
     <link rel="stylesheet" href="./main--css/presets.css" />
+    <link rel="stylesheet" href="./main--css/mediaQueries.css" />
 
     <title>My Website</title>
   </head>
@@ -24,82 +25,246 @@
           <h4>A Front-end Developers Journey</h4>
         </div>
         <nav class="blog--menu">
-          <a href="index.html" class="nav--active">About</a>
-          <a href="./Portfolio Page/index.html">Portfolio</a>
-          <a href="./Contact Page/index.html">Contact</a>
-          <a href="./Games Page/index.html">Games</a>
+          <a href="#!" class="btn_AboutMe nav--active">About</a>
+          <a href="#!" class="btn_Portfolio">Portfolio</a>
+          <a href="#!" class="btn_Contact">Contact</a>
+          <a href="#!" class="btn_Games">Games</a>
         </nav>
       </header>
-      <section class="barbadonkulus section--0">
-        <img
-          src="./main--img/author/me-sprite.png"
-          alt="small image of author"
-          class="about-img"
-        />
-        <div class="barbadonkulus--righthand"></div>
-        <div class="barbadonkulus--lefthand"></div>
-        <div class="title-container">
-          <h1>
-            Hi! I'm
-            <strong>Joseph</strong>, a Front-end developer who loves to learn
-            new things.
-          </h1>
-        </div>
-      </section>
-      <section class="section--1">
-        <div class="about--me--col--1">
-          <div class="about--me--todd--1">
-            <img
-              src="./main--img/author/graduate-todder.png"
-              alt="todder with cap and gown"
-              i
-            />
-            <blockquote>
-              I graduated from Humboldt State University with a Bachelor's
-              degree in Psychology.
-            </blockquote>
+      <div class="container--AboutMe">
+        <section class="barbadonkulus section--0">
+          <img
+            src="./main--img/author/me-sprite.png"
+            alt="small image of author"
+            class="about-img"
+          />
+          <div class="barbadonkulus--righthand"></div>
+          <div class="barbadonkulus--lefthand">
+            <!-- <img src="./main--img/author/todderfinder.png" /> -->
           </div>
-        </div>
-        <div class="about--me--col--2">
-          <div class="about--me--todd--2">
-            <img
-              src="./main--img/author/redmonke.png"
-              alt="todder multitasking multiple objects"
-            />
-            <blockquote>
-              I always try to expand my skillset by creating new projects. You
-              can check out my
-              <a href="./Portfolio Page/index.html">portfolio</a>.
-            </blockquote>
+          <div class="title-container">
+            <h1>
+              Hi! I'm
+              <strong>Joseph</strong>, a Front-end developer who loves to learn
+              new things.
+            </h1>
           </div>
-        </div>
-        <div class="about--me--col--3">
-          <div class="about--me--todd--3">
-            <img
-              src="./main--img/author/friends.png"
-              alt="todder with friends"
-            />
-            <blockquote>
-              In my spare time I also enjoy spending time with my family and
-              friends, creating pixel art and playing games.
-            </blockquote>
+        </section>
+        <section class="section--1">
+          <div class="about--me--col--1">
+            <div class="about--me--todd--1">
+              <img
+                src="./main--img/author/graduate-todder.png"
+                alt="todder with cap and gown"
+                i
+              />
+              <blockquote>
+                I graduated from Humboldt State University with a Bachelor's
+                degree in Psychology.
+              </blockquote>
+            </div>
           </div>
-        </div>
-        <div class="about--me--col--4">
-          <div class="about--me--todd--4">
-            <img
-              src="./main--img/author/todderfinder.png"
-              alt="todder with books"
-            />
-            <blockquote>
-              Do you like to solve Murder Mysteries? Please help Detective
-              Todder solve 5 mysteries and receive points for the correct
-              answer. Think you can score the most points? Try it out here:
-              <a href="./Games Page/index.html">Murder Mystery</a>.
-            </blockquote>
+          <div class="about--me--col--2">
+            <div class="about--me--todd--2">
+              <img
+                src="./main--img/author/redmonke.png"
+                alt="todder multitasking multiple objects"
+              />
+              <blockquote>
+                I always try to expand my skillset by creating new projects. You
+                can check out my
+                <a href="./Portfolio Page/index.html">portfolio</a>.
+              </blockquote>
+            </div>
           </div>
+          <div class="about--me--col--3">
+            <div class="about--me--todd--3">
+              <img
+                src="./main--img/author/friends.png"
+                alt="todder with friends"
+              />
+              <blockquote>
+                In my spare time I also enjoy spending time with my family and
+                friends, creating pixel art, working out and playing games.
+              </blockquote>
+            </div>
+          </div>
+          <div class="about--me--col--4">
+            <div class="about--me--todd--4">
+              <img
+                src="./main--img/detectivetodder.png"
+                alt="todder with books"
+              />
+              <blockquote>
+                Do you like to solve Murder Mysteries? Please help Detective
+                Todder solve 5 mysteries and receive points for the correct
+                answer. Think you can score the most points? Try it out here:
+                <a href="./Games Page/index.html">Murder Mystery</a>.
+              </blockquote>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="container--Portfolio">
+        <div class="container--portfolio-started">
+          <h2>Current Projects!</h2>
+          <a href="../Portfolio Page/stronkApp/Track Exercise/index.html"
+            >Stronk App (Calories, BMI, Protein, and Exercise Tracker)</a
+          >
+          <a href="https://josephdorsey.github.io/shopGuideC/"
+            >shopGuideC - Shop</a
+          >
+          <a href="">shopGuideC - Pizza Tracker</a>
+          <a href="">Games</a>
         </div>
-      </section>
+        <div class="container--PortfolioFutureProjects">
+          <figure>Project #1: Portfolio Website</figure>
+          <figure>Project #2: Clone website (from scratch)</figure>
+          <figure>
+            Project #3: A CRUD web application (ex. Blogs, to-do-list, notes
+            webpage) [Build /w React][Blog Page][Make JavaScript Quiz]
+            <p>
+              You can start with the JS quiz game by only adding a few
+              questions, say 5 or 6. Each question will have 4 choices. You need
+              to put a scoring system in place to make things a little enticing.
+              Since building this game's primary intent is to learn web
+              development (or JS, particularly), you can easily deal with the
+              game's designing and styling using a simple CSS framework.
+            </p>
+          </figure>
+          <figure>Project #4: An API-connected website</figure>
+          <figure>Project #5: A 'perfect score' website</figure>
+        </div>
+      </div>
+      <div class="container--Contact">
+        <section class="contact--me">
+          <h2 class="contact--header">Want to contact me?</h2>
+          <a class="contact--img" href="mailto:jmdorsey92@gmail.com">
+            <img
+              src="../main--img/author/contactboi.png"
+              class="contact--author"
+              alt="pixel image of pixel holding an email"
+          /></a>
+
+          <p class="contact--p">You can contact me at this email address:</p>
+          <a class="contact--link" href="mailto:jmdorsey92@gmail.com"
+            >jmdorsey92@gmail.com</a
+          >
+          <h3 class="contact--social">Socials</h3>
+          <ul class="contact--list">
+            <li>
+              <a><i></i>Twitter</a>
+            </li>
+            <li>
+              <a><i></i>Github</a>
+            </li>
+            <li>
+              <a><i></i>Linkedin</a>
+            </li>
+          </ul>
+        </section>
+      </div>
+      <div class="container--Games">
+        <section class="game--container">
+          <div class="row game--box">
+            <div class="game--grid">
+              <h3>
+                <a href="./Murder Mystery Game/index.html"
+                  >Murder Mystery with Detective Todder (Quiz Game)</a
+                >
+              </h3>
+              <div class="game--img">
+                <figure>
+                  <img
+                    src="../main--img/detectivetodder.png"
+                    alt="todderfinder img"
+                  />
+                </figure>
+              </div>
+              <div class="game--summary">
+                <p>
+                  Players will be tasked with solving 5 murder mysteries
+                  presented by Detective Todder. Players must read each passage
+                  and answer one question per passage. Each question will have 4
+                  possible answers and the player must choose correctly to earn
+                  the most amount of points. Players will only have 3 tries per
+                  passage, before it moves on to the next story.
+                </p>
+                <div class="project--info">
+                  <div class="project--item">HTML</div>
+                  <div class="project--item">CSS</div>
+                  <div class="project--item">Javascript</div>
+                </div>
+                <a href="./Murder Mystery Game/index.html" class="button--play"
+                  >Click here to play</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="row game--box">
+            <div class="game--grid">
+              <h3>
+                <a href="#">Hangman/Word Scrambler</a>
+              </h3>
+              <div class="game--img">
+                <div class="character--6">
+                  <img
+                    class="todder-happy--wave"
+                    src="/josephdorsey.github.io/main--img/Todder - Wave/todder--wave-sheet.png"
+                  />
+                </div>
+              </div>
+              <div class="game--summary">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Consectetur harum praesentium tempore voluptas ea officiis
+                  soluta eveniet quia est, ducimus reiciendis! Veniam mollitia
+                  laboriosam velit. Nostrum odit aperiam ab similique?
+                </p>
+                <div class="project--info">
+                  <div class="project--item">HTML</div>
+                  <div class="project--item">CSS</div>
+                  <div class="project--item">Javascript</div>
+                </div>
+                <a href="./Murder Mystery Game/index.html" class="button--play"
+                  >Click here to play</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="row game--box">
+            <div class="game--grid">
+              <h3>
+                <a href="#">Pathway Demo</a>
+              </h3>
+              <div class="game--img">
+                <div class="character--6">
+                  <img
+                    class="todder-happy--wave"
+                    src="/josephdorsey.github.io/main--img/Todder - Wave/todder--wave-sheet.png"
+                  />
+                </div>
+              </div>
+              <div class="game--summary">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Consectetur harum praesentium tempore voluptas ea officiis
+                  soluta eveniet quia est, ducimus reiciendis! Veniam mollitia
+                  laboriosam velit. Nostrum odit aperiam ab similique?
+                </p>
+                <div class="project--info">
+                  <div class="project--item">HTML</div>
+                  <div class="project--item">CSS</div>
+                  <div class="project--item">Javascript</div>
+                </div>
+                <a href="./Pathway Demo/index.html" class="button--play"
+                  >Click here to play</a
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
       <footer>Copyright © 2021 by Joseph Dorsey</footer>
     </div>
     <script src="main--js/index.js" type="text/javascript"></script>

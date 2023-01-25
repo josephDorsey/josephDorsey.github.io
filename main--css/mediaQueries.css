@@ -1,0 +1,20 @@
+@media only screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) {
+}
+/* 0 to 600px */
+@media (max-width: 599px) {
+  .section--1 {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    font-size: 1.5rem;
+    gap: 2em;
+  }
+  .blog--menu a {
+    display: block;
+  }
+}
+/* 600px or bigger */
+@media (min-width: 600px) {
+  .blog--menu {
+    display: flex;
+  }
+}

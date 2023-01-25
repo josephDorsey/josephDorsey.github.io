@@ -519,3 +519,12 @@ html {
   scroll-behavior: smooth;
 }
 ```
+
+# How do you remove an element from an HTML collection?
+The length of your HTMLCollection changes when you remove an item. A way to do it is to use a while loop
+
+```
+while(paragraphs.length > 0) {
+   paragraphs[0].remove();
+}
+```
